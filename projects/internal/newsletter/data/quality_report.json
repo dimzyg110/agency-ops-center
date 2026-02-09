@@ -1,0 +1,69 @@
+{
+  "checked_at": "2026-02-08T14:36:29Z",
+  "status": "FAIL",
+  "issues": [
+    {
+      "type": "broken_link",
+      "url": "https://masscannabiscontrol.com/resource/meau-plav",
+      "status": 404
+    },
+    {
+      "type": "broken_link",
+      "url": "https://www.wwlp.com/news/crime/massachusetts-marijuana-dispensary-used-to-launder-450k-in-fentanyl-cash/",
+      "status": null
+    },
+    {
+      "type": "date_consistency_mismatch",
+      "event": "Cannabis in Massachusetts - Wikipedia",
+      "draft_date": "2026-01-05",
+      "source_date": "TBD",
+      "message": "Event 'Cannabis in Massachusetts - Wikipedia' shows date 2026-01-05 in draft but source JSON has TBD"
+    },
+    {
+      "type": "date_consistency_mismatch",
+      "event": "Reserve Your Booth - Toronto 2026 | Grow Up Conference and Expo | presented by Quality Horticulture",
+      "draft_date": "2026-01-19",
+      "source_date": "TBD",
+      "message": "Event 'Reserve Your Booth - Toronto 2026 | Grow Up Conference and Expo | presented by Quality Horticulture' shows date 2026-01-19 in draft but source JSON has TBD"
+    },
+    {
+      "type": "date_consistency_mismatch",
+      "event": "Exhibitors - Vancouver 2026 | Grow Up Conference and Expo | presented by Quality Horticulture",
+      "draft_date": "2026-01-19",
+      "source_date": "TBD",
+      "message": "Event 'Exhibitors - Vancouver 2026 | Grow Up Conference and Expo | presented by Quality Horticulture' shows date 2026-01-19 in draft but source JSON has TBD"
+    },
+    {
+      "type": "date_consistency_mismatch",
+      "event": "Reserve Your Booth - Vancouver 2026 | Grow Up Conference and Expo | presented by Quality Horticulture",
+      "draft_date": "2026-01-19",
+      "source_date": "TBD",
+      "message": "Event 'Reserve Your Booth - Vancouver 2026 | Grow Up Conference and Expo | presented by Quality Horticulture' shows date 2026-01-19 in draft but source JSON has TBD"
+    },
+    {
+      "type": "date_consistency_mismatch",
+      "event": "Cannabis in Massachusetts - Wikipedia",
+      "draft_date": "2026-02-03",
+      "source_date": "TBD",
+      "message": "Event 'Cannabis in Massachusetts - Wikipedia' shows date 2026-02-03 in draft but source JSON has TBD"
+    },
+    {
+      "type": "date_consistency_mismatch",
+      "event": "Cannabis in Massachusetts - Wikipedia",
+      "draft_date": "2026-04-01",
+      "source_date": "TBD",
+      "message": "Event 'Cannabis in Massachusetts - Wikipedia' shows date 2026-04-01 in draft but source JSON has TBD"
+    }
+  ],
+  "sections": {
+    "top_story": true,
+    "license_watch": true,
+    "market_pulse": true,
+    "demographic_equity_signal": true,
+    "tool_of_the_week": true,
+    "events": true,
+    "quick_hits": true,
+    "the_number": true,
+    "margin_tip": true
+  }
+}

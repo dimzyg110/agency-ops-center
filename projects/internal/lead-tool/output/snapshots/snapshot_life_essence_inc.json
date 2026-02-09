@@ -1,0 +1,66 @@
+{
+  "business_name": "Life Essence, Inc.",
+  "city": "Rowley",
+  "email": "stuart@naturesremedyma.com",
+  "phone": "603-231-1991",
+  "address": "264 Newburyport Turnpike Rowley Ma, 01969",
+  "operator_type": "cultivator",
+  "license_types": [
+    "Marijuana Retailer",
+    "Marijuana Cultivator",
+    "Marijuana Product Manufacturer"
+  ],
+  "generated_date": "2026-02-04",
+  "market_context": {
+    "headline": "Massachusetts Cannabis Market Under Margin Pressure",
+    "key_points": [
+      "Wholesale flower prices have dropped ~50% since 2021 ($300/oz \u2192 $150/oz)",
+      "1,693 licensed entities competing in a mature market",
+      "Small operators struggling; consolidation accelerating"
+    ]
+  },
+  "pressure_signals": [
+    {
+      "name": "Expired/Surrendered Licenses",
+      "description": "Has given up licenses - financial or operational distress indicator",
+      "severity": "high"
+    },
+    {
+      "name": "Complex License Portfolio",
+      "description": "Multiple license types adding operational complexity",
+      "severity": "low"
+    }
+  ],
+  "likely_leaks": [
+    {
+      "name": "Inventory Waste & Shrinkage",
+      "description": "Product loss from spoilage, damage, or compliance issues",
+      "quick_win": "Tighten inventory controls and FIFO rotation"
+    },
+    {
+      "name": "High Energy Costs",
+      "description": "Unoptimized HVAC and lighting for cultivation",
+      "quick_win": "LED upgrade and climate control optimization"
+    },
+    {
+      "name": "Compliance Overhead",
+      "description": "Excessive time spent on regulatory requirements",
+      "quick_win": "Streamline seed-to-sale workflows"
+    }
+  ],
+  "fast_wins": [
+    {
+      "name": "Yield Optimization",
+      "description": "Focus on grams per square foot rather than plant count"
+    },
+    {
+      "name": "Strain Rationalization",
+      "description": "Cut underperformers, double down on top 5 sellers"
+    },
+    {
+      "name": "Trim Monetization",
+      "description": "Convert trim to concentrates or pre-rolls instead of selling bulk"
+    }
+  ],
+  "first_change": "Calculate your true cost per gram including labor, energy, and waste. Most cultivators don't know this number, which means they can't improve it."
+}

@@ -1,0 +1,69 @@
+{
+  "generated_at": "2026-02-08T14:36:28.138232Z",
+  "the_number": {
+    "value": "934",
+    "context": "licensed cannabis operators tracked across Massachusetts this week"
+  },
+  "market_pulse": [
+    "0 new licenses approved in the last 7 days",
+    "Hiring heat led by Royal Sun Farm Llc, Ten-Ten Llc, Frozen 4 Corporation",
+    "Review momentum leaders: Massmedicum Corp., Resinate, Inc., Debilitating Medical Condition Treatment Centers",
+    "applications_rollup is up 58.0% (9/9/2024 12:00:00 AM -> 9/9/2025 12:00:00 AM) for StrainActiveCount."
+  ],
+  "demographic_trend_card": {
+    "insight": "applications_rollup is up 58.0% (9/9/2024 12:00:00 AM -> 9/9/2025 12:00:00 AM) for StrainActiveCount.",
+    "ma_operator_implication": "MA operator implication: demographic and equity shifts can change competitive intensity, licensing pathways, and local demand strategy.",
+    "metric": "StrainActiveCount",
+    "source_dataset": "applications_rollup",
+    "source_url": "https://masscannabiscontrol.com/resource/meau-plav"
+  },
+  "source_health": [
+    {
+      "dataset": "signals",
+      "status": "success",
+      "source_file": "ma_operator_signals_pack_2026-02-04.csv",
+      "row_count": 150
+    },
+    {
+      "dataset": "ccc_demographics",
+      "status": "success",
+      "source_file": "normalized_snapshot.json",
+      "row_count": 1
+    }
+  ],
+  "coverage": {
+    "dataset_count": 2,
+    "successful_datasets": 2
+  },
+  "freshness": {
+    "generated_at": "2026-02-08T14:36:28.138303Z"
+  },
+  "relevance": {
+    "demographic_signal_included": true
+  },
+  "insights": {
+    "total_operators": 934,
+    "new_licenses": 0,
+    "average_distress_trend_pct": null,
+    "hiring_hot": [
+      "Royal Sun Farm Llc",
+      "Ten-Ten Llc",
+      "Frozen 4 Corporation"
+    ],
+    "top_menu_gaps": [],
+    "review_velocity_leaders": [
+      "Massmedicum Corp.",
+      "Resinate, Inc.",
+      "Debilitating Medical Condition Treatment Centers"
+    ],
+    "source_files": {
+      "signals_latest": "ma_operator_signals_pack_2026-02-04.csv",
+      "signals_previous": null,
+      "places_latest": "places_enriched_2026-02-04.csv",
+      "hiring_latest": "hiring_signals_2026-02-04.csv",
+      "menu_latest": "menu_analysis_2026-02-04.csv",
+      "snapshot_latest": "ccc_snapshot_2026-02-04.json",
+      "ccc_normalized": "normalized_snapshot.json"
+    }
+  }
+}

@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MA Operator Signals Pack</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            padding: 40px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 24px;
+            padding: 48px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        
+        .badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+        }
+        
+        h1 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #fff 0%, #a0a0a0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .subtitle {
+            font-size: 20px;
+            color: #6366f1;
+            font-weight: 600;
+            margin-bottom: 32px;
+        }
+        
+        .intro {
+            font-size: 16px;
+            line-height: 1.7;
+            color: #b0b0b0;
+            margin-bottom: 32px;
+        }
+        
+        .intro strong {
+            color: #fff;
+        }
+        
+        .stat {
+            color: #f87171;
+            font-weight: 700;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin-bottom: 32px;
+            text-align: center;
+        }
+        
+        .highlight-box p {
+            font-size: 18px;
+            font-weight: 500;
+        }
+        
+        h2 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #6366f1;
+        }
+        
+        .data-point {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
+            padding: 16px 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            border-left: 3px solid #6366f1;
+        }
+        
+        .data-point .number {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            color: #fff;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+        
+        .data-point .content h4 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        
+        .data-point .content p {
+            font-size: 14px;
+            color: #888;
+        }
+        
+        .deliverables {
+            margin-bottom: 32px;
+        }
+        
+        .pricing-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+        
+        .pricing-box {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+        }
+        
+        .pricing-box.featured {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(139, 92, 246, 0.15) 100%);
+            border: 1px solid rgba(99, 102, 241, 0.4);
+        }
+        
+        .pricing-box h3 {
+            font-size: 14px;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+        
+        .pricing-box .price {
+            font-size: 36px;
+            font-weight: 700;
+            color: #6366f1;
+            margin-bottom: 8px;
+        }
+        
+        .pricing-box p {
+            font-size: 13px;
+            color: #666;
+        }
+        
+        .scarcity-banner {
+            background: linear-gradient(135deg, rgba(251, 191, 36, 0.15) 0%, rgba(245, 158, 11, 0.15) 100%);
+            border: 1px solid rgba(251, 191, 36, 0.3);
+            border-radius: 12px;
+            padding: 16px 24px;
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        
+        .scarcity-banner p {
+            color: #fbbf24;
+            font-weight: 600;
+            font-size: 15px;
+        }
+        
+        .contact-box {
+            text-align: center;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .contact-box .intro-text {
+            color: #888;
+            margin-bottom: 16px;
+            font-size: 15px;
+        }
+        
+        .contact-box .name {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        
+        .contact-box .company {
+            color: #888;
+            margin-bottom: 8px;
+        }
+        
+        .contact-box .email {
+            font-size: 20px;
+            font-weight: 600;
+            color: #6366f1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="badge">Predictive Intelligence for Strategic Vendors</div>
+        <h1>MA Operator Signals Pack</h1>
+        <p class="subtitle">Know Who's Buying Before They Know They're Buying</p>
+        
+        <p class="intro">
+            <strong>The Massachusetts market isn't just changing—it's capitulating.</strong> 
+            Wholesale pricing has collapsed <span class="stat">73%</span> (from $14.68 to $4.01/gram). 
+            The market is fracturing into two groups: those capitalizing on the chaos to expand, 
+            and those quietly sliding into insolvency.
+        </p>
+        
+        <div class="highlight-box">
+            <p>Stop guessing. <strong>Start targeting with precision.</strong></p>
+        </div>
+        
+        <h2>The Intelligence</h2>
+        <p class="intro" style="margin-bottom: 24px;">
+            We analyzed <strong>67,000 rows of CCC facility sales data</strong> and scored 
+            <strong>593 leads</strong> to isolate signal from noise. This isn't a static contact list—
+            it's a financial pressure map of the entire state ecosystem.
+        </p>
+        
+        <div class="deliverables">
+            <div class="data-point">
+                <div class="number">1</div>
+                <div class="content">
+                    <h4>The Priority 150</h4>
+                    <p>Top 150 MA operators, prioritized by pressure signals. Know who's in "Growth Mode" vs "Survival Mode."</p>
+                </div>
+            </div>
+            <div class="data-point">
+                <div class="number">2</div>
+                <div class="content">
+                    <h4>Verified Contact Intel</h4>
+                    <p>Direct access data: email, phone, and physical address for key decision-makers.</p>
+                </div>
+            </div>
+            <div class="data-point">
+                <div class="number">3</div>
+                <div class="content">
+                    <h4>"Why Now" Talk Tracks</h4>
+                    <p>Custom outreach angles derived from distress indicators. Solve their specific problem.</p>
+                </div>
+            </div>
+            <div class="data-point">
+                <div class="number">4</div>
+                <div class="content">
+                    <h4>Market Context Brief</h4>
+                    <p>1-page executive summary of the 73% wholesale collapse to inform your strategy.</p>
+                </div>
+            </div>
+            <div class="data-point">
+                <div class="number">5</div>
+                <div class="content">
+                    <h4>30-Day Freshness Guarantee</h4>
+                    <p>Includes one full data refresh and CSV update 30 days after purchase.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="pricing-section">
+            <div class="pricing-box featured">
+                <h3>One-Time Access</h3>
+                <div class="price">$2,500</div>
+                <p>Full pack + 30-day refresh included</p>
+            </div>
+            <div class="pricing-box">
+                <h3>Monthly Subscription</h3>
+                <div class="price">$499/mo</div>
+                <p>Ongoing intelligence refresh</p>
+            </div>
+        </div>
+        
+        <div class="scarcity-banner">
+            <p>⚡ Limited to 3 buyers per quarter to maintain competitive advantage</p>
+        </div>
+        
+        <div class="contact-box">
+            <p class="intro-text">If you sell to dispensaries—whether you're a broker, brand, security firm, or CPA—this is the roadmap to revenue that actually exists.</p>
+            <p class="name">Randy Torres</p>
+            <p class="company">Roviq</p>
+            <p class="email">randy@roviqai.xyz</p>
+        </div>
+    </div>
+</body>
+</html>

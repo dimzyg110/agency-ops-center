@@ -1,0 +1,71 @@
+{
+  "business_name": "The Green Harbor Dispensary Llc",
+  "city": "Provincetown",
+  "email": "nick@greenharbordispensary.com",
+  "phone": "781-974-7782",
+  "address": "79 Shank Painter Rd. Provincetown Ma, 02657",
+  "operator_type": "cultivator",
+  "license_types": [
+    "Marijuana Retailer",
+    "Marijuana Cultivator",
+    "Marijuana Product Manufacturer"
+  ],
+  "generated_date": "2026-02-04",
+  "market_context": {
+    "headline": "Massachusetts Cannabis Market Under Margin Pressure",
+    "key_points": [
+      "Wholesale flower prices have dropped ~50% since 2021 ($300/oz \u2192 $150/oz)",
+      "1,693 licensed entities competing in a mature market",
+      "Small operators struggling; consolidation accelerating"
+    ]
+  },
+  "pressure_signals": [
+    {
+      "name": "Expired/Surrendered Licenses",
+      "description": "Has given up licenses - financial or operational distress indicator",
+      "severity": "high"
+    },
+    {
+      "name": "Small-Tier Cultivation",
+      "description": "Limited scale leading to higher per-unit costs",
+      "severity": "medium"
+    },
+    {
+      "name": "Complex License Portfolio",
+      "description": "Multiple license types adding operational complexity",
+      "severity": "low"
+    }
+  ],
+  "likely_leaks": [
+    {
+      "name": "High Energy Costs",
+      "description": "Unoptimized HVAC and lighting for cultivation",
+      "quick_win": "LED upgrade and climate control optimization"
+    },
+    {
+      "name": "Labor Inefficiency",
+      "description": "Manual processes that could be automated",
+      "quick_win": "Implement task tracking and performance metrics"
+    },
+    {
+      "name": "Inventory Waste & Shrinkage",
+      "description": "Product loss from spoilage, damage, or compliance issues",
+      "quick_win": "Tighten inventory controls and FIFO rotation"
+    }
+  ],
+  "fast_wins": [
+    {
+      "name": "Yield Optimization",
+      "description": "Focus on grams per square foot rather than plant count"
+    },
+    {
+      "name": "Strain Rationalization",
+      "description": "Cut underperformers, double down on top 5 sellers"
+    },
+    {
+      "name": "Trim Monetization",
+      "description": "Convert trim to concentrates or pre-rolls instead of selling bulk"
+    }
+  ],
+  "first_change": "You can't compete on scale, so compete on quality. Focus on premium strains with higher margins rather than chasing volume. Consider seeking higher tier or partnership."
+}

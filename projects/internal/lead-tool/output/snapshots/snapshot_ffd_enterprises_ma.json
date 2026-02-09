@@ -1,0 +1,70 @@
+{
+  "business_name": "Ffd Enterprises Ma",
+  "city": "Rowley",
+  "email": "jodiem1955@gmail.com",
+  "phone": "508-397-0217",
+  "address": "116 Newburyport Turnpike Rowley Ma, 01969",
+  "operator_type": "cultivator",
+  "license_types": [
+    "Marijuana Retailer",
+    "Marijuana Cultivator"
+  ],
+  "generated_date": "2026-02-04",
+  "market_context": {
+    "headline": "Massachusetts Cannabis Market Under Margin Pressure",
+    "key_points": [
+      "Wholesale flower prices have dropped ~50% since 2021 ($300/oz \u2192 $150/oz)",
+      "1,693 licensed entities competing in a mature market",
+      "Small operators struggling; consolidation accelerating"
+    ]
+  },
+  "pressure_signals": [
+    {
+      "name": "Expired/Surrendered Licenses",
+      "description": "Has given up licenses - financial or operational distress indicator",
+      "severity": "high"
+    },
+    {
+      "name": "Cultivation Without Manufacturing",
+      "description": "Growing product but missing margin capture from value-add processing",
+      "severity": "medium"
+    },
+    {
+      "name": "Small-Tier Cultivation",
+      "description": "Limited scale leading to higher per-unit costs",
+      "severity": "medium"
+    }
+  ],
+  "likely_leaks": [
+    {
+      "name": "High Energy Costs",
+      "description": "Unoptimized HVAC and lighting for cultivation",
+      "quick_win": "LED upgrade and climate control optimization"
+    },
+    {
+      "name": "Labor Inefficiency",
+      "description": "Manual processes that could be automated",
+      "quick_win": "Implement task tracking and performance metrics"
+    },
+    {
+      "name": "Value-Add Gap",
+      "description": "Selling raw material at commodity prices instead of processed goods",
+      "quick_win": "Partner with manufacturer for toll processing"
+    }
+  ],
+  "fast_wins": [
+    {
+      "name": "Yield Optimization",
+      "description": "Focus on grams per square foot rather than plant count"
+    },
+    {
+      "name": "Strain Rationalization",
+      "description": "Cut underperformers, double down on top 5 sellers"
+    },
+    {
+      "name": "Trim Monetization",
+      "description": "Convert trim to concentrates or pre-rolls instead of selling bulk"
+    }
+  ],
+  "first_change": "Stop selling raw flower at commodity prices. Find a toll processing partner this week. Even at 50/50 splits, you'll capture more margin than wholesale flower."
+}

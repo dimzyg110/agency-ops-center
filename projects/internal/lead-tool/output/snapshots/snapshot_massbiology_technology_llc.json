@@ -1,0 +1,60 @@
+{
+  "business_name": "Massbiology Technology Llc",
+  "city": "Holyoke",
+  "email": "dktise@atlanticaadvisors.com",
+  "phone": "781-775-6093",
+  "address": "6 Appleton St. Holyoke Ma, 01040",
+  "operator_type": "cultivator",
+  "license_types": [
+    "Marijuana Cultivator",
+    "Marijuana Product Manufacturer"
+  ],
+  "generated_date": "2026-02-04",
+  "market_context": {
+    "headline": "Massachusetts Cannabis Market Under Margin Pressure",
+    "key_points": [
+      "Wholesale flower prices have dropped ~50% since 2021 ($300/oz \u2192 $150/oz)",
+      "1,693 licensed entities competing in a mature market",
+      "Small operators struggling; consolidation accelerating"
+    ]
+  },
+  "pressure_signals": [
+    {
+      "name": "Stalled Operations",
+      "description": "Licensed but not yet operational - capital burn without revenue",
+      "severity": "high"
+    }
+  ],
+  "likely_leaks": [
+    {
+      "name": "Burn Without Revenue",
+      "description": "Paying rent, utilities, and holding costs without generating income",
+      "quick_win": "Fast-track to operations or consider sublease options"
+    },
+    {
+      "name": "Inventory Waste & Shrinkage",
+      "description": "Product loss from spoilage, damage, or compliance issues",
+      "quick_win": "Tighten inventory controls and FIFO rotation"
+    },
+    {
+      "name": "High Energy Costs",
+      "description": "Unoptimized HVAC and lighting for cultivation",
+      "quick_win": "LED upgrade and climate control optimization"
+    }
+  ],
+  "fast_wins": [
+    {
+      "name": "Yield Optimization",
+      "description": "Focus on grams per square foot rather than plant count"
+    },
+    {
+      "name": "Strain Rationalization",
+      "description": "Cut underperformers, double down on top 5 sellers"
+    },
+    {
+      "name": "Trim Monetization",
+      "description": "Convert trim to concentrates or pre-rolls instead of selling bulk"
+    }
+  ],
+  "first_change": "Focus all resources on getting to revenue. Every month of delay is pure cost. Identify the single biggest blocker and dedicate 80% of your time to removing it."
+}

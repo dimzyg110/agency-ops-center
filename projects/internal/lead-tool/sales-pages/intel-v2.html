@@ -1,0 +1,1498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MA Operator Signals Pack | Institutional-Grade Cannabis Intelligence</title>
+    <meta name="description" content="Stop chasing zombies. The Priority 150 ranked operators with verified contact intel for vendors selling to Massachusetts dispensaries.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ══════════════════════════════════════════════════════════════
+           DESIGN TOKENS - Digital Editorial Palette
+           ══════════════════════════════════════════════════════════════ */
+        :root {
+            /* Colors */
+            --bg-deep: #1E1C1A;
+            --bg-card: #2C2926;
+            --bg-elevated: #383430;
+            --text-primary: #ECEBE6;
+            --text-secondary: #A1A1AA;
+            --accent: #CCFF00;
+            --accent-dim: rgba(204, 255, 0, 0.15);
+            --border: rgba(161, 161, 170, 0.2);
+            --border-hover: rgba(204, 255, 0, 0.4);
+            
+            /* Typography */
+            --font-display: 'Fraunces', Georgia, serif;
+            --font-body: 'Plus Jakarta Sans', -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+            
+            /* Spacing (8pt grid) */
+            --space-1: 8px;
+            --space-2: 16px;
+            --space-3: 24px;
+            --space-4: 32px;
+            --space-5: 40px;
+            --space-6: 48px;
+            --space-8: 64px;
+            --space-10: 80px;
+            --space-12: 96px;
+            --space-15: 120px;
+            
+            /* Radii */
+            --radius-sm: 12px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            --radius-pill: 100px;
+        }
+        
+        /* ══════════════════════════════════════════════════════════════
+           RESET & BASE
+           ══════════════════════════════════════════════════════════════ */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-deep);
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        /* Grain texture overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            opacity: 0.035;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            z-index: 1000;
+        }
+        
+        /* ══════════════════════════════════════════════════════════════
+           LAYOUT
+           ══════════════════════════════════════════════════════════════ */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-3);
+        }
+        
+        section {
+            padding: var(--space-10) 0;
+        }
+        
+        .section-gap {
+            padding: var(--space-15) 0;
+        }
+        
+        /* ══════════════════════════════════════════════════════════════
+           TYPOGRAPHY
+           ══════════════════════════════════════════════════════════════ */
+        h1, h2, h3, h4 {
+            font-family: var(--font-display);
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            line-height: 1.15;
+        }
+        
+        h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+        }
+        
+        h2 {
+            font-size: clamp(1.75rem, 4vw, 2.75rem);
+        }
+        
+        h3 {
+            font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+        }
+        
+        .text-secondary {
+            color: var(--text-secondary);
+        }
+        
+        .text-accent {
+            color: var(--accent);
+        }
+        
+        .mono {
+            font-family: var(--font-mono);
+        }
+        
+        .eyebrow {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: var(--space-2);
+        }
+        
+        /* ══════════════════════════════════════════════════════════════
+           COMPONENTS
+           ══════════════════════════════════════════════════════════════ */
+        
+        /* Cards */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: var(--space-4);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+            border-color: var(--border-hover);
+            box-shadow: 0 0 0 1px var(--border-hover);
+        }
+        
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-1);
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: 0.9375rem;
+            padding: var(--space-2) var(--space-4);
+            border-radius: var(--radius-pill);
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+        
+        .btn-primary {
+            background: var(--accent);
+            color: var(--bg-deep);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(204, 255, 0, 0.25);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+        
+        .btn-outline:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+        
+        .btn-lg {
+            padding: var(--space-2) var(--space-5);
+            font-size: 1rem;
+        }
+        
+        /* Pills / Tags */
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            font-family: var(--font-mono);
+            font-size: 0.6875rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            padding: 6px 12px;
+            border-radius: var(--radius-pill);
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+        }
+        
+        .tag-accent {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: var(--accent-dim);
+        }
+        
+        /* Dividers */
+        .divider {
+            height: 1px;
+            background: var(--border);
+            margin: var(--space-8) 0;
+        }
+        
+        /* ══════════════════════════════════════════════════════════════
+           HEADER
+           ══════════════════════════════════════════════════════════════ */
+        .header {
+            padding: var(--space-3) 0;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            background: rgba(30, 28, 26, 0.95);
+            backdrop-filter: blur(8px);
+            z-index: 100;
+        }
+        
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .logo {
+            font-family: var(--font-display);
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: var(--space-1);
+        }
+        
+        .logo-mark {
+            width: 28px;
+            height: 28px;
+            background: var(--accent);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--bg-deep);
+        }
+        
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+        }
+        
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+        
+        .status-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        /* ══════════════════════════════════════════════════════════════
+           HERO
+           ══════════════════════════════════════════════════════════════ */
+        .hero {
+            padding: var(--space-12) 0 var(--space-10);
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-8);
+        }
+        
+        @media (min-width: 900px) {
+            .hero-grid {
+                grid-template-columns: 1.4fr 1fr;
+                align-items: start;
+            }
+        }
+        
+        .hero-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            margin-bottom: var(--space-3);
+        }
+        
+        .hero h1 {
+            margin-bottom: var(--space-4);
+        }
+        
+        .hero h1 em {
+            font-style: italic;
+            color: var(--accent);
+        }
+        
+        .hero-subtitle {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            max-width: 540px;
+            margin-bottom: var(--space-5);
+        }
+        
+        .hero-cta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-2);
+        }
+        
+        /* Hero Sidebar Stats */
+        .hero-stats {
+            display: grid;
+            gap: var(--space-2);
+        }
+        
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: var(--space-3);
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            transition: border-color 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            border-color: var(--border-hover);
+        }
+        
+        .stat-label {
+            font-family: var(--font-mono);
+            font-size: 0.6875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-secondary);
+        }
+        
+        .stat-value {
+            font-family: var(--font-mono);
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: var(--accent);
+            line-height: 1.2;
+        }
+        
+        .stat-note {
+            font-size: 0.8125rem;
+            color: var(--text-secondary);
+        }
+        
+        /* ══════════════════════════════════════════════════════════════
+           MARKET CONTEXT SECTION
+           ══════════════════════════════════════════════════════════════ */
+        .market-context {
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .context-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-3);
+        }
+        
+        @media (min-width: 700px) {
+            .context-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        .context-card {
+            padding: var(--space-4);
+            border-left: 2px solid var(--border);
+            transition: border-color 0.3s ease;
+        }
+        
+        .context-card:hover {
+            border-color: var(--accent);
+        }
+        
+        .context-card h3 {
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: var(--space-1);
+        }
+        
+        .context-card p {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+        
+        .big-number {
+            font-family: var(--font-mono);
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1;
+            margin-bottom: var(--space-2);
+        }
+        
+        /* ══════════════════════════════════════════════════════════════
+           PAIN POINTS
+           ══════════════════════════════════════════════════════════════ */
+        .pain-section {
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .pain-header {
+            max-width: 720px;
+            margin-bottom: var(--space-8);
+        }
+        
+        .pain-header h2 {
+            margin-bottom: var(--space-2);
+        }
+        
+        .pain-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-3);
+        }
+        
+        @media (min-width: 700px) {
+            .pain-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        .pain-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: var(--space-4);
+            position: relative;
+            overflow: hidden;
+            transition: border-color 0.3s ease;
+        }
+        
+        .pain-card:hover {
+            border-color: var(--border-hover);
+        }
+        
+        .pain-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .pain-card:hover::before {
+            opacity: 1;
+        }
+        
+        .pain-icon {
+            font-family: var(--font-mono);
+            font-size: 1.5rem;
+            margin-bottom: var(--space-2);
+            opacity: 0.6;
+        }
+        
+        .pain-card h3 {
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: var(--space-1);
+        }
+        
+        .pain-card p {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+        
+        /* ══════════════════════════════════════════════════════════════
+           DELIVERABLES - BENTO GRID
+           ══════════════════════════════════════════════════════════════ */
+        .deliverables {
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .deliverables-header {
+            text-align: center;
+            max-width: 640px;
+            margin: 0 auto var(--space-8);
+        }
+        
+        .bento-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-3);
+        }
+        
+        @media (min-width: 700px) {
+            .bento-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (min-width: 1000px) {
+            .bento-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .bento-item.span-2 {
+                grid-column: span 2;
+            }
+        }
+        
+        .bento-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: var(--space-5);
+            display: flex;
+            flex-direction: column;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .bento-item:hover {
+            border-color: var(--border-hover);
+            box-shadow: 0 0 0 1px var(--border-hover);
+        }
+        
+        .bento-number {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--accent);
+            margin-bottom: var(--space-3);
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+        
+        .bento-number::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+        
+        .bento-item h3 {
+            font-size: 1.25rem;
+            margin-bottom: var(--space-2);
+        }
+        
+        .bento-item p {
+            font-size: 0.9375rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            flex: 1;
+        }
+        
+        .bento-highlight {
+            background: var(--accent-dim);
+            border-color: rgba(204, 255, 0, 0.25);
+        }
+        
+        .bento-highlight h3 {
+            color: var(--accent);
+        }
+        
+        /* Data visualization decoration */
+        .data-viz {
+            margin-top: var(--space-4);
+            padding-top: var(--space-3);
+            border-top: 1px solid var(--border);
+            display: flex;
+            gap: 4px;
+            align-items: flex-end;
+            height: 48px;
+        }
+        
+        .data-bar {
+            flex: 1;
+            background: var(--border);
+            border-radius: 2px;
+            transition: background 0.3s ease;
+        }
+        
+        .bento-item:hover .data-bar {
+            background: var(--accent);
+        }
+        
+        /* ══════════════════════════════════════════════════════════════
+           ROI SECTION
+           ══════════════════════════════════════════════════════════════ */
+        .roi-section {
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .roi-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-6);
+            align-items: center;
+        }
+        
+        @media (min-width: 900px) {
+            .roi-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        .roi-content h2 {
+            margin-bottom: var(--space-3);
+        }
+        
+        .roi-content p {
+            color: var(--text-secondary);
+            margin-bottom: var(--space-4);
+        }
+        
+        .roi-breakdown {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: var(--space-4);
+        }
+        
+        .roi-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--space-2) 0;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .roi-row:last-child {
+            border-bottom: none;
+            padding-top: var(--space-3);
+            margin-top: var(--space-2);
+            border-top: 1px solid var(--accent);
+        }
+        
+        .roi-label {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+        
+        .roi-value {
+            font-family: var(--font-mono);
+            font-weight: 600;
+        }
+        
+        .roi-value.positive {
+            color: var(--accent);
+        }
+        
+        .roi-value.negative {
+            color: #FF6B6B;
+        }
+        
+        /* ══════════════════════════════════════════════════════════════
+           WHO THIS IS FOR
+           ══════════════════════════════════════════════════════════════ */
+        .audience-section {
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .audience-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-4);
+        }
+        
+        @media (min-width: 800px) {
+            .audience-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        .audience-card {
+            padding: var(--space-5);
+            border-radius: var(--radius-lg);
+        }
+        
+        .audience-card.yes {
+            background: var(--accent-dim);
+            border: 1px solid rgba(204, 255, 0, 0.25);
+        }
+        
+        .audience-card.no {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+        }
+        
+        .audience-card h3 {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            margin-bottom: var(--space-3);
+        }
+        
+        .audience-card.yes h3 {
+            color: var(--accent);
+        }
+        
+        .audience-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-2);
+        }
+        
+        .audience-list li {
+            font-size: 0.9375rem;
+            color: var(--text-secondary);
+            padding-left: var(--space-3);
+            position: relative;
+        }
+        
+        .audience-list li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+        
+        .audience-card.yes .audience-list li::before {
+            content: '+';
+            color: var(--accent);
+        }
+        
+        .audience-card.no .audience-list li::before {
+            content: '×';
+            color: #FF6B6B;
+        }
+        
+        /* ══════════════════════════════════════════════════════════════
+           METHODOLOGY
+           ══════════════════════════════════════════════════════════════ */
+        .methodology {
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .method-steps {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-4);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        @media (min-width: 700px) {
+            .method-steps {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        .method-step {
+            text-align: center;
+            padding: var(--space-4);
+        }
+        
+        .step-number {
+            width: 48px;
+            height: 48px;
+            border: 1px solid var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-mono);
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin: 0 auto var(--space-3);
+        }
+        
+        .method-step h3 {
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: var(--space-1);
+        }
+        
+        .method-step p {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+        
+        /* ══════════════════════════════════════════════════════════════
+           FAQ
+           ══════════════════════════════════════════════════════════════ */
+        .faq-section {
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .faq-header {
+            text-align: center;
+            margin-bottom: var(--space-8);
+        }
+        
+        .faq-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-3);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        @media (min-width: 700px) {
+            .faq-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        .faq-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: var(--space-4);
+            transition: border-color 0.3s ease;
+        }
+        
+        .faq-item:hover {
+            border-color: var(--border-hover);
+        }
+        
+        .faq-q {
+            font-family: var(--font-display);
+            font-weight: 500;
+            font-size: 1rem;
+            margin-bottom: var(--space-2);
+        }
+        
+        .faq-a {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        
+        /* ══════════════════════════════════════════════════════════════
+           PRICING
+           ══════════════════════════════════════════════════════════════ */
+        .pricing-section {
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .pricing-card {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+        }
+        
+        .pricing-header {
+            background: var(--accent-dim);
+            padding: var(--space-5);
+            border-bottom: 1px solid var(--border);
+            text-align: center;
+        }
+        
+        .pricing-header h2 {
+            font-size: 1.5rem;
+            margin-bottom: var(--space-1);
+        }
+        
+        .pricing-header .subtitle {
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+        }
+        
+        .pricing-body {
+            padding: var(--space-5);
+        }
+        
+        .price-main {
+            text-align: center;
+            margin-bottom: var(--space-4);
+            padding-bottom: var(--space-4);
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .price-amount {
+            font-family: var(--font-mono);
+            font-size: 3.5rem;
+            font-weight: 600;
+            color: var(--accent);
+            line-height: 1;
+        }
+        
+        .price-term {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-top: var(--space-1);
+        }
+        
+        .price-upsell {
+            text-align: center;
+            padding: var(--space-3);
+            background: var(--bg-elevated);
+            border-radius: var(--radius-sm);
+            margin-bottom: var(--space-4);
+        }
+        
+        .upsell-price {
+            font-family: var(--font-mono);
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .upsell-note {
+            font-size: 0.8125rem;
+            color: var(--text-secondary);
+        }
+        
+        .pricing-list {
+            list-style: none;
+            margin-bottom: var(--space-4);
+        }
+        
+        .pricing-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-2);
+            padding: var(--space-2) 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.9375rem;
+        }
+        
+        .pricing-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .check-icon {
+            color: var(--accent);
+            font-family: var(--font-mono);
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        
+        .pricing-cta {
+            text-align: center;
+        }
+        
+        .pricing-cta .btn {
+            width: 100%;
+            margin-bottom: var(--space-2);
+        }
+        
+        .pricing-note {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+        
+        /* ══════════════════════════════════════════════════════════════
+           SCARCITY BANNER
+           ══════════════════════════════════════════════════════════════ */
+        .scarcity-banner {
+            background: var(--accent);
+            color: var(--bg-deep);
+            padding: var(--space-4) 0;
+            text-align: center;
+        }
+        
+        .scarcity-inner {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-4);
+        }
+        
+        .scarcity-text {
+            font-family: var(--font-display);
+            font-weight: 500;
+            font-size: 1.125rem;
+        }
+        
+        .scarcity-count {
+            font-family: var(--font-mono);
+            font-weight: 700;
+            padding: var(--space-1) var(--space-2);
+            background: var(--bg-deep);
+            color: var(--accent);
+            border-radius: var(--radius-sm);
+        }
+        
+        /* ══════════════════════════════════════════════════════════════
+           FINAL CTA
+           ══════════════════════════════════════════════════════════════ */
+        .final-cta {
+            text-align: center;
+            padding: var(--space-15) 0;
+        }
+        
+        .final-cta h2 {
+            margin-bottom: var(--space-3);
+        }
+        
+        .final-cta p {
+            color: var(--text-secondary);
+            max-width: 540px;
+            margin: 0 auto var(--space-5);
+        }
+        
+        .contact-email {
+            font-family: var(--font-mono);
+            font-size: 1.25rem;
+            color: var(--accent);
+            text-decoration: none;
+            display: inline-block;
+            margin-top: var(--space-3);
+            padding: var(--space-2) var(--space-4);
+            border: 1px solid var(--accent);
+            border-radius: var(--radius-pill);
+            transition: all 0.2s ease;
+        }
+        
+        .contact-email:hover {
+            background: var(--accent);
+            color: var(--bg-deep);
+        }
+        
+        /* ══════════════════════════════════════════════════════════════
+           FOOTER
+           ══════════════════════════════════════════════════════════════ */
+        .footer {
+            padding: var(--space-6) 0;
+            border-top: 1px solid var(--border);
+        }
+        
+        .footer-inner {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: var(--space-3);
+        }
+        
+        .footer-text {
+            font-size: 0.8125rem;
+            color: var(--text-secondary);
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: var(--space-4);
+        }
+        
+        .footer-links a {
+            font-size: 0.8125rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+        
+        /* ══════════════════════════════════════════════════════════════
+           UTILITIES
+           ══════════════════════════════════════════════════════════════ */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+        
+        /* Text selection */
+        ::selection {
+            background: var(--accent);
+            color: var(--bg-deep);
+        }
+        
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--bg-deep);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--bg-elevated);
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--text-secondary);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container header-inner">
+            <a href="#" class="logo">
+                <span class="logo-mark">RI</span>
+                Roviq Intel
+            </a>
+            <div class="header-right">
+                <div class="status-indicator">
+                    <span class="status-dot"></span>
+                    <span>Q1 2026 ACTIVE</span>
+                </div>
+                <a href="mailto:randy@roviqai.xyz?subject=SIGNAL" class="btn btn-primary">Get Access</a>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <div class="hero-eyebrow">
+                        <span class="tag tag-accent">Intelligence Pack</span>
+                        <span class="tag">MA Cannabis Market</span>
+                    </div>
+                    <h1>Stop Chasing <em>Zombies.</em></h1>
+                    <p class="hero-subtitle">
+                        73% of Massachusetts operators are in distress. You're wasting pipeline on companies that will never pay an invoice. We know who the other 27% are.
+                    </p>
+                    <div class="hero-cta">
+                        <a href="mailto:randy@roviqai.xyz?subject=SIGNAL" class="btn btn-primary btn-lg">Request Blind Preview</a>
+                        <a href="#deliverables" class="btn btn-outline btn-lg">See What's Included</a>
+                    </div>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-card">
+                        <span class="stat-label">Data Rows Analyzed</span>
+                        <span class="stat-value">67,000+</span>
+                        <span class="stat-note">CCC facility records triangulated</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-label">Scored Operators</span>
+                        <span class="stat-value">593</span>
+                        <span class="stat-note">Assigned "Vitality Score"</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-label">Priority Targets</span>
+                        <span class="stat-value">150</span>
+                        <span class="stat-note">Verified, solvent, actively buying</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Market Context -->
+    <section class="market-context section-gap">
+        <div class="container">
+            <div class="eyebrow">Market Signal</div>
+            <h2 style="margin-bottom: var(--space-6);">The Collapse Is Accelerating</h2>
+            <div class="context-grid">
+                <div class="context-card">
+                    <div class="big-number">$14.20</div>
+                    <h3>Record Low Eighth Price</h3>
+                    <p>Prices dropped 12%+ in a single year. Margins are gone. Most operators are bleeding.</p>
+                </div>
+                <div class="context-card">
+                    <div class="big-number">30+</div>
+                    <h3>Closures in 2024</h3>
+                    <p>Licensed operators shuttered. Your prospect list is full of walking dead.</p>
+                </div>
+                <div class="context-card">
+                    <div class="big-number">73%</div>
+                    <h3>Operators in Distress</h3>
+                    <p>Financial health proxies show the majority are contracting, not growing.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Pain Points -->
+    <section class="pain-section section-gap">
+        <div class="container">
+            <div class="pain-header">
+                <div class="eyebrow">The Problem</div>
+                <h2>You Have a Filtering Problem</h2>
+                <p class="text-secondary">Your sales team is making 50 calls a day. Statistically, 35 are to companies preparing to exit. This is the most expensive mistake in B2B sales.</p>
+            </div>
+            <div class="pain-grid">
+                <div class="pain-card">
+                    <div class="pain-icon">📋</div>
+                    <h3>The "License List" Trap</h3>
+                    <p>You're calling the same generic info@ inbox as 500 other vendors. Public CCC data tells you nothing about financial health.</p>
+                </div>
+                <div class="pain-card">
+                    <div class="pain-icon">💸</div>
+                    <h3>The Credit Risk</h3>
+                    <p>You close a deal, ship the product, then net-60 turns into net-never. Selling to distressed operators isn't revenue—it's liability.</p>
+                </div>
+                <div class="pain-card">
+                    <div class="pain-icon">⏱️</div>
+                    <h3>The Time Sink</h3>
+                    <p>Your top rep spends 6 weeks courting a VP, only to discover they just laid off their accounts payable team.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Deliverables -->
+    <section id="deliverables" class="deliverables section-gap">
+        <div class="container">
+            <div class="deliverables-header">
+                <div class="eyebrow">The Pack</div>
+                <h2>What You Get</h2>
+                <p class="text-secondary">This is not a CSV dump. This is a curated intelligence dossier built from 67,000 rows of facility sales data and proprietary pressure signals.</p>
+            </div>
+            <div class="bento-grid">
+                <div class="bento-item span-2 bento-highlight">
+                    <div class="bento-number">01</div>
+                    <h3>The Priority 150</h3>
+                    <p>The crown jewel. Every operator in Massachusetts scored and ranked by operational velocity, license stability, and market footprint. These are the "Whales" and "Gazelles"—companies with cash flow to buy right now. Includes name, rank, and proprietary "Buy Signal" score.</p>
+                    <div class="data-viz">
+                        <div class="data-bar" style="height: 20%"></div>
+                        <div class="data-bar" style="height: 35%"></div>
+                        <div class="data-bar" style="height: 45%"></div>
+                        <div class="data-bar" style="height: 60%"></div>
+                        <div class="data-bar" style="height: 75%"></div>
+                        <div class="data-bar" style="height: 55%"></div>
+                        <div class="data-bar" style="height: 90%"></div>
+                        <div class="data-bar" style="height: 100%"></div>
+                        <div class="data-bar" style="height: 85%"></div>
+                        <div class="data-bar" style="height: 70%"></div>
+                    </div>
+                </div>
+                <div class="bento-item">
+                    <div class="bento-number">02</div>
+                    <h3>Verified Contact Intel</h3>
+                    <p>No generic inboxes. Human-verified direct emails, mobile numbers, and LinkedIn profiles for Owners, GMs, and Heads of Purchasing. We did the scraping and cleaning—your team just dials.</p>
+                </div>
+                <div class="bento-item">
+                    <div class="bento-number">03</div>
+                    <h3>"Why Now" Talk Tracks</h3>
+                    <p>Three distinct outreach scripts built on current $14/eighth margin pressure. Position yourself as a strategic partner who understands their pain, not another vendor pitching features.</p>
+                </div>
+                <div class="bento-item">
+                    <div class="bento-number">04</div>
+                    <h3>Market Context Brief</h3>
+                    <p>10-page executive briefing covering the price collapse, regulatory shifts, and 2025/2026 outlook. Train your team or send to prospects. Control the conversation with macro expertise.</p>
+                </div>
+                <div class="bento-item span-2">
+                    <div class="bento-number">05</div>
+                    <h3>30-Day Freshness Guarantee</h3>
+                    <p>Markets move fast. If any contact in the Priority 150 bounces or proves defunct within 30 days, we replace it with a fresh, verified lead. You pay for valid intelligence, period.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Methodology -->
+    <section class="methodology section-gap">
+        <div class="container">
+            <div class="deliverables-header">
+                <div class="eyebrow">Data Methodology</div>
+                <h2>How We Built This</h2>
+                <p class="text-secondary">This dataset was not scraped from a public website yesterday. It's the result of a rigorous three-step intelligence process.</p>
+            </div>
+            <div class="method-steps">
+                <div class="method-step">
+                    <div class="step-number">01</div>
+                    <h3>Aggregation</h3>
+                    <p>Full CCC database ingested: 67,000+ data points including sales history, transfer logs, and license renewals.</p>
+                </div>
+                <div class="method-step">
+                    <div class="step-number">02</div>
+                    <h3>Triangulation</h3>
+                    <p>Cross-referenced with open-web signals, hiring data, and press releases to identify expansion vs. contraction events.</p>
+                </div>
+                <div class="method-step">
+                    <div class="step-number">03</div>
+                    <h3>Scoring</h3>
+                    <p>Every operator assigned a "Vitality Score." Only 593 rated "Alive." Only 150 made the Priority List.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- ROI -->
+    <section class="roi-section section-gap">
+        <div class="container">
+            <div class="roi-grid">
+                <div class="roi-content">
+                    <div class="eyebrow">The Math</div>
+                    <h2>One Bad Lead Costs You $640</h2>
+                    <p>SDR time researching. AE time demoing. The opportunity cost of missing a real prospect. Four bad leads and you've burned $2,500—except you got nothing to show for it.</p>
+                    <p>If this pack saves you from chasing just 4 zombies, it's paid for itself. If it helps close 1 mid-sized deal, you're looking at 400% ROI in week one.</p>
+                </div>
+                <div class="roi-breakdown">
+                    <div class="roi-row">
+                        <span class="roi-label">SDR research/calling (1hr)</span>
+                        <span class="roi-value negative">−$40</span>
+                    </div>
+                    <div class="roi-row">
+                        <span class="roi-label">AE demo time (1hr)</span>
+                        <span class="roi-value negative">−$100</span>
+                    </div>
+                    <div class="roi-row">
+                        <span class="roi-label">Opportunity cost</span>
+                        <span class="roi-value negative">−$500+</span>
+                    </div>
+                    <div class="roi-row">
+                        <span class="roi-label">Cost per bad lead</span>
+                        <span class="roi-value">$640</span>
+                    </div>
+                    <div class="roi-row">
+                        <span class="roi-label">Break-even: just 4 filtered leads</span>
+                        <span class="roi-value positive">✓</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Audience -->
+    <section class="audience-section section-gap">
+        <div class="container">
+            <div class="deliverables-header">
+                <div class="eyebrow">Fit Check</div>
+                <h2>Is This For You?</h2>
+            </div>
+            <div class="audience-grid">
+                <div class="audience-card yes">
+                    <h3>✓ This IS for you if</h3>
+                    <ul class="audience-list">
+                        <li>You sell high-ticket B2B (SaaS, packaging, insurance, consulting, hardware)</li>
+                        <li>Your CAC is high and wasted reps hurt</li>
+                        <li>You understand one closed deal pays for this pack 10x over</li>
+                        <li>You're a vendor, brand, broker, or CPA selling TO dispensaries</li>
+                    </ul>
+                </div>
+                <div class="audience-card no">
+                    <h3>× This is NOT for you if</h3>
+                    <ul class="audience-list">
+                        <li>You want a "spray and pray" list of 10,000 emails to spam</li>
+                        <li>You sell low-margin commodities where lead quality doesn't matter</li>
+                        <li>You're unwilling to pick up the phone and use the intel</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- FAQ -->
+    <section class="faq-section section-gap">
+        <div class="container">
+            <div class="faq-header">
+                <div class="eyebrow">Questions</div>
+                <h2>Straight Answers</h2>
+            </div>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <div class="faq-q">Why is this $2,500? I can buy a list for $200.</div>
+                    <div class="faq-a">A $200 list gets you info@ emails and dead numbers. It costs your team thousands in wasted time. We sell intelligence, not data. The price reflects manual verification and exclusivity.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q">Is this data compliant?</div>
+                    <div class="faq-a">Yes. All data is aggregated from public records (CCC), open-web intelligence, and proprietary research. We strictly adhere to B2B data privacy standards.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q">How often is it updated?</div>
+                    <div class="faq-a">The Signals Pack is a snapshot of the market right now. Subscribers to the $499/mo refresh get monthly updates as licenses expire, renew, or change hands.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q">Can I see a sample?</div>
+                    <div class="faq-a">We provide a "Blind Preview" showing data structure—columns, headers, one anonymized row—so you know what you're buying. We don't give away live leads for free.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Scarcity Banner -->
+    <div class="scarcity-banner">
+        <div class="container scarcity-inner">
+            <span class="scarcity-text">Limited to 3 buyers per quarter to protect signal value</span>
+            <span class="scarcity-count">Q1 2026 SPOTS OPEN</span>
+        </div>
+    </div>
+    
+    <!-- Pricing -->
+    <section class="pricing-section section-gap">
+        <div class="container">
+            <div class="pricing-card">
+                <div class="pricing-header">
+                    <h2>MA Operator Signals Pack</h2>
+                    <p class="subtitle">Institutional-grade intelligence for the Massachusetts cannabis market</p>
+                </div>
+                <div class="pricing-body">
+                    <div class="price-main">
+                        <div class="price-amount">$2,500</div>
+                        <div class="price-term">One-time purchase</div>
+                    </div>
+                    <div class="price-upsell">
+                        <div class="upsell-price">+$499/mo</div>
+                        <div class="upsell-note">Optional ongoing refresh subscription</div>
+                    </div>
+                    <ul class="pricing-list">
+                        <li><span class="check-icon">✓</span> The Priority 150 (ranked with Buy Signal scores)</li>
+                        <li><span class="check-icon">✓</span> Verified contact intel (emails, phones, LinkedIn)</li>
+                        <li><span class="check-icon">✓</span> "Why Now" distress-based talk tracks</li>
+                        <li><span class="check-icon">✓</span> Market Context Brief (10-page analysis)</li>
+                        <li><span class="check-icon">✓</span> 30-day freshness guarantee</li>
+                    </ul>
+                    <div class="pricing-cta">
+                        <a href="mailto:randy@roviqai.xyz?subject=SIGNAL" class="btn btn-primary btn-lg">Request Access</a>
+                        <p class="pricing-note">Email with subject line "SIGNAL" for blind preview</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Final CTA -->
+    <section class="final-cta">
+        <div class="container">
+            <h2>Stop Guessing. Start Closing.</h2>
+            <p>The difference between chasing 500 leads and knowing the 150 that matter. Your competitors are calling zombies. You'll be calling buyers.</p>
+            <a href="mailto:randy@roviqai.xyz?subject=SIGNAL" class="contact-email">randy@roviqai.xyz</a>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-inner">
+            <p class="footer-text">© 2026 Roviq AI. Intelligence for cannabis B2B.</p>
+            <div class="footer-links">
+                <a href="mailto:randy@roviqai.xyz">Contact</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

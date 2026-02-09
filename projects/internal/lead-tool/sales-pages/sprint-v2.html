@@ -1,0 +1,1238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>14-Day Margin Rescue Sprint | Roviq AI</title>
+  <meta name="description" content="Massachusetts cannabis dispensary margins are collapsing. Stop the bleeding with our 14-Day Margin Rescue Sprint. Done-for-you systems installed in 2 weeks.">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&family=Inter:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* =========================================
+       DESIGN TOKENS
+       ========================================= */
+    :root {
+      /* Palette: Grounded Urgency */
+      --bg-paper: #F5F2EA;
+      --bg-card: #E3E0D6;
+      --text-primary: #1A1917;
+      --text-muted: #5C5A56;
+      --accent: #D94F3D;
+      --accent-hover: #C4402F;
+      --support: #4A5D4E;
+      --border: rgba(26, 25, 23, 0.12);
+      --border-strong: rgba(26, 25, 23, 0.25);
+      
+      /* Typography */
+      --font-heading: 'Space Grotesk', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --font-handwritten: 'Gloria Hallelujah', cursive;
+      
+      /* Spacing (8pt grid) */
+      --space-xs: 8px;
+      --space-sm: 16px;
+      --space-md: 24px;
+      --space-lg: 40px;
+      --space-xl: 64px;
+      --space-2xl: 96px;
+      --space-3xl: 120px;
+      
+      /* Layout */
+      --max-width: 1200px;
+      --radius: 12px;
+      --radius-pill: 100px;
+    }
+    
+    /* =========================================
+       RESET & BASE
+       ========================================= */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+    }
+    
+    body {
+      font-family: var(--font-body);
+      font-size: 17px;
+      line-height: 1.7;
+      color: var(--text-primary);
+      background-color: var(--bg-paper);
+      position: relative;
+    }
+    
+    /* Film grain / noise overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    }
+    
+    /* =========================================
+       LAYOUT
+       ========================================= */
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 var(--space-md);
+    }
+    
+    section {
+      padding: var(--space-2xl) 0;
+    }
+    
+    .section-gap {
+      padding: var(--space-3xl) 0;
+    }
+    
+    /* =========================================
+       TYPOGRAPHY
+       ========================================= */
+    h1, h2, h3, h4 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+    
+    h1 {
+      font-size: clamp(2.5rem, 5vw, 3.75rem);
+      margin-bottom: var(--space-md);
+    }
+    
+    h2 {
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+      margin-bottom: var(--space-sm);
+    }
+    
+    h3 {
+      font-size: 1.375rem;
+      font-weight: 600;
+    }
+    
+    p {
+      margin-bottom: var(--space-sm);
+    }
+    
+    .lead {
+      font-size: 1.25rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+    
+    .handwritten {
+      font-family: var(--font-handwritten);
+      font-size: 1.125rem;
+      color: var(--accent);
+    }
+    
+    .text-accent { color: var(--accent); }
+    .text-muted { color: var(--text-muted); }
+    .text-support { color: var(--support); }
+    
+    strong {
+      font-weight: 600;
+    }
+    
+    /* =========================================
+       COMPONENTS: BUTTONS
+       ========================================= */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-xs);
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      padding: var(--space-sm) var(--space-lg);
+      border-radius: var(--radius-pill);
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+    
+    .btn-primary:hover {
+      background: var(--accent-hover);
+      border-color: var(--accent-hover);
+      transform: translateY(-2px);
+    }
+    
+    .btn-outline {
+      background: transparent;
+      color: var(--text-primary);
+      border-color: var(--border-strong);
+    }
+    
+    .btn-outline:hover {
+      background: var(--bg-card);
+      border-color: var(--text-primary);
+    }
+    
+    .btn-large {
+      padding: 18px 48px;
+      font-size: 1.125rem;
+    }
+    
+    /* =========================================
+       COMPONENTS: CARDS (BENTO GRID)
+       ========================================= */
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: var(--space-lg);
+    }
+    
+    .card-accent {
+      border-left: 3px solid var(--accent);
+    }
+    
+    .card-support {
+      border-left: 3px solid var(--support);
+    }
+    
+    .bento-grid {
+      display: grid;
+      gap: var(--space-sm);
+    }
+    
+    .bento-grid-2 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .bento-grid-3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    
+    @media (max-width: 768px) {
+      .bento-grid-2,
+      .bento-grid-3 {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    /* =========================================
+       COMPONENTS: ICONS (Hand-drawn style)
+       ========================================= */
+    .icon {
+      width: 48px;
+      height: 48px;
+      stroke: var(--support);
+      stroke-width: 2.5;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    
+    .icon-sm {
+      width: 24px;
+      height: 24px;
+    }
+    
+    .icon-accent {
+      stroke: var(--accent);
+    }
+    
+    /* =========================================
+       COMPONENTS: STATS
+       ========================================= */
+    .stat-block {
+      text-align: center;
+      padding: var(--space-lg);
+    }
+    
+    .stat-number {
+      font-family: var(--font-heading);
+      font-size: clamp(3rem, 6vw, 4.5rem);
+      font-weight: 700;
+      line-height: 1;
+      color: var(--accent);
+    }
+    
+    .stat-label {
+      font-size: 0.9375rem;
+      color: var(--text-muted);
+      margin-top: var(--space-xs);
+    }
+    
+    /* =========================================
+       COMPONENTS: CALLOUT / ANNOTATION
+       ========================================= */
+    .callout {
+      position: relative;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: var(--space-md) var(--space-lg);
+    }
+    
+    .callout-annotation {
+      position: absolute;
+      top: -14px;
+      left: var(--space-md);
+      font-family: var(--font-handwritten);
+      font-size: 0.875rem;
+      color: var(--accent);
+      background: var(--bg-paper);
+      padding: 0 var(--space-xs);
+    }
+    
+    /* =========================================
+       COMPONENTS: DIVIDER
+       ========================================= */
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: var(--space-xl) 0;
+    }
+    
+    .divider-wavy {
+      height: 24px;
+      background: url("data:image/svg+xml,%3Csvg width='100' height='24' viewBox='0 0 100 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 12 Q 25 0, 50 12 T 100 12' stroke='%23E3E0D6' stroke-width='1' fill='none'/%3E%3C/svg%3E") repeat-x center;
+      margin: var(--space-xl) 0;
+    }
+    
+    /* =========================================
+       COMPONENTS: BADGE / TAG
+       ========================================= */
+    .badge {
+      display: inline-block;
+      font-family: var(--font-heading);
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 6px 14px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--border-strong);
+      color: var(--text-muted);
+    }
+    
+    .badge-accent {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+    
+    /* =========================================
+       COMPONENTS: LISTS
+       ========================================= */
+    .check-list {
+      list-style: none;
+    }
+    
+    .check-list li {
+      position: relative;
+      padding-left: 32px;
+      margin-bottom: var(--space-sm);
+    }
+    
+    .check-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 6px;
+      width: 18px;
+      height: 18px;
+      background: url("data:image/svg+xml,%3Csvg width='18' height='18' viewBox='0 0 18 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3 9.5L7 13.5L15 4.5' stroke='%234A5D4E' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat center;
+    }
+    
+    .number-list {
+      list-style: none;
+      counter-reset: item;
+    }
+    
+    .number-list li {
+      position: relative;
+      padding-left: 48px;
+      margin-bottom: var(--space-md);
+      counter-increment: item;
+    }
+    
+    .number-list li::before {
+      content: counter(item);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 0.875rem;
+      color: var(--support);
+      border: 2px solid var(--support);
+      border-radius: 50%;
+    }
+    
+    /* =========================================
+       HERO SECTION
+       ========================================= */
+    .hero {
+      min-height: 85vh;
+      display: flex;
+      align-items: center;
+      padding: var(--space-3xl) 0 var(--space-2xl);
+      position: relative;
+    }
+    
+    .hero-content {
+      max-width: 900px;
+    }
+    
+    .hero-badge {
+      margin-bottom: var(--space-md);
+    }
+    
+    .hero h1 {
+      margin-bottom: var(--space-md);
+    }
+    
+    .hero .lead {
+      max-width: 680px;
+      margin-bottom: var(--space-lg);
+    }
+    
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-xl);
+    }
+    
+    .hero-stats {
+      display: flex;
+      gap: var(--space-xl);
+      flex-wrap: wrap;
+    }
+    
+    .hero-stat {
+      display: flex;
+      align-items: baseline;
+      gap: var(--space-xs);
+    }
+    
+    .hero-stat-num {
+      font-family: var(--font-heading);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+    
+    .hero-stat-label {
+      font-size: 0.9375rem;
+      color: var(--text-muted);
+    }
+    
+    .hero-annotation {
+      position: absolute;
+      right: 10%;
+      top: 35%;
+      transform: rotate(6deg);
+      font-family: var(--font-handwritten);
+      font-size: 1rem;
+      color: var(--accent);
+      max-width: 180px;
+      text-align: center;
+    }
+    
+    .hero-annotation::before {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 40px;
+      margin: 0 auto var(--space-xs);
+      background: url("data:image/svg+xml,%3Csvg width='60' height='40' viewBox='0 0 60 40' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M55 5C45 15 25 25 10 35M10 35L15 25M10 35L20 38' stroke='%23D94F3D' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat center;
+    }
+    
+    @media (max-width: 1024px) {
+      .hero-annotation {
+        display: none;
+      }
+    }
+    
+    /* =========================================
+       CRISIS SECTION
+       ========================================= */
+    .crisis-section {
+      background: var(--bg-card);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .crisis-header {
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto var(--space-xl);
+    }
+    
+    .crisis-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-sm);
+    }
+    
+    @media (max-width: 900px) {
+      .crisis-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .crisis-card {
+      background: var(--bg-paper);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: var(--space-lg);
+    }
+    
+    .crisis-card h3 {
+      margin: var(--space-sm) 0 var(--space-xs);
+    }
+    
+    .crisis-card p {
+      color: var(--text-muted);
+      font-size: 0.9375rem;
+      margin: 0;
+    }
+    
+    /* =========================================
+       PAIN POINTS SECTION
+       ========================================= */
+    .pain-section .section-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+      margin-bottom: var(--space-xl);
+    }
+    
+    .pain-section .section-header h2 {
+      max-width: 600px;
+      margin: 0;
+    }
+    
+    .pain-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-sm);
+    }
+    
+    @media (max-width: 768px) {
+      .pain-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .pain-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: var(--space-lg);
+    }
+    
+    .pain-card h3 {
+      margin-bottom: var(--space-xs);
+    }
+    
+    .pain-card p {
+      color: var(--text-muted);
+      margin: 0;
+    }
+    
+    .pain-card-large {
+      grid-column: span 2;
+      display: flex;
+      gap: var(--space-lg);
+      align-items: center;
+    }
+    
+    .pain-card-large .pain-content {
+      flex: 1;
+    }
+    
+    .pain-card-large .pain-visual {
+      flex: 0 0 280px;
+      text-align: center;
+    }
+    
+    @media (max-width: 768px) {
+      .pain-card-large {
+        grid-column: span 1;
+        flex-direction: column;
+      }
+      .pain-card-large .pain-visual {
+        flex: none;
+        width: 100%;
+      }
+    }
+    
+    .strikethrough {
+      position: relative;
+      display: inline-block;
+    }
+    
+    .strikethrough::after {
+      content: '';
+      position: absolute;
+      left: -4px;
+      right: -4px;
+      top: 50%;
+      height: 3px;
+      background: var(--accent);
+      transform: rotate(-2deg);
+    }
+    
+    /* =========================================
+       SOLUTION SECTION
+       ========================================= */
+    .solution-section {
+      text-align: center;
+    }
+    
+    .solution-intro {
+      max-width: 800px;
+      margin: 0 auto var(--space-xl);
+    }
+    
+    .solution-intro h2 {
+      margin-bottom: var(--space-md);
+    }
+    
+    .solution-intro .lead {
+      margin: 0;
+    }
+    
+    .timeline {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-lg);
+      flex-wrap: wrap;
+      margin-top: var(--space-xl);
+    }
+    
+    .timeline-item {
+      text-align: center;
+      max-width: 200px;
+    }
+    
+    .timeline-day {
+      font-family: var(--font-heading);
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--support);
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      padding: 6px 16px;
+      border-radius: var(--radius-pill);
+      display: inline-block;
+      margin-bottom: var(--space-xs);
+    }
+    
+    .timeline-label {
+      font-family: var(--font-heading);
+      font-weight: 600;
+    }
+    
+    /* Arrow between timeline items */
+    .timeline-arrow {
+      display: flex;
+      align-items: center;
+      color: var(--border-strong);
+    }
+    
+    @media (max-width: 600px) {
+      .timeline {
+        flex-direction: column;
+        align-items: center;
+      }
+      .timeline-arrow {
+        transform: rotate(90deg);
+      }
+    }
+    
+    /* =========================================
+       DELIVERABLES SECTION
+       ========================================= */
+    .deliverables-section {
+      background: var(--bg-card);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .deliverables-header {
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto var(--space-xl);
+    }
+    
+    .deliverables-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-sm);
+    }
+    
+    @media (max-width: 900px) {
+      .deliverables-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .deliverable-card {
+      background: var(--bg-paper);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: var(--space-lg);
+      position: relative;
+    }
+    
+    .deliverable-number {
+      position: absolute;
+      top: var(--space-sm);
+      right: var(--space-sm);
+      font-family: var(--font-heading);
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--border);
+      line-height: 1;
+    }
+    
+    .deliverable-card h3 {
+      margin-bottom: var(--space-xs);
+      padding-right: 48px;
+    }
+    
+    .deliverable-card p {
+      color: var(--text-muted);
+      font-size: 0.9375rem;
+      margin: 0;
+    }
+    
+    .deliverable-card.featured {
+      grid-column: span 2;
+      border-color: var(--accent);
+      border-width: 2px;
+    }
+    
+    @media (max-width: 900px) {
+      .deliverable-card.featured {
+        grid-column: span 1;
+      }
+    }
+    
+    /* =========================================
+       PRICING SECTION
+       ========================================= */
+    .pricing-section {
+      text-align: center;
+    }
+    
+    .pricing-card {
+      max-width: 560px;
+      margin: 0 auto;
+      background: var(--bg-card);
+      border: 2px solid var(--text-primary);
+      border-radius: var(--radius);
+      padding: var(--space-xl);
+      position: relative;
+    }
+    
+    .pricing-badge {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    
+    .pricing-amount {
+      font-family: var(--font-heading);
+      font-size: 4rem;
+      font-weight: 700;
+      line-height: 1;
+      margin: var(--space-md) 0 var(--space-xs);
+    }
+    
+    .pricing-split {
+      font-size: 1rem;
+      color: var(--text-muted);
+      margin-bottom: var(--space-lg);
+    }
+    
+    .pricing-includes {
+      text-align: left;
+      margin: var(--space-lg) 0;
+    }
+    
+    .pricing-note {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      margin-top: var(--space-md);
+    }
+    
+    /* =========================================
+       FAQ SECTION
+       ========================================= */
+    .faq-section {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: var(--space-2xl) var(--space-md);
+    }
+    
+    .faq-header {
+      text-align: center;
+      margin-bottom: var(--space-xl);
+    }
+    
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+      padding: var(--space-md) 0;
+    }
+    
+    .faq-question {
+      font-family: var(--font-heading);
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-bottom: var(--space-xs);
+    }
+    
+    .faq-answer {
+      color: var(--text-muted);
+    }
+    
+    .faq-answer p:last-child {
+      margin-bottom: 0;
+    }
+    
+    /* =========================================
+       CTA SECTION
+       ========================================= */
+    .cta-section {
+      background: var(--text-primary);
+      color: var(--bg-paper);
+      text-align: center;
+      padding: var(--space-2xl) 0;
+    }
+    
+    .cta-section h2 {
+      color: var(--bg-paper);
+      max-width: 700px;
+      margin: 0 auto var(--space-sm);
+    }
+    
+    .cta-section .lead {
+      color: rgba(245, 242, 234, 0.7);
+      max-width: 600px;
+      margin: 0 auto var(--space-lg);
+    }
+    
+    .cta-section .btn-primary {
+      background: var(--bg-paper);
+      color: var(--text-primary);
+      border-color: var(--bg-paper);
+    }
+    
+    .cta-section .btn-primary:hover {
+      background: #fff;
+    }
+    
+    .cta-email {
+      margin-top: var(--space-lg);
+      font-family: var(--font-heading);
+      font-size: 1.125rem;
+    }
+    
+    .cta-email a {
+      color: var(--bg-paper);
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+    
+    .cta-annotation {
+      font-family: var(--font-handwritten);
+      font-size: 1rem;
+      color: var(--accent);
+      margin-top: var(--space-md);
+    }
+    
+    /* =========================================
+       FOOTER
+       ========================================= */
+    footer {
+      padding: var(--space-xl) 0;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.875rem;
+      border-top: 1px solid var(--border);
+    }
+    
+    footer a {
+      color: var(--text-muted);
+      text-decoration: underline;
+    }
+    
+    /* =========================================
+       UTILITY CLASSES
+       ========================================= */
+    .text-center { text-align: center; }
+    .mb-0 { margin-bottom: 0; }
+    .mt-lg { margin-top: var(--space-lg); }
+    .mb-lg { margin-bottom: var(--space-lg); }
+    
+    /* =========================================
+       ANIMATION (Subtle)
+       ========================================= */
+    @keyframes subtle-float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
+    }
+    
+    .float-subtle {
+      animation: subtle-float 4s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body>
+  
+  <!-- =========================================
+       HERO SECTION
+       ========================================= -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <span class="badge hero-badge">For Massachusetts Dispensaries</span>
+        
+        <h1>Massachusetts Cannabis Prices Dropped 12% Last Year.<br>
+        <span class="text-accent">Did Your Margins Survive?</span></h1>
+        
+        <p class="lead">Stop the bleeding with a 14-Day Margin Rescue Sprint. We don't consult — we install the systems that keep independents alive while the market shakes out.</p>
+        
+        <div class="hero-cta">
+          <a href="mailto:randy@roviqai.xyz?subject=14-Day%20Margin%20Rescue%20Sprint" class="btn btn-primary btn-large">Talk to Randy →</a>
+          <a href="#deliverables" class="btn btn-outline btn-large">See What's Included</a>
+        </div>
+        
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <span class="hero-stat-num">73%</span>
+            <span class="hero-stat-label">Wholesale price collapse since 2021</span>
+          </div>
+          <div class="hero-stat">
+            <span class="hero-stat-num">14</span>
+            <span class="hero-stat-label">Days to install survival systems</span>
+          </div>
+          <div class="hero-stat">
+            <span class="hero-stat-num">$3k</span>
+            <span class="hero-stat-label">One-time investment</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="hero-annotation float-subtle">
+        (not a 6-month consulting contract!)
+      </div>
+    </div>
+  </section>
+  
+  <!-- =========================================
+       CRISIS SECTION
+       ========================================= -->
+  <section class="crisis-section section-gap">
+    <div class="container">
+      <div class="crisis-header">
+        <span class="handwritten">The market is shaking out.</span>
+        <h2>The "Green Rush" Is Over. We're in the Great Filter.</h2>
+        <p class="lead">Between November 2024 and November 2025, cannabis prices in Massachusetts dropped another 12%. That's on top of the 50% crash from prior years. Good operators are closing. This isn't a correction — it's a reckoning.</p>
+      </div>
+      
+      <div class="crisis-grid">
+        <div class="crisis-card">
+          <svg class="icon" viewBox="0 0 48 48"><path d="M24 8v16l12 6M44 24c0 11-9 20-20 20S4 35 4 24 13 4 24 4s20 9 20 20z"/></svg>
+          <h3>The "Silent Crash" Is Real</h3>
+          <p>Prices keep dropping. The "race to the bottom" is the dominant narrative, and waiting it out is not a strategy.</p>
+        </div>
+        
+        <div class="crisis-card">
+          <svg class="icon" viewBox="0 0 48 48"><path d="M8 40l8-16 8 8 8-12 8 16M4 8v32h40"/></svg>
+          <h3>Closures Are Visible</h3>
+          <p>High-profile closures like Heka in Westfield and The Source+ have shaken confidence. No one is safe.</p>
+        </div>
+        
+        <div class="crisis-card">
+          <svg class="icon" viewBox="0 0 48 48"><path d="M12 36V24M24 36V16M36 36V20M4 44h40"/></svg>
+          <h3>The "Island" Problem</h3>
+          <p>MA operators are landlocked by regulation. You can't scale efficiencies across state lines, keeping your costs artificially high.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- =========================================
+       PAIN POINTS SECTION
+       ========================================= -->
+  <section class="pain-section section-gap">
+    <div class="container">
+      <div class="section-header">
+        <h2>The Invisible Leaks Killing Your P&L</h2>
+        <span class="handwritten">where profit goes to die ↘</span>
+      </div>
+      
+      <div class="pain-grid">
+        <div class="pain-card">
+          <h3>Retention Bleed</h3>
+          <p>You pay $25+ to acquire a customer. They buy an eighth and you never see them again. You just subsidized their high.</p>
+        </div>
+        
+        <div class="pain-card">
+          <h3>GBP Ghost Town</h3>
+          <p>Your Google Business Profile is your digital storefront. If it's not optimized weekly, you're handing local traffic to the MSO down the street.</p>
+        </div>
+        
+        <div class="pain-card">
+          <h3>Manual Burnout</h3>
+          <p>You or your GM spend 10+ hours a week posting to social, updating menus, and fighting with tech stacks that don't talk to each other.</p>
+        </div>
+        
+        <div class="pain-card">
+          <h3>"Consultant" Fatigue</h3>
+          <p>You've been pitched "growth strategies" that cost $10k/month and take 90 days to show results. You don't have 90 days of runway to gamble.</p>
+        </div>
+        
+        <div class="pain-card pain-card-large">
+          <div class="pain-content">
+            <span class="handwritten">The real cost ↓</span>
+            <h3>The "Race to the Bottom" Trap</h3>
+            <p>Your competitors are panicking. They're slashing prices to move product, training customers to only shop the discount bin. If you follow them, you die. If you do nothing, you lose volume. It feels like a <span class="strikethrough">lose-lose</span>.</p>
+          </div>
+          <div class="pain-visual">
+            <div class="stat-number">$14.68</div>
+            <div class="stat-label">Wholesale price per gram (2021)</div>
+            <div style="font-family: var(--font-heading); font-size: 1.5rem; margin: 8px 0;">↓</div>
+            <div class="stat-number">$4.01</div>
+            <div class="stat-label">Wholesale price per gram (now)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- =========================================
+       SOLUTION INTRO
+       ========================================= -->
+  <section class="solution-section section-gap">
+    <div class="container">
+      <div class="solution-intro">
+        <span class="badge badge-accent">The Solution</span>
+        <h2>You Don't Need a 6-Month Contract.<br>You Need a Tourniquet.</h2>
+        <p class="lead">The 14-Day Margin Rescue Sprint is not a course. It's not advice. It's a <strong>Done-For-You implementation service.</strong> In two weeks, we pop the hood of your dispensary, identify where profit is leaking, and install the systems to plug the holes.</p>
+      </div>
+      
+      <div class="timeline">
+        <div class="timeline-item">
+          <span class="timeline-day">Day 1–3</span>
+          <div class="timeline-label">Diagnostics & Access</div>
+        </div>
+        <div class="timeline-arrow">
+          <svg width="32" height="24" viewBox="0 0 32 24" fill="none"><path d="M2 12h26M22 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-day">Day 4–10</span>
+          <div class="timeline-label">Build & Install</div>
+        </div>
+        <div class="timeline-arrow">
+          <svg width="32" height="24" viewBox="0 0 32 24" fill="none"><path d="M2 12h26M22 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-day">Day 14</span>
+          <div class="timeline-label">Handover & Launch</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- =========================================
+       DELIVERABLES SECTION
+       ========================================= -->
+  <section id="deliverables" class="deliverables-section section-gap">
+    <div class="container">
+      <div class="deliverables-header">
+        <span class="handwritten">What you actually get ↓</span>
+        <h2>Six Systems. Installed. Ready to Run.</h2>
+        <p class="lead">Everything we build is handed off turnkey. You get back to running your business while the engine runs.</p>
+      </div>
+      
+      <div class="deliverables-grid">
+        <div class="deliverable-card">
+          <span class="deliverable-number">01</span>
+          <h3>Margin Pressure Snapshot</h3>
+          <p>A forensic audit of your last 90 days of transaction data. We identify exactly which SKUs are dragging your blended margin down and which customer segments are most profitable. You get a "Red Light / Green Light" report — <em>delivered before we start.</em></p>
+        </div>
+        
+        <div class="deliverable-card">
+          <span class="deliverable-number">02</span>
+          <h3>Google Business Profile Overhaul</h3>
+          <p>In 2025, Google Maps is the battleground. We keyword-stuff your service descriptions (compliantly), geotag image uploads, and seed the Q&A section with high-intent keywords. Result: You stop showing up 4th and start showing up 1st.</p>
+        </div>
+        
+        <div class="deliverable-card">
+          <span class="deliverable-number">03</span>
+          <h3>The "Boomerang" Retention Loop</h3>
+          <p>An automated SMS/Email sequence that triggers based on customer behavior. High-value flower buyer go dark for 21 days? Automatic "We miss you" offer. Newbie buy edibles? They get an educational nurture sequence. One-and-done → once-a-week regulars.</p>
+        </div>
+        
+        <div class="deliverable-card">
+          <span class="deliverable-number">04</span>
+          <h3>The Specials Engine</h3>
+          <p>Stop staring at a blank screen. You get: 10 high-conversion social posts, 2 banner assets (website + email), and 2 "Cash Injection" email templates designed to drive foot traffic on slow days.</p>
+        </div>
+        
+        <div class="deliverable-card">
+          <span class="deliverable-number">05</span>
+          <h3>Virtual Budtender</h3>
+          <p>An AI-driven interaction layer that helps website visitors find what they need before they step in the store. Pre-educates customers, reduces staff questions, and suggests add-ons automatically to increase average cart size.</p>
+        </div>
+        
+        <div class="deliverable-card">
+          <span class="deliverable-number">06</span>
+          <h3>Day-14 Report + 30-Day Battle Plan</h3>
+          <p>A comprehensive report of what we built, how to use it, and a 30-day action plan for your GM to execute. The systems keep generating ROI long after we're done.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- =========================================
+       PRICING SECTION
+       ========================================= -->
+  <section class="pricing-section section-gap">
+    <div class="container">
+      <div class="pricing-card">
+        <span class="badge badge-accent pricing-badge">One-Time Investment</span>
+        
+        <h2>The 14-Day Margin Rescue Sprint</h2>
+        
+        <div class="pricing-amount">$3,000</div>
+        <p class="pricing-split">Split payment available: $1,500 + $1,500</p>
+        
+        <div class="divider"></div>
+        
+        <div class="pricing-includes">
+          <ul class="check-list">
+            <li>Margin Pressure Snapshot (delivered before kickoff)</li>
+            <li>Google Business Profile Overhaul</li>
+            <li>"Boomerang" Retention Loop Installation</li>
+            <li>Specials Engine: 10 posts + 2 banners + 2 email templates</li>
+            <li>Virtual Budtender Setup</li>
+            <li>Day-14 Report + 30-Day Battle Plan</li>
+            <li>Less than 2 hours of your time required</li>
+          </ul>
+        </div>
+        
+        <a href="mailto:randy@roviqai.xyz?subject=14-Day%20Margin%20Rescue%20Sprint" class="btn btn-primary btn-large">Talk to Randy About Your Numbers →</a>
+        
+        <p class="pricing-note">For context: This costs less than a bad hire's first month, and less than what most agencies charge per month (with a 6-month lock-in).</p>
+      </div>
+    </div>
+  </section>
+  
+  <!-- =========================================
+       FAQ SECTION
+       ========================================= -->
+  <section class="faq-section">
+    <div class="faq-header">
+      <h2>Common Questions</h2>
+    </div>
+    
+    <div class="faq-item">
+      <div class="faq-question">"I can't afford $3,000 right now."</div>
+      <div class="faq-answer">
+        <p>If your margins are compressing, you can't afford <em>not</em> to. This isn't an expense — it's an investment in stopping the loss. If this sprint saves you just 5 lost customers a week, it pays for itself in a month. Plus, we offer the split payment option to help with cash flow.</p>
+      </div>
+    </div>
+    
+    <div class="faq-item">
+      <div class="faq-question">"We already have a marketing guy/agency."</div>
+      <div class="faq-answer">
+        <p>Great. We aren't here to replace them. We're here to <em>arm</em> them. Most agencies focus on "brand awareness" (vanity metrics). We focus on unit economics and retention. We build the systems your agency wishes you had.</p>
+      </div>
+    </div>
+    
+    <div class="faq-item">
+      <div class="faq-question">"How much of my time will this take?"</div>
+      <div class="faq-answer">
+        <p>Less than 2 hours total. We need a 45-minute kickoff call to get access to your tools, and a 45-minute handover call on Day 14. We do the heavy lifting in between.</p>
+      </div>
+    </div>
+    
+    <div class="faq-item">
+      <div class="faq-question">"Will this work with my POS (Dutchie/Treez/etc)?"</div>
+      <div class="faq-answer">
+        <p>Yes. Our strategies are platform-agnostic. We work <em>with</em> your existing tech stack, not against it. We optimize what you already pay for.</p>
+      </div>
+    </div>
+    
+    <div class="faq-item">
+      <div class="faq-question">"What if it doesn't work?"</div>
+      <div class="faq-answer">
+        <p>We define clear KPIs at the start. If we don't deliver the assets and systems promised, we work for free until we do.</p>
+      </div>
+    </div>
+  </section>
+  
+  <!-- =========================================
+       CTA SECTION
+       ========================================= -->
+  <section class="cta-section">
+    <div class="container">
+      <span class="badge" style="border-color: rgba(245, 242, 234, 0.3); color: rgba(245, 242, 234, 0.7);">Only 4 spots per month</span>
+      
+      <h2 style="margin-top: var(--space-md);">The Market Won't Wait. Neither Should You.</h2>
+      
+      <p class="lead">Every day your retention loop isn't running, a customer forgets about you. Every day your GBP is unoptimized, a competitor gets that foot traffic. Speed is your only advantage left.</p>
+      
+      <a href="mailto:randy@roviqai.xyz?subject=14-Day%20Margin%20Rescue%20Sprint" class="btn btn-primary btn-large">Book Your Discovery Call →</a>
+      
+      <div class="cta-email">
+        Or email directly: <a href="mailto:randy@roviqai.xyz">randy@roviqai.xyz</a>
+      </div>
+      
+      <p class="cta-annotation">Let's see if your dispensary is a fit.</p>
+    </div>
+  </section>
+  
+  <!-- =========================================
+       FOOTER
+       ========================================= -->
+  <footer>
+    <div class="container">
+      <p>© 2025 Roviq AI · Built for Massachusetts cannabis independents · <a href="mailto:randy@roviqai.xyz">randy@roviqai.xyz</a></p>
+    </div>
+  </footer>
+
+</body>
+</html>

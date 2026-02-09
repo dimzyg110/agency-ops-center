@@ -1,0 +1,53 @@
+{
+  "business_name": "Cannabis Healing Llc",
+  "city": "Boston",
+  "email": "brian@cannabishealingllc.com",
+  "phone": "857-636-4618",
+  "address": "2a-4 Neptune Road Boston Ma, 02128",
+  "operator_type": "retailer",
+  "license_types": [
+    "Marijuana Retailer"
+  ],
+  "generated_date": "2026-02-04",
+  "market_context": {
+    "headline": "Massachusetts Cannabis Market Under Margin Pressure",
+    "key_points": [
+      "Wholesale flower prices have dropped ~50% since 2021 ($300/oz \u2192 $150/oz)",
+      "1,693 licensed entities competing in a mature market",
+      "Small operators struggling; consolidation accelerating"
+    ]
+  },
+  "pressure_signals": [],
+  "likely_leaks": [
+    {
+      "name": "Pricing Inconsistency",
+      "description": "Unoptimized pricing leaving money on the table",
+      "quick_win": "Implement dynamic pricing based on velocity"
+    },
+    {
+      "name": "Staffing Mismatch",
+      "description": "Over or understaffed relative to traffic patterns",
+      "quick_win": "Align scheduling to hourly sales data"
+    },
+    {
+      "name": "Compliance Overhead",
+      "description": "Excessive time spent on regulatory requirements",
+      "quick_win": "Streamline seed-to-sale workflows"
+    }
+  ],
+  "fast_wins": [
+    {
+      "name": "Basket Size Optimization",
+      "description": "Train staff on upselling and bundling techniques"
+    },
+    {
+      "name": "Loyalty Program",
+      "description": "Implement or optimize retention program"
+    },
+    {
+      "name": "Google Business Profile",
+      "description": "Optimize GBP for local search visibility"
+    }
+  ],
+  "first_change": "Your Google Business Profile is your most valuable free marketing asset. Spend 2 hours optimizing it - photos, hours, posts, and responding to every review."
+}

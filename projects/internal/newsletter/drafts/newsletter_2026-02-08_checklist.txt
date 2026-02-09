@@ -1,0 +1,43 @@
+# Newsletter Review Checklist - Week of February 08, 2026
+Generated: 2026-02-08 14:50:43
+
+## Data Sources
+[ ] News data loaded: ✓
+[ ] Events data loaded: ✓
+[ ] Reddit data loaded: ✓
+[ ] Tools data loaded: ✓
+[ ] Market data loaded: ✓
+
+## Content Review
+[ ] Top story is current and relevant
+[ ] Top story summary is accurate
+[ ] The Number is verified and sourced
+[ ] Market insights are accurate
+[ ] License watch items are verified
+[ ] Tool of the week link works
+[ ] All events have correct dates/locations
+[ ] Quick hits are relevant and current
+[ ] Margin tip is actionable
+
+## Quality Checks
+[ ] No broken links
+[ ] No typos or grammar issues
+[ ] Tone is professional and helpful
+[ ] HTML renders correctly in email preview
+[ ] Mobile responsive layout verified
+
+## Items to Verify
+[ ] TOP STORY: Breaking News; Dispensary Openings; Legal Wrangling; Cannabis Licensing - Rockland County Business Journal
+    Link: https://rcbizjournal.com/2026/02/07/hudson-valley-cannabis-news/
+[ ] TOOL: Odoo ERP for Cannabis Production Industry | ThinkTech
+    Link: https://thethinktech.com/odoo-erp-for-cannabis-production/
+[ ] EVENT: CommCan - Homegrown Cannabis & Edibles in Massachusetts - 2026-01-05 - Massachusetts
+[ ] EVENT: Register - Vancouver 2026 | Grow Up Conference and Expo | presented by Quality Horticulture - 2026-01-19 - Massachusetts
+[ ] EVENT: Cannabis State Roundtable - National Governors Association - 2026-01-28 - Massachusetts
+[ ] EVENT: Proposed cannabis reforms get mixed reviews from bar | Massachusetts Lawyers Weekly - 2026-02-03 - Massachusetts
+[ ] EVENT: Massachusetts Adult-use Cannabis Sales Generated $1.65 Billion Total In 2025 - Cannabis Control Commission Massachusetts - 2026-04-01 - Massachusetts
+
+## Sign-off
+[ ] Content approved by: _________________
+[ ] Ready to send: _________________
+[ ] Scheduled send date: _________________

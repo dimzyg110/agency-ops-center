@@ -1,0 +1,33 @@
+{
+  "dataset_key": "facility_sales",
+  "endpoint": "hhjg-atjk",
+  "status": "success",
+  "row_count": 4,
+  "generated_at": "2026-02-08T14:35:20.159477Z",
+  "rows": [
+    {
+      "GENDER": "Gender Defined by Agent",
+      "TOTAL": "161",
+      "%_TOTAL": "0.008",
+      "SUM OF ALL": "20694"
+    },
+    {
+      "GENDER": "Female",
+      "TOTAL": "7503",
+      "%_TOTAL": "0.363",
+      "SUM OF ALL": "20694"
+    },
+    {
+      "GENDER": "Decline to Answer",
+      "TOTAL": "264",
+      "%_TOTAL": "0.013",
+      "SUM OF ALL": "20694"
+    },
+    {
+      "GENDER": "Male",
+      "TOTAL": "12766",
+      "%_TOTAL": "0.617",
+      "SUM OF ALL": "20694"
+    }
+  ]
+}

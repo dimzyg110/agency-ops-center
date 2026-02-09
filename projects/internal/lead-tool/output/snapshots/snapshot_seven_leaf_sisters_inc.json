@@ -1,0 +1,65 @@
+{
+  "business_name": "Seven Leaf Sisters, Inc.",
+  "city": "Marblehead",
+  "email": "angela@sevenleafsisters.com",
+  "phone": "978-594-6961",
+  "address": "385 Atlantic Avenue Marblehead Ma, 01945",
+  "operator_type": "manufacturer",
+  "license_types": [
+    "Marijuana Retailer",
+    "Marijuana Product Manufacturer"
+  ],
+  "generated_date": "2026-02-04",
+  "market_context": {
+    "headline": "Massachusetts Cannabis Market Under Margin Pressure",
+    "key_points": [
+      "Wholesale flower prices have dropped ~50% since 2021 ($300/oz \u2192 $150/oz)",
+      "1,693 licensed entities competing in a mature market",
+      "Small operators struggling; consolidation accelerating"
+    ]
+  },
+  "pressure_signals": [
+    {
+      "name": "Stalled Operations",
+      "description": "Licensed but not yet operational - capital burn without revenue",
+      "severity": "high"
+    },
+    {
+      "name": "Manufacturing Without Cultivation",
+      "description": "Dependent on external supply chain for raw material",
+      "severity": "medium"
+    }
+  ],
+  "likely_leaks": [
+    {
+      "name": "Burn Without Revenue",
+      "description": "Paying rent, utilities, and holding costs without generating income",
+      "quick_win": "Fast-track to operations or consider sublease options"
+    },
+    {
+      "name": "Supply Chain Vulnerability",
+      "description": "Dependent on external suppliers with variable pricing and availability",
+      "quick_win": "Lock in long-term supply contracts"
+    },
+    {
+      "name": "Inventory Waste & Shrinkage",
+      "description": "Product loss from spoilage, damage, or compliance issues",
+      "quick_win": "Tighten inventory controls and FIFO rotation"
+    }
+  ],
+  "fast_wins": [
+    {
+      "name": "SKU Rationalization",
+      "description": "Eliminate slow-moving products draining production time"
+    },
+    {
+      "name": "Batch Size Optimization",
+      "description": "Right-size batches to minimize waste and storage"
+    },
+    {
+      "name": "White-Label Capacity",
+      "description": "Fill excess capacity with white-label production"
+    }
+  ],
+  "first_change": "Focus all resources on getting to revenue. Every month of delay is pure cost. Identify the single biggest blocker and dedicate 80% of your time to removing it."
+}

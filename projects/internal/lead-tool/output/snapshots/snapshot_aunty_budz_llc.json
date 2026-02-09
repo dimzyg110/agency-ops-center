@@ -1,0 +1,65 @@
+{
+  "business_name": "Aunty Budz Llc",
+  "city": "Northampton",
+  "email": "highflyers413@gmail.com",
+  "phone": "413-210-9287",
+  "address": "34 North Maple Street Northampton Ma, 01062",
+  "operator_type": "microbusiness",
+  "license_types": [
+    "Marijuana Microbusiness",
+    "Microbusiness Delivery"
+  ],
+  "generated_date": "2026-02-04",
+  "market_context": {
+    "headline": "Massachusetts Cannabis Market Under Margin Pressure",
+    "key_points": [
+      "Wholesale flower prices have dropped ~50% since 2021 ($300/oz \u2192 $150/oz)",
+      "1,693 licensed entities competing in a mature market",
+      "Small operators struggling; consolidation accelerating"
+    ]
+  },
+  "pressure_signals": [
+    {
+      "name": "Stalled Operations",
+      "description": "Licensed but not yet operational - capital burn without revenue",
+      "severity": "high"
+    },
+    {
+      "name": "Expired/Surrendered Licenses",
+      "description": "Has given up licenses - financial or operational distress indicator",
+      "severity": "high"
+    }
+  ],
+  "likely_leaks": [
+    {
+      "name": "Burn Without Revenue",
+      "description": "Paying rent, utilities, and holding costs without generating income",
+      "quick_win": "Fast-track to operations or consider sublease options"
+    },
+    {
+      "name": "Compliance Overhead",
+      "description": "Excessive time spent on regulatory requirements",
+      "quick_win": "Streamline seed-to-sale workflows"
+    },
+    {
+      "name": "Poor Vendor Terms",
+      "description": "Not leveraging volume for better pricing",
+      "quick_win": "Renegotiate top 5 supplier contracts"
+    }
+  ],
+  "fast_wins": [
+    {
+      "name": "Vertical Integration",
+      "description": "Maximize margin capture across grow/process/sell"
+    },
+    {
+      "name": "Community Focus",
+      "description": "Build local brand loyalty as competitive moat"
+    },
+    {
+      "name": "Operational Efficiency",
+      "description": "Document and streamline cross-functional workflows"
+    }
+  ],
+  "first_change": "Focus all resources on getting to revenue. Every month of delay is pure cost. Identify the single biggest blocker and dedicate 80% of your time to removing it."
+}

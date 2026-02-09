@@ -1,0 +1,39 @@
+{
+  "dataset_key": "total_dbe",
+  "endpoint": "5dkg-e39p",
+  "status": "success",
+  "row_count": 6,
+  "generated_at": "2026-02-08T14:36:24.665614Z",
+  "rows": [
+    {
+      "DBE_CATEGORY": "Minority-Owned Business",
+      "TOTAL": "169",
+      "%_TOTAL": "0.356"
+    },
+    {
+      "DBE_CATEGORY": "Identifies as Two or More",
+      "TOTAL": "151",
+      "%_TOTAL": "0.318"
+    },
+    {
+      "DBE_CATEGORY": "Woman-Owned Business",
+      "TOTAL": "103",
+      "%_TOTAL": "0.217"
+    },
+    {
+      "DBE_CATEGORY": "Veteran-Owned Business",
+      "TOTAL": "32",
+      "%_TOTAL": "0.067"
+    },
+    {
+      "DBE_CATEGORY": "Lesbian, Gay, Bisexual, and Transgender Owned Business",
+      "TOTAL": "16",
+      "%_TOTAL": "0.034"
+    },
+    {
+      "DBE_CATEGORY": "Disability-Owned Business",
+      "TOTAL": "4",
+      "%_TOTAL": "0.008"
+    }
+  ]
+}

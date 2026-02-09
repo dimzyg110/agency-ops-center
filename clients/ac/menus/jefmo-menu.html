@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JEFMO - Wholesale Menu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        @page {
+            size: letter;
+            margin: 0;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        html, body {
+            width: 8.5in;
+            height: 11in;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(180deg, #0a0a12 0%, #1a1a2e 50%, #0a0a12 100%);
+            color: #f5f5f5;
+        }
+        
+        .page {
+            width: 8.5in;
+            height: 11in;
+            padding: 0.5in 0.6in;
+            background: linear-gradient(180deg, #0d0d18 0%, #16162a 100%);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 0.4in;
+            padding-bottom: 0.3in;
+            border-bottom: 2px solid #d4a853;
+        }
+        
+        .logo-wrap {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 0.15in;
+        }
+        
+        .logo {
+            width: 180px;
+            height: auto;
+        }
+        
+        .tagline {
+            font-family: 'Playfair Display', serif;
+            color: #d4a853;
+            font-size: 14pt;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-top: 0.1in;
+        }
+        
+        .subtitle {
+            color: #888;
+            font-size: 10pt;
+            margin-top: 0.05in;
+            letter-spacing: 2px;
+        }
+        
+        .content {
+            flex: 1;
+        }
+        
+        .section {
+            margin-bottom: 0.35in;
+        }
+        
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 18pt;
+            font-weight: 700;
+            color: #d4a853;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 0.2in;
+            padding-bottom: 0.1in;
+            border-bottom: 1px solid rgba(212, 168, 83, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(212, 168, 83, 0.5) 0%, transparent 100%);
+        }
+        
+        .product-row {
+            background: rgba(212, 168, 83, 0.05);
+            border-left: 3px solid #d4a853;
+            padding: 0.15in 0.2in;
+            margin-bottom: 0.12in;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .product-info {
+            flex: 1;
+        }
+        
+        .strain-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 16pt;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 0.05in;
+        }
+        
+        .strain-details {
+            display: flex;
+            gap: 15px;
+            font-size: 11pt;
+        }
+        
+        .thc {
+            color: #d4a853;
+            font-weight: 600;
+        }
+        
+        .type {
+            color: #8b7355;
+        }
+        
+        .size {
+            color: #666;
+        }
+        
+        .price {
+            font-family: 'Playfair Display', serif;
+            font-size: 22pt;
+            font-weight: 700;
+            color: #d4a853;
+        }
+        
+        .qty {
+            color: #555;
+            font-size: 9pt;
+            margin-top: 0.03in;
+            text-align: right;
+        }
+        
+        .footer {
+            text-align: center;
+            padding-top: 0.25in;
+            border-top: 1px solid rgba(212, 168, 83, 0.3);
+        }
+        
+        .footer-brand {
+            font-family: 'Playfair Display', serif;
+            color: #d4a853;
+            font-size: 12pt;
+            letter-spacing: 3px;
+            margin-bottom: 0.05in;
+        }
+        
+        .footer-address {
+            color: #666;
+            font-size: 10pt;
+            margin-bottom: 0.03in;
+        }
+        
+        .footer-date {
+            color: #d4a853;
+            font-size: 10pt;
+            font-weight: 500;
+        }
+        
+        .disclaimer {
+            color: #444;
+            font-size: 7pt;
+            margin-top: 0.1in;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="header">
+            <div class="logo-wrap">
+                <img src="assets/jefmo-logo.jpg" alt="JEFMO" class="logo">
+            </div>
+            <div class="tagline">Premium Cannabis</div>
+            <div class="subtitle">★ Boston Roots • Massachusetts Grown ★</div>
+        </div>
+        
+        <div class="content">
+            <div class="section">
+                <div class="section-title">Flower</div>
+                
+                <div class="product-row">
+                    <div class="product-info">
+                        <div class="strain-name">Petrol Pop</div>
+                        <div class="strain-details">
+                            <span class="thc">THC 21.8%</span>
+                            <span class="type">Indica Dom. Hybrid</span>
+                            <span class="size">3.5g</span>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="price">$13.50</div>
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">Pre-Rolls</div>
+                
+                <div class="product-row">
+                    <div class="product-info">
+                        <div class="strain-name">Petrol Pop</div>
+                        <div class="strain-details">
+                            <span class="thc">THC 21.8%</span>
+                            <span class="type">Indica Dom. Hybrid</span>
+                            <span class="size">1g Whole Flower</span>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="price">$3.50</div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div class="footer-brand">ADVANCED CULTIVATORS</div>
+            <div class="footer-address">100 Phoenix Ave · Lowell, MA</div>
+            <div class="footer-date">February 2026</div>
+            <div class="disclaimer">For use only by adults 21 years of age or older. Keep out of reach of children. There may be health risks associated with consumption of this product.</div>
+        </div>
+    </div>
+</body>
+</html>

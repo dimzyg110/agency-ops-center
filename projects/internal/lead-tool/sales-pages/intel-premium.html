@@ -1,0 +1,1550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MA Operator Signals Pack | Roviq Intelligence</title>
+    <meta name="description" content="Premium intelligence on Massachusetts cannabis operators. Know who's buying vs who's dying. Limited to 3 buyers per quarter.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-tertiary: #1a1a26;
+            --bg-card: #16161f;
+            --accent-gold: #d4a853;
+            --accent-gold-dim: #9a7a3d;
+            --accent-electric: #4f8cff;
+            --accent-cyan: #00d4ff;
+            --text-primary: #f0f0f5;
+            --text-secondary: #a0a0b0;
+            --text-muted: #606070;
+            --danger: #ff4757;
+            --success: #2ed573;
+            --border: rgba(255,255,255,0.08);
+            --glow-gold: rgba(212, 168, 83, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated background grid */
+        .bg-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(rgba(79, 140, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(79, 140, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .bg-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100vh;
+            background: radial-gradient(ellipse at 50% 0%, rgba(79, 140, 255, 0.08) 0%, transparent 60%),
+                        radial-gradient(ellipse at 80% 50%, rgba(212, 168, 83, 0.05) 0%, transparent 40%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 20px 0;
+            background: linear-gradient(to bottom, var(--bg-primary) 0%, transparent 100%);
+            transition: all 0.3s ease;
+        }
+
+        .nav-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-gold-dim) 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            font-size: 18px;
+            color: var(--bg-primary);
+        }
+
+        .logo-text {
+            font-weight: 700;
+            font-size: 20px;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-text span {
+            color: var(--accent-gold);
+        }
+
+        .nav-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: var(--text-muted);
+            padding: 8px 16px;
+            background: var(--bg-tertiary);
+            border-radius: 20px;
+            border: 1px solid var(--border);
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--success);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 160px 0 100px;
+            text-align: center;
+            position: relative;
+        }
+
+        .classified-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, rgba(212, 168, 83, 0.15) 0%, rgba(212, 168, 83, 0.05) 100%);
+            border: 1px solid var(--accent-gold-dim);
+            border-radius: 30px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--accent-gold);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 32px;
+        }
+
+        .classified-badge::before {
+            content: '◆';
+            animation: blink 1.5s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50%, 100% { opacity: 1; }
+            25%, 75% { opacity: 0.3; }
+        }
+
+        .hero h1 {
+            font-size: clamp(36px, 6vw, 64px);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -2px;
+            margin-bottom: 24px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero h1 .highlight {
+            background: linear-gradient(135deg, var(--accent-gold) 0%, #f0d78c 50%, var(--accent-gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-sub {
+            font-size: 20px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 40px;
+            line-height: 1.7;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            flex-wrap: wrap;
+            margin-top: 60px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 42px;
+            font-weight: 700;
+            color: var(--accent-electric);
+            line-height: 1;
+        }
+
+        .stat-value.danger {
+            color: var(--danger);
+        }
+
+        .stat-label {
+            font-size: 13px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 8px;
+        }
+
+        /* Crisis Section */
+        .crisis {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .crisis-card {
+            background: linear-gradient(135deg, rgba(255, 71, 87, 0.08) 0%, rgba(255, 71, 87, 0.02) 100%);
+            border: 1px solid rgba(255, 71, 87, 0.2);
+            border-radius: 24px;
+            padding: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .crisis-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--danger), transparent);
+        }
+
+        .crisis-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .crisis-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(255, 71, 87, 0.15);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .crisis-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--danger);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .crisis h2 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+
+        .crisis-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .crisis-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+
+        .crisis-text p {
+            color: var(--text-secondary);
+            font-size: 17px;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .crisis-text strong {
+            color: var(--text-primary);
+        }
+
+        .price-collapse {
+            background: var(--bg-tertiary);
+            border-radius: 16px;
+            padding: 32px;
+            border: 1px solid var(--border);
+        }
+
+        .price-chart {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            height: 180px;
+            padding: 20px 0;
+            margin-bottom: 24px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .price-bar {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .bar {
+            width: 80px;
+            border-radius: 8px 8px 0 0;
+            position: relative;
+        }
+
+        .bar-old {
+            height: 150px;
+            background: linear-gradient(180deg, var(--accent-electric) 0%, rgba(79, 140, 255, 0.5) 100%);
+        }
+
+        .bar-new {
+            height: 41px;
+            background: linear-gradient(180deg, var(--danger) 0%, rgba(255, 71, 87, 0.5) 100%);
+        }
+
+        .bar-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .bar-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .price-arrow {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            padding: 0 20px;
+        }
+
+        .arrow-line {
+            font-size: 32px;
+            color: var(--danger);
+        }
+
+        .arrow-pct {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--danger);
+        }
+
+        .price-note {
+            font-size: 13px;
+            color: var(--text-muted);
+            text-align: center;
+        }
+
+        /* Problem Section */
+        .problem {
+            padding: 100px 0;
+        }
+
+        .section-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: 40px;
+            font-weight: 700;
+            margin-bottom: 48px;
+            line-height: 1.2;
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        @media (max-width: 900px) {
+            .problem-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .problem-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 36px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .problem-card:hover {
+            border-color: rgba(255, 71, 87, 0.3);
+            transform: translateY(-4px);
+        }
+
+        .problem-num {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--bg-tertiary);
+            position: absolute;
+            top: 20px;
+            right: 24px;
+        }
+
+        .problem-card h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--danger);
+        }
+
+        .problem-card p {
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        /* Solution Section */
+        .solution {
+            padding: 100px 0;
+            background: linear-gradient(180deg, transparent 0%, var(--bg-secondary) 20%, var(--bg-secondary) 80%, transparent 100%);
+        }
+
+        .solution-intro {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 80px;
+        }
+
+        .solution-intro p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-top: 24px;
+            line-height: 1.8;
+        }
+
+        .deliverables {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .deliverable {
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            gap: 32px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 40px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @media (max-width: 768px) {
+            .deliverable {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+
+        .deliverable::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--accent-gold) 0%, var(--accent-gold-dim) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .deliverable:hover {
+            border-color: var(--accent-gold-dim);
+            transform: translateX(8px);
+        }
+
+        .deliverable:hover::before {
+            opacity: 1;
+        }
+
+        .deliverable-num {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-gold-dim) 100%);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--bg-primary);
+        }
+
+        .deliverable-content h3 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .deliverable-tag {
+            font-size: 10px;
+            font-weight: 600;
+            padding: 4px 10px;
+            background: rgba(212, 168, 83, 0.15);
+            color: var(--accent-gold);
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .deliverable-content p {
+            color: var(--text-secondary);
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .deliverable-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .feature-chip {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 14px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .feature-chip::before {
+            content: '✓';
+            color: var(--success);
+            font-weight: 600;
+        }
+
+        /* Who Is This For Section */
+        .audience {
+            padding: 100px 0;
+        }
+
+        .audience-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+        }
+
+        @media (max-width: 768px) {
+            .audience-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .audience-card {
+            border-radius: 24px;
+            padding: 48px;
+            position: relative;
+        }
+
+        .audience-card.for {
+            background: linear-gradient(135deg, rgba(46, 213, 115, 0.08) 0%, rgba(46, 213, 115, 0.02) 100%);
+            border: 1px solid rgba(46, 213, 115, 0.2);
+        }
+
+        .audience-card.not-for {
+            background: linear-gradient(135deg, rgba(255, 71, 87, 0.08) 0%, rgba(255, 71, 87, 0.02) 100%);
+            border: 1px solid rgba(255, 71, 87, 0.2);
+        }
+
+        .audience-icon {
+            font-size: 32px;
+            margin-bottom: 24px;
+        }
+
+        .audience-card h3 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .audience-card.for h3 {
+            color: var(--success);
+        }
+
+        .audience-card.not-for h3 {
+            color: var(--danger);
+        }
+
+        .audience-list {
+            list-style: none;
+        }
+
+        .audience-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        .audience-list li:last-child {
+            border-bottom: none;
+        }
+
+        .audience-list li::before {
+            content: '→';
+            color: var(--text-muted);
+            flex-shrink: 0;
+        }
+
+        /* Methodology Section */
+        .methodology {
+            padding: 100px 0;
+            background: var(--bg-secondary);
+        }
+
+        .methodology-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        @media (max-width: 900px) {
+            .methodology-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+
+        .methodology-text h2 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .methodology-text p {
+            color: var(--text-secondary);
+            font-size: 17px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .data-sources {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 32px;
+        }
+
+        .data-sources h4 {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .data-sources h4::before {
+            content: '';
+            display: block;
+            width: 8px;
+            height: 8px;
+            background: var(--accent-electric);
+            border-radius: 50%;
+        }
+
+        .source-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .source-item:last-child {
+            border-bottom: none;
+        }
+
+        .source-name {
+            font-weight: 500;
+        }
+
+        .source-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            color: var(--accent-electric);
+        }
+
+        .methodology-visual {
+            position: relative;
+        }
+
+        .signal-matrix {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .matrix-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 20px;
+            background: var(--bg-tertiary);
+            border-bottom: 1px solid var(--border);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .matrix-header::before {
+            content: '●';
+            color: var(--success);
+            font-size: 8px;
+        }
+
+        .matrix-content {
+            padding: 20px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+        }
+
+        .matrix-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px dashed var(--border);
+        }
+
+        .matrix-row:last-child {
+            border-bottom: none;
+        }
+
+        .matrix-label {
+            color: var(--text-muted);
+        }
+
+        .matrix-value {
+            color: var(--text-primary);
+        }
+
+        .matrix-value.high { color: var(--danger); }
+        .matrix-value.medium { color: var(--accent-gold); }
+        .matrix-value.low { color: var(--success); }
+
+        /* Pricing Section */
+        .pricing {
+            padding: 120px 0;
+            text-align: center;
+        }
+
+        .pricing-card {
+            max-width: 700px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-tertiary) 100%);
+            border: 2px solid var(--accent-gold-dim);
+            border-radius: 32px;
+            padding: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-gold-dim), var(--accent-gold), var(--accent-gold-dim));
+        }
+
+        .pricing-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 20px;
+            background: rgba(255, 71, 87, 0.15);
+            border: 1px solid rgba(255, 71, 87, 0.3);
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--danger);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 32px;
+        }
+
+        .pricing-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .pricing-amount {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 72px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent-gold) 0%, #f0d78c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .pricing-period {
+            font-size: 16px;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+        }
+
+        .pricing-includes {
+            text-align: left;
+            margin-bottom: 40px;
+        }
+
+        .pricing-includes h4 {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        .pricing-list {
+            list-style: none;
+        }
+
+        .pricing-list li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 16px;
+        }
+
+        .pricing-list li:last-child {
+            border-bottom: none;
+        }
+
+        .pricing-list li::before {
+            content: '◆';
+            color: var(--accent-gold);
+            font-size: 10px;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 20px 48px;
+            background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-gold-dim) 100%);
+            color: var(--bg-primary);
+            font-size: 18px;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 14px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 32px rgba(212, 168, 83, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 48px rgba(212, 168, 83, 0.4);
+        }
+
+        .cta-subtext {
+            margin-top: 20px;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .upsell {
+            margin-top: 48px;
+            padding-top: 32px;
+            border-top: 1px solid var(--border);
+        }
+
+        .upsell-title {
+            font-size: 14px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+        }
+
+        .upsell-price {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--accent-electric);
+            margin-bottom: 8px;
+        }
+
+        .upsell-desc {
+            font-size: 15px;
+            color: var(--text-secondary);
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        /* ROI Section */
+        .roi {
+            padding: 80px 0;
+            background: var(--bg-secondary);
+        }
+
+        .roi-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .roi h2 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .roi p {
+            color: var(--text-secondary);
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 40px;
+        }
+
+        .roi-math {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        @media (max-width: 768px) {
+            .roi-math {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .roi-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+        }
+
+        .roi-num {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--accent-gold);
+            margin-bottom: 8px;
+        }
+
+        .roi-label {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* Footer */
+        .footer {
+            padding: 60px 0 40px;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 24px;
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .footer-brand .logo-icon {
+            width: 32px;
+            height: 32px;
+            font-size: 14px;
+        }
+
+        .footer-brand span {
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .footer-contact {
+            text-align: right;
+        }
+
+        .footer-contact a {
+            color: var(--accent-gold);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .footer-contact a:hover {
+            color: var(--text-primary);
+        }
+
+        .footer-contact p {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 8px;
+        }
+
+        .footer-bottom {
+            margin-top: 40px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-legal a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-legal a:hover {
+            color: var(--text-primary);
+        }
+
+        /* Decorative Elements */
+        .glow-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            pointer-events: none;
+            opacity: 0.5;
+        }
+
+        .glow-orb.gold {
+            background: var(--accent-gold);
+        }
+
+        .glow-orb.blue {
+            background: var(--accent-electric);
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-grid"></div>
+    <div class="bg-gradient"></div>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container">
+            <div class="nav-inner">
+                <div class="logo">
+                    <div class="logo-icon">R</div>
+                    <div class="logo-text">Roviq<span>Intel</span></div>
+                </div>
+                <div class="nav-status">
+                    <span class="status-dot"></span>
+                    Q1 2025 DATA LIVE
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <div class="classified-badge">Priority Intelligence Briefing</div>
+            <h1>Stop Chasing Dead Leads.<br><span class="highlight">Start Closing Survivors.</span></h1>
+            <p class="hero-sub">The Massachusetts cannabis market just lost 73% of its wholesale value. While your competitors waste time on dying operators, you'll know exactly who's buying — and who to avoid.</p>
+            
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-value danger">-73%</div>
+                    <div class="stat-label">Wholesale Price Collapse</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">593</div>
+                    <div class="stat-label">Operators Scored</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">67K</div>
+                    <div class="stat-label">Data Points Analyzed</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Crisis -->
+    <section class="crisis">
+        <div class="container">
+            <div class="crisis-card">
+                <div class="crisis-header">
+                    <div class="crisis-icon">⚠️</div>
+                    <div class="crisis-title">Market Intelligence Alert</div>
+                </div>
+                <div class="crisis-content">
+                    <div class="crisis-text">
+                        <h2>The Massachusetts Cannabis Market Is in Free Fall</h2>
+                        <p>In 18 months, wholesale flower pricing crashed from <strong>$14.68/gram to $4.01/gram</strong>. Operators who were cash-flush in 2023 are now fighting for survival.</p>
+                        <p>Here's what that means for you: <strong>half of your prospects can't pay their bills.</strong> They're taking meetings to feel productive, not to buy. Every cold call, every demo, every proposal — wasted on operators who are one bad quarter from closing.</p>
+                        <p>But here's what nobody's telling you: <strong>some operators are thriving.</strong> They're growing through the chaos, acquiring distressed assets, expanding their footprint. They have budget. They're buying.</p>
+                        <p><strong>The question is: do you know which is which?</strong></p>
+                    </div>
+                    <div class="price-collapse">
+                        <div class="price-chart">
+                            <div class="price-bar">
+                                <div class="bar bar-old"></div>
+                                <div class="bar-value">$14.68</div>
+                                <div class="bar-label">Q2 2023</div>
+                            </div>
+                            <div class="price-arrow">
+                                <span class="arrow-line">→</span>
+                                <span class="arrow-pct">-73%</span>
+                            </div>
+                            <div class="price-bar">
+                                <div class="bar bar-new"></div>
+                                <div class="bar-value" style="color: var(--danger)">$4.01</div>
+                                <div class="bar-label">Q4 2024</div>
+                            </div>
+                        </div>
+                        <div class="price-note">MA Wholesale Flower Price/Gram (Source: CCC Sales Data)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem -->
+    <section class="problem">
+        <div class="container">
+            <div class="section-label">The Real Problem</div>
+            <h2 class="section-title">Your Current Prospecting Is Broken</h2>
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <div class="problem-num">01</div>
+                    <h3>Blind Outreach</h3>
+                    <p>You're working from static license lists and stale databases. You have no idea if that "hot prospect" is about to close their doors or just laid off their entire sales team.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-num">02</div>
+                    <h3>Wasted Cycles</h3>
+                    <p>Every meeting with a dying operator is a meeting you didn't have with a buyer. Every proposal to a company that can't pay is time and money down the drain.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-num">03</div>
+                    <h3>Information Asymmetry</h3>
+                    <p>The operators know who's struggling — they talk to each other. Your competitors with inside connections know. You're the only one guessing.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution -->
+    <section class="solution">
+        <div class="container">
+            <div class="solution-intro">
+                <div class="section-label">The Intelligence Advantage</div>
+                <h2 class="section-title">MA Operator Signals Pack</h2>
+                <p>We analyzed 67,000 rows of official CCC facility sales data, cross-referenced with licensing records, and scored 593 Massachusetts cannabis operators on 12 distress and growth indicators. The result: an intelligence package that tells you exactly who to call, who to avoid, and what to say.</p>
+            </div>
+
+            <div class="deliverables">
+                <div class="deliverable">
+                    <div class="deliverable-num">01</div>
+                    <div class="deliverable-content">
+                        <h3>The Priority 150 <span class="deliverable-tag">Core Asset</span></h3>
+                        <p>The top 150 Massachusetts cannabis operators, ranked and scored by our proprietary pressure signal methodology. Each operator is classified as <strong>Growth Mode</strong>, <strong>Stable</strong>, or <strong>Survival Mode</strong> — so you know instantly whether you're looking at a buyer or a time-waster.</p>
+                        <div class="deliverable-features">
+                            <span class="feature-chip">Composite Pressure Score</span>
+                            <span class="feature-chip">Revenue Trajectory</span>
+                            <span class="feature-chip">Facility Expansion Signals</span>
+                            <span class="feature-chip">Market Share Movement</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="deliverable">
+                    <div class="deliverable-num">02</div>
+                    <div class="deliverable-content">
+                        <h3>Verified Contact Intel</h3>
+                        <p>Direct lines to decision-makers. Not the generic "info@" email from their website — actual names, direct emails, phone numbers, and physical addresses for the people who sign contracts. Manually verified and tested for deliverability.</p>
+                        <div class="deliverable-features">
+                            <span class="feature-chip">Decision-Maker Names</span>
+                            <span class="feature-chip">Direct Email Addresses</span>
+                            <span class="feature-chip">Phone Numbers</span>
+                            <span class="feature-chip">Physical Addresses</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="deliverable">
+                    <div class="deliverable-num">03</div>
+                    <div class="deliverable-content">
+                        <h3>"Why Now" Talk Tracks</h3>
+                        <p>For each operator in the Priority 150, we provide customized outreach angles based on their specific situation. If they're expanding, we tell you what they need. If they're consolidating, we tell you how to position. No more generic pitches — every conversation starts with relevance.</p>
+                        <div class="deliverable-features">
+                            <span class="feature-chip">Situation-Specific Angles</span>
+                            <span class="feature-chip">Pain Point Mapping</span>
+                            <span class="feature-chip">Timing Recommendations</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="deliverable">
+                    <div class="deliverable-num">04</div>
+                    <div class="deliverable-content">
+                        <h3>Market Context Brief</h3>
+                        <p>A comprehensive executive summary of the Massachusetts market collapse — the numbers, the causes, the outlook. Use it to educate your team, prep for conversations, or share with clients. Includes data visualizations ready for presentations.</p>
+                        <div class="deliverable-features">
+                            <span class="feature-chip">Executive Summary</span>
+                            <span class="feature-chip">Data Visualizations</span>
+                            <span class="feature-chip">Trend Analysis</span>
+                            <span class="feature-chip">Presentation-Ready</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="deliverable">
+                    <div class="deliverable-num">05</div>
+                    <div class="deliverable-content">
+                        <h3>30-Day Freshness Guarantee</h3>
+                        <p>Markets move fast. A operator that was stable last month might be in crisis today. Your pack includes a full data refresh within 30 days of purchase — ensuring your intelligence stays current through your first sales push.</p>
+                        <div class="deliverable-features">
+                            <span class="feature-chip">Full Score Recalculation</span>
+                            <span class="feature-chip">Contact Verification</span>
+                            <span class="feature-chip">New Market Events Incorporated</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Audience -->
+    <section class="audience">
+        <div class="container">
+            <div class="section-label">Qualification</div>
+            <h2 class="section-title">Is This Intelligence For You?</h2>
+            <div class="audience-grid">
+                <div class="audience-card for">
+                    <div class="audience-icon">✓</div>
+                    <h3>Built For</h3>
+                    <ul class="audience-list">
+                        <li>Vendors and brands selling products to MA dispensaries and cultivators</li>
+                        <li>Cannabis-focused CPAs, attorneys, and consultants seeking clients with budget</li>
+                        <li>Security, compliance, and technology providers targeting the cannabis vertical</li>
+                        <li>Brokers and M&A advisors looking to identify acquisition targets or active buyers</li>
+                        <li>Anyone who needs to know which MA operators can actually pay their invoices</li>
+                    </ul>
+                </div>
+                <div class="audience-card not-for">
+                    <div class="audience-icon">✗</div>
+                    <h3>Not For</h3>
+                    <ul class="audience-list">
+                        <li>Companies without an existing sales process (this accelerates what you have, not replaces it)</li>
+                        <li>Anyone expecting a "magic list" without doing outreach work</li>
+                        <li>Competitors to our existing Q1 buyers (we limit to 3 per quarter to preserve data value)</li>
+                        <li>Anyone not actively selling to MA cannabis operators in the next 90 days</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Methodology -->
+    <section class="methodology">
+        <div class="container">
+            <div class="methodology-content">
+                <div class="methodology-text">
+                    <div class="section-label">Methodology</div>
+                    <h2>Built on Real Data, Not Guesswork</h2>
+                    <p>Our scoring methodology combines official regulatory data with market intelligence to create a comprehensive picture of operator health.</p>
+                    <p>We pull directly from CCC facility sales reports — 67,000+ transaction records across all licensed operators. We cross-reference with licensing databases, corporate filings, and public records to build a complete pressure profile for each operator.</p>
+                    
+                    <div class="data-sources">
+                        <h4>Intelligence Sources</h4>
+                        <div class="source-item">
+                            <span class="source-name">CCC Facility Sales Data</span>
+                            <span class="source-value">67,247 rows</span>
+                        </div>
+                        <div class="source-item">
+                            <span class="source-name">Operators Scored</span>
+                            <span class="source-value">593 entities</span>
+                        </div>
+                        <div class="source-item">
+                            <span class="source-name">Pressure Indicators</span>
+                            <span class="source-value">12 signals</span>
+                        </div>
+                        <div class="source-item">
+                            <span class="source-name">Last Data Pull</span>
+                            <span class="source-value">Jan 2025</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="methodology-visual">
+                    <div class="signal-matrix">
+                        <div class="matrix-header">SAMPLE_OPERATOR_SIGNAL_OUTPUT.json</div>
+                        <div class="matrix-content">
+                            <div class="matrix-row">
+                                <span class="matrix-label">operator_id:</span>
+                                <span class="matrix-value">"MA-2024-0847"</span>
+                            </div>
+                            <div class="matrix-row">
+                                <span class="matrix-label">pressure_score:</span>
+                                <span class="matrix-value high">87.3</span>
+                            </div>
+                            <div class="matrix-row">
+                                <span class="matrix-label">classification:</span>
+                                <span class="matrix-value high">"SURVIVAL_MODE"</span>
+                            </div>
+                            <div class="matrix-row">
+                                <span class="matrix-label">revenue_trend:</span>
+                                <span class="matrix-value high">-34.2%</span>
+                            </div>
+                            <div class="matrix-row">
+                                <span class="matrix-label">market_share_delta:</span>
+                                <span class="matrix-value medium">-2.1pp</span>
+                            </div>
+                            <div class="matrix-row">
+                                <span class="matrix-label">facility_expansion:</span>
+                                <span class="matrix-value low">false</span>
+                            </div>
+                            <div class="matrix-row">
+                                <span class="matrix-label">recommendation:</span>
+                                <span class="matrix-value">"DEPRIORITIZE"</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ROI -->
+    <section class="roi">
+        <div class="container">
+            <div class="roi-content">
+                <h2>The Math Is Simple</h2>
+                <p>If this intelligence helps you close just one additional deal — or saves you from chasing one operator who couldn't pay — it's paid for itself many times over. Most vendors selling to cannabis operators have deal sizes of $10K-$100K+. One accurate read on a prospect's financial health changes everything.</p>
+                <div class="roi-math">
+                    <div class="roi-item">
+                        <div class="roi-num">1</div>
+                        <div class="roi-label">Additional closed deal pays for the entire pack 4-40x over</div>
+                    </div>
+                    <div class="roi-item">
+                        <div class="roi-num">10+</div>
+                        <div class="roi-label">Hours saved per week by not chasing dead leads</div>
+                    </div>
+                    <div class="roi-item">
+                        <div class="roi-num">∞</div>
+                        <div class="roi-label">Value of knowing what your competitors don't</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="pricing">
+        <div class="container">
+            <div class="pricing-card">
+                <div class="pricing-badge">⚡ Limited to 3 Buyers This Quarter</div>
+                <h3 class="pricing-title">MA Operator Signals Pack</h3>
+                <div class="pricing-amount">$2,500</div>
+                <div class="pricing-period">One-time access fee</div>
+
+                <div class="pricing-includes">
+                    <h4>Your Intelligence Package Includes:</h4>
+                    <ul class="pricing-list">
+                        <li>The Priority 150 — scored and ranked MA operators</li>
+                        <li>Verified contact intel for all 150 decision-makers</li>
+                        <li>Custom "Why Now" talk tracks for each operator</li>
+                        <li>Market Context Brief with data visualizations</li>
+                        <li>30-day freshness guarantee (full data refresh included)</li>
+                        <li>Direct access to Randy for methodology questions</li>
+                    </ul>
+                </div>
+
+                <a href="mailto:randy@roviqai.xyz?subject=MA%20Operator%20Signals%20Pack%20Inquiry" class="cta-button">
+                    Request Access →
+                </a>
+                <p class="cta-subtext">Serious inquiries only. We'll respond within 24 hours with next steps.</p>
+
+                <div class="upsell">
+                    <div class="upsell-title">Stay Current</div>
+                    <div class="upsell-price">$499/month</div>
+                    <p class="upsell-desc">Optional monthly refresh subscription. Get updated scores and new market intelligence every 30 days. Cancel anytime.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo-icon">R</div>
+                    <span>Roviq Intelligence</span>
+                </div>
+                <div class="footer-contact">
+                    <a href="mailto:randy@roviqai.xyz">randy@roviqai.xyz</a>
+                    <p>Randy Torres • Boston, MA</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>© 2025 Roviq. All rights reserved.</span>
+                <div class="footer-legal">
+                    <span>Data sourced from public CCC records</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth navigation background on scroll
+        const nav = document.querySelector('.nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.style.background = 'rgba(10, 10, 15, 0.95)';
+                nav.style.backdropFilter = 'blur(20px)';
+            } else {
+                nav.style.background = 'linear-gradient(to bottom, var(--bg-primary) 0%, transparent 100%)';
+                nav.style.backdropFilter = 'none';
+            }
+        });
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.deliverable, .problem-card, .audience-card, .roi-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

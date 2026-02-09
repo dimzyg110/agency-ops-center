@@ -1,0 +1,1296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The MA Operator's Margin Report | Weekly Intel for Massachusetts Cannabis</title>
+    <meta name="description" content="Survival intel for the Commonwealth's cannabis market. Weekly prep, CCC updates, and competitive analysis for Massachusetts dispensary operators.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ============================================
+           ANTI-AI DESIGN: Human, Editorial, Warm (DARK MODE)
+           ============================================ */
+        
+        :root {
+            /* Grounded Urgency Palette - Dark Mode */
+            --paper: #1a1a1a;  /* Warm Dark Background */
+            --stone: #242424;  /* Slightly lighter section bg */
+            --ink: #f5f2ea;    /* Cream Text */
+            --ember: #d4a853;  /* Warm Amber/Gold Accent */
+            --oxide: #9caea0;  /* Muted Green/Grey */
+            --cream: #2a2a2a;  /* Card Background */
+            --bay-blue: #7da0b3; /* Muted Blue */
+            
+            /* Typography */
+            --font-heading: 'Space Grotesk', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --font-handwritten: 'Gloria Hallelujah', cursive;
+            
+            /* Spacing (8pt grid) */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 48px;
+            --space-xl: 80px;
+            --space-2xl: 120px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: var(--font-body);
+            background-color: var(--paper);
+            color: var(--ink);
+            line-height: 1.6;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        /* Film grain overlay - Adjusted for dark mode */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.03; /* Slightly lower opacity on dark */
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+        
+        /* Container */
+        .container {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 var(--space-md);
+        }
+        
+        /* ============================================
+           HEADER - Minimal, Editorial
+           ============================================ */
+        header {
+            padding: var(--space-md) 0;
+            border-bottom: 1px solid rgba(245, 242, 234, 0.1);
+        }
+        
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: var(--ink);
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--ember);
+        }
+        
+        .ma-badge {
+            font-family: var(--font-heading);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--bay-blue);
+            background: rgba(125, 160, 179, 0.15);
+            padding: 4px 10px;
+            border-radius: 100px;
+            margin-left: var(--space-sm);
+        }
+        
+        .nav-hint {
+            font-family: var(--font-handwritten);
+            font-size: 0.85rem;
+            color: var(--oxide);
+            transform: rotate(-2deg);
+        }
+        
+        /* ============================================
+           HERO - Asymmetric, Editorial Feel
+           ============================================ */
+        .hero {
+            padding: var(--space-xl) 0 var(--space-2xl);
+            position: relative;
+        }
+        
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: var(--space-lg);
+            align-items: start;
+        }
+        
+        .hero-content {
+            padding-top: var(--space-lg);
+        }
+        
+        .kicker {
+            font-family: var(--font-handwritten);
+            color: var(--ember);
+            font-size: 1.1rem;
+            margin-bottom: var(--space-sm);
+            display: inline-block;
+            transform: rotate(-1.5deg);
+        }
+        
+        .kicker::before {
+            content: '→ ';
+        }
+        
+        h1 {
+            font-family: var(--font-heading);
+            font-size: clamp(2.5rem, 5vw, 3.8rem);
+            font-weight: 700;
+            line-height: 1.08;
+            letter-spacing: -0.03em;
+            margin-bottom: var(--space-md);
+            color: var(--ink);
+        }
+        
+        h1 .highlight {
+            color: var(--ember);
+            position: relative;
+        }
+        
+        /* Hand-drawn underline effect - Updated color to Gold #d4a853 */
+        h1 .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='8' viewBox='0 0 100 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 5.5C20 2.5 40 6 60 4C80 2 99 5 99 5' stroke='%23d4a853' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") repeat-x;
+            background-size: 100px 8px;
+            opacity: 0.6;
+        }
+        
+        .tagline {
+            font-size: 1.35rem;
+            color: rgba(245, 242, 234, 0.7);
+            margin-bottom: var(--space-lg);
+            max-width: 480px;
+            line-height: 1.5;
+        }
+        
+        .tagline strong {
+            color: var(--ink);
+            font-weight: 600;
+        }
+        
+        /* Audience tags */
+        .audience-tags {
+            display: flex;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-lg);
+            flex-wrap: wrap;
+        }
+        
+        .audience-tag {
+            font-family: var(--font-handwritten);
+            font-size: 0.95rem;
+            color: var(--oxide);
+            background: rgba(156, 174, 160, 0.1);
+            padding: 8px 16px;
+            border-radius: 100px;
+        }
+        
+        .ma-made-note {
+            font-family: var(--font-handwritten);
+            font-size: 0.9rem;
+            color: var(--bay-blue);
+            margin-bottom: var(--space-md);
+            display: inline-block;
+        }
+        
+        /* Preview callout - hand-annotated feel */
+        .preview-callout {
+            background: var(--cream);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: var(--space-md);
+            margin-bottom: var(--space-lg);
+            position: relative;
+            max-width: 420px;
+        }
+        
+        .preview-callout::before {
+            content: 'this week →';
+            font-family: var(--font-handwritten);
+            position: absolute;
+            top: -28px;
+            left: 20px;
+            color: var(--ember);
+            font-size: 0.9rem;
+            transform: rotate(-3deg);
+        }
+        
+        .preview-item {
+            font-size: 0.95rem;
+            padding: 8px 0;
+            padding-left: 28px;
+            position: relative;
+            color: var(--ink);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        
+        .preview-item:last-child {
+            border-bottom: none;
+        }
+        
+        .preview-item::before {
+            position: absolute;
+            left: 0;
+            font-size: 1.1rem;
+        }
+        
+        .preview-item.prep::before { content: '📅'; }
+        .preview-item.ccc::before { content: '🏛️'; }
+        .preview-item.competitive::before { content: '🌎'; }
+        
+        /* CTA Buttons */
+        .cta-group {
+            display: flex;
+            gap: var(--space-sm);
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-xs);
+            background: var(--ember);
+            color: #1a1a1a; /* Dark text for contrast on gold */
+            font-family: var(--font-heading);
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 16px 32px;
+            border-radius: 100px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(212, 168, 83, 0.25);
+        }
+        
+        .btn-secondary {
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            color: rgba(245, 242, 234, 0.6);
+            text-decoration: none;
+            padding: var(--space-sm);
+        }
+        
+        .btn-secondary:hover {
+            color: var(--ink);
+        }
+        
+        /* Hero Card - Signup Form */
+        .hero-card {
+            background: var(--cream);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: var(--space-lg);
+            position: relative;
+        }
+        
+        .hero-card::after {
+            content: 'Massachusetts Edition';
+            font-family: var(--font-handwritten);
+            position: absolute;
+            top: -16px;
+            right: 30px;
+            background: var(--bay-blue);
+            color: #1a1a1a;
+            padding: 6px 14px;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            transform: rotate(4deg);
+            font-weight: 600;
+        }
+        
+        .card-title {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: var(--space-xs);
+        }
+        
+        .card-subtitle {
+            color: rgba(245, 242, 234, 0.6);
+            font-size: 0.95rem;
+            margin-bottom: var(--space-md);
+        }
+        
+        .form-group {
+            margin-bottom: var(--space-sm);
+        }
+        
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 6px;
+            color: rgba(245, 242, 234, 0.7);
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 14px 16px;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--ink);
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--ember);
+            box-shadow: 0 0 0 3px rgba(212, 168, 83, 0.15);
+        }
+        
+        .form-group input::placeholder {
+            color: rgba(245, 242, 234, 0.3);
+        }
+        
+        .form-submit {
+            width: 100%;
+            margin-top: var(--space-sm);
+        }
+        
+        .privacy-note {
+            font-size: 0.8rem;
+            color: rgba(245, 242, 234, 0.4);
+            margin-top: var(--space-sm);
+            text-align: center;
+        }
+        
+        /* What You Get List */
+        .get-list {
+            margin-top: var(--space-md);
+            padding-top: var(--space-md);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .get-list-title {
+            font-family: var(--font-handwritten);
+            font-size: 0.9rem;
+            color: var(--oxide);
+            margin-bottom: var(--space-sm);
+        }
+        
+        .get-list ul {
+            list-style: none;
+        }
+        
+        .get-list li {
+            font-size: 0.9rem;
+            padding: 6px 0;
+            padding-left: 24px;
+            position: relative;
+            color: rgba(245, 242, 234, 0.8);
+        }
+        
+        .get-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--oxide);
+            font-weight: 600;
+        }
+        
+        /* ============================================
+           SOCIAL PROOF - Bento-ish, Asymmetric
+           ============================================ */
+        .proof-section {
+            padding: var(--space-xl) 0;
+            background: var(--stone);
+            position: relative;
+        }
+        
+        .proof-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.08);
+        }
+        
+        .proof-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr 1fr;
+            gap: var(--space-md);
+        }
+        
+        .proof-card {
+            background: var(--paper);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: var(--space-md);
+        }
+        
+        .proof-card.featured {
+            grid-row: span 2;
+            padding: var(--space-lg);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .proof-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--cream);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: var(--space-sm);
+            font-size: 1.5rem;
+        }
+        
+        .proof-card h3 {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: var(--space-xs);
+        }
+        
+        .proof-card p {
+            font-size: 0.9rem;
+            color: rgba(245, 242, 234, 0.7);
+            line-height: 1.5;
+        }
+        
+        .proof-card.featured h3 {
+            font-size: 1.3rem;
+        }
+        
+        .proof-card.featured p {
+            font-size: 1rem;
+            flex-grow: 1;
+        }
+        
+        .proof-attribution {
+            margin-top: var(--space-md);
+            padding-top: var(--space-sm);
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            font-size: 0.85rem;
+        }
+        
+        .proof-attribution strong {
+            display: block;
+            color: var(--ink);
+        }
+        
+        .proof-attribution span {
+            color: rgba(245, 242, 234, 0.5);
+        }
+        
+        /* ============================================
+           WHAT'S INSIDE - Editorial Layout
+           ============================================ */
+        .inside-section {
+            padding: var(--space-2xl) 0;
+        }
+        
+        .section-header {
+            max-width: 600px;
+            margin-bottom: var(--space-xl);
+        }
+        
+        .section-kicker {
+            font-family: var(--font-handwritten);
+            color: var(--ember);
+            font-size: 1rem;
+            margin-bottom: var(--space-sm);
+            display: block;
+        }
+        
+        .section-header h2 {
+            font-family: var(--font-heading);
+            font-size: clamp(1.8rem, 3vw, 2.4rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-sm);
+        }
+        
+        .section-header p {
+            color: rgba(245, 242, 234, 0.7);
+            font-size: 1.1rem;
+        }
+        
+        .inside-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-md);
+        }
+        
+        .inside-card {
+            background: var(--cream);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: var(--space-lg);
+            position: relative;
+            transition: transform 0.2s;
+        }
+        
+        .inside-card:hover {
+            transform: translateY(-4px);
+        }
+        
+        .inside-card:nth-child(2) {
+            transform: translateY(20px);
+        }
+        
+        .inside-card:nth-child(2):hover {
+            transform: translateY(16px);
+        }
+        
+        .inside-card:nth-child(5) {
+            transform: translateY(20px);
+        }
+        
+        .inside-card:nth-child(5):hover {
+            transform: translateY(16px);
+        }
+        
+        .inside-icon {
+            font-size: 2rem;
+            margin-bottom: var(--space-sm);
+        }
+        
+        .inside-card h3 {
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: var(--space-xs);
+            color: var(--ink);
+        }
+        
+        .inside-card p {
+            font-size: 0.95rem;
+            color: rgba(245, 242, 234, 0.65);
+            line-height: 1.55;
+        }
+        
+        .inside-card .tag {
+            display: inline-block;
+            margin-top: var(--space-sm);
+            font-family: var(--font-handwritten);
+            font-size: 0.8rem;
+            color: var(--oxide);
+        }
+        
+        /* ============================================
+           SAMPLE PREVIEW - Editorial Card
+           ============================================ */
+        .sample-section {
+            padding: var(--space-xl) 0 var(--space-2xl);
+            background: var(--stone);
+        }
+        
+        .sample-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-lg);
+        }
+        
+        .sample-content h2 {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+        }
+        
+        .sample-content p {
+            font-size: 1.05rem;
+            color: rgba(245, 242, 234, 0.75);
+            margin-bottom: var(--space-md);
+            line-height: 1.65;
+        }
+        
+        .sample-preview-card {
+            background: var(--paper);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: var(--space-lg);
+            position: relative;
+        }
+        
+        .sample-preview-card::before {
+            content: 'MA-focused issue';
+            font-family: var(--font-handwritten);
+            position: absolute;
+            top: -14px;
+            left: 20px;
+            background: var(--bay-blue);
+            color: #1a1a1a;
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-size: 0.8rem;
+            transform: rotate(-2deg);
+            font-weight: 600;
+        }
+        
+        .sample-header {
+            font-family: var(--font-heading);
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--ember);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: var(--space-xs);
+        }
+        
+        .sample-title {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: var(--space-md);
+            color: var(--ink);
+        }
+        
+        .sample-section-item {
+            padding: var(--space-sm) 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        
+        .sample-section-item:last-child {
+            border-bottom: none;
+        }
+        
+        .sample-section-title {
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 4px;
+            color: var(--ink);
+        }
+        
+        .sample-section-desc {
+            font-size: 0.9rem;
+            color: rgba(245, 242, 234, 0.6);
+        }
+        
+        /* ============================================
+           ABOUT - Personal Touch
+           ============================================ */
+        .about-section {
+            padding: var(--space-xl) 0 var(--space-2xl);
+        }
+        
+        .about-grid {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: var(--space-lg);
+            align-items: start;
+        }
+        
+        .about-image {
+            position: relative;
+        }
+        
+        .about-image-placeholder {
+            width: 100%;
+            aspect-ratio: 1;
+            background: var(--cream);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            filter: grayscale(0.3);
+        }
+        
+        .about-image::after {
+            content: 'written in MA, not CA';
+            font-family: var(--font-handwritten);
+            position: absolute;
+            bottom: -24px;
+            left: 50%;
+            transform: translateX(-50%) rotate(-2deg);
+            color: var(--ember);
+            font-size: 0.85rem;
+            white-space: nowrap;
+        }
+        
+        .about-content h2 {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+        }
+        
+        .about-content p {
+            font-size: 1.05rem;
+            color: rgba(245, 242, 234, 0.75);
+            margin-bottom: var(--space-md);
+            line-height: 1.65;
+        }
+        
+        .about-content p:last-of-type {
+            margin-bottom: 0;
+        }
+        
+        .about-content strong {
+            color: var(--ink);
+        }
+        
+        .about-signature {
+            font-family: var(--font-handwritten);
+            font-size: 1.4rem;
+            color: var(--ink);
+            margin-top: var(--space-md);
+        }
+        
+        /* ============================================
+           FINAL CTA - Clean, Focused
+           ============================================ */
+        .cta-section {
+            padding: var(--space-2xl) 0;
+            text-align: center;
+            background: var(--stone);
+        }
+        
+        .cta-section h2 {
+            font-family: var(--font-heading);
+            font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+            font-weight: 700;
+            margin-bottom: var(--space-sm);
+        }
+        
+        .cta-section .tagline {
+            max-width: 480px;
+            margin: 0 auto var(--space-lg);
+            text-align: center;
+        }
+        
+        .cta-form {
+            display: flex;
+            gap: var(--space-sm);
+            max-width: 480px;
+            margin: 0 auto;
+        }
+        
+        .cta-form input {
+            flex: 1;
+            padding: 16px 20px;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 100px;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--ink);
+        }
+        
+        .cta-form input:focus {
+            outline: none;
+            border-color: var(--ember);
+        }
+        
+        .cta-form button {
+            white-space: nowrap;
+        }
+        
+        .cta-annotation {
+            font-family: var(--font-handwritten);
+            color: var(--oxide);
+            font-size: 0.9rem;
+            margin-top: var(--space-md);
+        }
+        
+        /* ============================================
+           CROSS LINKS SECTION
+           ============================================ */
+        .cross-links {
+            padding: var(--space-xl) 0;
+            background: var(--paper);
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            text-align: center;
+        }
+        
+        .link-box {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: var(--space-md);
+            border: 1px dashed rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+        }
+        
+        .link-box h3 {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: var(--space-sm);
+            color: var(--ink);
+        }
+        
+        .link-box a {
+            display: inline-block;
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            color: var(--ember);
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s;
+        }
+        
+        .link-box a:hover {
+            transform: translateX(4px);
+            text-decoration: underline;
+        }
+        
+        /* ============================================
+           FOOTER - Minimal
+           ============================================ */
+        footer {
+            padding: var(--space-lg) 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .footer-copy {
+            font-size: 0.85rem;
+            color: rgba(245, 242, 234, 0.5);
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: var(--space-md);
+        }
+        
+        .footer-links a {
+            font-size: 0.85rem;
+            color: rgba(245, 242, 234, 0.5);
+            text-decoration: none;
+        }
+        
+        .footer-links a:hover {
+            color: var(--ink);
+        }
+        
+        /* ============================================
+           RESPONSIVE
+           ============================================ */
+        @media (max-width: 900px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-card {
+                max-width: 440px;
+            }
+            
+            .proof-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .proof-card.featured {
+                grid-row: auto;
+            }
+            
+            .inside-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .inside-card:nth-child(2),
+            .inside-card:nth-child(5) {
+                transform: none;
+            }
+            
+            .inside-card:nth-child(2):hover,
+            .inside-card:nth-child(5):hover {
+                transform: translateY(-4px);
+            }
+            
+            .about-grid,
+            .sample-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-image {
+                max-width: 200px;
+            }
+            
+            .cta-form {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .header-inner {
+                flex-direction: column;
+                gap: var(--space-xs);
+            }
+            
+            .nav-hint {
+                display: none;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .preview-callout::before {
+                display: none;
+            }
+            
+            .footer-inner {
+                flex-direction: column;
+                gap: var(--space-sm);
+                text-align: center;
+            }
+            
+            .ma-badge {
+                margin-left: 0;
+                margin-top: var(--space-xs);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-inner">
+                <a href="#" class="logo">The MA Operator's <span>Margin Report</span> <span class="ma-badge">Massachusetts Edition</span></a>
+                <span class="nav-hint">written in MA, not generated in CA →</span>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <span class="kicker">we track the CCC so you don't have to</span>
+                    
+                    <h1>Survival Intel for the<br><span class="highlight">Commonwealth's</span> Cannabis Market</h1>
+                    
+                    <p class="tagline">
+                        Weekly ops intel for <strong>Massachusetts dispensary operators</strong>. From the Berkshires to Boston, we track the Commission, the competition, and the margins that matter.
+                    </p>
+                    
+                    <span class="ma-made-note">✓ Written in Massachusetts, not generated in California</span>
+                    
+                    <div class="audience-tags">
+                        <span class="audience-tag">MA dispensary owners</span>
+                        <span class="audience-tag">MA store managers</span>
+                        <span class="audience-tag">Bay State budtenders</span>
+                    </div>
+                    
+                    <div class="preview-callout">
+                        <div class="preview-item prep"><strong>Flower Expo prep</strong> — Feb 12 in Greenfield. Who's covering your floor?</div>
+                        <div class="preview-item ccc"><strong>CCC Watchlist</strong> — New Committee meets this week. Submit your grievances now.</div>
+                        <div class="preview-item competitive"><strong>Border Patrol</strong> — NY rec sales ramping. Berkshires stores, prepare for the dip.</div>
+                    </div>
+                    
+                    <div class="cta-group">
+                        <a href="#signup" class="btn-primary">
+                            Get the report →
+                        </a>
+                        <a href="#inside" class="btn-secondary">See what's inside</a>
+                    </div>
+                </div>
+                
+                <div class="hero-card" id="signup">
+                    <h3 class="card-title">Join The Report</h3>
+                    <p class="card-subtitle">Free weekly MA cannabis intel. No spam, ever.</p>
+                    
+                    <form action="#" method="post">
+                        <div class="form-group">
+                            <label for="name">Your name</label>
+                            <input type="text" id="name" name="name" placeholder="Sarah" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Work email</label>
+                            <input type="email" id="email" name="email" placeholder="sarah@dispensary.com" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="role">I work as...</label>
+                            <input type="text" id="role" name="role" placeholder="Budtender / Owner / Manager">
+                        </div>
+                        
+                        <button type="submit" class="btn-primary form-submit">
+                            Send me the report
+                        </button>
+                        
+                        <p class="privacy-note">No spam. Just MA intel. Unsubscribe anytime.</p>
+                    </form>
+                    
+                    <div class="get-list">
+                        <p class="get-list-title">every tuesday you'll get:</p>
+                        <ul>
+                            <li>MA holiday prep & School Vacation alerts</li>
+                            <li>CCC Watchlist & compliance updates</li>
+                            <li>NY/CT/RI competitive border intel</li>
+                            <li>Local price index for MA market</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Social Proof -->
+    <section class="proof-section">
+        <div class="container">
+            <div class="proof-grid">
+                <div class="proof-card featured">
+                    <div class="proof-icon">🎯</div>
+                    <h3>"Finally, something that actually tracks the CCC"</h3>
+                    <p>
+                        I've tried other industry newsletters, but they're all generic national content. The Margin Report actually covers what's happening at the Commission, in my town's zoning meetings, and what NY stores are doing to steal my weekend traffic. This is the only intel that feels like it's written for MA operators.
+                    </p>
+                    <div class="proof-attribution">
+                        <strong>Dana M.</strong>
+                        <span>Dispensary Owner, Western MA</span>
+                    </div>
+                </div>
+                
+                <div class="proof-card">
+                    <div class="proof-icon">📈</div>
+                    <h3>520+ MA operators</h3>
+                    <p>Owners, managers, and budtenders across the Commonwealth.</p>
+                </div>
+                
+                <div class="proof-card">
+                    <div class="proof-icon">⚡</div>
+                    <h3>62% open rate</h3>
+                    <p>People actually open this. (Industry avg: 21%)</p>
+                </div>
+                
+                <div class="proof-card">
+                    <div class="proof-icon">🏛️</div>
+                    <h3>CCC tracking</h3>
+                    <p>Weekly Commission updates so you're never surprised.</p>
+                </div>
+                
+                <div class="proof-card">
+                    <div class="proof-icon">🔒</div>
+                    <h3>No sponsored fluff</h3>
+                    <p>No vendor ads. Just ops that work in MA.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- What's Inside -->
+    <section class="inside-section" id="inside">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-kicker">every tuesday morning</span>
+                <h2>What You'll Get</h2>
+                <p>Not generic cannabis news. Real MA ops intel you can use this week.</p>
+            </div>
+            
+            <div class="inside-grid">
+                <div class="inside-card">
+                    <div class="inside-icon">📅</div>
+                    <h3>This Week's Prep</h3>
+                    <p>MA holidays, Flower Expo strategy, School Vacation staffing alerts, and Nor'easter prep. Never get caught off-guard by Commonwealth schedules again.</p>
+                    <span class="tag">→ MA-specific dates</span>
+                </div>
+                
+                <div class="inside-card">
+                    <div class="inside-icon">🏛️</div>
+                    <h3>CCC Watchlist</h3>
+                    <p>Weekly Cannabis Control Commission updates — meetings, fines, delays, and regulatory changes that affect your license.</p>
+                    <span class="tag">→ stay compliant</span>
+                </div>
+                
+                <div class="inside-card">
+                    <div class="inside-icon">🌎</div>
+                    <h3>Federal Watch & Border Patrol</h3>
+                    <p>NY rec sales impact on Berkshire stores, CT delivery competition, RI market shifts. Know when out-of-state customers are coming — or leaving.</p>
+                    <span class="tag">→ regional intel</span>
+                </div>
+                
+                <div class="inside-card">
+                    <div class="inside-icon">💵</div>
+                    <h3>Local Price Index</h3>
+                    <p>MA-specific pricing trends. Average eighths, pre-roll premiums, and craft vs. MSO flower gaps. Know your market position.</p>
+                    <span class="tag">→ Commonwealth pricing</span>
+                </div>
+                
+                <div class="inside-card">
+                    <div class="inside-icon">💬</div>
+                    <h3>Customer Corner</h3>
+                    <p>MA-specific scenarios: The CT border-hopper question, purchase limit math, out-of-state ID friction — handled with scripts that protect sales.</p>
+                    <span class="tag">→ Bay State scenarios</span>
+                </div>
+                
+                <div class="inside-card">
+                    <div class="inside-icon">⚡</div>
+                    <h3>Quick Wins</h3>
+                    <p>Metrc audit tips, CCC compliance checks, ID scanner updates for CT/RI licenses, and other tactical moves that take 30 minutes or less.</p>
+                    <span class="tag">→ Metrc & CCC ready</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Sample Preview -->
+    <section class="sample-section">
+        <div class="container">
+            <div class="sample-grid">
+                <div class="sample-content">
+                    <span class="section-kicker">see for yourself</span>
+                    <h2>MA-Focused Content, Every Week</h2>
+                    <p>
+                        No fluff. No press releases. Just the intel that helps you navigate the Commonwealth's cannabis market better than your competition.
+                    </p>
+                    <p>
+                        <strong>Here's what a typical issue looks like.</strong> Each section is designed to be scannable in under 5 minutes — so even busy budtenders can get value on a quick break.
+                    </p>
+                </div>
+                
+                <div class="sample-preview-card">
+                    <div class="sample-header">Issue #47 — February 4, 2026</div>
+                    <div class="sample-title">Feb Break + Flower Expo Strategy + Border Watch</div>
+                    
+                    <div class="sample-section-item">
+                        <div class="sample-section-title">📅 This Week's Prep</div>
+                        <div class="sample-section-desc">School Vacation Week staffing alert: Parents need coverage. Flower Expo (Feb 12) — who's covering your floor in Greenfield?</div>
+                    </div>
+                    
+                    <div class="sample-section-item">
+                        <div class="sample-section-title">🏛️ CCC Watchlist</div>
+                        <div class="sample-section-desc">New Committee meets Thursday. Submit your grievance about the 2-driver rule now. Worcester inspectors flagged 3 stores for fading exit bag font.</div>
+                    </div>
+                    
+                    <div class="sample-section-item">
+                        <div class="sample-section-title">🌎 Federal Watch & Border Patrol</div>
+                        <div class="sample-section-desc">NY rec sales finally ramping. Berkshire stores: expect 15% weekend traffic dip. Pivot to local retention plays now.</div>
+                    </div>
+                    
+                    <div class="sample-section-item">
+                        <div class="sample-section-title">💵 Local Price Index</div>
+                        <div class="sample-section-desc">MA flower race to bottom continues: Avg 1/8th at $14.20. But Valley craft holding at $35. Gap is widening — pick your lane.</div>
+                    </div>
+                    
+                    <div class="sample-section-item">
+                        <div class="sample-section-title">💬 Customer Corner</div>
+                        <div class="sample-section-desc">The CT border-hopper: "Can I drive this back to Connecticut?" (NO — here's how to say it without killing the vibe.)</div>
+                    </div>
+                    
+                    <div class="sample-section-item">
+                        <div class="sample-section-title">⚡ Quick Win</div>
+                        <div class="sample-section-desc">Audit your Metrc tags: 15 mins ensuring physical inventory matches CCC records. Ghost inventory = big fines.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- About -->
+    <section class="about-section">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-image">
+                    <div class="about-image-placeholder">👤</div>
+                </div>
+                
+                <div class="about-content">
+                    <h2>I built this because most cannabis content ignores Massachusetts operators.</h2>
+                    
+                    <p>
+                        I've worked with dispensaries across the Commonwealth for years. <strong>Here's what I noticed:</strong> Owners are drowning in national news that doesn't apply to them, while the CCC, town zoning boards, and NY competition quietly change the rules.
+                    </p>
+                    
+                    <p>
+                        Most industry newsletters are written for California MSOs or Colorado investors. The people actually running shops in Worcester, Pittsfield, and Somerville? Running blind.
+                    </p>
+                    
+                    <p>
+                        <strong>The MA Operator's Margin Report is different.</strong> It's written for Massachusetts owners who want to survive 280E, navigate CCC changes, and outmaneuver NY stores stealing their customers. Local intel, local context, local wins.
+                    </p>
+                    
+                    <div class="about-signature">— Jake</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Final CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Get your free weekly MA intel</h2>
+            <p class="tagline">
+                Join 520+ Massachusetts operators who get prepped every Tuesday.
+            </p>
+            
+            <form class="cta-form" action="#" method="post">
+                <input type="email" placeholder="your@email.com" required>
+                <button type="submit" class="btn-primary">Get the report →</button>
+            </form>
+            
+            <p class="cta-annotation">written in Massachusetts, not generated in California ✓</p>
+        </div>
+    </section>
+
+    <!-- Cross Links -->
+    <section class="cross-links">
+        <div class="container">
+            <div class="link-box">
+                <h3>Are you a brand or cultivator looking to sell INTO dispensaries?</h3>
+                <a href="../intel.html">→ Check out The MA Market Intel Brief</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-inner">
+                <p class="footer-copy">© 2026 The MA Operator's Margin Report. For Massachusetts dispensaries only.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy</a>
+                    <a href="#">Terms</a>
+                    <a href="#">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

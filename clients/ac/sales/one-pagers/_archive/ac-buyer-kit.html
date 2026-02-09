@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AC Buyer Kit</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @media print {
+            @page {
+                size: letter;
+                margin: 0.5in;
+            }
+            body {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            .page {
+                page-break-after: always;
+                padding: 0.25in !important;
+                min-height: auto !important;
+            }
+            .page:last-child {
+                page-break-after: avoid;
+            }
+            .footer {
+                position: relative !important;
+                bottom: auto !important;
+                left: auto !important;
+                right: auto !important;
+                margin-top: 30px;
+            }
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #0E0D0A;
+            color: #FFFFFF;
+            line-height: 1.5;
+            font-size: 11px;
+        }
+
+        .page {
+            width: 8.5in;
+            min-height: 10.5in;
+            padding: 0.65in;
+            background: #0E0D0A;
+            position: relative;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 18px;
+            border-bottom: 2px solid #D4AF37;
+            margin-bottom: 24px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo img {
+            height: 50px;
+            width: 50px;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            font-family: 'Oswald', sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+            letter-spacing: 1px;
+            color: #D4AF37;
+        }
+
+        .logo-sub {
+            font-family: 'Inter', sans-serif;
+            font-size: 8px;
+            font-weight: 400;
+            letter-spacing: 2px;
+            color: #888;
+            margin-top: 2px;
+        }
+
+        .doc-title {
+            text-align: right;
+        }
+
+        .doc-title h1 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 28px;
+            font-weight: 600;
+            letter-spacing: 3px;
+            color: #FFFFFF;
+        }
+
+        .doc-title .subtitle {
+            font-size: 10px;
+            color: #888;
+            margin-top: 2px;
+        }
+
+        /* Section Headers */
+        h2 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            color: #D4AF37;
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #333;
+        }
+
+        h3 {
+            font-family: 'Inter', sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            color: #FFFFFF;
+            margin-bottom: 6px;
+            margin-top: 12px;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 16px;
+            font-size: 10px;
+        }
+
+        th {
+            background: #1a1a1a;
+            color: #D4AF37;
+            font-weight: 600;
+            text-align: left;
+            padding: 8px 12px;
+            font-size: 8px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        td {
+            padding: 8px 12px;
+            border-bottom: 1px solid #222;
+            color: #DDD;
+        }
+
+        .highlight {
+            color: #D4AF37;
+            font-weight: 600;
+        }
+
+        /* Two Column Layout */
+        .two-col {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 20px;
+        }
+
+        .col {
+            flex: 1;
+            background: #141414;
+            padding: 18px;
+            border-radius: 4px;
+            border: 1px solid #222;
+        }
+
+        .col h2 {
+            margin-top: 0;
+        }
+
+        .col h3:first-of-type {
+            margin-top: 0;
+        }
+
+        /* Info Box */
+        .info-box {
+            background: #141414;
+            border: 1px solid #D4AF37;
+            border-radius: 4px;
+            padding: 18px;
+            margin-bottom: 20px;
+        }
+
+        .info-box h3 {
+            color: #D4AF37;
+            margin-bottom: 6px;
+            margin-top: 0;
+        }
+
+        .info-box p {
+            color: #CCC;
+            font-size: 10px;
+            line-height: 1.5;
+            margin-bottom: 6px;
+        }
+
+        .info-box ul {
+            color: #CCC;
+            font-size: 10px;
+            line-height: 1.7;
+            padding-left: 16px;
+            margin: 0;
+        }
+
+        /* CTA Section */
+        .cta {
+            background: #D4AF37;
+            color: #0E0D0A;
+            padding: 20px;
+            border-radius: 4px;
+            text-align: center;
+            margin-top: 24px;
+        }
+
+        .cta h2 {
+            color: #0E0D0A;
+            border: none;
+            margin-bottom: 6px;
+            font-size: 16px;
+        }
+
+        .cta .contact {
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .cta .contact-sub {
+            font-size: 10px;
+            margin-top: 2px;
+        }
+
+        /* Footer */
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 12px;
+            border-top: 1px solid #333;
+            font-size: 8px;
+            color: #666;
+            margin-top: 20px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .footer-logo img {
+            height: 20px;
+            width: 20px;
+            object-fit: contain;
+        }
+
+        .footer-text {
+            font-family: 'Oswald', sans-serif;
+            font-weight: 600;
+            font-size: 10px;
+            color: #D4AF37;
+            letter-spacing: 1px;
+        }
+
+        /* Accent Elements */
+        .gold-bar {
+            height: 2px;
+            background: linear-gradient(90deg, #D4AF37 0%, #8A7134 100%);
+            margin: 16px 0;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #D4AF37;
+            color: #0E0D0A;
+            padding: 2px 6px;
+            border-radius: 2px;
+            font-size: 8px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .section {
+            margin-bottom: 20px;
+        }
+
+        .small-note {
+            font-size: 8px;
+            color: #888;
+            margin-top: 4px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Page 1 -->
+    <div class="page">
+        <div class="header">
+            <div class="logo">
+                <img src="../../assets/ac-logo-8k.png" alt="AC">
+                <div>
+                    <div class="logo-text">ADVANCED CULTIVATORS</div>
+                    <div class="logo-sub">CRAFT CANNABIS • VOLUME READY</div>
+                </div>
+            </div>
+            <div class="doc-title">
+                <h1>BUYER KIT</h1>
+                <div class="subtitle">Everything You Need in One Place</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>SKUs & PRICING</h2>
+
+            <h3>Packaged Flower (3.5g)</h3>
+            <table>
+                <tr>
+                    <th>Brand</th>
+                    <th>Line</th>
+                    <th>Wholesale</th>
+                    <th>Suggested Retail</th>
+                    <th>Your Margin</th>
+                </tr>
+                <tr>
+                    <td><strong>AC</strong></td>
+                    <td>A Bud Premium (New)</td>
+                    <td>$17</td>
+                    <td>$35-45</td>
+                    <td class="highlight">50-60%</td>
+                </tr>
+                <tr>
+                    <td><strong>AC</strong></td>
+                    <td>A Bud (3+ Months)</td>
+                    <td>$15</td>
+                    <td>$30-35</td>
+                    <td class="highlight">50-55%</td>
+                </tr>
+                <tr>
+                    <td><strong>Zapacka</strong></td>
+                    <td>Value Tier</td>
+                    <td>$9-12.50</td>
+                    <td>$25-30</td>
+                    <td class="highlight">60%+</td>
+                </tr>
+            </table>
+
+            <h3>Pre-Rolls</h3>
+            <table>
+                <tr>
+                    <th>Format</th>
+                    <th>Wholesale</th>
+                    <th>Suggested Retail</th>
+                    <th>Your Margin</th>
+                </tr>
+                <tr>
+                    <td>1g Singles (Whole Flower)</td>
+                    <td>$4</td>
+                    <td>$12-15</td>
+                    <td class="highlight">65-70%</td>
+                </tr>
+                <tr>
+                    <td>3-Pack (3 x 0.5g)</td>
+                    <td>$5.25-6</td>
+                    <td>$18-22</td>
+                    <td class="highlight">65%+</td>
+                </tr>
+                <tr>
+                    <td>5-Pack (5 x 0.5g)</td>
+                    <td>$10</td>
+                    <td>$28-32</td>
+                    <td class="highlight">65%+</td>
+                </tr>
+                <tr>
+                    <td>1.5g Blunts</td>
+                    <td>$10</td>
+                    <td>$25-30</td>
+                    <td class="highlight">60%+</td>
+                </tr>
+                <tr>
+                    <td>Zapacka 1g (Shake)</td>
+                    <td>$3</td>
+                    <td>$8-10</td>
+                    <td class="highlight">65%+</td>
+                </tr>
+            </table>
+
+            <h3>Extracts (AC x SGB Collab)</h3>
+            <table>
+                <tr>
+                    <th>Product</th>
+                    <th>Wholesale</th>
+                    <th>Suggested Retail</th>
+                    <th>Your Margin</th>
+                </tr>
+                <tr>
+                    <td>Live Rosin Cart 0.5g</td>
+                    <td>$20</td>
+                    <td>$40-50</td>
+                    <td class="highlight">50%+</td>
+                </tr>
+                <tr>
+                    <td>Live Rosin Jar 1g</td>
+                    <td>$32.50</td>
+                    <td>$70-80</td>
+                    <td class="highlight">55%+</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="info-box">
+            <h3>THE MARGIN STORY</h3>
+            <p><strong>Why AC margins work:</strong></p>
+            <ul>
+                <li><strong>No middlemen</strong> — We grow what we sell. No broker markup.</li>
+                <li><strong>Two tiers</strong> — AC (premium) and Zapacka (value) cover your whole menu</li>
+                <li><strong>Consistent pricing</strong> — No surprise increases mid-cycle</li>
+                <li><strong>Volume discounts</strong> — 5+ lb bulk orders get custom quotes</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>TEST RESULTS & CONSISTENCY</h2>
+            <table>
+                <tr>
+                    <th>Strain</th>
+                    <th>THC%</th>
+                    <th>Type</th>
+                    <th>Batch Consistency</th>
+                </tr>
+                <tr>
+                    <td>Strawberry Pavé</td>
+                    <td>28.5%</td>
+                    <td>Indica Dom.</td>
+                    <td>±1.5%</td>
+                </tr>
+                <tr>
+                    <td>Popsicle Stix</td>
+                    <td>28.4%</td>
+                    <td>Hybrid</td>
+                    <td>±1.2%</td>
+                </tr>
+                <tr>
+                    <td>BrrBerry</td>
+                    <td>27.1%</td>
+                    <td>Indica Dom.</td>
+                    <td>±1.3%</td>
+                </tr>
+                <tr>
+                    <td>Suave</td>
+                    <td>25.7%</td>
+                    <td>Hybrid</td>
+                    <td>±1.4%</td>
+                </tr>
+                <tr>
+                    <td>RS-11</td>
+                    <td>24.1%</td>
+                    <td>Sativa Dom.</td>
+                    <td>±1.1%</td>
+                </tr>
+            </table>
+            <p class="small-note">Full COAs available on request for any batch.</p>
+        </div> 
+    </div>
+
+    <!-- Page 2 -->
+    <div class="page">
+        <div class="header">
+            <div class="logo">
+                <img src="../../assets/ac-logo-8k.png" alt="AC">
+                <div>
+                    <div class="logo-text">ADVANCED CULTIVATORS</div>
+                    <div class="logo-sub">CRAFT CANNABIS • VOLUME READY</div>
+                </div>
+            </div>
+            <div class="doc-title">
+                <h1>BUYER KIT</h1>
+                <div class="subtitle">Page 2</div>
+            </div>
+        </div>
+
+        <div class="two-col">
+            <div class="col">
+                <h2>DROP CALENDAR Q1 2026</h2>
+                <table>
+                    <tr>
+                        <th>Month</th>
+                        <th>What's Coming</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Feb</strong></td>
+                        <td>SB Event, Popsicle Stix, Agave Fuel</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Mar</strong></td>
+                        <td>New strain TBA, Limited release</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Apr</strong></td>
+                        <td>Spring menu refresh</td>
+                    </tr>
+                </table>
+                <p class="small-note" style="color: #D4AF37;">
+                    <span class="badge">AC CERTIFIED</span> stores get priority on limited drops
+                </p>
+            </div>
+
+            <div class="col">
+                <h2>HOW TO ORDER</h2>
+
+                <h3>First Order (Test)</h3>
+                <table>
+                    <tr>
+                        <td><strong>Minimum</strong></td>
+                        <td>$2,500</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Terms</strong></td>
+                        <td>COD (payment on delivery)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Turnaround</strong></td>
+                        <td>2-3 business days</td>
+                    </tr>
+                </table>
+
+                <h3>Ongoing Orders</h3>
+                <table>
+                    <tr>
+                        <th>Account</th>
+                        <th>Terms</th>
+                    </tr>
+                    <tr>
+                        <td>New Accounts</td>
+                        <td>COD or Net 15</td>
+                    </tr>
+                    <tr>
+                        <td>Established</td>
+                        <td>Net 30</td>
+                    </tr>
+                </table>
+
+                <h3>Case Sizes</h3>
+                <table>
+                    <tr>
+                        <td>Pre-Rolls</td>
+                        <td>100 units/case</td>
+                    </tr>
+                    <tr>
+                        <td>Flower</td>
+                        <td>128 units (1 lb)</td>
+                    </tr>
+                </table>
+                <p class="small-note">Large orders: 50 pre-rolls available at reduced price</p>
+            </div>
+        </div>
+
+        <div class="info-box">
+            <h3>DELIVERY</h3>
+            <ul>
+                <li><strong>Coverage:</strong> All of Massachusetts</li>
+                <li><strong>Schedule:</strong> Mon–Fri, flexible windows</li>
+                <li><strong>Contact:</strong> Delivery driver will text 30 min prior</li>
+            </ul>
+        </div>
+
+        <div class="gold-bar"></div>
+
+        <div class="cta">
+            <h2>READY TO ORDER?</h2>
+            <div class="contact">AC Sales Team</div>
+            <div class="contact-sub">sales@advancedcultivators.com</div>
+        </div>
+
+        <div class="footer">
+            <div class="footer-logo">
+                <img src="../../assets/ac-logo-8k.png" alt="AC">
+                <span class="footer-text">ADVANCED CULTIVATORS</span>
+            </div>
+            <div>Craft Cannabis. Volume Ready.</div>
+        </div>
+    </div>
+</body>
+</html>

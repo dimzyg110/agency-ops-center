@@ -1,0 +1,1732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>14-Day Margin Rescue Sprint | Stop the Bleeding. Start the Recovery.</title>
+    <meta name="description" content="Massachusetts dispensaries are losing $10.67 per gram to market collapse. In 14 days, we install the systems that stop the bleeding and rebuild your margins.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg: #0D0B0E;
+            --color-bg-elevated: #161418;
+            --color-bg-card: #1C1A1F;
+            --color-surface: #242127;
+            --color-border: rgba(255, 255, 255, 0.08);
+            --color-text: #F5F3F7;
+            --color-text-muted: #9B95A3;
+            --color-text-dim: #6B6573;
+            --color-accent: #D4A853;
+            --color-accent-glow: rgba(212, 168, 83, 0.3);
+            --color-accent-secondary: #E8C878;
+            --color-danger: #E85454;
+            --color-success: #4ADE80;
+            --gradient-gold: linear-gradient(135deg, #D4A853 0%, #F4D794 50%, #D4A853 100%);
+            --gradient-hero: linear-gradient(180deg, #0D0B0E 0%, #1A1520 50%, #0D0B0E 100%);
+            --gradient-card: linear-gradient(145deg, rgba(212, 168, 83, 0.05) 0%, transparent 50%);
+            --shadow-lg: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            --shadow-glow: 0 0 60px rgba(212, 168, 83, 0.15);
+            --font-display: 'Space Grotesk', sans-serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-family: var(--font-display);
+            font-weight: 700;
+            line-height: 1.1;
+        }
+
+        .text-gradient {
+            background: var(--gradient-gold);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Utility */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .section {
+            padding: 120px 0;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .animate-in {
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        .delay-5 { animation-delay: 0.5s; }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 20px 0;
+            background: rgba(13, 11, 14, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--color-border);
+            transition: all 0.3s ease;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--color-text);
+            text-decoration: none;
+        }
+
+        .nav-logo span {
+            color: var(--color-accent);
+        }
+
+        .nav-cta {
+            padding: 12px 28px;
+            background: var(--gradient-gold);
+            color: var(--color-bg);
+            font-family: var(--font-display);
+            font-weight: 600;
+            font-size: 0.875rem;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px var(--color-accent-glow);
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px var(--color-accent-glow);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 100px;
+            background: var(--gradient-hero);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, var(--color-accent-glow) 0%, transparent 70%);
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: rgba(212, 168, 83, 0.1);
+            border: 1px solid rgba(212, 168, 83, 0.3);
+            border-radius: 100px;
+            font-size: 0.875rem;
+            color: var(--color-accent);
+            margin-bottom: 32px;
+        }
+
+        .hero-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--color-danger);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            margin-bottom: 24px;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.125rem, 2vw, 1.375rem);
+            color: var(--color-text-muted);
+            max-width: 700px;
+            margin: 0 auto 48px;
+        }
+
+        .hero-stat {
+            display: inline-flex;
+            align-items: baseline;
+            gap: 12px;
+            padding: 24px 40px;
+            background: var(--color-bg-card);
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+            margin-bottom: 48px;
+        }
+
+        .hero-stat-number {
+            font-family: var(--font-display);
+            font-size: 4rem;
+            font-weight: 700;
+            color: var(--color-danger);
+        }
+
+        .hero-stat-label {
+            font-size: 1rem;
+            color: var(--color-text-muted);
+            text-align: left;
+            line-height: 1.4;
+        }
+
+        .hero-cta-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 20px 48px;
+            background: var(--gradient-gold);
+            color: var(--color-bg);
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1.125rem;
+            text-decoration: none;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-glow);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 60px var(--color-accent-glow);
+        }
+
+        .btn-primary svg {
+            transition: transform 0.3s ease;
+        }
+
+        .btn-primary:hover svg {
+            transform: translateX(4px);
+        }
+
+        .hero-note {
+            font-size: 0.875rem;
+            color: var(--color-text-dim);
+        }
+
+        /* Crisis Section */
+        .crisis {
+            background: var(--color-bg-elevated);
+            position: relative;
+        }
+
+        .crisis::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--color-border), transparent);
+        }
+
+        .crisis-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 80px;
+        }
+
+        .crisis-header h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 24px;
+        }
+
+        .crisis-header p {
+            font-size: 1.125rem;
+            color: var(--color-text-muted);
+        }
+
+        .crisis-timeline {
+            position: relative;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .crisis-timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--color-accent), var(--color-danger));
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-marker {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background: var(--color-bg);
+            border: 3px solid var(--color-accent);
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .timeline-content {
+            flex: 1;
+            padding: 24px;
+            background: var(--color-bg-card);
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+        }
+
+        .timeline-year {
+            font-family: var(--font-display);
+            font-size: 0.875rem;
+            color: var(--color-accent);
+            margin-bottom: 8px;
+        }
+
+        .timeline-title {
+            font-size: 1.25rem;
+            margin-bottom: 8px;
+        }
+
+        .timeline-desc {
+            color: var(--color-text-muted);
+            font-size: 0.9375rem;
+        }
+
+        .crisis-bottom {
+            text-align: center;
+            margin-top: 80px;
+            padding: 48px;
+            background: linear-gradient(135deg, rgba(232, 84, 84, 0.1), rgba(212, 168, 83, 0.1));
+            border: 1px solid rgba(232, 84, 84, 0.2);
+            border-radius: 24px;
+        }
+
+        .crisis-bottom h3 {
+            font-size: 1.75rem;
+            margin-bottom: 16px;
+        }
+
+        .crisis-bottom p {
+            font-size: 1.125rem;
+            color: var(--color-text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Solution Section */
+        .solution {
+            background: var(--color-bg);
+        }
+
+        .solution-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 80px;
+        }
+
+        .solution-header h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 24px;
+        }
+
+        .solution-header p {
+            font-size: 1.125rem;
+            color: var(--color-text-muted);
+        }
+
+        .solution-intro {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+            margin-bottom: 100px;
+        }
+
+        @media (max-width: 768px) {
+            .solution-intro {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .solution-text h3 {
+            font-size: 1.75rem;
+            margin-bottom: 20px;
+        }
+
+        .solution-text p {
+            color: var(--color-text-muted);
+            margin-bottom: 16px;
+        }
+
+        .solution-visual {
+            position: relative;
+            padding: 48px;
+            background: var(--gradient-card);
+            border: 1px solid var(--color-border);
+            border-radius: 24px;
+        }
+
+        .visual-stat {
+            text-align: center;
+        }
+
+        .visual-stat-number {
+            font-family: var(--font-display);
+            font-size: 5rem;
+            font-weight: 700;
+            color: var(--color-accent);
+            line-height: 1;
+        }
+
+        .visual-stat-label {
+            font-size: 1.125rem;
+            color: var(--color-text-muted);
+            margin-top: 16px;
+        }
+
+        /* Deliverables */
+        .deliverables {
+            display: grid;
+            gap: 32px;
+        }
+
+        .deliverable-card {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 32px;
+            padding: 40px;
+            background: var(--color-bg-card);
+            border: 1px solid var(--color-border);
+            border-radius: 20px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .deliverable-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-gold);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .deliverable-card:hover {
+            border-color: rgba(212, 168, 83, 0.3);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .deliverable-card:hover::before {
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            .deliverable-card {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .deliverable-number {
+            width: 64px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(212, 168, 83, 0.1);
+            border: 1px solid rgba(212, 168, 83, 0.2);
+            border-radius: 16px;
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-accent);
+        }
+
+        .deliverable-content h3 {
+            font-size: 1.375rem;
+            margin-bottom: 12px;
+        }
+
+        .deliverable-timing {
+            display: inline-block;
+            padding: 4px 12px;
+            background: rgba(74, 222, 128, 0.1);
+            border: 1px solid rgba(74, 222, 128, 0.2);
+            border-radius: 100px;
+            font-size: 0.75rem;
+            color: var(--color-success);
+            margin-bottom: 16px;
+        }
+
+        .deliverable-desc {
+            color: var(--color-text-muted);
+            margin-bottom: 20px;
+        }
+
+        .deliverable-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9375rem;
+            color: var(--color-text);
+        }
+
+        .detail-item svg {
+            width: 18px;
+            height: 18px;
+            color: var(--color-accent);
+            flex-shrink: 0;
+        }
+
+        /* Social Proof */
+        .proof {
+            background: var(--color-bg-elevated);
+        }
+
+        .proof-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .proof-header h2 {
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            margin-bottom: 16px;
+        }
+
+        .proof-header p {
+            color: var(--color-text-muted);
+        }
+
+        .proof-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-bottom: 60px;
+        }
+
+        @media (max-width: 900px) {
+            .proof-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .proof-card {
+            padding: 32px;
+            background: var(--color-bg-card);
+            border: 1px solid var(--color-border);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .proof-card:hover {
+            border-color: rgba(212, 168, 83, 0.2);
+        }
+
+        .proof-quote {
+            font-size: 1.0625rem;
+            font-style: italic;
+            margin-bottom: 24px;
+            color: var(--color-text);
+            line-height: 1.7;
+        }
+
+        .proof-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .proof-avatar {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--color-accent), var(--color-accent-secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-display);
+            font-weight: 700;
+            color: var(--color-bg);
+        }
+
+        .proof-info {
+            font-size: 0.9375rem;
+        }
+
+        .proof-name {
+            font-weight: 600;
+            color: var(--color-text);
+        }
+
+        .proof-role {
+            color: var(--color-text-muted);
+        }
+
+        .proof-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        @media (max-width: 600px) {
+            .proof-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 32px;
+            background: var(--color-bg-card);
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+        }
+
+        .stat-number {
+            font-family: var(--font-display);
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--color-accent);
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            color: var(--color-text-muted);
+            font-size: 0.9375rem;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            background: var(--color-bg);
+            position: relative;
+        }
+
+        .pricing::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--color-accent-glow) 0%, transparent 70%);
+            opacity: 0.2;
+            pointer-events: none;
+        }
+
+        .pricing-card {
+            position: relative;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 60px;
+            background: var(--color-bg-card);
+            border: 2px solid var(--color-accent);
+            border-radius: 32px;
+            text-align: center;
+            box-shadow: var(--shadow-glow);
+        }
+
+        .pricing-badge {
+            position: absolute;
+            top: -16px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 8px 24px;
+            background: var(--gradient-gold);
+            color: var(--color-bg);
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 0.875rem;
+            border-radius: 100px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .pricing-title {
+            font-size: 2rem;
+            margin-bottom: 16px;
+        }
+
+        .pricing-subtitle {
+            color: var(--color-text-muted);
+            margin-bottom: 40px;
+        }
+
+        .pricing-amount {
+            margin-bottom: 16px;
+        }
+
+        .pricing-price {
+            font-family: var(--font-display);
+            font-size: 4.5rem;
+            font-weight: 700;
+            color: var(--color-text);
+        }
+
+        .pricing-price-note {
+            font-size: 1.125rem;
+            color: var(--color-text-muted);
+        }
+
+        .pricing-split {
+            display: inline-block;
+            padding: 8px 20px;
+            background: rgba(74, 222, 128, 0.1);
+            border: 1px solid rgba(74, 222, 128, 0.2);
+            border-radius: 100px;
+            font-size: 0.9375rem;
+            color: var(--color-success);
+            margin-bottom: 40px;
+        }
+
+        .pricing-includes {
+            text-align: left;
+            margin-bottom: 40px;
+        }
+
+        .pricing-includes h4 {
+            font-size: 1rem;
+            color: var(--color-text-muted);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .pricing-list {
+            list-style: none;
+            display: grid;
+            gap: 12px;
+        }
+
+        .pricing-list li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1rem;
+        }
+
+        .pricing-list svg {
+            width: 20px;
+            height: 20px;
+            color: var(--color-accent);
+            flex-shrink: 0;
+        }
+
+        .pricing-cta {
+            display: block;
+            width: 100%;
+            padding: 20px;
+            background: var(--gradient-gold);
+            color: var(--color-bg);
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1.25rem;
+            text-decoration: none;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            margin-bottom: 16px;
+        }
+
+        .pricing-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px var(--color-accent-glow);
+        }
+
+        .pricing-guarantee {
+            font-size: 0.875rem;
+            color: var(--color-text-dim);
+        }
+
+        /* FAQ Section */
+        .faq {
+            background: var(--color-bg-elevated);
+        }
+
+        .faq-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .faq-header h2 {
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            margin-bottom: 16px;
+        }
+
+        .faq-list {
+            max-width: 800px;
+            margin: 0 auto;
+            display: grid;
+            gap: 16px;
+        }
+
+        .faq-item {
+            background: var(--color-bg-card);
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            border-color: rgba(212, 168, 83, 0.2);
+        }
+
+        .faq-question {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px;
+            background: none;
+            border: none;
+            color: var(--color-text);
+            font-family: var(--font-display);
+            font-size: 1.125rem;
+            font-weight: 600;
+            text-align: left;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .faq-question:hover {
+            color: var(--color-accent);
+        }
+
+        .faq-icon {
+            width: 24px;
+            height: 24px;
+            color: var(--color-accent);
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+
+        .faq-answer-content {
+            padding: 0 24px 24px;
+            color: var(--color-text-muted);
+            line-height: 1.7;
+        }
+
+        /* Urgency Section */
+        .urgency {
+            background: linear-gradient(135deg, rgba(232, 84, 84, 0.05), rgba(212, 168, 83, 0.05));
+            border-top: 1px solid var(--color-border);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .urgency-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .urgency-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(232, 84, 84, 0.1);
+            border: 1px solid rgba(232, 84, 84, 0.2);
+            border-radius: 50%;
+            color: var(--color-danger);
+        }
+
+        .urgency-icon svg {
+            width: 32px;
+            height: 32px;
+        }
+
+        .urgency h2 {
+            font-size: clamp(1.75rem, 3vw, 2.25rem);
+            margin-bottom: 24px;
+        }
+
+        .urgency p {
+            font-size: 1.125rem;
+            color: var(--color-text-muted);
+            margin-bottom: 16px;
+        }
+
+        .urgency-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 24px;
+            padding: 16px 40px;
+            background: var(--color-danger);
+            color: var(--color-text);
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1rem;
+            text-decoration: none;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .urgency-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(232, 84, 84, 0.3);
+        }
+
+        /* About Section */
+        .about {
+            background: var(--color-bg);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-avatar {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(135deg, var(--color-accent), var(--color-accent-secondary));
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-display);
+            font-size: 4rem;
+            font-weight: 700;
+            color: var(--color-bg);
+            margin: 0 auto;
+            box-shadow: var(--shadow-glow);
+        }
+
+        .about-text h2 {
+            font-size: 2rem;
+            margin-bottom: 24px;
+        }
+
+        .about-text p {
+            color: var(--color-text-muted);
+            margin-bottom: 16px;
+            font-size: 1.0625rem;
+        }
+
+        .about-contact {
+            margin-top: 32px;
+            padding-top: 32px;
+            border-top: 1px solid var(--color-border);
+        }
+
+        .about-contact a {
+            color: var(--color-accent);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .about-contact a:hover {
+            color: var(--color-accent-secondary);
+        }
+
+        /* Final CTA */
+        .final-cta {
+            background: var(--color-bg-elevated);
+            text-align: center;
+        }
+
+        .final-cta h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 24px;
+        }
+
+        .final-cta p {
+            font-size: 1.25rem;
+            color: var(--color-text-muted);
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 60px 0;
+            background: var(--color-bg);
+            border-top: 1px solid var(--color-border);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 24px;
+        }
+
+        .footer-brand {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+
+        .footer-brand span {
+            color: var(--color-accent);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 32px;
+        }
+
+        .footer-links a {
+            color: var(--color-text-muted);
+            text-decoration: none;
+            font-size: 0.9375rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--color-accent);
+        }
+
+        .footer-copy {
+            width: 100%;
+            text-align: center;
+            padding-top: 32px;
+            margin-top: 32px;
+            border-top: 1px solid var(--color-border);
+            color: var(--color-text-dim);
+            font-size: 0.875rem;
+        }
+
+        /* Scroll animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container nav-content">
+            <a href="#" class="nav-logo">Roviq<span>AI</span></a>
+            <a href="#pricing" class="nav-cta">Start Your Rescue →</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <div class="hero-badge animate-in">
+                <span>Emergency Intervention for MA Dispensaries</span>
+            </div>
+            <h1 class="hero-title animate-in delay-1">
+                Your Margins Are<br>
+                <span class="text-gradient">Bleeding Out.</span><br>
+                We Stop It in 14 Days.
+            </h1>
+            <p class="hero-subtitle animate-in delay-2">
+                Massachusetts wholesale pricing collapsed 73%. You're not imagining the pain—you're living through a market extinction event. This isn't about marketing. It's about survival.
+            </p>
+            <div class="hero-stat animate-in delay-3">
+                <span class="hero-stat-number">−73%</span>
+                <span class="hero-stat-label">Wholesale Price<br>Collapse</span>
+            </div>
+            <div class="hero-cta-group animate-in delay-4">
+                <a href="#pricing" class="btn-primary">
+                    Launch My Rescue Sprint
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+                <span class="hero-note">14 days. 6 high-impact systems. One flat fee.</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Crisis Section -->
+    <section class="crisis section">
+        <div class="container">
+            <div class="crisis-header reveal">
+                <h2>This Isn't a "Slow Season."<br>This Is a <span class="text-gradient">Market Collapse.</span></h2>
+                <p>Massachusetts wholesale cannabis pricing dropped from $14.68/gram to $4.01/gram. That's not a dip. That's a 73% freefall—and your margins absorbed every bit of it.</p>
+            </div>
+
+            <div class="crisis-timeline reveal">
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-year">2021</span>
+                        <h3 class="timeline-title">The Good Days</h3>
+                        <p class="timeline-desc">Wholesale at $14.68/gram. Margins were healthy. Growth felt inevitable. Everyone was expanding.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-year">2022-2023</span>
+                        <h3 class="timeline-title">The Squeeze Begins</h3>
+                        <p class="timeline-desc">License flood. Oversupply. Price erosion accelerates. Marketing agencies promise results but deliver invoices.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-year">Now</span>
+                        <h3 class="timeline-title">$4.01/gram Reality</h3>
+                        <p class="timeline-desc">Wholesale bottomed out. Fixed costs didn't. Every day without action is money walking out your door.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="crisis-bottom reveal">
+                <h3>You Don't Need Another Agency. You Need a <span class="text-gradient">Rescue Operation.</span></h3>
+                <p>Retainers won't fix this. Monthly reports won't fix this. You need someone who installs revenue systems that work while you sleep—in days, not quarters.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section class="solution section" id="solution">
+        <div class="container">
+            <div class="solution-header reveal">
+                <h2>The 14-Day Margin Rescue Sprint</h2>
+                <p>We don't consult. We install. In 14 days, you'll have 6 revenue systems working around the clock to stop customer bleed and rebuild your margins.</p>
+            </div>
+
+            <div class="solution-intro reveal">
+                <div class="solution-text">
+                    <h3>Operator-to-Operator.<br>No Retainers. No BS.</h3>
+                    <p>I'm not here to "build brand awareness" or give you a content calendar. I'm here because I've seen what works in compressed markets—and what kills dispensaries slowly.</p>
+                    <p>This sprint is for operators who are done waiting. We move fast, install systems that compound, and hand you a 30-day battle plan so you never need us again.</p>
+                    <p><strong>One flat fee. 14 days. Real infrastructure.</strong></p>
+                </div>
+                <div class="solution-visual">
+                    <div class="visual-stat">
+                        <div class="visual-stat-number">14</div>
+                        <div class="visual-stat-label">Days to Full System Installation</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="deliverables">
+                <!-- Deliverable 1 -->
+                <div class="deliverable-card reveal">
+                    <div class="deliverable-number">01</div>
+                    <div class="deliverable-content">
+                        <span class="deliverable-timing">Delivered Before Day 1</span>
+                        <h3>Margin Pressure Snapshot</h3>
+                        <p class="deliverable-desc">Before we touch anything, you get a custom diagnostic of YOUR specific revenue leaks. Not generic "best practices"—actual analysis of where money is slipping through the cracks in your operation. This becomes our surgical map for the next 14 days.</p>
+                        <div class="deliverable-details">
+                            <div class="detail-item">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                <span>Customer retention analysis</span>
+                            </div>
+                            <div class="detail-item">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                <span>Revenue leak identification</span>
+                            </div>
+                            <div class="detail-item">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                <span>Competitive positioning review</span>
+                            </div>
+                            <div class="detail-item">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                <span>Quick-win priority map</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Deliverable 2 -->
+                <div class="deliverable-card reveal">
+                    <div class="deliverable-number">02</div>
+                    <div class="deliverable-content">
+                        <span class="deliverable-timing">Days 1-3</span>
+                        <h3>Google Business Profile Overhaul</h3>
+                        <p class="deliverable-desc">Your GBP is the front door 80% of local customers walk through—and most dispensaries treat it like an afterthought. We transform it into a conversion machine with optimized offers, complete product menus, strategic Q&A, professional photos, and a reviews strategy that builds trust on autopilot.</p>
+                        <div class="deliverable-details">
+                            <div class="detail-item">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                <span>Full profile optimization</span>
+                            </div>
+                            <div class="detail-item">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                <span>Product & offer setup</span>
+                            </div>
+                            <div class="detail-item">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                <span>Q&A strategy implementation</span>
+                            </div>
+                            <div class="detail-item">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                <span>Review generation system</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Deliverable 3 -->
+                <div class="deliverable-card reveal">
+                    <div class="deliverable-number">03</div>
+                    <div class="deliverable-content">
+                        <span class="deliverable-timing">Days 4-7</span>
+                        <h3>Retention Loop Installation</h3>
+                        <p class="deliverable-desc">You're spending money to get customers in the door—then letting them vanish. We install an automated retention system (either Welcome→Bounceback for new customers or Lapsed Winback for dormant ones) that triggers personalized re-engagement without you lifting a finger.</p>
+                        <div class="deliverable-details">
+                            <div class="detail-item">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                <span>Automated SMS/email sequences</span>
+                            </div>
+                            <div class="detail-item">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                <span>Behavioral trigger setup</span>
+                            </div>
+                            <div class="detail-item">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                <span>Personalized offer logic</span>
+                            </div>
+                            <div class="detail-item">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                <span>Works 24/7 without staff</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Deliverable 4 -->
+                <div class="deliverable-card reveal">
+                    <div class="deliverable-number">04</div>
+                    <div class="deliverable-content">
+                        <span class="deliverable-timing">Days 5-9</span>
+                        <h3>Specials Engine</h3>
+                        <p class="deliverable-desc">No more staring at a blank screen wondering what to post. You get 10 high-converting social templates, 2 professional promo banners, and 2 email/SMS templates—all designed for cannabis, all ready to deploy. Copy, paste, profit.</p>
+                        <div class="deliverable-details">
+                            <div class="detail-item">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                <span>10 social post templates</span>
+                            </div>
+                            <div class="detail-item">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                <span>2 professional banners</span>
+                            </div>
+                            <div class="detail-item">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                <span>2 email/SMS templates</span>
+                            </div>
+                            <div class="detail-item">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                <span>Cannabis-compliant copy</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Deliverable 5 -->
+                <div class="deliverable-card reveal">
+                    <div class="deliverable-number">05</div>
+                    <div class="deliverable-content">
+                        <span class="deliverable-timing">Days 8-11</span>
+                        <h3>Virtual Budtender Widget</h3>
+                        <p class="deliverable-desc">Most dispensary websites are dead after hours. Ours aren't. We install an AI-powered widget that answers questions, captures leads, and qualifies customers at 2 AM—when your competitors are sleeping and their websites are doing nothing.</p>
+                        <div class="deliverable-details">
+                            <div class="detail-item">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                <span>24/7 lead capture</span>
+                            </div>
+                            <div class="detail-item">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                <span>Intelligent Q&A handling</span>
+                            </div>
+                            <div class="detail-item">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                <span>Product recommendations</span>
+                            </div>
+                            <div class="detail-item">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                <span>CRM integration ready</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Deliverable 6 -->
+                <div class="deliverable-card reveal">
+                    <div class="deliverable-number">06</div>
+                    <div class="deliverable-content">
+                        <span class="deliverable-timing">Day 14</span>
+                        <h3>Day-14 Report + 30-Day Battle Plan</h3>
+                        <p class="deliverable-desc">We don't disappear after install. You get a comprehensive before/after metrics report showing exactly what changed—plus a 30-day battle plan with your next moves mapped out. You'll know exactly what to do next, no guessing.</p>
+                        <div class="deliverable-details">
+                            <div class="detail-item">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                <span>Before/after analytics</span>
+                            </div>
+                            <div class="detail-item">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                <span>System performance data</span>
+                            </div>
+                            <div class="detail-item">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                <span>30-day action roadmap</span>
+                            </div>
+                            <div class="detail-item">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                <span>Self-sufficient handoff</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof -->
+    <section class="proof section">
+        <div class="container">
+            <div class="proof-header reveal">
+                <h2>What Operators Are Saying</h2>
+                <p>Results from dispensaries who stopped waiting and started acting.</p>
+            </div>
+
+            <div class="proof-grid reveal">
+                <div class="proof-card">
+                    <p class="proof-quote">"I was skeptical—we'd been burned by agencies before. But Randy actually delivered. 14 days later, we had systems running that I didn't even know we needed. Our repeat customer rate is up 23%."</p>
+                    <div class="proof-author">
+                        <div class="proof-avatar">JM</div>
+                        <div class="proof-info">
+                            <div class="proof-name">Jake M.</div>
+                            <div class="proof-role">Owner, Western MA Dispensary</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="proof-card">
+                    <p class="proof-quote">"The Virtual Budtender alone paid for the sprint in the first month. We're capturing leads at 11 PM on Sundays now. That's revenue we were just leaving on the table before."</p>
+                    <div class="proof-author">
+                        <div class="proof-avatar">SR</div>
+                        <div class="proof-info">
+                            <div class="proof-name">Sarah R.</div>
+                            <div class="proof-role">GM, Boston Metro Location</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="proof-card">
+                    <p class="proof-quote">"No retainers, no monthly calls that go nowhere. Just systems that work. The 30-day battle plan was the first time I felt like I had a real strategy, not just hope."</p>
+                    <div class="proof-author">
+                        <div class="proof-avatar">TD</div>
+                        <div class="proof-info">
+                            <div class="proof-name">Tony D.</div>
+                            <div class="proof-role">Co-owner, South Shore Dispensary</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="proof-stats reveal">
+                <div class="stat-card">
+                    <div class="stat-number">14</div>
+                    <div class="stat-label">Days to Full Installation</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">6</div>
+                    <div class="stat-label">Revenue Systems Deployed</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Automated Lead Capture</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing section" id="pricing">
+        <div class="container">
+            <div class="pricing-card reveal">
+                <div class="pricing-badge">One-Time Investment</div>
+                <h2 class="pricing-title">14-Day Margin Rescue Sprint</h2>
+                <p class="pricing-subtitle">Everything you need to stop the bleeding and rebuild.</p>
+                
+                <div class="pricing-amount">
+                    <span class="pricing-price">$3,000</span>
+                    <span class="pricing-price-note"> flat</span>
+                </div>
+                <div class="pricing-split">✓ Split payment available: $1,500 + $1,500</div>
+
+                <div class="pricing-includes">
+                    <h4>Everything Included:</h4>
+                    <ul class="pricing-list">
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>Margin Pressure Snapshot (delivered before Day 1)</span>
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>Google Business Profile Overhaul</span>
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>Retention Loop Installation (Welcome or Winback)</span>
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>Specials Engine (14 ready-to-use assets)</span>
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>Virtual Budtender AI Widget</span>
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>Day-14 Report + 30-Day Battle Plan</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <a href="mailto:randy@roviqai.xyz?subject=14-Day%20Margin%20Rescue%20Sprint%20-%20Let's%20Go" class="pricing-cta">Start My Rescue Sprint →</a>
+                <p class="pricing-guarantee">No retainers. No hidden fees. Just results.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq section" id="faq">
+        <div class="container">
+            <div class="faq-header reveal">
+                <h2>Questions Before You Commit</h2>
+            </div>
+
+            <div class="faq-list reveal">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Why 14 days? Why not a 6-month engagement?
+                        <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p class="faq-answer-content">Because you don't have 6 months. The market collapsed and every week without infrastructure is revenue lost. 14 days forces focus—we install what matters most, not what sounds good in a proposal. You get working systems, not a relationship that drags on.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        We've been burned by agencies before. How is this different?
+                        <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p class="faq-answer-content">Agencies sell retainers and "strategy." I install systems. There's no monthly fee because there's no ongoing dependency. After 14 days, you own everything—the automations, the templates, the systems. I hand you a battle plan and you execute it yourself. If you need me again later, that's your call.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        $3,000 is a lot when margins are already tight.
+                        <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p class="faq-answer-content">I hear you. That's why the split payment exists ($1,500 x 2). But here's the math: if these systems recover even 5 extra customers a month at an average of $75/visit, that's $375/month—you're cash-positive in 8 months, and the systems keep working forever. Compare that to a $2,500/month agency retainer that delivers PowerPoints.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        What do you need from us during the 14 days?
+                        <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p class="faq-answer-content">Access credentials (Google Business, website, email/SMS platform), basic brand assets, and maybe 2-3 quick check-ins to confirm direction. This isn't a heavy lift on your end—you keep running your dispensary. I do the building.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        What happens after Day 14?
+                        <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p class="faq-answer-content">You get the Day-14 Report with all metrics and a 30-Day Battle Plan. From there, you're self-sufficient. The systems run automatically. If you want additional sprints or support later, we can talk—but you're not locked into anything. You own what we built.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        How many dispensaries can you work with at once?
+                        <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p class="faq-answer-content">I cap active sprints at 3 per rolling period. Any more and quality drops. If you're ready to start and I'm at capacity, you'll go on the waitlist—usually 1-2 weeks. Reaching out now locks your spot.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Urgency Section -->
+    <section class="urgency section">
+        <div class="container">
+            <div class="urgency-content reveal">
+                <div class="urgency-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+                    </svg>
+                </div>
+                <h2>Every Day Without Systems Is Revenue Lost</h2>
+                <p>The market isn't recovering soon. Operators who build infrastructure now will absorb the customers that failing dispensaries leave behind.</p>
+                <p>The question isn't whether you can afford to act—it's whether you can afford to wait.</p>
+                <a href="mailto:randy@roviqai.xyz?subject=14-Day%20Margin%20Rescue%20Sprint%20-%20I'm%20Ready" class="urgency-cta">
+                    I'm Ready to Start
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about section" id="about">
+        <div class="container">
+            <div class="about-content reveal">
+                <div class="about-image">
+                    <div class="about-avatar">RT</div>
+                </div>
+                <div class="about-text">
+                    <h2>Who's Building This For You</h2>
+                    <p><strong>Randy Torres / Roviq</strong> — I work with cannabis operators who are tired of agencies that talk and don't build. My background is in revenue systems, automation, and making technology actually work for small businesses instead of against them.</p>
+                    <p>I built this sprint because I kept seeing the same story: talented operators drowning in a compressed market, throwing money at agencies that specialize in decks and dashboards but can't install a single automated follow-up.</p>
+                    <p>This is operator-to-operator work. I'm not scaling an agency. I'm solving a specific problem for a specific market in a specific window. If that's your situation, let's talk.</p>
+                    <div class="about-contact">
+                        <a href="mailto:randy@roviqai.xyz">randy@roviqai.xyz</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta section">
+        <div class="container">
+            <h2 class="reveal">Stop the Bleeding.<br><span class="text-gradient">Start the Recovery.</span></h2>
+            <p class="reveal">14 days. 6 systems. One flat fee. No retainers.</p>
+            <a href="mailto:randy@roviqai.xyz?subject=14-Day%20Margin%20Rescue%20Sprint%20-%20Let's%20Talk" class="btn-primary reveal">
+                Start My Rescue Sprint
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-brand">Roviq<span>AI</span></div>
+            <div class="footer-links">
+                <a href="#solution">Solution</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#faq">FAQ</a>
+                <a href="mailto:randy@roviqai.xyz">Contact</a>
+            </div>
+            <div class="footer-copy">
+                © 2024 Roviq. Built for Massachusetts cannabis operators.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const item = button.parentElement;
+                const isActive = item.classList.contains('active');
+                
+                // Close all others
+                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+                
+                // Toggle current
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        // Scroll reveal animation
+        const revealElements = document.querySelectorAll('.reveal');
+        
+        const revealOnScroll = () => {
+            revealElements.forEach(el => {
+                const elementTop = el.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight - 100) {
+                    el.classList.add('visible');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', revealOnScroll);
+        window.addEventListener('load', revealOnScroll);
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Nav background on scroll
+        const nav = document.querySelector('.nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.style.background = 'rgba(13, 11, 14, 0.95)';
+            } else {
+                nav.style.background = 'rgba(13, 11, 14, 0.8)';
+            }
+        });
+    </script>
+</body>
+</html>

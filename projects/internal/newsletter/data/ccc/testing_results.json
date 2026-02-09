@@ -1,0 +1,404 @@
+{
+  "dataset_key": "testing_results",
+  "endpoint": "pt2c-wb44",
+  "status": "success",
+  "row_count": 79,
+  "generated_at": "2026-02-08T14:35:27.483724Z",
+  "rows": [
+    {
+      "RACE_ETHNICITY": "Agent Identified as Two or More Ethnicities",
+      "TOTAL": "2",
+      "%_TOTAL": "0"
+    },
+    {
+      "RACE_ETHNICITY": "Agent Identified as Two or More Ethnicities",
+      "TOTAL": "3",
+      "%_TOTAL": "0"
+    },
+    {
+      "RACE_ETHNICITY": "Agent Identified as Two or More Ethnicities",
+      "TOTAL": "1",
+      "%_TOTAL": "0"
+    },
+    {
+      "RACE_ETHNICITY": "Agent Identified as Two or More Ethnicities",
+      "TOTAL": "3",
+      "%_TOTAL": "0"
+    },
+    {
+      "RACE_ETHNICITY": "Agent Identified as Two or More Ethnicities",
+      "TOTAL": "20",
+      "%_TOTAL": "0.001"
+    },
+    {
+      "RACE_ETHNICITY": "Agent Identified as Two or More Ethnicities",
+      "TOTAL": "9",
+      "%_TOTAL": "0"
+    },
+    {
+      "RACE_ETHNICITY": "Agent Identified as Two or More Ethnicities",
+      "TOTAL": "1",
+      "%_TOTAL": "0"
+    },
+    {
+      "RACE_ETHNICITY": "Agent Identified as Two or More Ethnicities",
+      "TOTAL": "35",
+      "%_TOTAL": "0.002"
+    },
+    {
+      "RACE_ETHNICITY": "Agent Identified as Two or More Ethnicities",
+      "TOTAL": "9",
+      "%_TOTAL": "0"
+    },
+    {
+      "RACE_ETHNICITY": "Agent Identified as Two or More Ethnicities",
+      "TOTAL": "1",
+      "%_TOTAL": "0"
+    },
+    {
+      "RACE_ETHNICITY": "Agent Identified as Two or More Ethnicities",
+      "TOTAL": "50",
+      "%_TOTAL": "0.002"
+    },
+    {
+      "RACE_ETHNICITY": "Middle Eastern or North African",
+      "TOTAL": "45",
+      "%_TOTAL": "0.002"
+    },
+    {
+      "RACE_ETHNICITY": "Agent Identified as Two or More Ethnicities",
+      "TOTAL": "2",
+      "%_TOTAL": "0"
+    },
+    {
+      "RACE_ETHNICITY": "Agent Identified as Two or More Ethnicities",
+      "TOTAL": "1",
+      "%_TOTAL": "0"
+    },
+    {
+      "RACE_ETHNICITY": "Agent Identified as Two or More Ethnicities",
+      "TOTAL": "3",
+      "%_TOTAL": "0"
+    },
+    {
+      "RACE_ETHNICITY": "Agent Identified as Two or More Ethnicities",
+      "TOTAL": "1",
+      "%_TOTAL": "0"
+    },
+    {
+      "RACE_ETHNICITY": "Agent Identified as Two or More Ethnicities",
+      "TOTAL": "1",
+      "%_TOTAL": "0"
+    },
+    {
+      "RACE_ETHNICITY": "Agent Identified as Two or More Ethnicities",
+      "TOTAL": "51",
+      "%_TOTAL": "0.002"
+    },
+    {
+      "RACE_ETHNICITY": "Agent Identified as Two or More Ethnicities",
+      "TOTAL": "4",
+      "%_TOTAL": "0"
+    },
+    {
+      "RACE_ETHNICITY": "Native Hawaiian or Other Pacific Islander",
+      "TOTAL": "23",
+      "%_TOTAL": "0.001"
+    },
+    {
+      "RACE_ETHNICITY": "Decline to Answer",
+      "TOTAL": "2454",
+      "%_TOTAL": "0.119"
+    },
+    {
+      "RACE_ETHNICITY": "Agent Identified as Two or More Ethnicities",
+      "TOTAL": "23",
+      "%_TOTAL": "0.001"
+    },
+    {
+      "RACE_ETHNICITY": "Agent Identified as Two or More Ethnicities",
+      "TOTAL": "2",
+      "%_TOTAL": "0"
+    },
+    {
+      "RACE_ETHNICITY": "Agent Identified as Two or More Ethnicities",
+      "TOTAL": "34",
+      "%_TOTAL": "0.002"
+    },
+    {
+      "RACE_ETHNICITY": "White",
+      "TOTAL": "13290",
+      "%_TOTAL": "0.642"
+    },
+    {
+      "RACE_ETHNICITY": "Agent Identified as Two or More Ethnicities",
+      "TOTAL": "1",
+      "%_TOTAL": "0"
+    },
+    {
+      "RACE_ETHNICITY": "Agent Identified as Two or More Ethnicities",
+      "TOTAL": "2",
+      "%_TOTAL": "0"
+    },
+    {
+      "RACE_ETHNICITY": "Agent Identified as Two or More Ethnicities",
+      "TOTAL": "2",
+      "%_TOTAL": "0"
+    },
+    {
+      "RACE_ETHNICITY": "Agent Identified as Two or More Ethnicities",
+      "TOTAL": "1",
+      "%_TOTAL": "0"
+    },
+    {
+      "RACE_ETHNICITY": "Agent Identified as Two or More Ethnicities",
+      "TOTAL": "3",
+      "%_TOTAL": "0"
+    },
+    {
+      "RACE_ETHNICITY": "Agent Identified as Two or More Ethnicities",
+      "TOTAL": "1",
+      "%_TOTAL": "0"
+    },
+    {
+      "RACE_ETHNICITY": "Agent Identified as Two or More Ethnicities",
+      "TOTAL": "1",
+      "%_TOTAL": "0"
+    },
+    {
+      "RACE_ETHNICITY": "Agent Identified as Two or More Ethnicities",
+      "TOTAL": "1",
+      "%_TOTAL": "0"
+    },
+    {
+      "RACE_ETHNICITY": "Agent Identified as Two or More Ethnicities",
+      "TOTAL": "127",
+      "%_TOTAL": "0.006"
+    },
+    {
+      "RACE_ETHNICITY": "Agent Identified as Two or More Ethnicities",
+      "TOTAL": "1",
+      "%_TOTAL": "0"
+    },
+    {
+      "RACE_ETHNICITY": "Agent Identified as Two or More Ethnicities",
+      "TOTAL": "3",
+      "%_TOTAL": "0"
+    },
+    {
+      "RACE_ETHNICITY": "Agent Identified as Two or More Ethnicities",
+      "TOTAL": "4",
+      "%_TOTAL": "0"
+    },
+    {
+      "RACE_ETHNICITY": "Agent Identified as Two or More Ethnicities",
+      "TOTAL": "1",
+      "%_TOTAL": "0"
+    },
+    {
+      "RACE_ETHNICITY": "Black or African American",
+      "TOTAL": "1447",
+      "%_TOTAL": "0.07"
+    },
+    {
+      "RACE_ETHNICITY": "Agent Identified as Two or More Ethnicities",
+      "TOTAL": "1",
+      "%_TOTAL": "0"
+    },
+    {
+      "RACE_ETHNICITY": "Agent Identified as Two or More Ethnicities",
+      "TOTAL": "1",
+      "%_TOTAL": "0"
+    },
+    {
+      "RACE_ETHNICITY": "Agent Identified as Two or More Ethnicities",
+      "TOTAL": "2",
+      "%_TOTAL": "0"
+    },
+    {
+      "RACE_ETHNICITY": "American Indian or Alaska Native",
+      "TOTAL": "38",
+      "%_TOTAL": "0.002"
+    },
+    {
+      "RACE_ETHNICITY": "Agent Identified as Two or More Ethnicities",
+      "TOTAL": "10",
+      "%_TOTAL": "0"
+    },
+    {
+      "RACE_ETHNICITY": "Agent Identified as Two or More Ethnicities",
+      "TOTAL": "1",
+      "%_TOTAL": "0"
+    },
+    {
+      "RACE_ETHNICITY": "Hispanic, Latino, or Spanish",
+      "TOTAL": "2129",
+      "%_TOTAL": "0.103"
+    },
+    {
+      "RACE_ETHNICITY": "Agent Identified as Two or More Ethnicities",
+      "TOTAL": "2",
+      "%_TOTAL": "0"
+    },
+    {
+      "RACE_ETHNICITY": "Agent Identified as Two or More Ethnicities",
+      "TOTAL": "1",
+      "%_TOTAL": "0"
+    },
+    {
+      "RACE_ETHNICITY": "Agent Identified as Two or More Ethnicities",
+      "TOTAL": "2",
+      "%_TOTAL": "0"
+    },
+    {
+      "RACE_ETHNICITY": "Agent Identified as Two or More Ethnicities",
+      "TOTAL": "1",
+      "%_TOTAL": "0"
+    },
+    {
+      "RACE_ETHNICITY": "Agent Identified as Two or More Ethnicities",
+      "TOTAL": "2",
+      "%_TOTAL": "0"
+    },
+    {
+      "RACE_ETHNICITY": "Agent Identified as Two or More Ethnicities",
+      "TOTAL": "28",
+      "%_TOTAL": "0.001"
+    },
+    {
+      "RACE_ETHNICITY": "Agent Identified as Two or More Ethnicities",
+      "TOTAL": "1",
+      "%_TOTAL": "0"
+    },
+    {
+      "RACE_ETHNICITY": "Agent Identified as Two or More Ethnicities",
+      "TOTAL": "6",
+      "%_TOTAL": "0"
+    },
+    {
+      "RACE_ETHNICITY": "Asian",
+      "TOTAL": "441",
+      "%_TOTAL": "0.021"
+    },
+    {
+      "RACE_ETHNICITY": "Agent Identified as Two or More Ethnicities",
+      "TOTAL": "2",
+      "%_TOTAL": "0"
+    },
+    {
+      "RACE_ETHNICITY": "Some Other Race or Ethnicity",
+      "TOTAL": "193",
+      "%_TOTAL": "0.009"
+    },
+    {
+      "RACE_ETHNICITY": "Agent Identified as Two or More Ethnicities",
+      "TOTAL": "3",
+      "%_TOTAL": "0"
+    },
+    {
+      "RACE_ETHNICITY": "Agent Identified as Two or More Ethnicities",
+      "TOTAL": "1",
+      "%_TOTAL": "0"
+    },
+    {
+      "RACE_ETHNICITY": "Agent Identified as Two or More Ethnicities",
+      "TOTAL": "7",
+      "%_TOTAL": "0"
+    },
+    {
+      "RACE_ETHNICITY": "Agent Identified as Two or More Ethnicities",
+      "TOTAL": "6",
+      "%_TOTAL": "0"
+    },
+    {
+      "RACE_ETHNICITY": "Agent Identified as Two or More Ethnicities",
+      "TOTAL": "1",
+      "%_TOTAL": "0"
+    },
+    {
+      "RACE_ETHNICITY": "Agent Identified as Two or More Ethnicities",
+      "TOTAL": "2",
+      "%_TOTAL": "0"
+    },
+    {
+      "RACE_ETHNICITY": "Agent Identified as Two or More Ethnicities",
+      "TOTAL": "1",
+      "%_TOTAL": "0"
+    },
+    {
+      "RACE_ETHNICITY": "Agent Identified as Two or More Ethnicities",
+      "TOTAL": "9",
+      "%_TOTAL": "0"
+    },
+    {
+      "RACE_ETHNICITY": "Agent Identified as Two or More Ethnicities",
+      "TOTAL": "5",
+      "%_TOTAL": "0"
+    },
+    {
+      "RACE_ETHNICITY": "Agent Identified as Two or More Ethnicities",
+      "TOTAL": "3",
+      "%_TOTAL": "0"
+    },
+    {
+      "RACE_ETHNICITY": "Agent Identified as Two or More Ethnicities",
+      "TOTAL": "1",
+      "%_TOTAL": "0"
+    },
+    {
+      "RACE_ETHNICITY": "Agent Identified as Two or More Ethnicities",
+      "TOTAL": "1",
+      "%_TOTAL": "0"
+    },
+    {
+      "RACE_ETHNICITY": "Agent Identified as Two or More Ethnicities",
+      "TOTAL": "7",
+      "%_TOTAL": "0"
+    },
+    {
+      "RACE_ETHNICITY": "Agent Identified as Two or More Ethnicities",
+      "TOTAL": "10",
+      "%_TOTAL": "0"
+    },
+    {
+      "RACE_ETHNICITY": "Agent Identified as Two or More Ethnicities",
+      "TOTAL": "2",
+      "%_TOTAL": "0"
+    },
+    {
+      "RACE_ETHNICITY": "Agent Identified as Two or More Ethnicities",
+      "TOTAL": "1",
+      "%_TOTAL": "0"
+    },
+    {
+      "RACE_ETHNICITY": "Agent Identified as Two or More Ethnicities",
+      "TOTAL": "93",
+      "%_TOTAL": "0.004"
+    },
+    {
+      "RACE_ETHNICITY": "Agent Identified as Two or More Ethnicities",
+      "TOTAL": "1",
+      "%_TOTAL": "0"
+    },
+    {
+      "RACE_ETHNICITY": "Agent Identified as Two or More Ethnicities",
+      "TOTAL": "5",
+      "%_TOTAL": "0"
+    },
+    {
+      "RACE_ETHNICITY": "Agent Identified as Two or More Ethnicities",
+      "TOTAL": "1",
+      "%_TOTAL": "0"
+    },
+    {
+      "RACE_ETHNICITY": "Agent Identified as Two or More Ethnicities",
+      "TOTAL": "7",
+      "%_TOTAL": "0"
+    },
+    {
+      "RACE_ETHNICITY": "Agent Identified as Two or More Ethnicities",
+      "TOTAL": "3",
+      "%_TOTAL": "0"
+    }
+  ]
+}

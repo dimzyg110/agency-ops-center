@@ -1,0 +1,1218 @@
+{
+  "checked_at": "2026-02-08T14:36:28.198303Z",
+  "status": "FAIL",
+  "issues": [
+    {
+      "category": "placeholder",
+      "severity": "warning",
+      "item_type": "events",
+      "message": "events[5].date contains placeholder value: 'TBD'",
+      "item_index": 5,
+      "suggestion": "Replace with real data or remove the item."
+    },
+    {
+      "category": "placeholder",
+      "severity": "warning",
+      "item_type": "events",
+      "message": "events[6].date contains placeholder value: 'TBD'",
+      "item_index": 6,
+      "suggestion": "Replace with real data or remove the item."
+    },
+    {
+      "category": "placeholder",
+      "severity": "warning",
+      "item_type": "events",
+      "message": "events[7].date contains placeholder value: 'TBD'",
+      "item_index": 7,
+      "suggestion": "Replace with real data or remove the item."
+    },
+    {
+      "category": "placeholder",
+      "severity": "warning",
+      "item_type": "events",
+      "message": "events[8].date contains placeholder value: 'TBD'",
+      "item_index": 8,
+      "suggestion": "Replace with real data or remove the item."
+    },
+    {
+      "category": "placeholder",
+      "severity": "warning",
+      "item_type": "events",
+      "message": "events[9].date contains placeholder value: 'TBD'",
+      "item_index": 9,
+      "suggestion": "Replace with real data or remove the item."
+    },
+    {
+      "category": "placeholder",
+      "severity": "warning",
+      "item_type": "events",
+      "message": "events[10].date contains placeholder value: 'TBD'",
+      "item_index": 10,
+      "suggestion": "Replace with real data or remove the item."
+    },
+    {
+      "category": "placeholder",
+      "severity": "warning",
+      "item_type": "events",
+      "message": "events[11].date contains placeholder value: 'TBD'",
+      "item_index": 11,
+      "suggestion": "Replace with real data or remove the item."
+    },
+    {
+      "category": "placeholder",
+      "severity": "warning",
+      "item_type": "events",
+      "message": "events[12].date contains placeholder value: 'TBD'",
+      "item_index": 12,
+      "suggestion": "Replace with real data or remove the item."
+    },
+    {
+      "category": "placeholder",
+      "severity": "warning",
+      "item_type": "events",
+      "message": "events[13].date contains placeholder value: 'TBD'",
+      "item_index": 13,
+      "suggestion": "Replace with real data or remove the item."
+    },
+    {
+      "category": "placeholder",
+      "severity": "warning",
+      "item_type": "events",
+      "message": "events[14].date contains placeholder value: 'TBD'",
+      "item_index": 14,
+      "suggestion": "Replace with real data or remove the item."
+    },
+    {
+      "category": "placeholder",
+      "severity": "warning",
+      "item_type": "events",
+      "message": "events[15].date contains placeholder value: 'TBD'",
+      "item_index": 15,
+      "suggestion": "Replace with real data or remove the item."
+    },
+    {
+      "category": "placeholder",
+      "severity": "warning",
+      "item_type": "events",
+      "message": "events[16].date contains placeholder value: 'TBD'",
+      "item_index": 16,
+      "suggestion": "Replace with real data or remove the item."
+    },
+    {
+      "category": "placeholder",
+      "severity": "warning",
+      "item_type": "events",
+      "message": "events[17].date contains placeholder value: 'TBD'",
+      "item_index": 17,
+      "suggestion": "Replace with real data or remove the item."
+    },
+    {
+      "category": "placeholder",
+      "severity": "warning",
+      "item_type": "events",
+      "message": "events[18].date contains placeholder value: 'TBD'",
+      "item_index": 18,
+      "suggestion": "Replace with real data or remove the item."
+    },
+    {
+      "category": "placeholder",
+      "severity": "warning",
+      "item_type": "events",
+      "message": "events[19].date contains placeholder value: 'TBD'",
+      "item_index": 19,
+      "suggestion": "Replace with real data or remove the item."
+    },
+    {
+      "category": "placeholder",
+      "severity": "warning",
+      "item_type": "events",
+      "message": "events[20].date contains placeholder value: 'TBD'",
+      "item_index": 20,
+      "suggestion": "Replace with real data or remove the item."
+    },
+    {
+      "category": "placeholder",
+      "severity": "warning",
+      "item_type": "events",
+      "message": "events[21].date contains placeholder value: 'TBD'",
+      "item_index": 21,
+      "suggestion": "Replace with real data or remove the item."
+    },
+    {
+      "category": "placeholder",
+      "severity": "warning",
+      "item_type": "events",
+      "message": "events[22].date contains placeholder value: 'TBD'",
+      "item_index": 22,
+      "suggestion": "Replace with real data or remove the item."
+    },
+    {
+      "category": "placeholder",
+      "severity": "warning",
+      "item_type": "events",
+      "message": "events[23].date contains placeholder value: 'TBD'",
+      "item_index": 23,
+      "suggestion": "Replace with real data or remove the item."
+    },
+    {
+      "category": "placeholder",
+      "severity": "warning",
+      "item_type": "events",
+      "message": "events[24].date contains placeholder value: 'TBD'",
+      "item_index": 24,
+      "suggestion": "Replace with real data or remove the item."
+    },
+    {
+      "category": "placeholder",
+      "severity": "warning",
+      "item_type": "events",
+      "message": "events[25].date contains placeholder value: 'TBD'",
+      "item_index": 25,
+      "suggestion": "Replace with real data or remove the item."
+    },
+    {
+      "category": "placeholder",
+      "severity": "warning",
+      "item_type": "events",
+      "message": "events[26].date contains placeholder value: 'TBD'",
+      "item_index": 26,
+      "suggestion": "Replace with real data or remove the item."
+    },
+    {
+      "category": "placeholder",
+      "severity": "warning",
+      "item_type": "events",
+      "message": "events[27].date contains placeholder value: 'TBD'",
+      "item_index": 27,
+      "suggestion": "Replace with real data or remove the item."
+    },
+    {
+      "category": "placeholder",
+      "severity": "warning",
+      "item_type": "events",
+      "message": "events[28].date contains placeholder value: 'TBD'",
+      "item_index": 28,
+      "suggestion": "Replace with real data or remove the item."
+    },
+    {
+      "category": "placeholder",
+      "severity": "warning",
+      "item_type": "events",
+      "message": "events[29].date contains placeholder value: 'TBD'",
+      "item_index": 29,
+      "suggestion": "Replace with real data or remove the item."
+    },
+    {
+      "category": "placeholder",
+      "severity": "warning",
+      "item_type": "events",
+      "message": "events[30].date contains placeholder value: 'TBD'",
+      "item_index": 30,
+      "suggestion": "Replace with real data or remove the item."
+    },
+    {
+      "category": "placeholder",
+      "severity": "warning",
+      "item_type": "events",
+      "message": "events[31].date contains placeholder value: 'TBD'",
+      "item_index": 31,
+      "suggestion": "Replace with real data or remove the item."
+    },
+    {
+      "category": "placeholder",
+      "severity": "warning",
+      "item_type": "events",
+      "message": "events[32].date contains placeholder value: 'TBD'",
+      "item_index": 32,
+      "suggestion": "Replace with real data or remove the item."
+    },
+    {
+      "category": "placeholder",
+      "severity": "warning",
+      "item_type": "events",
+      "message": "events[33].date contains placeholder value: 'TBD'",
+      "item_index": 33,
+      "suggestion": "Replace with real data or remove the item."
+    },
+    {
+      "category": "placeholder",
+      "severity": "warning",
+      "item_type": "events",
+      "message": "events[34].date contains placeholder value: 'TBD'",
+      "item_index": 34,
+      "suggestion": "Replace with real data or remove the item."
+    },
+    {
+      "category": "placeholder",
+      "severity": "warning",
+      "item_type": "events",
+      "message": "events[35].date contains placeholder value: 'TBD'",
+      "item_index": 35,
+      "suggestion": "Replace with real data or remove the item."
+    },
+    {
+      "category": "placeholder",
+      "severity": "warning",
+      "item_type": "events",
+      "message": "events[36].date contains placeholder value: 'TBD'",
+      "item_index": 36,
+      "suggestion": "Replace with real data or remove the item."
+    },
+    {
+      "category": "placeholder",
+      "severity": "warning",
+      "item_type": "events",
+      "message": "events[37].date contains placeholder value: 'TBD'",
+      "item_index": 37,
+      "suggestion": "Replace with real data or remove the item."
+    },
+    {
+      "category": "placeholder",
+      "severity": "warning",
+      "item_type": "events",
+      "message": "events[38].date contains placeholder value: 'TBD'",
+      "item_index": 38,
+      "suggestion": "Replace with real data or remove the item."
+    },
+    {
+      "category": "placeholder",
+      "severity": "warning",
+      "item_type": "events",
+      "message": "events[39].date contains placeholder value: 'TBD'",
+      "item_index": 39,
+      "suggestion": "Replace with real data or remove the item."
+    },
+    {
+      "category": "placeholder",
+      "severity": "warning",
+      "item_type": "events",
+      "message": "events[40].date contains placeholder value: 'TBD'",
+      "item_index": 40,
+      "suggestion": "Replace with real data or remove the item."
+    },
+    {
+      "category": "placeholder",
+      "severity": "warning",
+      "item_type": "events",
+      "message": "events[41].date contains placeholder value: 'TBD'",
+      "item_index": 41,
+      "suggestion": "Replace with real data or remove the item."
+    },
+    {
+      "category": "placeholder",
+      "severity": "warning",
+      "item_type": "events",
+      "message": "events[42].date contains placeholder value: 'TBD'",
+      "item_index": 42,
+      "suggestion": "Replace with real data or remove the item."
+    },
+    {
+      "category": "placeholder",
+      "severity": "warning",
+      "item_type": "events",
+      "message": "events[43].date contains placeholder value: 'TBD'",
+      "item_index": 43,
+      "suggestion": "Replace with real data or remove the item."
+    },
+    {
+      "category": "placeholder",
+      "severity": "warning",
+      "item_type": "events",
+      "message": "events[44].date contains placeholder value: 'TBD'",
+      "item_index": 44,
+      "suggestion": "Replace with real data or remove the item."
+    },
+    {
+      "category": "placeholder",
+      "severity": "warning",
+      "item_type": "events",
+      "message": "events[45].date contains placeholder value: 'TBD'",
+      "item_index": 45,
+      "suggestion": "Replace with real data or remove the item."
+    },
+    {
+      "category": "placeholder",
+      "severity": "warning",
+      "item_type": "events",
+      "message": "events[46].date contains placeholder value: 'TBD'",
+      "item_index": 46,
+      "suggestion": "Replace with real data or remove the item."
+    },
+    {
+      "category": "placeholder",
+      "severity": "warning",
+      "item_type": "events",
+      "message": "events[47].date contains placeholder value: 'TBD'",
+      "item_index": 47,
+      "suggestion": "Replace with real data or remove the item."
+    },
+    {
+      "category": "placeholder",
+      "severity": "warning",
+      "item_type": "events",
+      "message": "events[48].date contains placeholder value: 'TBD'",
+      "item_index": 48,
+      "suggestion": "Replace with real data or remove the item."
+    },
+    {
+      "category": "placeholder",
+      "severity": "warning",
+      "item_type": "events",
+      "message": "events[49].date contains placeholder value: 'TBD'",
+      "item_index": 49,
+      "suggestion": "Replace with real data or remove the item."
+    },
+    {
+      "category": "placeholder",
+      "severity": "warning",
+      "item_type": "events",
+      "message": "events[50].date contains placeholder value: 'TBD'",
+      "item_index": 50,
+      "suggestion": "Replace with real data or remove the item."
+    },
+    {
+      "category": "placeholder",
+      "severity": "warning",
+      "item_type": "events",
+      "message": "events[51].date contains placeholder value: 'TBD'",
+      "item_index": 51,
+      "suggestion": "Replace with real data or remove the item."
+    },
+    {
+      "category": "placeholder",
+      "severity": "warning",
+      "item_type": "events",
+      "message": "events[52].date contains placeholder value: 'TBD'",
+      "item_index": 52,
+      "suggestion": "Replace with real data or remove the item."
+    },
+    {
+      "category": "placeholder",
+      "severity": "warning",
+      "item_type": "events",
+      "message": "events[53].date contains placeholder value: 'TBD'",
+      "item_index": 53,
+      "suggestion": "Replace with real data or remove the item."
+    },
+    {
+      "category": "date_sanity",
+      "severity": "error",
+      "item_type": "events",
+      "message": "Event 'CommCan - Homegrown Cannabis & Edibles in Massachusetts' has date 2026-01-05 (34 day(s) in the past)",
+      "item_index": 0,
+      "suggestion": "Remove past events or re-scrape for current listings."
+    },
+    {
+      "category": "date_sanity",
+      "severity": "error",
+      "item_type": "events",
+      "message": "Event 'Register - Vancouver 2026 | Grow Up Conference and Expo | presented by Quality Horticulture' has date 2026-01-19 (20 day(s) in the past)",
+      "item_index": 1,
+      "suggestion": "Remove past events or re-scrape for current listings."
+    },
+    {
+      "category": "date_sanity",
+      "severity": "error",
+      "item_type": "events",
+      "message": "Event 'Cannabis State Roundtable - National Governors Association' has date 2026-01-28 (11 day(s) in the past)",
+      "item_index": 2,
+      "suggestion": "Remove past events or re-scrape for current listings."
+    },
+    {
+      "category": "date_sanity",
+      "severity": "error",
+      "item_type": "events",
+      "message": "Event 'Proposed cannabis reforms get mixed reviews from bar | Massachusetts Lawyers Weekly' has date 2026-02-03 (5 day(s) in the past)",
+      "item_index": 3,
+      "suggestion": "Remove past events or re-scrape for current listings."
+    },
+    {
+      "category": "date_sanity",
+      "severity": "error",
+      "item_type": "events",
+      "message": "Cannot parse date 'TBD' for event 'New England Cannabis Convention 2026 | NECANN'",
+      "item_index": 5,
+      "suggestion": "Check the scraper's date extraction for this source."
+    },
+    {
+      "category": "date_sanity",
+      "severity": "error",
+      "item_type": "events",
+      "message": "Cannot parse date 'TBD' for event 'The Best 2026 Cannabis Conferences, Trade Shows & Events'",
+      "item_index": 6,
+      "suggestion": "Check the scraper's date extraction for this source."
+    },
+    {
+      "category": "date_sanity",
+      "severity": "error",
+      "item_type": "events",
+      "message": "Cannot parse date 'TBD' for event 'Massachusetts approves on-site cannabis consumption at licensed businesses | Fox News'",
+      "item_index": 7,
+      "suggestion": "Check the scraper's date extraction for this source."
+    },
+    {
+      "category": "date_sanity",
+      "severity": "error",
+      "item_type": "events",
+      "message": "Cannot parse date 'TBD' for event 'r/weedbiz on Reddit: Biggest Cannabis Events in 2026 \ud83c\udf43\ud83c\udf43\ud83c\udf43'",
+      "item_index": 8,
+      "suggestion": "Check the scraper's date extraction for this source."
+    },
+    {
+      "category": "date_sanity",
+      "severity": "error",
+      "item_type": "events",
+      "message": "Cannot parse date 'TBD' for event 'Cannabis legalization repeal: National group bankrolls Massachusetts campaign - masslive.com'",
+      "item_index": 9,
+      "suggestion": "Check the scraper's date extraction for this source."
+    },
+    {
+      "category": "date_sanity",
+      "severity": "error",
+      "item_type": "events",
+      "message": "Cannot parse date 'TBD' for event 'CityLine: Cannabis in the commonwealth'",
+      "item_index": 10,
+      "suggestion": "Check the scraper's date extraction for this source."
+    },
+    {
+      "category": "date_sanity",
+      "severity": "error",
+      "item_type": "events",
+      "message": "Cannot parse date 'TBD' for event 'Cannabis in Massachusetts - Wikipedia'",
+      "item_index": 11,
+      "suggestion": "Check the scraper's date extraction for this source."
+    },
+    {
+      "category": "date_sanity",
+      "severity": "error",
+      "item_type": "events",
+      "message": "Cannot parse date 'TBD' for event 'Massachusetts Cannabis Under Threat: What the 2026 Ballot Fight Means for the Industry | HBK'",
+      "item_index": 12,
+      "suggestion": "Check the scraper's date extraction for this source."
+    },
+    {
+      "category": "date_sanity",
+      "severity": "error",
+      "item_type": "events",
+      "message": "Cannot parse date 'TBD' for event 'Ballot measure to repeal Mass. cannabis law faces challenge over deception claims'",
+      "item_index": 13,
+      "suggestion": "Check the scraper's date extraction for this source."
+    },
+    {
+      "category": "date_sanity",
+      "severity": "error",
+      "item_type": "events",
+      "message": "Cannot parse date 'TBD' for event 'Cannabis sales inched higher in 2025 - Boston Business Journal'",
+      "item_index": 14,
+      "suggestion": "Check the scraper's date extraction for this source."
+    },
+    {
+      "category": "date_sanity",
+      "severity": "error",
+      "item_type": "events",
+      "message": "Cannot parse date 'TBD' for event 'Why Attempts to Undo Cannabis Legalization in States Like Massachusetts and Arizona Could Backfire on Opponents'",
+      "item_index": 15,
+      "suggestion": "Check the scraper's date extraction for this source."
+    },
+    {
+      "category": "date_sanity",
+      "severity": "error",
+      "item_type": "events",
+      "message": "Cannot parse date 'TBD' for event 'Cannabis Cafes Are Legal In Massachusetts. So Where Are They? | High Times'",
+      "item_index": 16,
+      "suggestion": "Check the scraper's date extraction for this source."
+    },
+    {
+      "category": "date_sanity",
+      "severity": "error",
+      "item_type": "events",
+      "message": "Cannot parse date 'TBD' for event 'Group behind cannabis repeal effort in Massachusetts accused of using misleading tactics | WAMC'",
+      "item_index": 17,
+      "suggestion": "Check the scraper's date extraction for this source."
+    },
+    {
+      "category": "date_sanity",
+      "severity": "error",
+      "item_type": "events",
+      "message": "Cannot parse date 'TBD' for event 'Attempt to roll back legal cannabis in MA is part of a national trend. Latest'",
+      "item_index": 18,
+      "suggestion": "Check the scraper's date extraction for this source."
+    },
+    {
+      "category": "date_sanity",
+      "severity": "error",
+      "item_type": "events",
+      "message": "Cannot parse date 'TBD' for event 'Many people on anti-Marijuana ballot petition didn\u2019t know what they were signing, pro-pot group says - The Boston Globe'",
+      "item_index": 19,
+      "suggestion": "Check the scraper's date extraction for this source."
+    },
+    {
+      "category": "date_sanity",
+      "severity": "error",
+      "item_type": "events",
+      "message": "Cannot parse date 'TBD' for event 'Massachusetts Hits $10 Billion Marijuana Sales Milestone, With Top Official Saying Consumption Lounges Will Bolster Industry In 2026 - Marijuana Moment'",
+      "item_index": 20,
+      "suggestion": "Check the scraper's date extraction for this source."
+    },
+    {
+      "category": "date_sanity",
+      "severity": "error",
+      "item_type": "events",
+      "message": "Cannot parse date 'TBD' for event 'Mass. marijuana industry reaches new high despite falling prices'",
+      "item_index": 21,
+      "suggestion": "Check the scraper's date extraction for this source."
+    },
+    {
+      "category": "date_sanity",
+      "severity": "error",
+      "item_type": "events",
+      "message": "Cannot parse date 'TBD' for event 'Premium Somerville Dispensary Cannabis | COOKIES MASSACHUSETTS'",
+      "item_index": 22,
+      "suggestion": "Check the scraper's date extraction for this source."
+    },
+    {
+      "category": "date_sanity",
+      "severity": "error",
+      "item_type": "events",
+      "message": "Cannot parse date 'TBD' for event 'Worcester Dispensary Menu - Adult-Use Cannabis - Bud's Goods'",
+      "item_index": 23,
+      "suggestion": "Check the scraper's date extraction for this source."
+    },
+    {
+      "category": "date_sanity",
+      "severity": "error",
+      "item_type": "events",
+      "message": "Cannot parse date 'TBD' for event 'Massachusetts marijuana dispensary used to launder $450K in fentanyl cash'",
+      "item_index": 24,
+      "suggestion": "Check the scraper's date extraction for this source."
+    },
+    {
+      "category": "date_sanity",
+      "severity": "error",
+      "item_type": "events",
+      "message": "Cannot parse date 'TBD' for event 'Boston Cannabis Board Public Meeting | Boston.gov'",
+      "item_index": 25,
+      "suggestion": "Check the scraper's date extraction for this source."
+    },
+    {
+      "category": "date_sanity",
+      "severity": "error",
+      "item_type": "events",
+      "message": "Cannot parse date 'TBD' for event 'Are out-of-state cannabis products illegally entering Massachusetts\u2019 legal market? - The Boston Globe'",
+      "item_index": 26,
+      "suggestion": "Check the scraper's date extraction for this source."
+    },
+    {
+      "category": "date_sanity",
+      "severity": "error",
+      "item_type": "events",
+      "message": "Cannot parse date 'TBD' for event '\ud83e\udeb4 What Every Visitor Should Know Before Visiting a Cannabis Dispensary in Massachusetts | SOUTH SHORE BUDS'",
+      "item_index": 27,
+      "suggestion": "Check the scraper's date extraction for this source."
+    },
+    {
+      "category": "date_sanity",
+      "severity": "error",
+      "item_type": "events",
+      "message": "Cannot parse date 'TBD' for event 'Premier Worcester Dispensary Cannabis Store - THE BOTANIST'",
+      "item_index": 28,
+      "suggestion": "Check the scraper's date extraction for this source."
+    },
+    {
+      "category": "date_sanity",
+      "severity": "error",
+      "item_type": "events",
+      "message": "Cannot parse date 'TBD' for event 'Massachusetts' cannabis sales inch higher in 2025 to record $1.65B | Boston | eagletribune.com'",
+      "item_index": 29,
+      "suggestion": "Check the scraper's date extraction for this source."
+    },
+    {
+      "category": "date_sanity",
+      "severity": "error",
+      "item_type": "events",
+      "message": "Cannot parse date 'TBD' for event 'Cannabis fairs and events in 2026 - Agriplastics Community'",
+      "item_index": 30,
+      "suggestion": "Check the scraper's date extraction for this source."
+    },
+    {
+      "category": "date_sanity",
+      "severity": "error",
+      "item_type": "events",
+      "message": "Cannot parse date 'TBD' for event 'CannMed 26 Innovation & Collaboration Summit | June 15-18, 2026'",
+      "item_index": 31,
+      "suggestion": "Check the scraper's date extraction for this source."
+    },
+    {
+      "category": "date_sanity",
+      "severity": "error",
+      "item_type": "events",
+      "message": "Cannot parse date 'TBD' for event 'Boston Cannabis Board Voting Agenda | Boston.gov'",
+      "item_index": 32,
+      "suggestion": "Check the scraper's date extraction for this source."
+    },
+    {
+      "category": "date_sanity",
+      "severity": "error",
+      "item_type": "events",
+      "message": "Cannot parse date 'TBD' for event 'Reserve Your Booth - Toronto 2026 | Grow Up Conference and Expo | presented by Quality Horticulture'",
+      "item_index": 33,
+      "suggestion": "Check the scraper's date extraction for this source."
+    },
+    {
+      "category": "date_sanity",
+      "severity": "error",
+      "item_type": "events",
+      "message": "Cannot parse date 'TBD' for event 'Cannabis sales inched higher in 2025 to record $1.65 billion | Business | gloucestertimes.com'",
+      "item_index": 34,
+      "suggestion": "Check the scraper's date extraction for this source."
+    },
+    {
+      "category": "date_sanity",
+      "severity": "error",
+      "item_type": "events",
+      "message": "Cannot parse date 'TBD' for event 'Out-of-state group funding pot law repeal | News | gloucestertimes.com'",
+      "item_index": 35,
+      "suggestion": "Check the scraper's date extraction for this source."
+    },
+    {
+      "category": "date_sanity",
+      "severity": "error",
+      "item_type": "events",
+      "message": "Cannot parse date 'TBD' for event 'Growing Relationships Atlantic Canada - 2026 | StratCann'",
+      "item_index": 36,
+      "suggestion": "Check the scraper's date extraction for this source."
+    },
+    {
+      "category": "date_sanity",
+      "severity": "error",
+      "item_type": "events",
+      "message": "Cannot parse date 'TBD' for event 'Exhibitors - Vancouver 2026 | Grow Up Conference and Expo | presented by Quality Horticulture'",
+      "item_index": 37,
+      "suggestion": "Check the scraper's date extraction for this source."
+    },
+    {
+      "category": "date_sanity",
+      "severity": "error",
+      "item_type": "events",
+      "message": "Cannot parse date 'TBD' for event 'Reserve Your Booth - Vancouver 2026 | Grow Up Conference and Expo | presented by Quality Horticulture'",
+      "item_index": 38,
+      "suggestion": "Check the scraper's date extraction for this source."
+    },
+    {
+      "category": "date_sanity",
+      "severity": "error",
+      "item_type": "events",
+      "message": "Cannot parse date 'TBD' for event 'Hawaii Cannabis Expo 2026 | Culture \u2022 Business \u2022 Education \u2022 Community'",
+      "item_index": 39,
+      "suggestion": "Check the scraper's date extraction for this source."
+    },
+    {
+      "category": "date_sanity",
+      "severity": "error",
+      "item_type": "events",
+      "message": "Cannot parse date 'TBD' for event 'Events In Boston This Weekend | February 6-8, 2026'",
+      "item_index": 40,
+      "suggestion": "Check the scraper's date extraction for this source."
+    },
+    {
+      "category": "date_sanity",
+      "severity": "error",
+      "item_type": "events",
+      "message": "Cannot parse date 'TBD' for event 'Flower Expo Local: NYC Connects Brands and Buyers in the Big Apple - The Other Magazine'",
+      "item_index": 41,
+      "suggestion": "Check the scraper's date extraction for this source."
+    },
+    {
+      "category": "date_sanity",
+      "severity": "error",
+      "item_type": "events",
+      "message": "Cannot parse date 'TBD' for event '2026 Cannabis Marketing Guidelines by State | Hybrid Marketing Co'",
+      "item_index": 42,
+      "suggestion": "Check the scraper's date extraction for this source."
+    },
+    {
+      "category": "date_sanity",
+      "severity": "error",
+      "item_type": "events",
+      "message": "Cannot parse date 'TBD' for event 'As overhaul looms, cannabis regulators say they\u2019re focused on the work'",
+      "item_index": 43,
+      "suggestion": "Check the scraper's date extraction for this source."
+    },
+    {
+      "category": "date_sanity",
+      "severity": "error",
+      "item_type": "events",
+      "message": "Cannot parse date 'TBD' for event 'The Most Anticipated Cannabis Events in Europe 2026'",
+      "item_index": 44,
+      "suggestion": "Check the scraper's date extraction for this source."
+    },
+    {
+      "category": "date_sanity",
+      "severity": "error",
+      "item_type": "events",
+      "message": "Cannot parse date 'TBD' for event 'Massachusetts Moves to Reverse Marijuana Legalisation in Historic First - Dont Legalize Drugs'",
+      "item_index": 45,
+      "suggestion": "Check the scraper's date extraction for this source."
+    },
+    {
+      "category": "date_sanity",
+      "severity": "error",
+      "item_type": "events",
+      "message": "Cannot parse date 'TBD' for event 'Repeal of recreational marijuana in Mass. advances after challenge dismissed - The Boston Globe'",
+      "item_index": 46,
+      "suggestion": "Check the scraper's date extraction for this source."
+    },
+    {
+      "category": "date_sanity",
+      "severity": "error",
+      "item_type": "events",
+      "message": "Cannot parse date 'TBD' for event 'Massachusetts Rejects Marijuana Repeal Campaign Fraud Claims'",
+      "item_index": 47,
+      "suggestion": "Check the scraper's date extraction for this source."
+    },
+    {
+      "category": "date_sanity",
+      "severity": "error",
+      "item_type": "events",
+      "message": "Cannot parse date 'TBD' for event 'Hashing out and merging two bills, Mass. conference committee members weigh cannabis reforms | WAMC'",
+      "item_index": 48,
+      "suggestion": "Check the scraper's date extraction for this source."
+    },
+    {
+      "category": "date_sanity",
+      "severity": "error",
+      "item_type": "events",
+      "message": "Cannot parse date 'TBD' for event 'Massachusetts cannabis bill focuses on industry equity'",
+      "item_index": 49,
+      "suggestion": "Check the scraper's date extraction for this source."
+    },
+    {
+      "category": "date_sanity",
+      "severity": "error",
+      "item_type": "events",
+      "message": "Cannot parse date 'TBD' for event 'Massachusetts Cannabis Control Commission Seeks Public Input on Delivery Exclusivity Extension and Secret Shopper Program Regulatory Reforms - Cannabis Control Commission Massachusetts'",
+      "item_index": 50,
+      "suggestion": "Check the scraper's date extraction for this source."
+    },
+    {
+      "category": "date_sanity",
+      "severity": "error",
+      "item_type": "events",
+      "message": "Cannot parse date 'TBD' for event 'Massachusetts cannabis sales inched higher in 2025 to record $1.65B'",
+      "item_index": 51,
+      "suggestion": "Check the scraper's date extraction for this source."
+    },
+    {
+      "category": "date_sanity",
+      "severity": "error",
+      "item_type": "events",
+      "message": "Cannot parse date 'TBD' for event 'Fraud claim unlikely to halt Mass. cannabis recriminalization'",
+      "item_index": 52,
+      "suggestion": "Check the scraper's date extraction for this source."
+    },
+    {
+      "category": "date_sanity",
+      "severity": "error",
+      "item_type": "events",
+      "message": "Cannot parse date 'TBD' for event 'Backer of effort to end adult-use marijuana sales in two states revealed'",
+      "item_index": 53,
+      "suggestion": "Check the scraper's date extraction for this source."
+    },
+    {
+      "category": "minimums",
+      "severity": "error",
+      "item_type": "news",
+      "message": "news[23] is non-MA content without 'why_ma_impact' note",
+      "item_index": 23,
+      "suggestion": "Add a clear MA operator relevance explanation for non-MA entries."
+    },
+    {
+      "category": "minimums",
+      "severity": "error",
+      "item_type": "news",
+      "message": "news[24] is non-MA content without 'why_ma_impact' note",
+      "item_index": 24,
+      "suggestion": "Add a clear MA operator relevance explanation for non-MA entries."
+    },
+    {
+      "category": "minimums",
+      "severity": "error",
+      "item_type": "news",
+      "message": "news[25] is non-MA content without 'why_ma_impact' note",
+      "item_index": 25,
+      "suggestion": "Add a clear MA operator relevance explanation for non-MA entries."
+    },
+    {
+      "category": "minimums",
+      "severity": "error",
+      "item_type": "news",
+      "message": "news[26] is non-MA content without 'why_ma_impact' note",
+      "item_index": 26,
+      "suggestion": "Add a clear MA operator relevance explanation for non-MA entries."
+    },
+    {
+      "category": "minimums",
+      "severity": "error",
+      "item_type": "news",
+      "message": "news[27] is non-MA content without 'why_ma_impact' note",
+      "item_index": 27,
+      "suggestion": "Add a clear MA operator relevance explanation for non-MA entries."
+    },
+    {
+      "category": "minimums",
+      "severity": "error",
+      "item_type": "tools",
+      "message": "tools[0] is non-MA content without 'why_ma_impact' note",
+      "item_index": 0,
+      "suggestion": "Add a clear MA operator relevance explanation for non-MA entries."
+    },
+    {
+      "category": "minimums",
+      "severity": "error",
+      "item_type": "tools",
+      "message": "tools[1] is non-MA content without 'why_ma_impact' note",
+      "item_index": 1,
+      "suggestion": "Add a clear MA operator relevance explanation for non-MA entries."
+    },
+    {
+      "category": "minimums",
+      "severity": "error",
+      "item_type": "tools",
+      "message": "tools[2] is non-MA content without 'why_ma_impact' note",
+      "item_index": 2,
+      "suggestion": "Add a clear MA operator relevance explanation for non-MA entries."
+    },
+    {
+      "category": "minimums",
+      "severity": "error",
+      "item_type": "tools",
+      "message": "tools[3] is non-MA content without 'why_ma_impact' note",
+      "item_index": 3,
+      "suggestion": "Add a clear MA operator relevance explanation for non-MA entries."
+    },
+    {
+      "category": "minimums",
+      "severity": "error",
+      "item_type": "tools",
+      "message": "tools[4] is non-MA content without 'why_ma_impact' note",
+      "item_index": 4,
+      "suggestion": "Add a clear MA operator relevance explanation for non-MA entries."
+    },
+    {
+      "category": "minimums",
+      "severity": "error",
+      "item_type": "tools",
+      "message": "tools[5] is non-MA content without 'why_ma_impact' note",
+      "item_index": 5,
+      "suggestion": "Add a clear MA operator relevance explanation for non-MA entries."
+    },
+    {
+      "category": "minimums",
+      "severity": "error",
+      "item_type": "tools",
+      "message": "tools[6] is non-MA content without 'why_ma_impact' note",
+      "item_index": 6,
+      "suggestion": "Add a clear MA operator relevance explanation for non-MA entries."
+    },
+    {
+      "category": "minimums",
+      "severity": "error",
+      "item_type": "tools",
+      "message": "tools[7] is non-MA content without 'why_ma_impact' note",
+      "item_index": 7,
+      "suggestion": "Add a clear MA operator relevance explanation for non-MA entries."
+    },
+    {
+      "category": "minimums",
+      "severity": "error",
+      "item_type": "tools",
+      "message": "tools[8] is non-MA content without 'why_ma_impact' note",
+      "item_index": 8,
+      "suggestion": "Add a clear MA operator relevance explanation for non-MA entries."
+    },
+    {
+      "category": "minimums",
+      "severity": "error",
+      "item_type": "tools",
+      "message": "tools[9] is non-MA content without 'why_ma_impact' note",
+      "item_index": 9,
+      "suggestion": "Add a clear MA operator relevance explanation for non-MA entries."
+    },
+    {
+      "category": "minimums",
+      "severity": "error",
+      "item_type": "tools",
+      "message": "tools[10] is non-MA content without 'why_ma_impact' note",
+      "item_index": 10,
+      "suggestion": "Add a clear MA operator relevance explanation for non-MA entries."
+    },
+    {
+      "category": "minimums",
+      "severity": "error",
+      "item_type": "tools",
+      "message": "tools[11] is non-MA content without 'why_ma_impact' note",
+      "item_index": 11,
+      "suggestion": "Add a clear MA operator relevance explanation for non-MA entries."
+    },
+    {
+      "category": "minimums",
+      "severity": "error",
+      "item_type": "tools",
+      "message": "tools[12] is non-MA content without 'why_ma_impact' note",
+      "item_index": 12,
+      "suggestion": "Add a clear MA operator relevance explanation for non-MA entries."
+    },
+    {
+      "category": "minimums",
+      "severity": "error",
+      "item_type": "tools",
+      "message": "tools[13] is non-MA content without 'why_ma_impact' note",
+      "item_index": 13,
+      "suggestion": "Add a clear MA operator relevance explanation for non-MA entries."
+    },
+    {
+      "category": "minimums",
+      "severity": "error",
+      "item_type": "tools",
+      "message": "tools[14] is non-MA content without 'why_ma_impact' note",
+      "item_index": 14,
+      "suggestion": "Add a clear MA operator relevance explanation for non-MA entries."
+    },
+    {
+      "category": "minimums",
+      "severity": "error",
+      "item_type": "tools",
+      "message": "tools[15] is non-MA content without 'why_ma_impact' note",
+      "item_index": 15,
+      "suggestion": "Add a clear MA operator relevance explanation for non-MA entries."
+    },
+    {
+      "category": "minimums",
+      "severity": "error",
+      "item_type": "tools",
+      "message": "tools[16] is non-MA content without 'why_ma_impact' note",
+      "item_index": 16,
+      "suggestion": "Add a clear MA operator relevance explanation for non-MA entries."
+    },
+    {
+      "category": "minimums",
+      "severity": "error",
+      "item_type": "tools",
+      "message": "tools[17] is non-MA content without 'why_ma_impact' note",
+      "item_index": 17,
+      "suggestion": "Add a clear MA operator relevance explanation for non-MA entries."
+    },
+    {
+      "category": "minimums",
+      "severity": "error",
+      "item_type": "tools",
+      "message": "tools[18] is non-MA content without 'why_ma_impact' note",
+      "item_index": 18,
+      "suggestion": "Add a clear MA operator relevance explanation for non-MA entries."
+    },
+    {
+      "category": "minimums",
+      "severity": "error",
+      "item_type": "tools",
+      "message": "tools[19] is non-MA content without 'why_ma_impact' note",
+      "item_index": 19,
+      "suggestion": "Add a clear MA operator relevance explanation for non-MA entries."
+    },
+    {
+      "category": "minimums",
+      "severity": "error",
+      "item_type": "tools",
+      "message": "tools[20] is non-MA content without 'why_ma_impact' note",
+      "item_index": 20,
+      "suggestion": "Add a clear MA operator relevance explanation for non-MA entries."
+    },
+    {
+      "category": "minimums",
+      "severity": "error",
+      "item_type": "tools",
+      "message": "tools[21] is non-MA content without 'why_ma_impact' note",
+      "item_index": 21,
+      "suggestion": "Add a clear MA operator relevance explanation for non-MA entries."
+    },
+    {
+      "category": "minimums",
+      "severity": "error",
+      "item_type": "tools",
+      "message": "tools[22] is non-MA content without 'why_ma_impact' note",
+      "item_index": 22,
+      "suggestion": "Add a clear MA operator relevance explanation for non-MA entries."
+    },
+    {
+      "category": "minimums",
+      "severity": "error",
+      "item_type": "tools",
+      "message": "tools[23] is non-MA content without 'why_ma_impact' note",
+      "item_index": 23,
+      "suggestion": "Add a clear MA operator relevance explanation for non-MA entries."
+    },
+    {
+      "category": "minimums",
+      "severity": "error",
+      "item_type": "tools",
+      "message": "tools[24] is non-MA content without 'why_ma_impact' note",
+      "item_index": 24,
+      "suggestion": "Add a clear MA operator relevance explanation for non-MA entries."
+    },
+    {
+      "category": "minimums",
+      "severity": "error",
+      "item_type": "tools",
+      "message": "tools[25] is non-MA content without 'why_ma_impact' note",
+      "item_index": 25,
+      "suggestion": "Add a clear MA operator relevance explanation for non-MA entries."
+    },
+    {
+      "category": "minimums",
+      "severity": "error",
+      "item_type": "tools",
+      "message": "tools[26] is non-MA content without 'why_ma_impact' note",
+      "item_index": 26,
+      "suggestion": "Add a clear MA operator relevance explanation for non-MA entries."
+    },
+    {
+      "category": "minimums",
+      "severity": "error",
+      "item_type": "tools",
+      "message": "tools[27] is non-MA content without 'why_ma_impact' note",
+      "item_index": 27,
+      "suggestion": "Add a clear MA operator relevance explanation for non-MA entries."
+    },
+    {
+      "category": "minimums",
+      "severity": "error",
+      "item_type": "tools",
+      "message": "tools[28] is non-MA content without 'why_ma_impact' note",
+      "item_index": 28,
+      "suggestion": "Add a clear MA operator relevance explanation for non-MA entries."
+    },
+    {
+      "category": "minimums",
+      "severity": "error",
+      "item_type": "tools",
+      "message": "tools[29] is non-MA content without 'why_ma_impact' note",
+      "item_index": 29,
+      "suggestion": "Add a clear MA operator relevance explanation for non-MA entries."
+    },
+    {
+      "category": "minimums",
+      "severity": "error",
+      "item_type": "tools",
+      "message": "tools[30] is non-MA content without 'why_ma_impact' note",
+      "item_index": 30,
+      "suggestion": "Add a clear MA operator relevance explanation for non-MA entries."
+    },
+    {
+      "category": "minimums",
+      "severity": "error",
+      "item_type": "tools",
+      "message": "tools[31] is non-MA content without 'why_ma_impact' note",
+      "item_index": 31,
+      "suggestion": "Add a clear MA operator relevance explanation for non-MA entries."
+    },
+    {
+      "category": "minimums",
+      "severity": "error",
+      "item_type": "tools",
+      "message": "tools[32] is non-MA content without 'why_ma_impact' note",
+      "item_index": 32,
+      "suggestion": "Add a clear MA operator relevance explanation for non-MA entries."
+    },
+    {
+      "category": "minimums",
+      "severity": "error",
+      "item_type": "tools",
+      "message": "tools[33] is non-MA content without 'why_ma_impact' note",
+      "item_index": 33,
+      "suggestion": "Add a clear MA operator relevance explanation for non-MA entries."
+    },
+    {
+      "category": "minimums",
+      "severity": "error",
+      "item_type": "tools",
+      "message": "tools[34] is non-MA content without 'why_ma_impact' note",
+      "item_index": 34,
+      "suggestion": "Add a clear MA operator relevance explanation for non-MA entries."
+    },
+    {
+      "category": "minimums",
+      "severity": "error",
+      "item_type": "tools",
+      "message": "tools[35] is non-MA content without 'why_ma_impact' note",
+      "item_index": 35,
+      "suggestion": "Add a clear MA operator relevance explanation for non-MA entries."
+    },
+    {
+      "category": "minimums",
+      "severity": "error",
+      "item_type": "tools",
+      "message": "tools[36] is non-MA content without 'why_ma_impact' note",
+      "item_index": 36,
+      "suggestion": "Add a clear MA operator relevance explanation for non-MA entries."
+    },
+    {
+      "category": "minimums",
+      "severity": "error",
+      "item_type": "tools",
+      "message": "tools[37] is non-MA content without 'why_ma_impact' note",
+      "item_index": 37,
+      "suggestion": "Add a clear MA operator relevance explanation for non-MA entries."
+    },
+    {
+      "category": "minimums",
+      "severity": "error",
+      "item_type": "tools",
+      "message": "tools[38] is non-MA content without 'why_ma_impact' note",
+      "item_index": 38,
+      "suggestion": "Add a clear MA operator relevance explanation for non-MA entries."
+    },
+    {
+      "category": "minimums",
+      "severity": "error",
+      "item_type": "tools",
+      "message": "tools[39] is non-MA content without 'why_ma_impact' note",
+      "item_index": 39,
+      "suggestion": "Add a clear MA operator relevance explanation for non-MA entries."
+    },
+    {
+      "category": "minimums",
+      "severity": "error",
+      "item_type": "tools",
+      "message": "tools[40] is non-MA content without 'why_ma_impact' note",
+      "item_index": 40,
+      "suggestion": "Add a clear MA operator relevance explanation for non-MA entries."
+    },
+    {
+      "category": "minimums",
+      "severity": "error",
+      "item_type": "tools",
+      "message": "tools[41] is non-MA content without 'why_ma_impact' note",
+      "item_index": 41,
+      "suggestion": "Add a clear MA operator relevance explanation for non-MA entries."
+    },
+    {
+      "category": "minimums",
+      "severity": "error",
+      "item_type": "tools",
+      "message": "tools[42] is non-MA content without 'why_ma_impact' note",
+      "item_index": 42,
+      "suggestion": "Add a clear MA operator relevance explanation for non-MA entries."
+    }
+  ],
+  "summary": {
+    "total": 150,
+    "by_category": {
+      "placeholder": 49,
+      "date_sanity": 53,
+      "minimums": 48
+    },
+    "by_severity": {
+      "warning": 49,
+      "error": 101
+    }
+  }
+}

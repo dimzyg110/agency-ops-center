@@ -1,8 +1,9 @@
-# HEARTBEAT.md
+# Heartbeat
 
-# Keep this empty to skip heartbeat proactive checks.
-
-# Add tasks here when you want periodic monitoring:
-# - Check for stuck subagents
-# - Review uncommitted changes
-# - Monitor client deadlines
+- Check subagent status (stuck or completed?)
+- Check pending reviews to synthesize
+- Check client messages / approaching deadlines
+- Check DASHBOARD.md for unresolved blockers
+- Check revenue pipeline progress (newsletter, snapshots, sprints)
+- Commit any uncommitted changes
+- Update daily memory log if needed

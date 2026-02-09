@@ -30,3 +30,31 @@ build/
 
 # OS
 Thumbs.db
+
+# Media files (store in cloud, not git)
+*.MOV
+*.mov
+*.mp4
+*.MP4
+*.avi
+*.mkv
+*.wmv
+*.m4v
+*.webm
+*.png
+*.PNG
+*.jpg
+*.jpeg
+*.JPG
+*.JPEG
+*.gif
+*.tiff
+*.bmp
+*.psd
+*.ai
+*.sketch
+*.fig
+*.wav
+*.mp3
+*.aac
+*.flac

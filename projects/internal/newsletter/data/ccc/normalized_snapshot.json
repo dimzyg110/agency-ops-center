@@ -1,0 +1,94 @@
+{
+  "generated_at": "2026-02-08T14:36:27.482170Z",
+  "core_datasets": {
+    "licenses": {
+      "row_count": 50000,
+      "status": "success"
+    },
+    "pending_applications": {
+      "row_count": 234,
+      "status": "success"
+    },
+    "commence_operations": {
+      "row_count": 50000,
+      "status": "success"
+    },
+    "weekly_sales": {
+      "row_count": 71,
+      "status": "success"
+    },
+    "average_price": {
+      "row_count": 50000,
+      "status": "success"
+    },
+    "plant_activity": {
+      "row_count": 50000,
+      "status": "success"
+    },
+    "facility_sales": {
+      "row_count": 4,
+      "status": "success"
+    },
+    "testing_results": {
+      "row_count": 79,
+      "status": "success"
+    }
+  },
+  "demographic_datasets": {
+    "equity_demographics": {
+      "row_count": 0,
+      "status": "failed"
+    },
+    "eea_demographics": {
+      "row_count": 0,
+      "status": "failed"
+    },
+    "industry_demographics": {
+      "row_count": 0,
+      "status": "failed"
+    },
+    "county_report": {
+      "row_count": 0,
+      "status": "failed"
+    },
+    "total_dbe": {
+      "row_count": 6,
+      "status": "success"
+    },
+    "applications_rollup": {
+      "row_count": 50000,
+      "status": "success"
+    }
+  },
+  "demographic_trends": [
+    {
+      "dataset_key": "total_dbe",
+      "metric": "TOTAL",
+      "latest_period": "current",
+      "latest_value": 475.0,
+      "prior_period": null,
+      "prior_value": null,
+      "change_pct": null,
+      "source_endpoint": "5dkg-e39p",
+      "source_url": "https://masscannabiscontrol.com/resource/5dkg-e39p"
+    },
+    {
+      "dataset_key": "applications_rollup",
+      "metric": "StrainActiveCount",
+      "latest_period": "9/9/2025 12:00:00 AM",
+      "latest_value": 610021.0,
+      "prior_period": "9/9/2024 12:00:00 AM",
+      "prior_value": 385971.0,
+      "change_pct": 58.05,
+      "source_endpoint": "meau-plav",
+      "source_url": "https://masscannabiscontrol.com/resource/meau-plav"
+    }
+  ],
+  "demographic_trend_card": {
+    "insight": "applications_rollup is up 58.0% (9/9/2024 12:00:00 AM -> 9/9/2025 12:00:00 AM) for StrainActiveCount.",
+    "ma_operator_implication": "MA operator implication: demographic and equity shifts can change competitive intensity, licensing pathways, and local demand strategy.",
+    "metric": "StrainActiveCount",
+    "source_dataset": "applications_rollup",
+    "source_url": "https://masscannabiscontrol.com/resource/meau-plav"
+  }
+}

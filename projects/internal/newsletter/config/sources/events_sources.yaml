@@ -1,0 +1,79 @@
+{
+  "sources": [
+    {
+      "source_id": "eventbrite_ma",
+      "name": "Eventbrite MA Cannabis",
+      "section": "events",
+      "geo_scope": "ma",
+      "priority_tier": "primary",
+      "parser": "eventbrite_search",
+      "url": "https://www.eventbrite.com/d/ma--massachusetts/cannabis/",
+      "relevance_tags": ["ma", "events", "operators"],
+      "quality_weight": 1.35,
+      "freshness_window_hours": 720,
+      "rps_limit": 1.0,
+      "timeout": 20,
+      "retries": 3
+    },
+    {
+      "source_id": "ccc_news_events",
+      "name": "Mass CCC Events",
+      "section": "events",
+      "geo_scope": "ma",
+      "priority_tier": "primary",
+      "parser": "ldjson_event_page",
+      "url": "https://masscannabiscontrol.com/news-events/",
+      "relevance_tags": ["ma", "ccc", "regulatory"],
+      "quality_weight": 1.4,
+      "freshness_window_hours": 720,
+      "rps_limit": 1.0,
+      "timeout": 20,
+      "retries": 3
+    },
+    {
+      "source_id": "mjbiz_events",
+      "name": "MJBiz Events",
+      "section": "events",
+      "geo_scope": "national",
+      "priority_tier": "fallback",
+      "parser": "ldjson_event_page",
+      "url": "https://mjbiz.com/events/",
+      "relevance_tags": ["industry", "conference", "operations"],
+      "quality_weight": 1.2,
+      "freshness_window_hours": 720,
+      "rps_limit": 0.7,
+      "timeout": 20,
+      "retries": 3
+    },
+    {
+      "source_id": "cannabisevents",
+      "name": "CannabisEvents",
+      "section": "events",
+      "geo_scope": "national",
+      "priority_tier": "fallback",
+      "parser": "ldjson_event_page",
+      "url": "https://www.cannabisevents.com/",
+      "relevance_tags": ["events", "industry"],
+      "quality_weight": 1.05,
+      "freshness_window_hours": 720,
+      "rps_limit": 0.7,
+      "timeout": 20,
+      "retries": 3
+    },
+    {
+      "source_id": "necn",
+      "name": "New England Cannabis Network",
+      "section": "events",
+      "geo_scope": "nearby_states",
+      "priority_tier": "last_resort",
+      "parser": "ldjson_event_page",
+      "url": "https://www.newenglandcannabisnetwork.com/",
+      "relevance_tags": ["new england", "networking"],
+      "quality_weight": 1.1,
+      "freshness_window_hours": 720,
+      "rps_limit": 0.7,
+      "timeout": 20,
+      "retries": 2
+    }
+  ]
+}

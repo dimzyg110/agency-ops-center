@@ -1,0 +1,180 @@
+{
+  "generated_at": "2026-02-08T14:36:27.482851Z",
+  "status": "warn",
+  "source_health": [
+    {
+      "dataset_key": "licenses",
+      "endpoint": "hmwt-yiqy",
+      "status": "success",
+      "row_count": 50000,
+      "latency_ms": 26620,
+      "error": null
+    },
+    {
+      "dataset_key": "pending_applications",
+      "endpoint": "l_applications_pending",
+      "status": "success",
+      "row_count": 234,
+      "latency_ms": 307,
+      "error": null
+    },
+    {
+      "dataset_key": "commence_operations",
+      "endpoint": "l_licenses_commenceops",
+      "status": "success",
+      "row_count": 50000,
+      "latency_ms": 17147,
+      "error": null
+    },
+    {
+      "dataset_key": "weekly_sales",
+      "endpoint": "rqtv-uenj",
+      "status": "success",
+      "row_count": 71,
+      "latency_ms": 7387,
+      "error": null
+    },
+    {
+      "dataset_key": "average_price",
+      "endpoint": "g5mj-5pg3",
+      "status": "success",
+      "row_count": 50000,
+      "latency_ms": 9749,
+      "error": null
+    },
+    {
+      "dataset_key": "plant_activity",
+      "endpoint": "fren-z7jq",
+      "status": "success",
+      "row_count": 50000,
+      "latency_ms": 8981,
+      "error": null
+    },
+    {
+      "dataset_key": "facility_sales",
+      "endpoint": "hhjg-atjk",
+      "status": "success",
+      "row_count": 4,
+      "latency_ms": 7118,
+      "error": null
+    },
+    {
+      "dataset_key": "testing_results",
+      "endpoint": "pt2c-wb44",
+      "status": "success",
+      "row_count": 79,
+      "latency_ms": 7322,
+      "error": null
+    },
+    {
+      "dataset_key": "equity_demographics",
+      "endpoint": null,
+      "status": "failed",
+      "row_count": 0,
+      "latency_ms": 14202,
+      "error": "No viable endpoint alias resolved"
+    },
+    {
+      "dataset_key": "eea_demographics",
+      "endpoint": null,
+      "status": "failed",
+      "row_count": 0,
+      "latency_ms": 14192,
+      "error": "No viable endpoint alias resolved"
+    },
+    {
+      "dataset_key": "industry_demographics",
+      "endpoint": null,
+      "status": "failed",
+      "row_count": 0,
+      "latency_ms": 14264,
+      "error": "No viable endpoint alias resolved"
+    },
+    {
+      "dataset_key": "county_report",
+      "endpoint": null,
+      "status": "failed",
+      "row_count": 0,
+      "latency_ms": 14375,
+      "error": "No viable endpoint alias resolved"
+    },
+    {
+      "dataset_key": "total_dbe",
+      "endpoint": "5dkg-e39p",
+      "status": "success",
+      "row_count": 6,
+      "latency_ms": 140,
+      "error": null
+    },
+    {
+      "dataset_key": "applications_rollup",
+      "endpoint": "meau-plav",
+      "status": "success",
+      "row_count": 50000,
+      "latency_ms": 2135,
+      "error": null
+    }
+  ],
+  "coverage": {
+    "dataset_count": 14,
+    "successful_datasets": 10,
+    "empty_datasets": 0,
+    "failed_datasets": 4
+  },
+  "freshness": {
+    "generated_at": "2026-02-08T14:36:27.482865Z"
+  },
+  "relevance": {
+    "demographic_trends_count": 2
+  },
+  "demographic_trends": [
+    {
+      "dataset_key": "total_dbe",
+      "metric": "TOTAL",
+      "latest_period": "current",
+      "latest_value": 475.0,
+      "prior_period": null,
+      "prior_value": null,
+      "change_pct": null,
+      "source_endpoint": "5dkg-e39p",
+      "source_url": "https://masscannabiscontrol.com/resource/5dkg-e39p"
+    },
+    {
+      "dataset_key": "applications_rollup",
+      "metric": "StrainActiveCount",
+      "latest_period": "9/9/2025 12:00:00 AM",
+      "latest_value": 610021.0,
+      "prior_period": "9/9/2024 12:00:00 AM",
+      "prior_value": 385971.0,
+      "change_pct": 58.05,
+      "source_endpoint": "meau-plav",
+      "source_url": "https://masscannabiscontrol.com/resource/meau-plav"
+    }
+  ],
+  "demographic_trend_card": {
+    "insight": "applications_rollup is up 58.0% (9/9/2024 12:00:00 AM -> 9/9/2025 12:00:00 AM) for StrainActiveCount.",
+    "ma_operator_implication": "MA operator implication: demographic and equity shifts can change competitive intensity, licensing pathways, and local demand strategy.",
+    "metric": "StrainActiveCount",
+    "source_dataset": "applications_rollup",
+    "source_url": "https://masscannabiscontrol.com/resource/meau-plav"
+  },
+  "storage": {
+    "ccc_dir": "/Users/randytorres/Projects/claude/projects/newsletter/data/ccc",
+    "files": {
+      "licenses": "licenses.json",
+      "pending_applications": "pending_applications.json",
+      "commence_operations": "commence_operations.json",
+      "weekly_sales": "weekly_sales.json",
+      "average_price": "average_price.json",
+      "plant_activity": "plant_activity.json",
+      "facility_sales": "facility_sales.json",
+      "testing_results": "testing_results.json",
+      "equity_demographics": "equity_demographics.json",
+      "eea_demographics": "eea_demographics.json",
+      "industry_demographics": "industry_demographics.json",
+      "county_report": "county_report.json",
+      "total_dbe": "total_dbe.json",
+      "applications_rollup": "applications_rollup.json"
+    }
+  }
+}

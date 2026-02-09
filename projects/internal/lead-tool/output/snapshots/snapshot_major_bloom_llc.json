@@ -1,0 +1,67 @@
+{
+  "business_name": "Major Bloom Llc",
+  "city": "Worcester",
+  "email": "lauryclucien@gmail.com",
+  "phone": "857-445-5232",
+  "address": "76 Millbury St. Worcester Ma, 01610",
+  "operator_type": "manufacturer",
+  "license_types": [
+    "Marijuana Retailer",
+    "Marijuana Courier Pre-Certification",
+    "Marijuana Product Manufacturer",
+    "Marijuana Courier"
+  ],
+  "generated_date": "2026-02-04",
+  "market_context": {
+    "headline": "Massachusetts Cannabis Market Under Margin Pressure",
+    "key_points": [
+      "Wholesale flower prices have dropped ~50% since 2021 ($300/oz \u2192 $150/oz)",
+      "1,693 licensed entities competing in a mature market",
+      "Small operators struggling; consolidation accelerating"
+    ]
+  },
+  "pressure_signals": [
+    {
+      "name": "Expired/Surrendered Licenses",
+      "description": "Has given up licenses - financial or operational distress indicator",
+      "severity": "high"
+    },
+    {
+      "name": "Manufacturing Without Cultivation",
+      "description": "Dependent on external supply chain for raw material",
+      "severity": "medium"
+    }
+  ],
+  "likely_leaks": [
+    {
+      "name": "Supply Chain Vulnerability",
+      "description": "Dependent on external suppliers with variable pricing and availability",
+      "quick_win": "Lock in long-term supply contracts"
+    },
+    {
+      "name": "Inventory Waste & Shrinkage",
+      "description": "Product loss from spoilage, damage, or compliance issues",
+      "quick_win": "Tighten inventory controls and FIFO rotation"
+    },
+    {
+      "name": "Labor Inefficiency",
+      "description": "Manual processes that could be automated",
+      "quick_win": "Implement task tracking and performance metrics"
+    }
+  ],
+  "fast_wins": [
+    {
+      "name": "SKU Rationalization",
+      "description": "Eliminate slow-moving products draining production time"
+    },
+    {
+      "name": "Batch Size Optimization",
+      "description": "Right-size batches to minimize waste and storage"
+    },
+    {
+      "name": "White-Label Capacity",
+      "description": "Fill excess capacity with white-label production"
+    }
+  ],
+  "first_change": "Lock in a 6-month supply contract with a reliable cultivator. Variable input costs are killing your margins. Sacrifice some upside for predictability."
+}

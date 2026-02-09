@@ -1,0 +1,364 @@
+{
+  "dataset_key": "weekly_sales",
+  "endpoint": "rqtv-uenj",
+  "status": "success",
+  "row_count": 71,
+  "generated_at": "2026-02-08T14:34:53.398677Z",
+  "rows": [
+    {
+      "YearMonth": "2020-01",
+      "AverageRetailPriceperGm": "14.68",
+      "Unit": "Grams"
+    },
+    {
+      "YearMonth": "2020-02",
+      "AverageRetailPriceperGm": "14.57",
+      "Unit": "Grams"
+    },
+    {
+      "YearMonth": "2020-03",
+      "AverageRetailPriceperGm": "14.39",
+      "Unit": "Grams"
+    },
+    {
+      "YearMonth": "2020-04",
+      "AverageRetailPriceperGm": "10.15",
+      "Unit": "Grams"
+    },
+    {
+      "YearMonth": "2020-05",
+      "AverageRetailPriceperGm": "14.36",
+      "Unit": "Grams"
+    },
+    {
+      "YearMonth": "2020-06",
+      "AverageRetailPriceperGm": "14.34",
+      "Unit": "Grams"
+    },
+    {
+      "YearMonth": "2020-07",
+      "AverageRetailPriceperGm": "14.34",
+      "Unit": "Grams"
+    },
+    {
+      "YearMonth": "2020-08",
+      "AverageRetailPriceperGm": "14.39",
+      "Unit": "Grams"
+    },
+    {
+      "YearMonth": "2020-09",
+      "AverageRetailPriceperGm": "14.34",
+      "Unit": "Grams"
+    },
+    {
+      "YearMonth": "2020-10",
+      "AverageRetailPriceperGm": "14.39",
+      "Unit": "Grams"
+    },
+    {
+      "YearMonth": "2020-11",
+      "AverageRetailPriceperGm": "14.32",
+      "Unit": "Grams"
+    },
+    {
+      "YearMonth": "2020-12",
+      "AverageRetailPriceperGm": "14.16",
+      "Unit": "Grams"
+    },
+    {
+      "YearMonth": "2021-01",
+      "AverageRetailPriceperGm": "14.21",
+      "Unit": "Grams"
+    },
+    {
+      "YearMonth": "2021-02",
+      "AverageRetailPriceperGm": "14.24",
+      "Unit": "Grams"
+    },
+    {
+      "YearMonth": "2021-03",
+      "AverageRetailPriceperGm": "14.23",
+      "Unit": "Grams"
+    },
+    {
+      "YearMonth": "2021-04",
+      "AverageRetailPriceperGm": "14.02",
+      "Unit": "Grams"
+    },
+    {
+      "YearMonth": "2021-05",
+      "AverageRetailPriceperGm": "14.02",
+      "Unit": "Grams"
+    },
+    {
+      "YearMonth": "2021-06",
+      "AverageRetailPriceperGm": "13.94",
+      "Unit": "Grams"
+    },
+    {
+      "YearMonth": "2021-07",
+      "AverageRetailPriceperGm": "13.9",
+      "Unit": "Grams"
+    },
+    {
+      "YearMonth": "2021-08",
+      "AverageRetailPriceperGm": "13.76",
+      "Unit": "Grams"
+    },
+    {
+      "YearMonth": "2021-09",
+      "AverageRetailPriceperGm": "13.61",
+      "Unit": "Grams"
+    },
+    {
+      "YearMonth": "2021-10",
+      "AverageRetailPriceperGm": "13.45",
+      "Unit": "Grams"
+    },
+    {
+      "YearMonth": "2021-11",
+      "AverageRetailPriceperGm": "13.28",
+      "Unit": "Grams"
+    },
+    {
+      "YearMonth": "2021-12",
+      "AverageRetailPriceperGm": "12.85",
+      "Unit": "Grams"
+    },
+    {
+      "YearMonth": "2022-01",
+      "AverageRetailPriceperGm": "12.64",
+      "Unit": "Grams"
+    },
+    {
+      "YearMonth": "2022-02",
+      "AverageRetailPriceperGm": "12.35",
+      "Unit": "Grams"
+    },
+    {
+      "YearMonth": "2022-03",
+      "AverageRetailPriceperGm": "11.95",
+      "Unit": "Grams"
+    },
+    {
+      "YearMonth": "2022-04",
+      "AverageRetailPriceperGm": "11.29",
+      "Unit": "Grams"
+    },
+    {
+      "YearMonth": "2022-05",
+      "AverageRetailPriceperGm": "11.01",
+      "Unit": "Grams"
+    },
+    {
+      "YearMonth": "2022-06",
+      "AverageRetailPriceperGm": "10.57",
+      "Unit": "Grams"
+    },
+    {
+      "YearMonth": "2022-07",
+      "AverageRetailPriceperGm": "10.15",
+      "Unit": "Grams"
+    },
+    {
+      "YearMonth": "2022-08",
+      "AverageRetailPriceperGm": "9.71",
+      "Unit": "Grams"
+    },
+    {
+      "YearMonth": "2022-09",
+      "AverageRetailPriceperGm": "9.16",
+      "Unit": "Grams"
+    },
+    {
+      "YearMonth": "2022-10",
+      "AverageRetailPriceperGm": "7.61",
+      "Unit": "Grams"
+    },
+    {
+      "YearMonth": "2022-11",
+      "AverageRetailPriceperGm": "8.04",
+      "Unit": "Grams"
+    },
+    {
+      "YearMonth": "2022-12",
+      "AverageRetailPriceperGm": "7.61",
+      "Unit": "Grams"
+    },
+    {
+      "YearMonth": "2023-01",
+      "AverageRetailPriceperGm": "7.06",
+      "Unit": "Grams"
+    },
+    {
+      "YearMonth": "2023-02",
+      "AverageRetailPriceperGm": "6.09",
+      "Unit": "Grams"
+    },
+    {
+      "YearMonth": "2023-03",
+      "AverageRetailPriceperGm": "6.58",
+      "Unit": "Grams"
+    },
+    {
+      "YearMonth": "2023-04",
+      "AverageRetailPriceperGm": "5.97",
+      "Unit": "Grams"
+    },
+    {
+      "YearMonth": "2023-05",
+      "AverageRetailPriceperGm": "5.98",
+      "Unit": "Grams"
+    },
+    {
+      "YearMonth": "2023-06",
+      "AverageRetailPriceperGm": "5.75",
+      "Unit": "Grams"
+    },
+    {
+      "YearMonth": "2023-07",
+      "AverageRetailPriceperGm": "6.2",
+      "Unit": "Grams"
+    },
+    {
+      "YearMonth": "2023-08",
+      "AverageRetailPriceperGm": "5.95",
+      "Unit": "Grams"
+    },
+    {
+      "YearMonth": "2023-09",
+      "AverageRetailPriceperGm": "5.89",
+      "Unit": "Grams"
+    },
+    {
+      "YearMonth": "2023-10",
+      "AverageRetailPriceperGm": "5.64",
+      "Unit": "Grams"
+    },
+    {
+      "YearMonth": "2023-11",
+      "AverageRetailPriceperGm": "5.59",
+      "Unit": "Grams"
+    },
+    {
+      "YearMonth": "2023-12",
+      "AverageRetailPriceperGm": "5.66",
+      "Unit": "Grams"
+    },
+    {
+      "YearMonth": "2024-01",
+      "AverageRetailPriceperGm": "5.65",
+      "Unit": "Grams"
+    },
+    {
+      "YearMonth": "2024-02",
+      "AverageRetailPriceperGm": "5.28",
+      "Unit": "Grams"
+    },
+    {
+      "YearMonth": "2024-03",
+      "AverageRetailPriceperGm": "5.31",
+      "Unit": "Grams"
+    },
+    {
+      "YearMonth": "2024-04",
+      "AverageRetailPriceperGm": "5.31",
+      "Unit": "Grams"
+    },
+    {
+      "YearMonth": "2024-05",
+      "AverageRetailPriceperGm": "5.28",
+      "Unit": "Grams"
+    },
+    {
+      "YearMonth": "2024-06",
+      "AverageRetailPriceperGm": "5.05",
+      "Unit": "Grams"
+    },
+    {
+      "YearMonth": "2024-07",
+      "AverageRetailPriceperGm": "5.01",
+      "Unit": "Grams"
+    },
+    {
+      "YearMonth": "2024-08",
+      "AverageRetailPriceperGm": "4.91",
+      "Unit": "Grams"
+    },
+    {
+      "YearMonth": "2024-09",
+      "AverageRetailPriceperGm": "4.85",
+      "Unit": "Grams"
+    },
+    {
+      "YearMonth": "2024-10",
+      "AverageRetailPriceperGm": "4.77",
+      "Unit": "Grams"
+    },
+    {
+      "YearMonth": "2024-11",
+      "AverageRetailPriceperGm": "4.56",
+      "Unit": "Grams"
+    },
+    {
+      "YearMonth": "2024-12",
+      "AverageRetailPriceperGm": "4.45",
+      "Unit": "Grams"
+    },
+    {
+      "YearMonth": "2025-01",
+      "AverageRetailPriceperGm": "4.42",
+      "Unit": "Grams"
+    },
+    {
+      "YearMonth": "2025-02",
+      "AverageRetailPriceperGm": "4.32",
+      "Unit": "Grams"
+    },
+    {
+      "YearMonth": "2025-03",
+      "AverageRetailPriceperGm": "4.28",
+      "Unit": "Grams"
+    },
+    {
+      "YearMonth": "2025-04",
+      "AverageRetailPriceperGm": "4.15",
+      "Unit": "Grams"
+    },
+    {
+      "YearMonth": "2025-05",
+      "AverageRetailPriceperGm": "4.21",
+      "Unit": "Grams"
+    },
+    {
+      "YearMonth": "2025-06",
+      "AverageRetailPriceperGm": "4.2",
+      "Unit": "Grams"
+    },
+    {
+      "YearMonth": "2025-07",
+      "AverageRetailPriceperGm": "4.14",
+      "Unit": "Grams"
+    },
+    {
+      "YearMonth": "2025-08",
+      "AverageRetailPriceperGm": "4.13",
+      "Unit": "Grams"
+    },
+    {
+      "YearMonth": "2025-09",
+      "AverageRetailPriceperGm": "4.09",
+      "Unit": "Grams"
+    },
+    {
+      "YearMonth": "2025-10",
+      "AverageRetailPriceperGm": "4.08",
+      "Unit": "Grams"
+    },
+    {
+      "YearMonth": "2025-11",
+      "AverageRetailPriceperGm": "4.01",
+      "Unit": "Grams"
+    }
+  ]
+}

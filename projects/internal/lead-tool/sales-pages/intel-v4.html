@@ -1,0 +1,1433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stop Wasting Time on Dead Leads — We Find Your Buyers | MA Market Intel Service</title>
+    <meta name="description" content="Tell us what you sell. He'll analyze 600+ MA cannabis operators and deliver a qualified buyer list to your inbox. Done-for-you lead intelligence. No software, no hassle.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-deep: #1E1C1A;
+            --bg-card: #2C2926;
+            --text-warm: #ECEBE6;
+            --accent-lime: #CCFF00;
+            --support-silver: #A1A1AA;
+            --border-subtle: rgba(236, 235, 230, 0.08);
+            --border-accent: rgba(204, 255, 0, 0.3);
+        }
+        
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+            background-color: var(--bg-deep);
+            color: var(--text-warm);
+            line-height: 1.6;
+            font-size: 17px;
+            overflow-x: hidden;
+        }
+        
+        /* Grain Texture Overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.035;
+            pointer-events: none;
+            z-index: 9999;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+        
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-family: 'Fraunces', Georgia, serif;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            line-height: 1.15;
+        }
+        
+        .mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .text-silver {
+            color: var(--support-silver);
+        }
+        
+        .text-lime {
+            color: var(--accent-lime);
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 20px 0;
+            background: linear-gradient(to bottom, var(--bg-deep) 0%, transparent 100%);
+        }
+        
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: 'Fraunces', serif;
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-warm);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo-mark {
+            width: 32px;
+            height: 32px;
+            background: var(--accent-lime);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--bg-deep);
+            font-weight: 700;
+            font-size: 14px;
+        }
+        
+        .nav-cta {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--bg-deep);
+            background: var(--accent-lime);
+            padding: 12px 24px;
+            border-radius: 100px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+        
+        .nav-cta:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 20px rgba(204, 255, 0, 0.3);
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 140px 0 100px;
+            position: relative;
+        }
+        
+        .hero-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--support-silver);
+            margin-bottom: 32px;
+        }
+        
+        .hero-eyebrow::before {
+            content: '';
+            width: 40px;
+            height: 1px;
+            background: var(--accent-lime);
+        }
+        
+        .hero h1 {
+            font-size: clamp(42px, 7vw, 80px);
+            max-width: 900px;
+            margin-bottom: 32px;
+        }
+        
+        .hero h1 span {
+            color: var(--accent-lime);
+            font-style: italic;
+        }
+        
+        .hero-sub {
+            font-size: 21px;
+            color: var(--support-silver);
+            max-width: 620px;
+            margin-bottom: 48px;
+            line-height: 1.7;
+        }
+        
+        .hero-sub strong {
+            color: var(--text-warm);
+        }
+        
+        .hero-cta-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            align-items: center;
+        }
+        
+        .primary-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--accent-lime);
+            color: var(--bg-deep);
+            font-size: 16px;
+            font-weight: 600;
+            padding: 18px 36px;
+            border-radius: 100px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+        
+        .primary-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(204, 255, 0, 0.25);
+        }
+        
+        .secondary-note {
+            font-size: 14px;
+            color: var(--support-silver);
+        }
+        
+        /* Promise Strip */
+        .promise-strip {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 32px;
+            margin-top: 64px;
+            padding-top: 48px;
+            border-top: 1px solid var(--border-subtle);
+        }
+        
+        .promise-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 15px;
+            color: var(--support-silver);
+        }
+        
+        .promise-icon {
+            color: var(--accent-lime);
+            font-size: 18px;
+        }
+        
+        /* Section Spacing */
+        section {
+            padding: 100px 0;
+        }
+        
+        .section-gap {
+            padding: 120px 0;
+        }
+        
+        .section-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: var(--accent-lime);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 20px;
+        }
+        
+        .section-title {
+            font-size: clamp(32px, 5vw, 52px);
+            max-width: 700px;
+        }
+        
+        /* Empathy Section */
+        .empathy {
+            background: var(--bg-card);
+            border-top: 1px solid var(--border-subtle);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+        
+        .empathy-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 64px;
+        }
+        
+        .empathy-header h2 {
+            margin-bottom: 20px;
+        }
+        
+        .empathy-header p {
+            font-size: 19px;
+            color: var(--support-silver);
+            line-height: 1.7;
+        }
+        
+        .pain-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        
+        .pain-card {
+            background: var(--bg-deep);
+            border: 1px solid var(--border-subtle);
+            padding: 40px;
+            position: relative;
+        }
+        
+        .pain-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #ff4444, transparent);
+            opacity: 0.5;
+        }
+        
+        .pain-emoji {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+        
+        .pain-card h3 {
+            font-size: 22px;
+            margin-bottom: 12px;
+        }
+        
+        .pain-card p {
+            color: var(--support-silver);
+            line-height: 1.7;
+            font-size: 15px;
+        }
+        
+        /* The Service Section */
+        .service-section {
+            padding: 120px 0;
+        }
+        
+        .service-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+        
+        .service-text h2 {
+            font-size: 44px;
+            margin-bottom: 24px;
+        }
+        
+        .service-text h2 span {
+            color: var(--accent-lime);
+        }
+        
+        .service-text > p {
+            color: var(--support-silver);
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        
+        .randy-note {
+            background: rgba(204, 255, 0, 0.05);
+            border-left: 3px solid var(--accent-lime);
+            padding: 24px 28px;
+            margin-top: 32px;
+        }
+        
+        .randy-note p {
+            margin: 0;
+            font-size: 16px;
+            color: var(--text-warm);
+            line-height: 1.7;
+        }
+        
+        .randy-note strong {
+            color: var(--accent-lime);
+        }
+        
+        .service-visual {
+            background: var(--bg-card);
+            border: 1px solid var(--border-accent);
+            padding: 48px;
+        }
+        
+        .visual-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 32px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+        
+        .visual-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--accent-lime);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .visual-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: var(--support-silver);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        
+        .conversation-flow {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .convo-bubble {
+            padding: 16px 20px;
+            border-radius: 12px;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+        
+        .convo-bubble.you {
+            background: rgba(204, 255, 0, 0.1);
+            border: 1px solid var(--border-accent);
+            align-self: flex-end;
+            max-width: 85%;
+        }
+        
+        .convo-bubble.randy {
+            background: var(--bg-deep);
+            border: 1px solid var(--border-subtle);
+            align-self: flex-start;
+            max-width: 85%;
+        }
+        
+        .convo-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 6px;
+            opacity: 0.7;
+        }
+        
+        /* How It Works */
+        .how-it-works {
+            background: var(--bg-card);
+            border-top: 1px solid var(--border-subtle);
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 120px 0;
+        }
+        
+        .how-header {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 72px;
+        }
+        
+        .how-header h2 {
+            margin-bottom: 16px;
+        }
+        
+        .how-header p {
+            color: var(--support-silver);
+            font-size: 18px;
+        }
+        
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+        
+        .step-card {
+            background: var(--bg-deep);
+            border: 1px solid var(--border-subtle);
+            padding: 48px 40px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .step-number {
+            position: absolute;
+            top: -24px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 48px;
+            height: 48px;
+            background: var(--accent-lime);
+            color: var(--bg-deep);
+            font-family: 'Fraunces', serif;
+            font-size: 22px;
+            font-weight: 600;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .step-icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+            margin-top: 16px;
+        }
+        
+        .step-card h3 {
+            font-size: 22px;
+            margin-bottom: 12px;
+        }
+        
+        .step-card p {
+            color: var(--support-silver);
+            font-size: 15px;
+            line-height: 1.7;
+        }
+        
+        .step-arrow {
+            display: none;
+        }
+        
+        /* What You Get */
+        .deliverables {
+            padding: 120px 0;
+        }
+        
+        .deliverables-header {
+            text-align: center;
+            max-width: 650px;
+            margin: 0 auto 64px;
+        }
+        
+        .deliverables-header h2 {
+            margin-bottom: 16px;
+        }
+        
+        .deliverables-header p {
+            color: var(--support-silver);
+            font-size: 18px;
+        }
+        
+        .deliverables-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+        
+        .deliverable-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            padding: 36px;
+            display: flex;
+            gap: 20px;
+        }
+        
+        .deliverable-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(204, 255, 0, 0.1);
+            border: 1px solid var(--border-accent);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            flex-shrink: 0;
+        }
+        
+        .deliverable-card h4 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 17px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .deliverable-card p {
+            color: var(--support-silver);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+        
+        .deliverable-badge {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            color: var(--accent-lime);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-top: 8px;
+        }
+        
+        /* Menu Gap Section */
+        .menu-gap-section {
+            background: var(--bg-card);
+            border-top: 1px solid var(--border-subtle);
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 120px 0;
+        }
+        
+        .menu-gap-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+        
+        .menu-gap-text h2 {
+            font-size: 42px;
+            margin-bottom: 24px;
+        }
+        
+        .menu-gap-text h2 span {
+            color: var(--accent-lime);
+        }
+        
+        .menu-gap-text p {
+            color: var(--support-silver);
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        
+        .menu-gap-example {
+            background: var(--bg-deep);
+            border: 1px solid var(--border-accent);
+            padding: 40px;
+        }
+        
+        .example-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+        
+        .example-header span {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: var(--support-silver);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        
+        .example-scenario {
+            margin-bottom: 24px;
+        }
+        
+        .example-scenario h4 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--accent-lime);
+        }
+        
+        .example-scenario p {
+            color: var(--support-silver);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        .example-result {
+            background: rgba(204, 255, 0, 0.08);
+            border: 1px solid var(--border-accent);
+            padding: 20px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .result-text {
+            font-size: 15px;
+        }
+        
+        .result-number {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--accent-lime);
+        }
+        
+        /* Who This Helps */
+        .audience-section {
+            padding: 120px 0;
+        }
+        
+        .audience-header {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 64px;
+        }
+        
+        .audience-header h2 {
+            margin-bottom: 16px;
+        }
+        
+        .audience-header p {
+            color: var(--support-silver);
+            font-size: 18px;
+        }
+        
+        .audience-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        
+        .audience-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .audience-icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+        
+        .audience-card h3 {
+            font-size: 22px;
+            margin-bottom: 12px;
+        }
+        
+        .audience-card p {
+            color: var(--support-silver);
+            font-size: 15px;
+            line-height: 1.7;
+        }
+        
+        /* Pricing Section */
+        .pricing-section {
+            background: var(--bg-card);
+            border-top: 1px solid var(--border-subtle);
+            padding: 120px 0;
+        }
+        
+        .pricing-wrapper {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .pricing-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+        
+        .pricing-header h2 {
+            font-size: 44px;
+            margin-bottom: 16px;
+        }
+        
+        .pricing-header p {
+            color: var(--support-silver);
+            font-size: 18px;
+        }
+        
+        .pricing-card {
+            background: var(--bg-deep);
+            border: 2px solid var(--accent-lime);
+            padding: 56px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .pricing-badge {
+            position: absolute;
+            top: -14px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent-lime);
+            color: var(--bg-deep);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 8px 20px;
+            letter-spacing: 0.05em;
+        }
+        
+        .pricing-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            color: var(--support-silver);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 8px;
+        }
+        
+        .pricing-amount {
+            font-family: 'Fraunces', serif;
+            font-size: 72px;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: var(--accent-lime);
+        }
+        
+        .pricing-desc {
+            color: var(--support-silver);
+            font-size: 17px;
+            margin-bottom: 36px;
+        }
+        
+        .pricing-includes {
+            text-align: left;
+            border-top: 1px solid var(--border-subtle);
+            padding-top: 32px;
+            margin-bottom: 36px;
+        }
+        
+        .pricing-includes h4 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--support-silver);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .includes-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+        
+        .includes-list li {
+            font-size: 15px;
+            color: var(--text-warm);
+            padding-left: 24px;
+            position: relative;
+        }
+        
+        .includes-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent-lime);
+            font-weight: 600;
+        }
+        
+        .pricing-cta {
+            display: block;
+            background: var(--accent-lime);
+            color: var(--bg-deep);
+            font-size: 17px;
+            font-weight: 600;
+            padding: 20px 40px;
+            border-radius: 100px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            margin-bottom: 20px;
+        }
+        
+        .pricing-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(204, 255, 0, 0.3);
+        }
+        
+        .pricing-subtext {
+            font-size: 14px;
+            color: var(--support-silver);
+        }
+        
+        .scarcity-notice {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            border: 1px solid rgba(255, 68, 68, 0.3);
+            background: rgba(255, 68, 68, 0.05);
+        }
+        
+        .scarcity-notice p {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            color: #ff6b6b;
+        }
+        
+        /* Final CTA */
+        .final-cta {
+            padding: 120px 0;
+            text-align: center;
+        }
+        
+        .cta-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .cta-content h2 {
+            font-size: 48px;
+            margin-bottom: 24px;
+        }
+        
+        .cta-content h2 span {
+            color: var(--accent-lime);
+            font-style: italic;
+        }
+        
+        .cta-content > p {
+            font-size: 19px;
+            color: var(--support-silver);
+            margin-bottom: 48px;
+            line-height: 1.7;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            justify-content: center;
+            margin-bottom: 32px;
+        }
+        
+        .cta-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--accent-lime);
+            color: var(--bg-deep);
+            font-size: 17px;
+            font-weight: 600;
+            padding: 20px 40px;
+            border-radius: 100px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+        
+        .cta-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(204, 255, 0, 0.3);
+        }
+        
+        .cta-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: transparent;
+            color: var(--text-warm);
+            font-size: 17px;
+            font-weight: 600;
+            padding: 20px 40px;
+            border-radius: 100px;
+            text-decoration: none;
+            border: 1px solid var(--border-subtle);
+            transition: all 0.2s ease;
+        }
+        
+        .cta-secondary:hover {
+            border-color: var(--accent-lime);
+        }
+        
+        .cta-subtext {
+            font-size: 15px;
+            color: var(--support-silver);
+        }
+        
+        .cta-subtext a {
+            color: var(--accent-lime);
+            text-decoration: none;
+        }
+        
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border-subtle);
+            padding: 48px 0;
+        }
+        
+        footer .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .footer-text {
+            font-size: 14px;
+            color: var(--support-silver);
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 32px;
+        }
+        
+        .footer-links a {
+            font-size: 14px;
+            color: var(--support-silver);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--text-warm);
+        }
+        
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .service-content,
+            .menu-gap-content {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+            
+            .pain-grid,
+            .steps-grid,
+            .deliverables-grid,
+            .audience-cards,
+            .includes-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .section-title {
+                font-size: 28px;
+            }
+            
+            .pricing-amount {
+                font-size: 56px;
+            }
+            
+            .cta-content h2 {
+                font-size: 32px;
+            }
+            
+            .promise-strip {
+                flex-direction: column;
+                gap: 16px;
+            }
+            
+            footer .container {
+                flex-direction: column;
+                gap: 24px;
+                text-align: center;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <a href="#" class="logo">
+                <div class="logo-mark">R</div>
+                <span>Roviq</span>
+            </a>
+            <a href="mailto:randy@roviqai.xyz" class="nav-cta">Get Started</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-eyebrow">Done-for-You Lead Intel</div>
+            <h1>Stop Wasting Time on <span>Dead Leads.</span><br>We Find Your Buyers.</h1>
+            <p class="hero-sub">Tell us what you sell. We analyze 600+ Massachusetts cannabis operators. <strong>You get a qualified buyer list delivered to your inbox.</strong> No software. No learning curve. No hassle.</p>
+            
+            <div class="hero-cta-group">
+                <a href="mailto:randy@roviqai.xyz?subject=Intel%20Service%20Inquiry" class="primary-cta">
+                    Book a Call →
+                </a>
+                <span class="secondary-note">Response within 24 hours</span>
+            </div>
+            
+            <div class="promise-strip">
+                <div class="promise-item">
+                    <span class="promise-icon">✓</span>
+                    <span>We do all the work</span>
+                </div>
+                <div class="promise-item">
+                    <span class="promise-icon">✓</span>
+                    <span>Delivered to your inbox</span>
+                </div>
+                <div class="promise-item">
+                    <span class="promise-icon">✓</span>
+                    <span>No software to learn</span>
+                </div>
+                <div class="promise-item">
+                    <span class="promise-icon">✓</span>
+                    <span>One call, that's it</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Empathy Section -->
+    <section class="empathy section-gap">
+        <div class="container">
+            <div class="empathy-header">
+                <div class="section-label">We Get It</div>
+                <h2 class="section-title">Selling to Dispensaries Is Exhausting</h2>
+                <p>You've been there. Driving across the state, pitching to stores that closed last quarter. Sending emails into the void. Wondering who actually needs what you sell.</p>
+            </div>
+            
+            <div class="pain-grid">
+                <div class="pain-card">
+                    <div class="pain-emoji">😤</div>
+                    <h3>Chasing Zombies</h3>
+                    <p>40% of your outreach goes to stores that are closed, struggling, or just not buying. That's two days a week wasted on dead leads.</p>
+                </div>
+                <div class="pain-card">
+                    <div class="pain-emoji">🎯</div>
+                    <h3>Flying Blind</h3>
+                    <p>You don't know who actually needs your product category. You're guessing. And guessing means losing to competitors who know.</p>
+                </div>
+                <div class="pain-card">
+                    <div class="pain-emoji">📧</div>
+                    <h3>The Black Hole</h3>
+                    <p>info@dispensary.com goes nowhere. You need the buyer's actual name, their actual email. Not a spam folder.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Service -->
+    <section class="service-section">
+        <div class="container">
+            <div class="service-content">
+                <div class="service-text">
+                    <div class="section-label">The Service</div>
+                    <h2>We Do the <span>Work.</span><br>You Get the List.</h2>
+                    <p>This isn't a tool you have to figure out. This isn't a database you wade through. This is a service.</p>
+                    <p>You tell us what you sell. He analyzes the entire Massachusetts market—every operator, every menu, every signal. Then he delivers a qualified buyer list, customized to your exact product category.</p>
+                    
+                    <div class="randy-note">
+                        <p><strong>Real talk:</strong> We personally review the data, builds the filters, and makes sure you're getting leads that actually make sense for YOUR business. This is consultant-level intel, not self-serve SaaS.</p>
+                    </div>
+                </div>
+                
+                <div class="service-visual">
+                    <div class="visual-header">
+                        <div class="visual-dot"></div>
+                        <div class="visual-label">How the Conversation Goes</div>
+                    </div>
+                    
+                    <div class="conversation-flow">
+                        <div class="convo-bubble you">
+                            <div class="convo-label">You</div>
+                            "Hey, we sell cannabis beverages. Need to find dispensaries that would actually stock us."
+                        </div>
+                        <div class="convo-bubble randy">
+                            <div class="convo-label">Roviq</div>
+                            "Got it. I'll pull every MA operator with weak beverage selection—fewer than 3 SKUs. I'll include buyer contacts, store health signals, and talking points. Give me 48 hours."
+                        </div>
+                        <div class="convo-bubble you">
+                            <div class="convo-label">You</div>
+                            "Perfect."
+                        </div>
+                        <div class="convo-bubble randy">
+                            <div class="convo-label">Roviq</div>
+                            "Done. 47 qualified leads in your inbox. Go close some deals."
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works">
+        <div class="container">
+            <div class="how-header">
+                <div class="section-label">How It Works</div>
+                <h2 class="section-title">Three Steps. That's It.</h2>
+                <p>No onboarding. No training. No figuring it out yourself.</p>
+            </div>
+            
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <div class="step-icon">📞</div>
+                    <h3>Quick Call</h3>
+                    <p>15 minutes. Tell us what you sell, who your ideal buyer is, and what matters most. That's all we need.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <div class="step-icon">🔍</div>
+                    <h3>We Analyze</h3>
+                    <p>We dig through 600+ operators. Menu gaps. Growth signals. Buyer contacts. We build your custom intel package.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <div class="step-icon">📥</div>
+                    <h3>You Receive</h3>
+                    <p>Within 48 hours: a clean CSV, context brief, and talk tracks. Ready to use. Start closing deals.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What You Get -->
+    <section class="deliverables">
+        <div class="container">
+            <div class="deliverables-header">
+                <div class="section-label">What You Get</div>
+                <h2 class="section-title">Everything Delivered, Ready to Use</h2>
+                <p>No assembly required. Open the email, start selling.</p>
+            </div>
+            
+            <div class="deliverables-grid">
+                <div class="deliverable-card">
+                    <div class="deliverable-icon">📊</div>
+                    <div>
+                        <h4>Qualified Lead List</h4>
+                        <p>Your top prospects ranked by fit for YOUR product. Not generic—customized to your category and goals.</p>
+                        <div class="deliverable-badge">Clean CSV format</div>
+                    </div>
+                </div>
+                <div class="deliverable-card">
+                    <div class="deliverable-icon">👤</div>
+                    <div>
+                        <h4>Decision Maker Contacts</h4>
+                        <p>Actual buyer names and emails. Not info@ black holes. The people who sign purchase orders.</p>
+                        <div class="deliverable-badge">Verified contacts</div>
+                    </div>
+                </div>
+                <div class="deliverable-card">
+                    <div class="deliverable-icon">📈</div>
+                    <div>
+                        <h4>Store Health Signals</h4>
+                        <p>Review velocity, hiring activity, operational status. Know who's growing vs. who's struggling.</p>
+                        <div class="deliverable-badge">Weekly verified</div>
+                    </div>
+                </div>
+                <div class="deliverable-card">
+                    <div class="deliverable-icon">💬</div>
+                    <div>
+                        <h4>Talk Tracks & Context</h4>
+                        <p>Brief on each priority account. What they're missing, why they need you, how to open the conversation.</p>
+                        <div class="deliverable-badge">Sales-ready</div>
+                    </div>
+                </div>
+                <div class="deliverable-card">
+                    <div class="deliverable-icon">🎯</div>
+                    <div>
+                        <h4>Menu Gap Analysis</h4>
+                        <p>Dispensaries with holes in your category. They need what you sell—they just don't know it yet.</p>
+                        <div class="deliverable-badge">Our killer feature</div>
+                    </div>
+                </div>
+                <div class="deliverable-card">
+                    <div class="deliverable-icon">🔄</div>
+                    <div>
+                        <h4>30-Day Refresh</h4>
+                        <p>Markets move fast. You get one free data refresh within 30 days. Always current, always relevant.</p>
+                        <div class="deliverable-badge">Included</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Gap Explanation -->
+    <section class="menu-gap-section">
+        <div class="container">
+            <div class="menu-gap-content">
+                <div class="menu-gap-text">
+                    <div class="section-label">Why It Works</div>
+                    <h2>The Menu Gap Is <span>Your Opportunity</span></h2>
+                    <p>Every dispensary has holes in their menu. Maybe they carry one beverage brand. Maybe zero topicals. Those gaps aren't problems—they're opportunities wearing name tags.</p>
+                    <p>We analyze every menu in the state. When you tell us your category, we find every store that's underserving it. Those stores need what you sell. They just haven't found you yet.</p>
+                </div>
+                
+                <div class="menu-gap-example">
+                    <div class="example-header">
+                        <div class="visual-dot"></div>
+                        <span>Real Example</span>
+                    </div>
+                    
+                    <div class="example-scenario">
+                        <h4>Beverage Brand Inquiry</h4>
+                        <p>"We make cannabis-infused seltzers. Who in MA needs more beverage options?"</p>
+                    </div>
+                    
+                    <div class="example-scenario">
+                        <h4>Our Analysis</h4>
+                        <p>Filtered all 600+ operators for stores carrying fewer than 3 beverage SKUs. Cross-referenced with growth signals and buyer contacts.</p>
+                    </div>
+                    
+                    <div class="example-result">
+                        <div class="result-text">Qualified leads delivered</div>
+                        <div class="result-number">47</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Who This Helps -->
+    <section class="audience-section">
+        <div class="container">
+            <div class="audience-header">
+                <div class="section-label">Who This Helps</div>
+                <h2 class="section-title">Built for People Who Sell to Dispensaries</h2>
+                <p>If you're trying to get products on dispensary shelves in Massachusetts, this is for you.</p>
+            </div>
+            
+            <div class="audience-cards">
+                <div class="audience-card">
+                    <div class="audience-icon">🍃</div>
+                    <h3>Cannabis Brands</h3>
+                    <p>Launching a new product? Expanding distribution? We find the stores that actually need your category and aren't already saturated.</p>
+                </div>
+                <div class="audience-card">
+                    <div class="audience-icon">📦</div>
+                    <h3>Distributors</h3>
+                    <p>Represent multiple brands? We help you prioritize which stores to hit first—based on what they're missing, not what you're guessing.</p>
+                </div>
+                <div class="audience-card">
+                    <div class="audience-icon">🤝</div>
+                    <h3>Sales Brokers</h3>
+                    <p>Time is money. Stop wasting it on cold calls to stores that aren't buying. Get warm leads that actually convert.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="pricing-section">
+        <div class="container">
+            <div class="pricing-wrapper">
+                <div class="pricing-header">
+                    <div class="section-label">Investment</div>
+                    <h2>One Price. Everything Included.</h2>
+                    <p>No subscriptions. No hidden fees. No upsells.</p>
+                </div>
+                
+                <div class="pricing-card">
+                    <div class="pricing-badge">COMPLETE SERVICE</div>
+                    <div class="pricing-label">One-Time Investment</div>
+                    <div class="pricing-amount">$500</div>
+                    <div class="pricing-desc">Full intel package, customized to your product category</div>
+                    
+                    <div class="pricing-includes">
+                        <h4>Everything Included:</h4>
+                        <ul class="includes-list">
+                            <li>Custom lead list</li>
+                            <li>Menu gap analysis</li>
+                            <li>Decision maker contacts</li>
+                            <li>Store health signals</li>
+                            <li>Talk tracks & context</li>
+                            <li>30-day data refresh</li>
+                            <li>Clean CSV delivery</li>
+                            <li>Direct access to our team</li>
+                        </ul>
+                    </div>
+                    
+                    <a href="mailto:randy@roviqai.xyz?subject=Intel%20Service%20-%20Ready%20to%20Start" class="pricing-cta">Book Your Call →</a>
+                    <div class="pricing-subtext">One deal pays for everything. Close two, and it's a no-brainer.</div>
+                </div>
+                
+                <div class="scarcity-notice">
+                    <p>⚠️ Limited to 3 clients per quarter to maintain data exclusivity.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Stop <span>Guessing?</span></h2>
+                <p>One quick call. Tell us what you sell. Get a qualified buyer list delivered to your inbox. It's that simple.</p>
+                
+                <div class="cta-buttons">
+                    <a href="mailto:randy@roviqai.xyz?subject=Let's%20Talk%20Intel" class="cta-primary">
+                        Email Us →
+                    </a>
+                    <a href="mailto:randy@roviqai.xyz?subject=Quick%20Question" class="cta-secondary">
+                        Ask a Question
+                    </a>
+                </div>
+                
+                <p class="cta-subtext"><a href="mailto:randy@roviqai.xyz">randy@roviqai.xyz</a> • Response within 24 hours</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-text">
+                © 2025 Roviq AI. Massachusetts Cannabis Market Intelligence.
+            </div>
+            <div class="footer-links">
+                <a href="mailto:randy@roviqai.xyz">randy@roviqai.xyz</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth reveal animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.pain-card, .step-card, .deliverable-card, .audience-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
