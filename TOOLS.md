@@ -12,6 +12,12 @@
 4. Wait for confirmation
 5. After writing → commit immediately
 
+### Subagent Rate Limits
+
+- **Max 2 subagents from the same provider at a time** (e.g., max 2 Antigravity agents concurrently)
+- Stagger across providers when possible (Antigravity, NVIDIA, OpenAI Codex)
+- Queue remaining tasks to run after the first batch completes
+
 ### Safe Commands (No Approval Needed)
 
 - `ls`, `cat`, `head`, `tail` (read files/directories)
