@@ -1,549 +1,414 @@
-# Decoded Shop — Comprehensive Shopify & SEO Analysis
+# Decoded Shop — Website & Digital Presence Audit
 
-**Prepared by:** Roviq Strategic Marketing Agency (roviqai.xyz)  
-**Date:** February 9, 2026  
-**Store URL:** https://decodedshop.myshopify.com/  
-**Client Status:** New Lead
-
----
-
-## Table of Contents
-
-1. [Executive Summary](#executive-summary)
-2. [Brand Overview](#brand-overview)
-3. [Product Catalog Analysis](#product-catalog-analysis)
-4. [Shopify Theme & UX Assessment](#shopify-theme--ux-assessment)
-5. [SEO Analysis](#seo-analysis)
-6. [Technical SEO Audit](#technical-seo-audit)
-7. [Content & Marketing Assessment](#content--marketing-assessment)
-8. [Domain & Online Presence](#domain--online-presence)
-9. [Competitive Positioning](#competitive-positioning)
-10. [Priority Recommendations](#priority-recommendations)
-11. [Proposed Roviq Engagement](#proposed-roviq-engagement)
+**Audit Date:** February 9, 2026  
+**Prepared by:** Roviq Digital Intelligence  
+**URL:** https://decodedshop.myshopify.com/  
+**Instagram:** @decoded.shop  
+**Location:** Texas (806 area code — Lubbock/Amarillo/TX Panhandle region)  
+**Industry:** Luxury streetwear / DTC fashion  
+**Platform:** Shopify (standard plan, `.myshopify.com` subdomain — no custom domain active)
 
 ---
 
-## 1. Executive Summary
-
-Decoded is a street-luxury fashion brand selling graphic tees, hoodies, sweatshirts, and coordinated sets. They operate on Shopify at `decodedshop.myshopify.com` with **no custom domain connected** — a critical branding and SEO gap. The store has **40 products** priced $25–$150, split across two collections: the mainline **"Decoded"** and the premium **"Decoded Noir"** line.
-
-### Key Findings
-
-| Category | Score | Assessment |
-|---|---|---|
-| **Product Catalog** | ⭐⭐⭐ | Solid 40-item catalog, good variety, premium pricing |
-| **Store Theme/UX** | ⭐⭐ | Default Shopify Dawn theme, minimal customization |
-| **SEO** | ⭐ | Near-zero SEO optimization — no meta descriptions, no alt text, no content |
-| **Domain/Branding** | ⭐ | Still on myshopify.com subdomain — no custom domain |
-| **Content Marketing** | ⭐ | Blog exists but is empty; no active content strategy |
-| **Social/Backlinks** | ⭐ | Pinterest profile found (inactive since 2015); no discoverable Instagram |
-| **Technical Health** | ⭐⭐⭐ | Shopify infrastructure is solid; sitemap exists; robots.txt standard |
-
-**Bottom line:** Decoded has a legitimate product line and brand identity, but the digital presence is severely underdeveloped. There is massive upside with basic e-commerce optimization work.
-
----
-
-## 2. Brand Overview
-
-### Brand Identity
-
-- **Brand Name:** Decoded
-- **Sub-brand:** Decoded Noir (luxury/premium line)
-- **Category:** Street-luxury fashion / streetwear
-- **Distribution Center:** Massachusetts (USA)
-- **Tagline/Positioning:** *"A fashion-forward street-luxury brand built on bold visuals, aggressive energy, and storytelling that celebrates individuality."*
-
-### Brand Positioning
-
-Decoded positions itself at the intersection of streetwear and luxury. Two distinct collections:
-
-- **Decoded (mainline):** *"Fashion-forward street-luxury brand built on bold visuals, aggressive energy, and storytelling that celebrates individuality. Every piece blends high-end design with raw street culture crafted for people who move with purpose, lead with confidence, and stand apart from the crowd."*
-- **Decoded Noir:** *"This isn't just fashion. This is DECODED NOIR — a luxury brand that speaks in silence and moves in Power. Defined by precision, crafted with intention, design designed for those who refuse to blend. Noir is unapologetic. A statement of power, precision and exclusivity."*
-
-### Vendor Attribution
-
-All products are listed under vendor "Decoded" — confirming this is a proprietary brand, not reselling.
-
----
-
-## 3. Product Catalog Analysis
-
-### Overview
-
-- **Total Products:** 40
-- **All In Stock:** 40/40 (0 out of stock)
-- **Price Range:** $25.00 – $150.00 USD
-- **Average Price:** ~$79 USD
-- **Shipping:** $13.00 standard ground (US), international varies
-- **Fulfillment:** Manual (self-fulfilled from Massachusetts)
-
-### Complete Product Inventory
-
-#### Tees ($25–$65)
-
-| Product | Price | Sizes |
-|---|---|---|
-| DAWG Youth Athletic Tee | $25.00 | S, M, L, XL |
-| DAWG Adult Tee | $35.00 | S, M, L, XL |
-| 911 Turbo Shirt Black | $45.00 | S, M, L, XL |
-| 911 Turbo White | $45.00 | S, M, L, XL |
-| Desperado | $45.00 | S, M, L, XL |
-| Lone Wolf Tee | $45.00 | S, M, L, XL |
-| Motor Cross Black | $45.00 | S, M, L, XL |
-| Motor Cross White | $45.00 | S, M, L, XL |
-| Rush Black | $45.00 | S, M, L, XL |
-| Rush White | $45.00 | S, M, L, XL |
-| The Profile Rottie Tee | $45.00 | S, M, L, XL |
-| Velocity | $45.00 | S, M, L, XL |
-| We The Roses | $45.00 | S, M, L, XL |
-| World Tour '25 | $45.00 | S, M, L, XL |
-| Ain't Ralph Tho Tee | $60.00 | S, M, L, XL |
-| Decoded Angels Tee | $60.00 | S, M, L, XL |
-| Drive The Legacy Tee | $60.00 | S, M, L, XL |
-| Holster Tee Cream | $60.00 | S, M, L, XL |
-| Holster Tee Red | $60.00 | S, M, L, XL |
-| Pin Head Tee | $60.00 | S, M, L, XL |
-| Stop Soliciting Tee | $60.00 | S, M, L, XL |
-| Kingdom has Fallen | $65.00 | S, M, L, XL |
-| SINNERS TALK | $65.00 | S, M, L, XL |
-
-#### Hoodies & Sweatshirts ($70–$150)
-
-| Product | Price | Sizes |
-|---|---|---|
-| DAWG Hoodie | $70.00 | S, M, L, XL |
-| Lone Wolf Hoodie | $80.00 | S, M, L, XL |
-| Friday is Forever | $100.00 | S, M, L, XL, XXL |
-| 911 Turbo Sweatshirt | $120.00 | S, M, L, XL, XXL |
-| Decoded Angels Hoodie | $120.00 | S, M, L, XL, XXL |
-| Homeless Rich Zip Up | $120.00 | S, M, L, XL, XXL |
-| Velocity Sweatshirt | $120.00 | S, M, L, XL, XXL |
-| Noir Strata Black Top | $120.00 | S, M, L, XL, XXL |
-
-#### Premium / Noir Line ($125–$150)
-
-| Product | Price | Sizes |
-|---|---|---|
-| Broke Tee Black | $125.00 | S, M, L, XL, XXL |
-| Broke Tee Yellow | $125.00 | S, M, L, XL, XXL |
-| All Glory Tan | $130.00 | S, M, L, XL, XXL |
-| Noir Eclipse | $130.00 | S, M, L, XL, XXL |
-| Noir Strata White Bottom | $130.00 | S, M, L, XL, XXL |
-| All Glory Black | $140.00 | S, M, L, XL, XXL |
-| Hand of God | $150.00 | S, M, L, XL, XXL |
-| Noir Strata Black Bottom | $150.00 | S, M, L, XL, XXL |
-| Noir Strata White Top | $150.00 | S, M, L, XL, XXL |
-
-### Collections
-
-| Collection | URL | Description | Last Updated |
-|---|---|---|---|
-| Frontpage | `/collections/frontpage` | Homepage featured | Dec 7, 2025 |
-| Decoded Noir | `/collections/decoded-noir` | Premium/luxury line | Dec 7, 2025 |
-| Decoded | `/collections/decoded` | Mainline collection | Dec 8, 2025 |
-
-### Product Data Issues
-
-- ❌ **No product descriptions** — `body_html` is empty string `""` on ALL products checked
-- ❌ **No product types** — `product_type` is `""` on all products
-- ❌ **No product tags** — `tags` is `""` on all products
-- ❌ **No SKUs** — All variants have `sku: null`
-- ❌ **No barcodes** — All variants have `barcode: null`
-- ❌ **No weights** — All variants have `weight: 0` / `grams: 0`
-- ❌ **No image alt text** — All images have `alt: null`
-- ❌ **No compare-at pricing** — No sale/markdown strategy
-- ⚠️ **Image captions empty** in sitemap — `<image:caption></image:caption>` for all
-- ✅ Images are 1400×1400px (good square format for e-commerce)
-- ✅ All 40 products in stock
-- ✅ Sizes range from S–XXL (higher-priced items include XXL)
-
----
-
-## 4. Shopify Theme & UX Assessment
-
-### Theme
-
-- **Theme:** Dawn (Shopify's free default theme)
-- **Customization Level:** Minimal — appears near-stock
-- **Brand Identity in Theme:** Very limited — just the store name "Decoded"
-
-### Navigation
-
-- **Header Navigation:**
-  - HOME
-  - CONTACT
-- **Missing Pages:** No About Us, no Size Guide, no FAQ, no Returns policy page, no Shop All link in nav
-- **Footer:** Only email subscribe and payment icons
-
-### Page Structure
-
-| Page | Exists | Content Quality |
-|---|---|---|
-| Homepage | ✅ | Single hero section promoting Decoded Noir; minimal |
-| Products (All) | ✅ | Default grid, 16 items per page, 3 pages |
-| Collections | ✅ | Lists collections with descriptions |
-| Contact | ✅ | Repurposed as Shipping Policy page (no contact form visible) |
-| Blog/News | ✅ (empty) | Page exists at `/blogs/news` but has zero blog posts |
-| About Us | ❌ | Missing |
-| FAQ | ❌ | Missing |
-| Size Guide | ❌ | Missing |
-| Returns/Refunds | ❌ | Not a separate page |
-| Privacy Policy | ❌ | Not in sitemap/nav |
-| Terms of Service | ❌ | Not in sitemap/nav |
-
-### Checkout & Payments
-
-Accepted payment methods:
-- American Express
-- Apple Pay
-- Diners Club
-- Discover
-- Google Pay
-- Mastercard
-- PayPal
-- Shop Pay
-- Visa
-
-✅ Good variety of payment options including Apple Pay, Google Pay, and Shop Pay for faster checkout.
-
-### Product Page UX Issues
-
-- ❌ Only 1 product image per product (no lifestyle shots, no detail shots, no on-model)
-- ❌ No product descriptions at all
-- ❌ No size guide or fit information
-- ❌ No customer reviews/ratings
-- ❌ No "You may also like" / related products section
-- ❌ No urgency indicators (stock counts, limited edition badges)
-- ❌ "Couldn't load pickup availability" error showing on products
-- ⚠️ Variants show "Variant sold out or unavailable" on some products — confusing if all 40 are in stock
-
-### Mobile Responsiveness
-
-- ✅ Dawn theme is mobile-responsive by default
-- ✅ Hamburger menu on mobile
-- ⚠️ Minimal content means mobile experience is bare/sparse
-
----
-
-## 5. SEO Analysis
-
-### On-Page SEO
-
-#### Meta Titles
-
-| Page | Title Tag | Assessment |
-|---|---|---|
-| Homepage | `Decoded` | ❌ Generic, no keywords |
-| All Products | `Products – Decoded` | ❌ Generic |
-| Decoded Noir Collection | `DECODED NOIR` | ❌ No brand, no keywords |
-| Decoded Collection | `DECODED` | ❌ No keywords |
-| Contact/Shipping | `Contact` | ❌ Misleading (shows shipping policy) |
-| Blog | `News` | ❌ Generic |
-| Products (individual) | `[Product Name]` | ❌ No brand, no product type |
-
-**All titles are critically under-optimized.** No page has a proper SEO title with keywords.
-
-#### Meta Descriptions
-
-- ❌ **No meta descriptions found on ANY page.** Shopify will auto-generate from content, but since there's no content on product pages, Google will likely show unhelpful snippets.
-
-#### Heading Structure
-
-| Page | H1 | H2s | Assessment |
-|---|---|---|---|
-| Homepage | None visible | "Subscribe to our emails" | ❌ No H1 |
-| Products | "Collection: Products" | Product names (as H3) | ⚠️ Thin |
-| Collections | Collection names (H3) | None | ❌ Weak hierarchy |
-| Product pages | Product name | None | ⚠️ No supporting content |
-
-#### Schema / Structured Data
-
-- ⚠️ **Shopify Dawn includes basic Product schema by default**, but without product descriptions, reviews, or product types, the structured data is extremely thin
-- ❌ No Organization schema
-- ❌ No BreadcrumbList schema
-- ❌ No FAQ schema
-- ❌ No review/rating schema (no reviews to mark up)
-
-#### Image SEO
-
-- ❌ **ALL product images have null alt text** — zero accessibility and zero image SEO value
-- ❌ Image filenames are UUIDs (e.g., `E34D2AE2-FD56-44F6-9227-2D3818F115AC.png`) — not SEO-friendly
-- ✅ Images are served via Shopify CDN (fast)
-- ✅ Images are 1400×1400px (good resolution)
-- ⚠️ Mix of JPG and PNG formats — PNGs may be unnecessarily large for photo content
-
-#### URL Structure
-
-- ✅ Product URLs are clean and descriptive (e.g., `/products/hand-of-god`, `/products/lone-wolf-tee`)
-- ⚠️ Some URL slugs are inconsistent:
-  - `9-11-turbo` vs `911-turbo-shirt` (same product line, different naming)
-  - `cream` and `red` (too generic — `/products/cream` doesn't communicate brand)
-  - `three-head-monster-tee` (product renamed to "Stop Soliciting Tee" but URL still old)
-- ❌ No breadcrumb navigation
-
----
-
-## 6. Technical SEO Audit
-
-### Sitemap
-
-- ✅ Valid XML sitemap at `/sitemap.xml`
-- ✅ Includes product, page, collection, and blog sub-sitemaps
-- ✅ Products sitemap includes `<image:image>` entries with `<image:loc>` and `<image:title>`
-- ❌ `<image:caption>` is empty for all products
-- ✅ Last modified dates are recent (Feb 9, 2026)
-
-### Robots.txt
-
-- ✅ Standard Shopify robots.txt
-- ✅ Properly blocks admin, cart, checkout, account pages
-- ✅ References sitemap
-- ✅ Blocks duplicate filter/sort URLs
-- ⚠️ Standard Shopify — no custom optimizations needed
-
-### Site Speed Indicators
-
-- ✅ Shopify CDN for all assets (fast global delivery)
-- ✅ Images served via `cdn.shopify.com`
-- ⚠️ Some images are PNG when JPEG would be smaller (photos of products)
-- ✅ Dawn theme is one of the fastest Shopify themes
-- ✅ Minimal JavaScript (stock Dawn = good Core Web Vitals baseline)
-- ⚠️ No evidence of lazy loading optimization beyond Dawn defaults
-
-### Indexing Concerns
-
-- ❌ **Using myshopify.com subdomain** — search engines may rank this lower than a custom domain
-- ❌ **Thin content** — Google may consider product pages thin content (no descriptions)
-- ❌ **Duplicate content risk** — Some product names appear twice in page source (render quirk)
-- ⚠️ Blog section exists but is empty — dead-end pages
-- ✅ Canonical tags are likely handled by Shopify automatically
-
-### Security
-
-- ✅ SSL/HTTPS enabled (standard Shopify)
-- ✅ Shopify's built-in PCI compliance for checkout
-
----
-
-## 7. Content & Marketing Assessment
-
-### Blog / Content Marketing
-
-- ❌ **Blog is completely empty** — `/blogs/news` exists with zero posts
-- Last modified Feb 3, 2024 — has never been used
-- ❌ No educational content, no brand storytelling, no lookbooks
-- ❌ No content marketing funnel
-
-### Email Marketing
-
-- ✅ Email subscribe form in footer ("Subscribe to our emails")
-- ❌ No visible popup or modal for email capture
-- ❌ No incentive offered for signup (no discount, no early access)
-- ❌ No evidence of email marketing platform integration beyond basic Shopify
-
-### Customer Engagement
-
-- ❌ No customer reviews system
-- ❌ No loyalty/rewards program
-- ❌ No referral program
-- ❌ No wishlist functionality
-- ❌ No live chat / chatbot
-- ❌ No size guide (critical for clothing)
-- ❌ No FAQ section
-
-### Social Media Integration
-
-- ❌ **No social media links on the store** — no Instagram, TikTok, Twitter/X, Facebook
-- Pinterest profile found: `pinterest.com/decodedshop` — **appears inactive** (14 pins, created ~2015)
-- ❌ No Instagram discovered (critical for a streetwear brand)
-- ❌ No TikTok presence found
-- ❌ No social proof anywhere on site
-
----
-
-## 8. Domain & Online Presence
-
-### Custom Domain Status
-
-- ❌ **NO CUSTOM DOMAIN** — Store runs only on `decodedshop.myshopify.com`
-- This is the single biggest credibility and SEO issue
-- Sitemap references only the myshopify.com subdomain
-- Robots.txt confirms store ID `68082368743`
-
-### Domain Availability Check (Recommended)
-
-Potential domains to investigate:
-- `decoded.shop`
-- `decodedclothing.com`
-- `shopdecoded.com`
-- `getdecoded.com`
-- `decoded-brand.com`
-- `decodednoir.com`
-
-### Search Engine Visibility
-
-- ❌ **Virtually zero search visibility** — Brave Search returns no results for the store
-- ❌ No Google indexing evidence found for products
-- ❌ Brand name "Decoded" is extremely competitive (generic English word)
-- ❌ "Decoded Noir" has zero search results — brand hasn't been indexed
-
-### Social Profile Audit
-
-| Platform | Handle/URL | Status |
-|---|---|---|
-| Pinterest | pinterest.com/decodedshop | Found — inactive, 14 pins |
-| Instagram | Not found | ❌ Critical gap for streetwear |
-| TikTok | Not found | ❌ Missing |
-| Twitter/X | Not found | ❌ Missing |
-| Facebook | Not found | ❌ Missing |
-
-### Backlink Profile
-
-- ❌ **Effectively zero backlinks** — no external sites link to the store
-- ❌ No press coverage found
-- ❌ No influencer collaborations discovered
-- ❌ No directory listings
-
----
-
-## 9. Competitive Positioning
-
-### Price Positioning
-
-Decoded's pricing ($25–$150) positions them in the **mid-to-premium streetwear** category:
-
-| Competitor Tier | Price Range | Examples |
-|---|---|---|
-| Budget Streetwear | $15–$40 | Shein, Fashion Nova |
-| **Decoded** | **$25–$150** | — |
-| Premium Streetwear | $50–$200 | KITH, Stüssy, A Bathing Ape |
-| Luxury Streetwear | $150–$500+ | Off-White, Fear of God, Rhude |
-
-### Competitive Gaps
-
-Decoded's competitors at this price point typically have:
-- ✅ Custom domains and professional branding
-- ✅ Product descriptions with storytelling
-- ✅ 5+ images per product (flat lay, on-model, detail)
-- ✅ Size guides with measurements
-- ✅ Customer reviews
-- ✅ Active Instagram (often 10K+ followers)
-- ✅ Blog/lookbook content
-- ✅ Email marketing with incentives
-- ✅ About Us brand story page
-
-Decoded has **none of these**.
-
----
-
-## 10. Priority Recommendations
-
-### 🔴 Critical (Do Immediately)
-
-| # | Action | Impact | Effort |
-|---|---|---|---|
-| 1 | **Get a custom domain** | SEO + Trust + Brand | Low |
-| 2 | **Write product descriptions** for all 40 products | SEO + Conversions | Medium |
-| 3 | **Add image alt text** to every product image | SEO + Accessibility | Low |
-| 4 | **Optimize meta titles** — format: `[Product] | [Category] | Decoded` | SEO | Low |
-| 5 | **Add meta descriptions** for all products and collections | SEO + CTR | Medium |
-| 6 | **Create an About Us page** with brand story | Trust + SEO | Low |
-| 7 | **Set up Instagram** and link it to the store | Social proof + Traffic | Low |
-
-### 🟡 High Priority (Within 30 Days)
-
-| # | Action | Impact | Effort |
-|---|---|---|---|
-| 8 | Add multiple product images (lifestyle, on-model, detail) | Conversions | High |
-| 9 | Create a size guide with measurements | Reduce returns, build trust | Medium |
-| 10 | Install a reviews app (Judge.me, Loox, or Stamped) | Social proof + SEO | Low |
-| 11 | Add structured data (Organization, BreadcrumbList) | SEO | Medium |
-| 12 | Create FAQ page | SEO + Customer service | Low |
-| 13 | Add product tags and product types | Organization + SEO | Low |
-| 14 | Fix product URL inconsistencies (cream, red, etc.) | SEO cleanup | Low |
-| 15 | Set up email marketing (Klaviyo or Mailchimp) with popup | Revenue | Medium |
-
-### 🟢 Growth Phase (60–90 Days)
-
-| # | Action | Impact | Effort |
-|---|---|---|---|
-| 16 | Launch blog with brand stories, lookbooks, style guides | SEO + Content | Ongoing |
-| 17 | Start TikTok presence | Organic reach | Ongoing |
-| 18 | Implement loyalty/rewards program | Retention | Medium |
-| 19 | Add upsell/cross-sell functionality | AOV increase | Low |
-| 20 | Add SKUs and barcodes for inventory management | Operations | Medium |
-| 21 | Set up Google Search Console + Analytics | Data | Low |
-| 22 | Submit sitemap to Google | Indexing | Low |
-| 23 | Build backlinks through PR and collaborations | SEO authority | Ongoing |
-| 24 | Consider theme upgrade for more brand-forward design | Branding | High |
-| 25 | Add shipping weight to all products | Accurate shipping rates | Low |
-
----
-
-## 11. Proposed Roviq Engagement
-
-### Phase 1: Foundation (Weeks 1–2) — $X,XXX
-
-- Custom domain setup & DNS configuration
-- Full SEO audit implementation (titles, descriptions, alt text)
-- Product description writing for all 40 products
-- About Us page creation
-- Size guide creation
-- FAQ page
-- Basic structured data implementation
-- Google Search Console & Analytics setup
-
-### Phase 2: Conversion Optimization (Weeks 3–4) — $X,XXX
-
-- Email marketing setup (Klaviyo)
-- Popup design for email capture
-- Reviews app installation & configuration
-- Product page optimization (related products, urgency)
-- Theme customization for brand identity
-- Social media profile setup (Instagram, TikTok)
-
-### Phase 3: Growth (Ongoing Monthly) — $X,XXX/mo
-
-- Content marketing (blog posts, lookbooks)
-- SEO keyword targeting and content creation
-- Social media strategy & management
-- Email campaign management
-- Monthly performance reporting
-- Backlink building
-
----
-
-## Appendix: Raw Data
+## STEP 1 — SCRAPE & CATALOG
 
 ### Sitemap Structure
 
-```
-sitemap.xml (index)
-├── sitemap_products_1.xml (40 products)
-├── sitemap_pages_1.xml (1 page: /pages/contact)
-├── sitemap_collections_1.xml (3 collections: frontpage, decoded-noir, decoded)
-└── sitemap_blogs_1.xml (1 blog: /blogs/news — empty)
-```
+The site is extremely thin. Total indexed sitemap sections:
 
-### Shopify Store ID
+| Sitemap Type | Count | Notes |
+|---|---|---|
+| Products | 37 | Single products sitemap file |
+| Collections | 3 | `frontpage`, `decoded-noir`, `decoded` |
+| Pages | 1 | `/pages/contact` (shipping policy only) |
+| Blog | 1 | `/blogs/news` — **completely empty**, zero posts |
 
-- Store ID: `68082368743`
-- CDN Path: `s/files/1/0680/8236/8743/`
+**Total unique pages:** ~42 (home + 37 products + 3 collections + 1 page + 1 empty blog)
 
-### Product Timeline (from sitemap data)
+This is an extremely small footprint. No About page, no FAQ, no lookbooks, no size guide, no returns policy page (separate from contact), no brand story page.
 
-- Earliest products: Feb 2024 (The Profile Rottie Tee, Kingdom has Fallen, SINNERS TALK, Pin head tee)
-- 911 Turbo line: Sep 2024
-- Velocity & World Tour: Mar 2025
-- Noir/Premium line: Oct 2025
-- Newest additions: Jan 2026 (Holster Tees, Angels, Legacy, etc.)
-- DAWG line: Jan/Feb 2026
+### Product Catalog (37 items)
 
-### Payment Provider Analysis
+**DECODED Collection (mainstream line):**
 
-The broad payment method support (9 methods including digital wallets) suggests Shopify Payments is enabled, which is good for checkout conversion rates.
+| Product | Price | Category | Images | Description |
+|---|---|---|---|---|
+| The Profile Rottie Tee | ~$45-65 | Tee | 1 | None |
+| Kingdom has Fallen | ~$45-65 | Tee | 1 | None |
+| SINNERS TALK | $65.00 | Tee | 1 | None |
+| Pin head tee | $60.00 | Tee | 1 | None |
+| 911 Turbo Shirt Black | $45.00 | Tee | 1 | None |
+| 911 Turbo Sweatshirt | $120.00 | Sweatshirt | 1 | None |
+| Velocity Sweatshirt | $120.00 | Sweatshirt | 2 | None |
+| World Tour '25 | $45.00 | Tee | 2 | None |
+| Desperado | $45.00 | Tee | 2 | None |
+| Velocity | $45.00 | Tee | 2 | None |
+| 911 Turbo White | $45.00 | Tee | 1 | None |
+| Rush Black | $45.00 | Tee | 1 | None |
+| Rush White | $45.00 | Tee | 1 | None |
+| Motor Cross White | $45.00 | Tee | 1 | None |
+| Motor Cross Black | $45.00 | Tee | 1 | None |
+| Holster Tee Cream | TBD | Tee | 1 | None |
+| Holster Tee Red | TBD | Tee | 1 | None |
+| Ain't Ralph Tho Tee | TBD | Tee | 1 | None |
+| Drive The Legacy Tee | TBD | Tee | 1 | None |
+| Stop Soliciting Tee | TBD | Tee | 1 | None |
+| We The Roses | TBD | Tee | 1 | None |
+| Homeless Rich Zip Up | TBD | Outerwear | 1 | None |
+| Decoded Angels Hoodie | TBD | Hoodie | 1 | None |
+| Decoded Angels Tee | TBD | Tee | 1 | None |
+| DAWG Hoodie | TBD | Hoodie | 1 | None |
+| DAWG Youth Athletic Tee | TBD | Tee (Youth) | 1 | None |
+| DAWG Adult Tee | TBD | Tee | 1 | None |
+| Friday is Forever | TBD | TBD | 1 | None |
+| Hand of God | TBD | TBD | 1 | None |
+| Lone Wolf Tee | $45.00 | Tee | 1 | None |
+| Lone Wolf Hoodie | $80.00 | Hoodie | 1 | None |
+
+**DECODED NOIR Collection (luxury tier):**
+
+| Product | Price | Category | Images | Description |
+|---|---|---|---|---|
+| Noir Eclipse | $130.00 | TBD | 1 | None — **ALL SIZES SOLD OUT** |
+| All Glory Tan | TBD | TBD | 1 | None |
+| All Glory Black | TBD | TBD | 1 | None |
+| Broke Tee Yellow | $125.00 | Tee | 1 | None |
+| Broke Tee Black | $125.00 | Tee | 1 | None |
+| Noir Strata White Top | $150.00 | Top | 1 | None |
+| Noir Strata White Bottom | $130.00 | Bottom | 1 | None |
+| Noir Strata Black Top | $120.00 | Top | 1 | None |
+| Noir Strata Black Bottom | $150.00 | Bottom | 1 | None |
+
+### Pricing Summary
+- **Decoded line:** $45–$120 (tees at $45–$65, sweatshirts at $120)
+- **Decoded Noir line:** $120–$150 (positioning as luxury)
+- **Hoodies:** $80
+
+### Critical Finding: ZERO Product Descriptions
+Not a single product in the entire catalog has a `body_html` description. Every single product description field is empty (`""`). This is catastrophic for SEO and conversion. A buyer sees a product image, a price, and a size selector. Nothing else. No fabric info, no fit guide, no story, no materials, no care instructions. Nothing.
+
+### CTAs & Conversion Paths
+- **Primary CTA on homepage:** "SHOP DECODED NOIR" → links to collection
+- **No email signup** anywhere on the site
+- **No SMS capture**
+- **No pop-up** for first-time visitors
+- **No loyalty program**
+- **No referral program**
+- **No newsletter**
+- **Contact page** contains only a shipping policy (no contact form, no email, no phone)
+
+### Navigation Structure
+The navigation is minimal (likely just: Home, Collections, Contact). The theme appears to be a default or near-default Shopify free theme.
+
+### Footer
+- Payment method badges (Amex, Apple Pay, Diners Club, Discover, Google Pay, Mastercard, PayPal, Shop Pay, Visa)
+- "Powered by Shopify" badge (not removed — screams amateur)
+- © 2026 Decoded
+- **No social media links visible in footer** (Instagram, TikTok, etc. not linked)
+- **No legal pages** (Privacy Policy, Terms of Service not linked)
+
+### Blog/Content Hub
+- `/blogs/news` exists but is **100% empty**. Zero articles. Zero content. This is just a default Shopify blog sitting there doing nothing.
 
 ---
 
-*Report generated by Roviq AI Research Team — February 9, 2026*  
-*For questions or to begin engagement, contact: roviqai.xyz*
+## STEP 2 — TECHNICAL ANALYSIS
+
+### Platform & Tech Stack
+- **Platform:** Shopify (standard plan)
+- **Domain:** Still on `decodedshop.myshopify.com` — **no custom domain**
+- **Note:** A custom domain `shopdecode.us` was previously associated but now returns a Shopify "This store does not exist" page — the domain has lapsed or been disconnected
+- **Theme:** Appears to be a free/default Shopify theme with minimal customization
+- **Analytics:** Unknown — no visible third-party analytics tags from fetch (likely just default Shopify analytics, no GA4, no Meta Pixel visible)
+- **SSL:** ✅ Valid (Shopify-provided, automatic)
+- **CDN:** Shopify CDN (cdn.shopify.com) — standard
+
+### Page Load Performance
+- Homepage response: **234ms** server response time (fast — Shopify CDN doing its job)
+- Product pages: **150-200ms** response time
+- The site is lightweight because there's almost nothing on it. Fast by default when there's nothing to load.
+
+### Mobile Responsiveness
+- Shopify free themes are mobile-responsive by default. The site will technically "work" on mobile.
+- However, with only 1 product image per listing, no descriptions, and minimal navigation — the mobile experience is functional but barren.
+
+### Broken Links / Issues
+- **`shopdecode.us`** — the presumed custom domain — is **dead**. Returns Shopify expired domain page. This is a major issue if they've been sharing this URL on Instagram or anywhere else.
+- **Noir Eclipse** — listed at $130 but **all sizes show "Variant sold out or unavailable."** This is a dead product sitting on the site. Either restock or remove.
+- **Blog page** — exists but empty. Looks abandoned.
+
+### ADA Accessibility
+- **Alt text:** Shopify auto-generates alt text from product titles. Most image:caption fields are empty. Bare minimum coverage.
+- **Contrast:** Without visual inspection, cannot fully assess, but free Shopify themes generally meet basic contrast requirements.
+- **Keyboard navigation:** Default Shopify theme, should be functional.
+- **Overall ADA grade:** Bare minimum. No proactive accessibility work done.
+
+### Security Headers
+- Standard Shopify-provided headers. Nothing custom configured. Adequate for a Shopify store.
+
+---
+
+## STEP 3 — DESIGN & UX EVALUATION
+
+### Visual Design Quality: 3/10
+The site uses what appears to be a stock/free Shopify theme with minimal customization. The homepage is essentially a single hero text block ("This isn't just fashion. This is DECODED NOIR...") with a button. There's no hero image, no video, no lookbook, no brand photography. The brand copy talks about "luxury" and "precision" but the site design communicates "just launched last weekend." The gap between brand aspiration and execution is enormous. This looks like a Shopify store someone set up in an afternoon — because it is.
+
+### Brand Consistency: 4/10
+The brand voice is strong and consistent in the limited copy that exists ("speaks in silence," "unapologetic," "move different"). The Decoded vs. Decoded Noir distinction shows brand architecture thinking. However, there's no visible logo treatment, no consistent color palette beyond black/white, no typography system, and no brand guidelines applied to the site. The product imagery is inconsistent — some are flat-lay photos, some appear to be renders, some are iPhone-quality shots. No cohesive visual language.
+
+### Information Architecture: 4/10
+With only 3 collections and 37 products, navigation should be trivially easy. And it is — in the sense that there isn't much to navigate. A first-time visitor can find products in 2 clicks. But the IA fails because:
+- No filtering or sorting on collection pages
+- No product categories beyond the two collections
+- No "About" page to understand the brand
+- No way to contact the brand (the "contact" page is just a shipping policy)
+- No size guide (critical for clothing)
+
+### Trust Signals: 1/10
+This is the single biggest failure on the site. There are:
+- **Zero reviews** on any product
+- **No about page** — who makes this? Who designs it? Where is it made?
+- **No press mentions**
+- **No customer testimonials**
+- **No team/founder photos**
+- **No social proof** of any kind
+- **No return policy** (only shipping policy, which states "all sales final" energy)
+- **No certifications**
+- Still on `.myshopify.com` subdomain — signals "not a real business" to many consumers
+
+A customer is being asked to spend $45-$150 on clothing from a brand they've never heard of, with no reviews, no brand story, no return policy, no way to contact anyone, and no custom domain. That's an enormous ask.
+
+### Imagery Quality: 4/10
+Product imagery is mixed:
+- Some products have **only 1 image** (most of them)
+- Some images are flat-lay product shots (acceptable)
+- Some appear to be graphic mockups/renders
+- Image quality varies — some are 540x540px (very low for a clothing store), others are 1400x1400
+- **Zero lifestyle/lookbook imagery** — no models, no styled shots, no context
+- **Zero on-body photography** visible from the data
+- For a brand claiming "luxury," the imagery does not deliver luxury
+
+### Call-to-Action Clarity: 3/10
+- Homepage has one CTA: "SHOP DECODED NOIR"
+- Product pages have standard Shopify "Add to Cart" button
+- No urgency elements (no "limited stock," no countdown timers)
+- No cross-selling or upselling
+- No "complete the look" suggestions
+- No post-purchase CTA
+- The site doesn't guide the user journey — it just presents a catalog
+
+---
+
+## STEP 4 — CONVERSION PATH ANALYSIS
+
+### Primary User Journey
+
+```
+Land on homepage
+  → Read one paragraph of brand copy
+    → Click "SHOP DECODED NOIR" (or navigate to a collection)
+      → See product thumbnails (no descriptions visible)
+        → Click a product
+          → See 1 image, a price, a size selector
+            → Add to cart? (with zero supporting information)
+              → Checkout (Shopify standard)
+```
+
+### Friction Points
+
+1. **No product descriptions:** The single biggest conversion killer. A visitor cannot make an informed purchase decision. What fabric? What fit? What's the weight? How does it run? Is it oversized? True to size? Nothing.
+
+2. **Single product images:** Most products have only ONE image. For a clothing brand, this is unacceptable. Customers need to see front, back, detail, and on-body shots. The industry standard is 4-8 images per product minimum.
+
+3. **No size guide:** Selling clothing online without a size guide is asking customers to gamble. This directly increases cart abandonment and returns.
+
+4. **No reviews:** Zero social proof. No way to know if anyone has ever bought or liked these products.
+
+5. **No custom domain:** `decodedshop.myshopify.com` signals this isn't a serious operation. The previous domain `shopdecode.us` is dead.
+
+6. **Sold-out products still visible:** Noir Eclipse shows all sizes as sold out. This is a dead end that wastes user attention.
+
+7. **$13 flat-rate shipping:** For $45 tees, a $13 shipping cost is 29% of the product price. No free shipping threshold mentioned on the site (though the shipping policy mentions "full price mainline orders" get standard shipping — the language is confusing).
+
+8. **No lead capture anywhere:** If someone leaves without buying, they're gone forever. No email popup, no SMS, no exit intent, no discount for first purchase. Zero remarketing infrastructure.
+
+### Lead Capture & Follow-up
+- **Email signup:** None
+- **SMS capture:** None
+- **Exit intent popup:** None
+- **First-purchase discount:** None
+- **Abandoned cart recovery:** Unknown (Shopify has basic built-in, but no evidence of enhanced flows)
+- **Post-purchase automation:** No evidence of any
+
+### Competitive Conversion Path Comparison
+
+**Heights District (theheightsdistrict.com) — Dallas, TX luxury streetwear:**
+- Custom domain ✅
+- Product reviews (93 reviews on featured product) ✅
+- Detailed product descriptions (weight, fit guide, model measurements) ✅
+- Multiple product images ✅
+- Physical retail location / pickup option ✅
+- Free shipping threshold ($150) ✅
+- Professional photography with models ✅
+
+**For The South (forthesouth.com) — Texas streetwear:**
+- Custom domain ✅
+- Multiple collections with clear categories ✅
+- Signature/hero products featured prominently ✅
+- Email signup ✅
+- Clear shipping/returns info ✅
+- Brand storytelling throughout ✅
+- Professional photography ✅
+
+**Decoded Shop:**
+- Custom domain ❌ (dead)
+- Product reviews ❌
+- Product descriptions ❌
+- Multiple product images ❌ (mostly 1 per product)
+- Retail location ❌
+- Free shipping ❌
+- Email/SMS capture ❌
+- Brand story/about page ❌
+- Professional photography ❌ (mixed quality)
+
+---
+
+## STEP 5 — COMPETITIVE COMPARISON
+
+### Competitor 1: Heights District
+- **URL:** https://www.theheightsdistrict.com/
+- **Location:** Dallas, TX (Dallas Design District)
+- **Design Quality:** 7/10
+- **Mobile Experience:** Strong — responsive Shopify theme with good customization
+- **Unique Features:** Physical flagship store with in-store pickup, hand-drawn custom artwork, 9oz premium blanks, cut-and-sew construction, model measurements on every product, review system with 90+ reviews
+- **Price Range:** $60 tees (similar to Decoded)
+- **What they do BETTER than Decoded:**
+  - Professional product photography with model shots and measurements
+  - Detailed product descriptions (fabric weight, fit guidance, construction details)
+  - Customer review system with significant review volume
+  - Custom domain with professional branding
+  - Physical retail presence builds trust
+  - Free shipping threshold
+  - Clear brand identity and premium positioning backed by actual premium details
+- **What Decoded does better:**
+  - Decoded has a stronger two-tier brand architecture (Decoded + Decoded Noir)
+  - Product naming is more evocative and storytelling-oriented
+
+### Competitor 2: For The South (MITS)
+- **URL:** https://forthesouth.com/
+- **Location:** Texas (Southern US)
+- **Design Quality:** 6/10
+- **Mobile Experience:** Good — well-organized Shopify theme
+- **Unique Features:** Strong Southern identity, vintage 1-of-1 pieces, workwear crossover, multiple curated collections, clear brand DNA
+- **Price Range:** $35-$80 (slightly below Decoded)
+- **What they do BETTER than Decoded:**
+  - Deep brand storytelling woven throughout the site
+  - Multiple well-organized collections (Signature, Vintage, Graphic, Workwear, Accessories)
+  - Content-rich homepage with multiple editorial sections
+  - Contact email prominently displayed
+  - Clear shipping and returns messaging
+  - Consistent visual identity
+  - Accessories category (hats, snapbacks) for lower price point entry
+- **What Decoded does better:**
+  - Decoded's brand voice has more edge and premium aspiration
+  - The Noir line at $120-150 positions higher-end
+
+### Competitor 3: Corteiz (CRTZRTW)
+- **URL:** https://www.corteiz.com/
+- **Location:** London (global DTC)
+- **Design Quality:** 8/10
+- **Mobile Experience:** Excellent — minimal, intentional design
+- **Unique Features:** Extreme scarcity model (drops sell out instantly), massive social media presence, guerrilla marketing, community-driven brand
+- **Price Range:** $95-$295 (higher tier)
+- **What they do BETTER than Decoded:**
+  - Masterclass in brand mystique and scarcity
+  - Professional product photography
+  - Clean, minimal web design that matches brand energy
+  - Massive organic social proof (millions of followers)
+  - Custom domain with branded experience
+  - Strategic use of "sold out" as a feature, not a bug
+- **What Decoded does better:**
+  - Decoded's product range is broader and more accessible price-wise
+  - More available inventory (Corteiz is often completely sold out)
+
+### Competitive Summary Table
+
+| Factor | Decoded | Heights District | For The South | Corteiz |
+|---|---|---|---|---|
+| Custom Domain | ❌ | ✅ | ✅ | ✅ |
+| Product Descriptions | ❌ | ✅ | ✅ | Minimal |
+| Product Photography | 4/10 | 8/10 | 7/10 | 9/10 |
+| Reviews/Social Proof | ❌ | ✅ (90+) | Limited | Organic |
+| Email/SMS Capture | ❌ | ✅ | ✅ | ✅ |
+| Brand Storytelling | Minimal | Good | Strong | Excellent |
+| About/Team Page | ❌ | ✅ | ✅ | Minimal |
+| Size Guide | ❌ | ✅ | ❌ | ❌ |
+| Price Range | $45-150 | $60-80 | $35-80 | $95-295 |
+| Blog/Content | ❌ (empty) | ❌ | ❌ | ❌ |
+
+---
+
+## STEP 6 — VERDICT
+
+### Overall Grade: D-
+
+This is a brand with genuine identity and aspiration running on a website that actively undermines both. The brand copy talks about "luxury," "precision," "power," and "exclusivity" — but the site screams "hobby project." There is a massive disconnect between the brand's self-image and its digital execution.
+
+### Top 3 Things That Are Working
+
+1. **Brand voice and naming:** The copy that exists is strong. "Decoded Noir," "speaks in silence and moves in Power," the product names (Desperado, Kingdom has Fallen, Noir Eclipse) — there's a real brand identity here. The two-tier architecture (Decoded for accessible, Noir for luxury) shows strategic thinking.
+
+2. **Price architecture:** The $45-65 tee range is competitive and accessible. The $120-150 Noir range creates aspiration. This is smart tiering.
+
+3. **Active product development:** The catalog shows consistent product additions from Feb 2024 through Jan 2026. The DAWG line (including youth sizing) and the Noir Strata sets (top + bottom) show the brand is experimenting and growing. The newest products (Lone Wolf, DAWG, Angels line) suggest momentum.
+
+### Top 3 Things Actively Hurting Them
+
+1. **No custom domain + dead previous domain:** The `decodedshop.myshopify.com` URL is the single most damaging credibility issue. The fact that `shopdecode.us` is dead means any previous marketing linking to that domain is now broken. This is a business-critical issue that should have been fixed yesterday.
+
+2. **Zero product descriptions on EVERY product:** This is not an oversight on a few items — it's a systematic failure across all 37 products. For SEO, this means Google has essentially nothing to index. For conversion, buyers have zero information to make a purchasing decision. This alone is probably costing them 50%+ of potential sales.
+
+3. **No lead capture or remarketing infrastructure:** No email signup, no SMS, no popups, no first-purchase incentive. Every visitor who doesn't buy on their first visit is permanently lost. For a brand at this stage, building an owned audience list should be the #1 priority after fixing the site basics.
+
+### Single Biggest Missed Opportunity
+
+**Brand storytelling.** This brand clearly has a founder with vision and taste — the product names, the brand copy, the two-tier architecture all show it. But there's zero brand story on the site. No About page, no founder story, no "why" behind the brand. In the indie streetwear space, the story IS the product. Brands like Corteiz, Madhappy, and Fear of God didn't grow because of their website UX — they grew because they had compelling stories and community. Decoded has the raw ingredients for a story (TX roots, luxury aspiration, edgy product names, the Noir concept) but none of it is being told. An About page, a founder video, Instagram content linked to the site, and brand storytelling throughout the shopping experience would transform this store.
+
+### Estimated Effort to Fix
+
+**Medium rebuild — NOT a full tear-down.**
+
+The good news: the Shopify infrastructure is fine. The product catalog exists. The brand identity exists. This doesn't need to be rebuilt from scratch. But it needs significant work:
+
+**Immediate fixes (1-2 weeks, no cost):**
+- Get a custom domain connected and working ($15/year)
+- Remove "Powered by Shopify" from footer
+- Write product descriptions for all 37 products
+- Add social media links to footer/header
+- Remove or hide sold-out products (Noir Eclipse)
+- Add an About page with brand story
+- Add a Returns/Exchange policy page
+- Add a size guide page
+- Set up basic email capture (Shopify built-in or free Klaviyo tier)
+
+**Short-term improvements (2-4 weeks, $500-2,000):**
+- Upgrade to a premium Shopify theme that matches brand positioning
+- Professional product photography (minimum 4 images per product, including on-body)
+- Install review app (Judge.me free tier or Loox)
+- Set up Klaviyo or similar for email/SMS marketing flows
+- Add Meta Pixel and GA4 tracking
+- Create a homepage that actually sells (hero imagery, featured products, brand story sections)
+
+**Medium-term growth (1-3 months, $2,000-5,000):**
+- Lookbook/editorial photography
+- Launch blog with brand content
+- Build email welcome series and abandoned cart flows
+- Create a launch/drop marketing system
+- Instagram integration and shoppable posts
+- Consider custom domain that matches the brand better
+
+**The ask was for a mobile app + growth plan.** An app is premature. The website fundamentals need to be fixed first. No app can compensate for a store with no product descriptions, no reviews, no brand story, and a broken domain. Fix the house before you build an addition.
+
+---
+
+*Audit completed by Roviq Digital Intelligence — February 9, 2026*
