@@ -411,11 +411,19 @@ Save to: clients/_leads/<name>/research/growth-opportunities.md
 
 ### Model Assignments (diverse perspectives):
 
-- Agent 1 (Website): Claude Sonnet 4.5 — meticulous technical analysis
-- Agent 2 (Social): Gemini 3 Pro — strong visual/creative reasoning
-- Agent 3 (SEO): Claude Sonnet 4.5 — structured, data-oriented
-- Agent 4 (Competitive): GPT-5.2 Codex — broad synthesis ability
-- Agent 5 (Growth): Gemini 3 Pro — creative strategic thinking
+| Agent | Track | Primary Model | Fallback | Rationale |
+|-------|-------|--------------|----------|-----------|
+| 1 | Website & Digital Presence | `google-antigravity/claude-opus-4-6-thinking` | `google-antigravity/claude-opus-4-6` | Deepest reasoning for technical audit |
+| 2 | Social Media & Content | `google-antigravity/gemini-3-pro-high` | `google-antigravity/gemini-3-flash` | Visual/creative reasoning for content analysis |
+| 3 | SEO, Local Search & Paid Ads | `openai/gpt-5.2-codex` | `google-antigravity/claude-opus-4-6` | Structured data analysis, keyword maps |
+| 4 | Competitive Landscape | `google-antigravity/claude-opus-4-6` | `nvidia/moonshotai/kimi-k2.5` | Fast synthesis across many sources |
+| 5 | Revenue Model & Growth | `nvidia/moonshotai/kimi-k2.5` | `google-antigravity/claude-opus-4-6-thinking` | Different architecture = fresh perspective |
+
+**Batching (max 2 Antigravity at a time):**
+- Batch 1: Agent 1 (Antigravity) + Agent 2 (Antigravity) + Agent 3 (OpenAI)
+- Batch 2: Agent 4 (Antigravity) + Agent 5 (NVIDIA)
+
+**Principle:** 4 different architectures (Claude, Gemini, GPT, Kimi), 3 providers, never >2 Antigravity concurrent.
 
 ---
 
@@ -522,9 +530,11 @@ Save to: clients/_leads/<name>/plans/plan-[agent-number].md
 
 ### Models:
 
-- Plan 1: Claude Opus 4.6 — deepest strategic reasoning
-- Plan 2: Claude Sonnet 4.5 — balanced execution focus
-- Plan 3: Gemini 3 Pro — creative/unconventional angles
+| Plan | Primary Model | Fallback | Rationale |
+|------|--------------|----------|-----------|
+| Plan 1 | `google-antigravity/claude-opus-4-6-thinking` | `google-antigravity/claude-opus-4-6` | Deepest strategic reasoning |
+| Plan 2 | `openai/gpt-5.2-codex` | `google-antigravity/claude-opus-4-6` | Balanced execution focus |
+| Plan 3 | `google-antigravity/gemini-3-pro-high` | `nvidia/moonshotai/kimi-k2.5` | Creative/unconventional angles |
 
 ---
 

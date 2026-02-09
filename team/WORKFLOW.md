@@ -125,15 +125,15 @@ The orchestrator:
 
 Use model diversity to catch different failure modes. This is the **canonical reference** — don't duplicate this table elsewhere.
 
-| Role             | Model             | Rationale                                                      |
-| ---------------- | ----------------- | -------------------------------------------------------------- |
-| **Orchestrator** | Claude Sonnet 4.5 | Strongest at planning, decomposition, and structured reasoning |
-| **Developer**    | Claude Sonnet 4.5 | Best code generation quality and architecture judgment         |
-| **Designer**     | Gemini 3 Pro      | Stronger visual/spatial reasoning and creative generation      |
-| **Researcher**   | GPT-5.2 Codex     | Best at synthesis across diverse sources                       |
-| **Reviewer 1**   | Claude Sonnet 4.5 | Strict, detail-oriented analysis                               |
-| **Reviewer 2**   | Gemini 3 Pro      | Different architecture = different blind spots                 |
-| **Tiebreaker**   | GPT-5.2 Codex     | Third perspective when reviewers conflict                      |
+| Role             | Primary Model                                    | Fallback                             | Rationale                                                      |
+| ---------------- | ------------------------------------------------ | ------------------------------------ | -------------------------------------------------------------- |
+| **Orchestrator** | `google-antigravity/claude-opus-4-6-thinking`    | `google-antigravity/claude-opus-4-6` | Strongest at planning, decomposition, and structured reasoning |
+| **Developer**    | `google-antigravity/claude-opus-4-6-thinking`    | `google-antigravity/claude-opus-4-6` | Best code generation quality and architecture judgment         |
+| **Designer**     | `google-antigravity/gemini-3-pro-high`           | `google-antigravity/gemini-3-flash`  | Stronger visual/spatial reasoning and creative generation      |
+| **Researcher**   | `openai/gpt-5.2-codex`                           | `nvidia/moonshotai/kimi-k2.5`        | Best at synthesis across diverse sources                       |
+| **Reviewer 1**   | `google-antigravity/claude-opus-4-6-thinking`    | `google-antigravity/claude-opus-4-6` | Strict, detail-oriented analysis                               |
+| **Reviewer 2**   | `google-antigravity/gemini-3-pro-high`           | `openai/gpt-5.2-codex`              | Different architecture = different blind spots                 |
+| **Tiebreaker**   | `nvidia/moonshotai/kimi-k2.5`                    | `openai/gpt-5.2-codex`              | Third perspective when reviewers conflict                      |
 
 **Principle:** Specialist and reviewer should NEVER be the same model. The whole point is architectural diversity in evaluation.
 

@@ -148,14 +148,14 @@ sessions_spawn(task="Review [output]...", label="reviewer-2", model="google/gemi
 
 ## 📊 Model Selection Strategy
 
-| Role               | Model             | Why                              |
-| ------------------ | ----------------- | -------------------------------- |
-| Orchestrator (You) | Claude Sonnet 4.5 | Best at planning & coordination  |
-| Developer          | Claude Sonnet 4.5 | Best code quality                |
-| Designer           | Gemini 3 Pro      | Strong visual/creative reasoning |
-| Researcher         | GPT-5.2 Codex     | Good at synthesis                |
-| Reviewer 1         | Claude Sonnet 4.5 | Strict review                    |
-| Reviewer 2         | Gemini 3 Pro      | Different perspective            |
+| Role               | Primary Model                                 | Fallback                            | Why                              |
+| ------------------ | --------------------------------------------- | ----------------------------------- | -------------------------------- |
+| Orchestrator (You) | `google-antigravity/claude-opus-4-6-thinking` | `google-antigravity/claude-opus-4-6`| Best at planning & coordination  |
+| Developer          | `google-antigravity/claude-opus-4-6-thinking` | `google-antigravity/claude-opus-4-6`| Best code quality                |
+| Designer           | `google-antigravity/gemini-3-pro-high`        | `google-antigravity/gemini-3-flash` | Strong visual/creative reasoning |
+| Researcher         | `openai/gpt-5.2-codex`                        | `nvidia/moonshotai/kimi-k2.5`       | Good at synthesis                |
+| Reviewer 1         | `google-antigravity/claude-opus-4-6-thinking` | `google-antigravity/claude-opus-4-6`| Strict review                    |
+| Reviewer 2         | `google-antigravity/gemini-3-pro-high`        | `openai/gpt-5.2-codex`             | Different perspective            |
 
 ---
 
