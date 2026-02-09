@@ -1,0 +1,32 @@
+# Secrets & Credentials
+.env
+.env.*
+secrets/
+**/*.key
+**/*.pem
+**/credentials/
+
+# OpenClaw State (NOT in workspace)
+.openclaw/
+
+# Client-specific secrets
+clients/*/secrets/
+clients/*/.env
+clients/*/.env.*
+
+# Temp files
+.DS_Store
+*.log
+/tmp/
+node_modules/
+dist/
+build/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+Thumbs.db
