@@ -34,7 +34,7 @@ function DropBanner() {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        background: 'linear-gradient(180deg, rgba(13,13,13,0.85) 0%, rgba(13,13,13,0) 100%)',
+        background: '#0D0D0D',
       }}>
         <span style={{
           fontFamily: "'Inter', sans-serif",
@@ -275,10 +275,10 @@ function ProductCard({ product, isActive, isLast }) {
       </div>
 
       {/* ── BOTTOM CONTENT ── */}
-      <div style={{ position: 'relative', zIndex: 5, padding: '0 22px 28px', maxWidth: 380 }}>
+      <div style={{ position: 'relative', zIndex: 5, padding: '0 22px 16px', maxWidth: 380 }}>
 
         {/* Scarcity tag */}
-        <div style={{ ...reveal(0.08), marginBottom: 14 }}>
+        <div style={{ ...reveal(0.08), marginBottom: 10 }}>
           <span style={{
             display: 'inline-flex', alignItems: 'center', gap: 7,
             background: 'rgba(201,168,76,0.06)', border: '1px solid rgba(201,168,76,0.12)',
@@ -316,13 +316,13 @@ function ProductCard({ product, isActive, isLast }) {
         )}
 
         {/* Gold divider */}
-        <div className="gold-divider" style={{ ...reveal(0.22), width: 60, marginBottom: 12 }} />
+        <div className="gold-divider" style={{ ...reveal(0.22), width: 60, marginBottom: 8 }} />
 
         {/* Price */}
         <div style={{
           ...reveal(0.26),
           fontFamily: "'Inter', sans-serif", fontWeight: 350, fontSize: 30,
-          color: '#F5F0E8', letterSpacing: '0.02em', marginBottom: 6,
+          color: '#F5F0E8', letterSpacing: '0.02em', marginBottom: 4,
           textShadow: '0 1px 20px rgba(0,0,0,0.4)',
         }}>
           <span style={{ fontSize: 16, opacity: 0.4, marginRight: 2, fontWeight: 300 }}>$</span>{product.price}
@@ -335,14 +335,14 @@ function ProductCard({ product, isActive, isLast }) {
           fontSize: 10,
           letterSpacing: '0.1em',
           color: 'rgba(245,240,232,0.3)',
-          marginBottom: 14,
+          marginBottom: 10,
           textTransform: 'uppercase',
         }}>
           {product.materials} · Edition of {product.edition}
         </div>
 
         {/* Countdown */}
-        <div style={{ ...reveal(0.32), marginBottom: 22, display: 'flex', alignItems: 'center', gap: 10 }}>
+        <div style={{ ...reveal(0.32), marginBottom: 14, display: 'flex', alignItems: 'center', gap: 10 }}>
           <div style={{ display: 'flex', gap: 4, position: 'relative' }}>
             {[{ val: pad(h), label: 'HR' }, { val: pad(m), label: 'MIN' }, { val: pad(s), label: 'SEC' }].map((unit, i) => (
               <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
@@ -368,7 +368,7 @@ function ProductCard({ product, isActive, isLast }) {
         {/* ADD TO VAULT — 3D Glass */}
         <div style={reveal(0.38)}>
           <button onClick={handleVault} style={{
-            position: 'relative', width: '100%', maxWidth: 340, height: 54,
+            position: 'relative', width: '100%', maxWidth: 340, height: 48,
             border: vaultState === 'done' ? '1px solid rgba(201,168,76,0.35)' : '1px solid rgba(245,240,232,0.12)',
             borderRadius: 14, cursor: 'pointer',
             fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: 12,
@@ -432,7 +432,7 @@ function ProductCard({ product, isActive, isLast }) {
         </div>
 
         {/* Swipe / Roviq */}
-        <div style={{ ...reveal(0.44), display: 'flex', justifyContent: 'center', marginTop: 16 }}>
+        <div style={{ ...reveal(0.44), display: 'flex', justifyContent: 'center', marginTop: 10 }}>
           {isLast ? (
             <span style={{ fontFamily: "'Inter', sans-serif", fontWeight: 300, fontSize: 8, letterSpacing: '0.25em', color: 'rgba(201,168,76,0.12)', textTransform: 'uppercase' }}>Built by Roviq</span>
           ) : (
