@@ -1,0 +1,144 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --charcoal: #1a1a2e;
+  --gold: #c9a96e;
+  --sage: #7c9473;
+  --cream: #f5f0e8;
+  --dark-bg: #0f0f1a;
+  --text-primary: #2d2d3a;
+  --text-secondary: #5a5a6e;
+  --border: #e0ddd5;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--text-primary);
+  line-height: 1.65;
+  font-size: 11pt;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-size: 26pt;
+  font-weight: 700;
+  color: var(--charcoal);
+  border-bottom: 3px solid var(--gold);
+  padding-bottom: 12px;
+  margin-top: 0;
+  margin-bottom: 8px;
+  letter-spacing: -0.5px;
+}
+
+h2 {
+  font-size: 15pt;
+  font-weight: 600;
+  color: var(--charcoal);
+  margin-top: 28px;
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 1.5px solid var(--border);
+}
+
+h3 {
+  font-size: 12pt;
+  font-weight: 600;
+  color: var(--sage);
+  margin-top: 18px;
+  margin-bottom: 8px;
+}
+
+h4 {
+  font-size: 11pt;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-top: 14px;
+}
+
+p {
+  margin-bottom: 8px;
+}
+
+strong {
+  color: var(--charcoal);
+  font-weight: 600;
+}
+
+em {
+  color: var(--text-secondary);
+}
+
+blockquote {
+  border-left: 3px solid var(--gold);
+  margin: 12px 0;
+  padding: 8px 16px;
+  background: #faf8f4;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0;
+  font-size: 10pt;
+}
+
+thead {
+  background: var(--charcoal);
+  color: white;
+}
+
+th {
+  padding: 8px 12px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 9.5pt;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+td {
+  padding: 7px 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+tr:nth-child(even) {
+  background: #faf8f4;
+}
+
+ul, ol {
+  margin: 6px 0;
+  padding-left: 22px;
+}
+
+li {
+  margin-bottom: 4px;
+}
+
+hr {
+  border: none;
+  border-top: 1.5px solid var(--border);
+  margin: 24px 0;
+}
+
+code {
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  background: #f0ede6;
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-size: 9.5pt;
+}
+
+a {
+  color: var(--sage);
+  text-decoration: none;
+}
+
+/* Confidential header styling */
+p:first-of-type {
+  color: var(--text-secondary);
+  font-size: 10pt;
+}
