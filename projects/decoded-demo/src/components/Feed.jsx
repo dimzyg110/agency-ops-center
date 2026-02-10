@@ -563,53 +563,17 @@ function ProductCard({ product, isActive, isNear, isLast, audioEnabled }) {
   const [vaultState, setVaultState] = useState('idle') // idle | authenticating | scanning | verified | done
   const [videoLoaded, setVideoLoaded] = useState(false)
   const videoRef = useRef(null)
-  const canvasRef = useRef(null)
-  const rafRef = useRef(null)
 
-  // Control video playback — only play active card
+  // Play/pause video based on active state
   useEffect(() => {
     const v = videoRef.current
     if (!v) return
     if (isActive) {
-      v.muted = true
       v.play().catch(() => {})
     } else {
       v.pause()
     }
   }, [isActive])
-
-  // Video stays muted
-  useEffect(() => {
-    const v = videoRef.current
-    if (!v) return
-    v.muted = true
-  }, [audioEnabled, isActive])
-
-  // Draw video frames to canvas — hides native play button
-  useEffect(() => {
-    if (!isActive || !videoLoaded) {
-      if (rafRef.current) cancelAnimationFrame(rafRef.current)
-      return
-    }
-    const v = videoRef.current
-    const c = canvasRef.current
-    if (!v || !c) return
-    const ctx = c.getContext('2d')
-    if (!ctx) return
-
-    const draw = () => {
-      if (v.paused || v.ended) {
-        rafRef.current = requestAnimationFrame(draw)
-        return
-      }
-      c.width = v.videoWidth || 1080
-      c.height = v.videoHeight || 1920
-      ctx.drawImage(v, 0, 0, c.width, c.height)
-      rafRef.current = requestAnimationFrame(draw)
-    }
-    rafRef.current = requestAnimationFrame(draw)
-    return () => { if (rafRef.current) cancelAnimationFrame(rafRef.current) }
-  }, [isActive, videoLoaded])
   const [selectedSize, setSelectedSize] = useState('M')
   const [vignetteIntensify, setVignetteIntensify] = useState(false)
 
@@ -784,41 +748,27 @@ function ProductCard({ product, isActive, isNear, isLast, audioEnabled }) {
         </div>
       )}
 
-      {/* Video background — hidden video + visible canvas (no native play button) */}
-      {product.video && (
-        <>
-          <video
-            ref={videoRef}
-            src={product.video}
-            autoPlay
-            loop
-            muted
-            playsInline
-            webkit-playsinline=""
-            preload={isNear ? 'auto' : 'none'}
-            controls={false}
-            onLoadedData={() => { setVideoLoaded(true); if (isActive && videoRef.current) videoRef.current.play().catch(() => {}) }}
-            style={{
-              position: 'absolute', inset: 0,
-              width: '100%', height: '100%',
-              objectFit: 'cover', zIndex: 0,
-              opacity: 0.001,
-              pointerEvents: 'none',
-            }}
-          />
-          <canvas
-            ref={canvasRef}
-            className={videoLoaded && isActive ? 'video-zoom' : ''}
-            style={{
-              position: 'absolute', inset: 0,
-              width: '100%', height: '100%',
-              objectFit: 'cover', zIndex: 0,
-              opacity: videoLoaded ? 0.9 : 0,
-              transition: 'opacity 1.2s ease-in-out',
-              pointerEvents: 'none',
-            }}
-          />
-        </>
+      {/* Video background */}
+      {product.video && isActive && (
+        <video
+          ref={videoRef}
+          src={product.video}
+          autoPlay
+          loop
+          muted
+          playsInline
+          webkit-playsinline=""
+          preload="auto"
+          onLoadedData={() => setVideoLoaded(true)}
+          className={videoLoaded ? 'video-zoom' : ''}
+          style={{
+            position: 'absolute', inset: 0,
+            width: '100%', height: '100%',
+            objectFit: 'cover', zIndex: 0,
+            opacity: videoLoaded ? 0.9 : 0,
+            transition: 'opacity 1.2s ease-in-out',
+          }}
+        />
       )}
 
       {/* Film Noise overlay on video (Effect 5) */}
