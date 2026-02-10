@@ -779,7 +779,7 @@ function ProductCard({ product, isActive, isNear, isLast, audioEnabled }) {
       </div>
 
       {/* ── BOTTOM CONTENT ── */}
-      <div style={{ position: 'relative', zIndex: 5, padding: '0 22px 16px', maxWidth: 380 }}>
+      <div style={{ position: 'relative', zIndex: 5, padding: '0 22px 16px' }}>
 
         {/* Scarcity tag */}
         <div style={{ ...reveal(0.08), marginBottom: 10 }}>
@@ -875,7 +875,7 @@ function ProductCard({ product, isActive, isNear, isLast, audioEnabled }) {
         {/* ADD TO VAULT — 3D Glass with Fingerprint Scan */}
         <div style={reveal(0.38)}>
           <button onClick={handleVault} style={{
-            position: 'relative', width: '100%', maxWidth: 340, height: 48,
+            position: 'relative', width: '100%', height: 48,
             border: isVaultDone ? '1px solid rgba(212,185,106,0.5)' : '1px solid rgba(201,168,76,0.25)',
             borderRadius: 14, cursor: 'pointer',
             fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: 12,
