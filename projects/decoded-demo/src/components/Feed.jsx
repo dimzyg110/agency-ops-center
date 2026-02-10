@@ -481,7 +481,7 @@ function SecretCard({ isActive }) {
    PRODUCT CARD
    ══════════════════════════════════════════════ */
 
-function ProductCard({ product, isActive, isLast, audioEnabled }) {
+function ProductCard({ product, isActive, isNear, isLast, audioEnabled }) {
   const { h, m, s, expired } = useCountdown(product.dropEnd)
   const [fireCount, setFireCount] = useState(product.fireCount)
   const [skullCount, setSkullCount] = useState(product.skullCount)
@@ -491,6 +491,17 @@ function ProductCard({ product, isActive, isLast, audioEnabled }) {
   const [vaultState, setVaultState] = useState('idle') // idle | authenticating | scanning | verified | done
   const [videoLoaded, setVideoLoaded] = useState(false)
   const videoRef = useRef(null)
+
+  // Control video playback — only play active card
+  useEffect(() => {
+    const v = videoRef.current
+    if (!v) return
+    if (isActive) {
+      v.play().catch(() => {})
+    } else {
+      v.pause()
+    }
+  }, [isActive])
 
   // Control video volume based on audio state
   useEffect(() => {
@@ -656,10 +667,9 @@ function ProductCard({ product, isActive, isLast, audioEnabled }) {
       )}
 
       {/* Video background with Ken Burns */}
-      {product.video && (
+      {product.video && isNear && (
         <video
           ref={videoRef}
-          autoPlay
           loop
           muted
           playsInline
@@ -1040,6 +1050,7 @@ export default function Feed() {
             key={product.id}
             product={product}
             isActive={activeIndex === i}
+            isNear={Math.abs(activeIndex - i) <= 1}
             isLast={false}
             audioEnabled={audioEnabled && !muted}
           />
