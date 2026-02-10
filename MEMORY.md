@@ -27,6 +27,7 @@ _Curated patterns, preferences, and lessons. Updated weekly from daily logs._
 - Content automation for social is the biggest time sink — needs systemization
 - **When research reveals a competitor tool/platform, the COO move is "build our own" — don't just report, propose the play across all clients** (learned 2026-02-10, Prometheus incident)
 - **Cross-client pattern recognition is mandatory** — every finding should be scanned against CH, AC, HOP, and pipeline leads
+- **Every insight has two layers: client impact AND Roviq growth** — client work is a means to grow Roviq. If we build a tool for one client, ask: can we sell this to 26 others? Is this a new vertical? Does this reposition Roviq in the market? (clarified 2026-02-10)
 
 ## What Works
 
