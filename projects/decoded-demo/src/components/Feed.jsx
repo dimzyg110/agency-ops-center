@@ -198,7 +198,7 @@ function ProductCard({ product, isActive, isLast }) {
 
       {/* Brand mark — static */}
       <div style={{
-        position: 'absolute', top: 'calc(42px + env(safe-area-inset-top, 0px))', left: 22, zIndex: 5,
+        position: 'absolute', top: 'calc(57px + env(safe-area-inset-top, 0px))', left: 22, zIndex: 5,
         fontFamily: "'Inter', sans-serif", fontWeight: 800, fontSize: 9,
         letterSpacing: '0.4em', color: 'rgba(201,168,76,0.15)', textTransform: 'uppercase',
       }}>DECODED</div>
