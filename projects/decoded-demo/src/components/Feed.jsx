@@ -198,7 +198,7 @@ function ProductCard({ product, isActive, isLast }) {
 
       {/* Brand mark */}
       <div style={{
-        position: 'absolute', top: 14, left: 22, zIndex: 5,
+        position: 'absolute', top: 'calc(42px + env(safe-area-inset-top, 0px))', left: 22, zIndex: 5,
         fontFamily: "'Inter', sans-serif", fontWeight: 800, fontSize: 10,
         letterSpacing: '0.4em', color: 'rgba(201,168,76,0.18)', textTransform: 'uppercase',
       }}>DECODED</div>
@@ -379,7 +379,7 @@ export default function Feed() {
   return (
     <>
       <DropBanner />
-      <div ref={scrollRef} className="feed-scroll no-scrollbar" style={{ paddingTop: 'calc(36px + env(safe-area-inset-top, 0px))' }}>
+      <div ref={scrollRef} className="feed-scroll no-scrollbar">
         {products.map((product, i) => (
           <ProductCard key={product.id} product={product} isActive={activeIndex === i} isLast={i === products.length - 1} />
         ))}
