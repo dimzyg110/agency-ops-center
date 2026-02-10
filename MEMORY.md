@@ -46,6 +46,11 @@ _Curated patterns, preferences, and lessons. Updated weekly from daily logs._
 - **Opus 4.6T subagent bug**: Works as main session model but fails on multi-turn subagent sessions (thinking.signature field required error). Single-turn subagent tasks work. Fallback: Sonnet 4.5T or Gemini 3 Pro High for subagents.
 - **Opus 4.6 (non-thinking)**: Returns 404 on Antigravity — model not available without thinking enabled.
 - Kimi K2.5 for large file writes — NVIDIA proxy truncates at ~8K chars. **FIXED: use `openrouter/moonshotai/kimi-k2.5` instead.** OpenRouter handles 48K+ in a single write. NVIDIA route still works for small tasks (free). Moonshot direct (`moonshot/kimi-k2.5`) requires balance top-up.
+- **iOS Safari video autoplay**: `muted + playsInline + autoPlay` should work without user gesture. Common failure causes: (1) conditional rendering that destroys/recreates video elements (breaks autoplay), (2) too many simultaneous videos, (3) Low Power Mode, (4) video at tiny size (1x1px won't autoplay), (5) wrong H.264 profile. Use baseline profile level 3.1 for maximum iOS compatibility. Only render one video at a time (active card).
+- **Canvas video rendering** to avoid native play button: works but video must be full-size for iOS to autoplay it. Canvas approach adds CPU overhead on mobile.
+- **archive.org for music**: Direct CDN URLs work (`ia800608.us.archive.org`), redirect URLs don't work for cross-origin audio. Many mainstream tracks are "dark" (restricted). Video uploads sometimes have accessible audio that can be extracted with ffmpeg.
+- **GitHub Pages video hosting**: Works but cache-control is only 10 min (`max-age=600`). Not as fast as R2 CDN but avoids cross-origin issues. Deploy takes ~45-60s after push.
+- **ffmpeg video compression**: CRF 25, H.264 baseline profile, 1080p, `movflags +faststart` gives good mobile results. 87MB → 7MB (92% reduction) while keeping acceptable quality.
 
 ## Tech Stack for Client Work
 
@@ -73,4 +78,4 @@ _Curated patterns, preferences, and lessons. Updated weekly from daily logs._
 - **No deploy service credentials configured** — need Vercel/Netlify/Cloudflare token from Randy to deploy demos/sites from sandbox. GitHub Pages blocked on private repos (free plan).
 - **Decoded demo built** at `projects/decoded-demo/` — Vite + React + Tailwind, TikTok-style feed. Randy hasn't seen it yet.
 
-_Last updated: 2026-02-10_
+_Last updated: 2026-02-10 (evening)_
