@@ -25,6 +25,8 @@ _Curated patterns, preferences, and lessons. Updated weekly from daily logs._
 - Multi-model reviews catch different issues — always use 2+ models for review
 - Sprint pricing ($3K) is the sweet spot for initial engagement
 - Content automation for social is the biggest time sink — needs systemization
+- **When research reveals a competitor tool/platform, the COO move is "build our own" — don't just report, propose the play across all clients** (learned 2026-02-10, Prometheus incident)
+- **Cross-client pattern recognition is mandatory** — every finding should be scanned against CH, AC, HOP, and pipeline leads
 
 ## What Works
 
