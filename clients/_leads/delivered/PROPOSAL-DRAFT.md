@@ -15,7 +15,9 @@ Massachusetts cannabis generated **$1.6 billion** in 2025. Delivery captured jus
 
 Here's what makes this moment rare:
 
-Not a single delivery operator in Massachusetts has a mobile app. Not Zyp Run ($2.6M funded). Not Rolling Releaf. Nobody. In every other delivery category (food, grocery, pharmacy), the app is the primary channel. Cannabis delivery is stuck in a browser-only era.
+Not a single delivery operator in Massachusetts has their own branded mobile app. Not Zyp Run ($2.6M funded, they built a web platform instead). Not Rolling Releaf. Nobody. Lantern tried launching a cannabis marketplace app in late 2022 and shut down two months later. Google Play bans cannabis sales apps outright, which blocks half the market. The result: every operator is stuck in a browser-only era while food, grocery, and pharmacy delivery all moved to apps years ago.
+
+You're currently fulfilling orders for Jointly (a third-party cannabis shopping app). That means Jointly owns the customer relationship and Delivered is the logistics layer. Building your own app flips that. You become the brand customers see, order from, and return to.
 
 Social equity delivery exclusivity is locked until April 2029. The CCC voted 4-0 to maintain it. The 27 active operators today are the only ones who will exist for 3+ more years. Market share gained now is defensible for years.
 
@@ -39,7 +41,7 @@ You don't need saving. You need a partner.
 
 ---
 
-## 3. The App: First Cannabis Delivery App in Massachusetts
+## 3. The App: First Operator-Branded Cannabis Delivery App in Massachusetts
 
 ### React Native — iOS + Android from Day One
 
