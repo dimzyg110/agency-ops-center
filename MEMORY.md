@@ -14,7 +14,7 @@ _Curated patterns, preferences, and lessons. Updated weekly from daily logs._
 
 ## Client Patterns
 
-- **AC:** Creative client, values aesthetic and storytelling. Debbie and Clarice execute. Generate concepts → Randy curates → they produce.
+- **AC:** Creative client, values aesthetic and storytelling. Debbie and Clarice execute. Generate concepts → Randy curates → they produce. Active cultivator license (Indoor Tier 2, 5-10K sqft, Lowell). Has prerolls license. Pending manufacturer license (edibles/concentrates — incomplete). First Latino-owned rec cultivator in MA. Physical retail location coming soon.
 - **CH:** Practical client, needs data-driven results. Brian is the point of contact. Growth through SEO, automations, and partner channels.
 - **HOP:** Launch-phase client. Kam is the partner. Needs full GTM before anything else.
 
