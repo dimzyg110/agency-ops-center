@@ -4,6 +4,8 @@ import { products } from '../data/products'
 const pad = n => String(n).padStart(2, '0')
 const fmtK = n => n >= 1000 ? (n / 1000).toFixed(1) + 'K' : String(n)
 
+const CIPHER_CHARS = '▓█░▒◆◇▲△●○■□╳⬡⬢'
+
 function useCountdown(endTime) {
   const [now, setNow] = useState(Date.now())
   useEffect(() => {
@@ -128,6 +130,353 @@ function SizeSelector({ selectedSize, onSelectSize }) {
   )
 }
 
+/* ── CIPHER TEXT HOOK ── */
+
+function useCipherReveal(originalText) {
+  const [cipherActive, setCipherActive] = useState(false)
+  const [cipherText, setCipherText] = useState(null)
+  const [cipherFlash, setCipherFlash] = useState(false)
+  const [goldPulse, setGoldPulse] = useState(false)
+  const [resolvedGoldIndices, setResolvedGoldIndices] = useState(new Set())
+  const lastTapRef = useRef(0)
+  const cooldownRef = useRef(false)
+  const intervalRef = useRef(null)
+
+  const cleanText = originalText.replace(/\n/g, '\n')
+  const chars = [...cleanText]
+
+  const triggerCipher = useCallback(() => {
+    if (cooldownRef.current || cipherActive) return
+    cooldownRef.current = true
+    setCipherActive(true)
+    setCipherFlash(true)
+    setTimeout(() => setCipherFlash(false), 200)
+
+    const resolved = new Set()
+    const goldSet = new Set()
+    setResolvedGoldIndices(new Set())
+
+    // Phase 1: All characters scramble (0-600ms)
+    intervalRef.current = setInterval(() => {
+      const scrambled = chars.map((ch, i) => {
+        if (ch === '\n' || ch === ' ') return ch
+        if (resolved.has(i)) return chars[i]
+        return CIPHER_CHARS[Math.floor(Math.random() * CIPHER_CHARS.length)]
+      })
+      setCipherText(scrambled.join(''))
+    }, 50)
+
+    // Phase 2: Decode left-to-right starting at 600ms
+    const nonSpaceIndices = chars.map((ch, i) => (ch !== '\n' && ch !== ' ') ? i : -1).filter(i => i >= 0)
+    let decodeIdx = 0
+
+    const decodeInterval = setInterval(() => {
+      if (decodeIdx >= nonSpaceIndices.length) {
+        clearInterval(decodeInterval)
+        // Phase 3: All resolved — gold pulse
+        setGoldPulse(true)
+        setTimeout(() => {
+          setGoldPulse(false)
+          setCipherActive(false)
+          setCipherText(null)
+          setResolvedGoldIndices(new Set())
+          if (intervalRef.current) clearInterval(intervalRef.current)
+        }, 400)
+        setTimeout(() => { cooldownRef.current = false }, 2000)
+        return
+      }
+      const charIdx = nonSpaceIndices[decodeIdx]
+      resolved.add(charIdx)
+      goldSet.add(charIdx)
+      setResolvedGoldIndices(new Set(goldSet))
+      // Remove gold flash after 200ms
+      setTimeout(() => {
+        goldSet.delete(charIdx)
+        setResolvedGoldIndices(new Set(goldSet))
+      }, 200)
+      decodeIdx++
+    }, 80)
+
+    // Start decode after 600ms
+    const startDecode = setTimeout(() => {
+      // decodeInterval already running, but we delay its start
+    }, 0)
+
+    // Actually: we need to delay the decode start
+    // Clear the premature decode interval and restart after 600ms
+    clearInterval(decodeInterval)
+
+    const decodeTimeout = setTimeout(() => {
+      let idx2 = 0
+      const di2 = setInterval(() => {
+        if (idx2 >= nonSpaceIndices.length) {
+          clearInterval(di2)
+          setGoldPulse(true)
+          setTimeout(() => {
+            setGoldPulse(false)
+            setCipherActive(false)
+            setCipherText(null)
+            setResolvedGoldIndices(new Set())
+            if (intervalRef.current) clearInterval(intervalRef.current)
+          }, 400)
+          setTimeout(() => { cooldownRef.current = false }, 2000)
+          return
+        }
+        const charIdx = nonSpaceIndices[idx2]
+        resolved.add(charIdx)
+        goldSet.add(charIdx)
+        setResolvedGoldIndices(new Set(goldSet))
+        setTimeout(() => {
+          goldSet.delete(charIdx)
+          setResolvedGoldIndices(new Set(goldSet))
+        }, 200)
+        idx2++
+      }, 80)
+    }, 600)
+
+    return () => {
+      clearTimeout(startDecode)
+      clearTimeout(decodeTimeout)
+      if (intervalRef.current) clearInterval(intervalRef.current)
+    }
+  }, [cipherActive, chars])
+
+  const handleDoubleTap = useCallback((e) => {
+    // Don't trigger on buttons
+    if (e.target.closest('button')) return
+    const now = Date.now()
+    if (now - lastTapRef.current < 300) {
+      triggerCipher()
+      lastTapRef.current = 0
+    } else {
+      lastTapRef.current = now
+    }
+  }, [triggerCipher])
+
+  return { cipherActive, cipherText, cipherFlash, goldPulse, resolvedGoldIndices, handleDoubleTap }
+}
+
+/* ── FINGERPRINT SCAN COMPONENT ── */
+
+function FingerprintScan({ phase }) {
+  if (phase !== 'scanning') return null
+  return (
+    <div style={{
+      position: 'absolute',
+      left: '50%',
+      top: '50%',
+      transform: 'translate(-50%, -50%)',
+      width: 36,
+      height: 36,
+      pointerEvents: 'none',
+    }}>
+      {/* Outer spinning dashed ring */}
+      <div className="fingerprint-ring" style={{
+        position: 'absolute',
+        inset: 0,
+        borderRadius: '50%',
+        border: '2px dashed rgba(201,168,76,0.6)',
+        animation: 'fingerprint-spin 0.8s linear infinite, fingerprint-expand 0.75s ease-out forwards',
+      }} />
+      {/* Concentric fingerprint rings */}
+      <svg width="36" height="36" viewBox="0 0 36 36" style={{ position: 'absolute', inset: 0 }}>
+        <circle cx="18" cy="18" r="4" fill="none" stroke="rgba(201,168,76,0.3)" strokeWidth="1"
+          style={{ animation: 'fingerprint-ring-pulse 0.75s ease-out 0.1s forwards', opacity: 0, transformOrigin: 'center' }} />
+        <circle cx="18" cy="18" r="8" fill="none" stroke="rgba(201,168,76,0.2)" strokeWidth="0.8"
+          style={{ animation: 'fingerprint-ring-pulse 0.75s ease-out 0.25s forwards', opacity: 0, transformOrigin: 'center' }} />
+        <circle cx="18" cy="18" r="12" fill="none" stroke="rgba(201,168,76,0.1)" strokeWidth="0.6"
+          style={{ animation: 'fingerprint-ring-pulse 0.75s ease-out 0.4s forwards', opacity: 0, transformOrigin: 'center' }} />
+      </svg>
+    </div>
+  )
+}
+
+/* ══════════════════════════════════════════════
+   HIDDEN 6TH CARD — SECRET MEMBERSHIP
+   ══════════════════════════════════════════════ */
+
+function SecretCard({ isActive }) {
+  const [phase, setPhase] = useState(0) // 0=black, 1=line, 2=decoded, 3=subtitle, 4=badge, 5=claim, 6=claimed
+  const [claimed, setClaimed] = useState(false)
+  const [claimFlash, setClaimFlash] = useState(false)
+  const timerRefs = useRef([])
+
+  // Reset and run animation sequence when card becomes active
+  useEffect(() => {
+    // Clear any existing timers
+    timerRefs.current.forEach(t => clearTimeout(t))
+    timerRefs.current = []
+
+    if (!isActive) {
+      setPhase(0)
+      return
+    }
+    if (claimed) {
+      setPhase(6)
+      return
+    }
+
+    // Animation sequence
+    const t1 = setTimeout(() => setPhase(1), 1500)   // Gold line
+    const t2 = setTimeout(() => setPhase(2), 3000)   // DECODED
+    const t3 = setTimeout(() => setPhase(3), 4000)   // YOU'VE BEEN DECODED
+    const t4 = setTimeout(() => setPhase(4), 5500)   // Badge
+    const t5 = setTimeout(() => setPhase(5), 7000)   // TAP TO CLAIM
+
+    timerRefs.current = [t1, t2, t3, t4, t5]
+    return () => timerRefs.current.forEach(t => clearTimeout(t))
+  }, [isActive, claimed])
+
+  const handleClaim = useCallback(() => {
+    if (phase !== 5 || claimed) return
+    setClaimFlash(true)
+    setTimeout(() => {
+      setClaimFlash(false)
+      setClaimed(true)
+      setPhase(6)
+    }, 400)
+  }, [phase, claimed])
+
+  return (
+    <div
+      className="feed-card relative w-full flex flex-col items-center justify-center"
+      style={{ background: '#0D0D0D', position: 'relative', overflow: 'hidden' }}
+      onClick={handleClaim}
+    >
+      {/* Film grain overlay */}
+      <div style={{
+        position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 50, opacity: 0.035,
+        backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")",
+        mixBlendMode: 'overlay',
+      }} />
+
+      {/* Claim flash overlay */}
+      {claimFlash && (
+        <div style={{
+          position: 'absolute', inset: 0, zIndex: 40,
+          background: 'rgba(201,168,76,0.15)',
+          animation: 'secret-card-flash 0.4s ease-out forwards',
+          pointerEvents: 'none',
+        }} />
+      )}
+
+      {/* Content container */}
+      <div style={{
+        display: 'flex', flexDirection: 'column', alignItems: 'center',
+        justifyContent: 'center', position: 'relative', zIndex: 10,
+        gap: 0, width: '100%',
+      }}>
+        {/* "DECODED" text */}
+        <div style={{
+          fontFamily: "'Bebas Neue', sans-serif",
+          fontSize: 48,
+          letterSpacing: '0.3em',
+          color: '#C9A84C',
+          opacity: phase >= 2 ? 1 : 0,
+          transition: 'opacity 1.2s ease',
+          marginBottom: 16,
+          textAlign: 'center',
+          textShadow: '0 0 40px rgba(201,168,76,0.2)',
+        }}>
+          DECODED
+        </div>
+
+        {/* Gold line */}
+        <div style={{
+          width: phase >= 1 ? 120 : 0,
+          height: 1,
+          background: 'linear-gradient(90deg, transparent, #C9A84C, transparent)',
+          boxShadow: '0 0 20px rgba(201,168,76,0.3)',
+          transition: 'width 1.5s cubic-bezier(0.16, 1, 0.3, 1)',
+          marginBottom: 16,
+        }} />
+
+        {/* "YOU'VE BEEN DECODED" */}
+        <div style={{
+          fontFamily: "'Inter', sans-serif",
+          fontWeight: 300,
+          fontSize: 11,
+          letterSpacing: '0.35em',
+          color: 'rgba(245,240,232,0.5)',
+          textTransform: 'uppercase',
+          opacity: phase >= 3 ? 1 : 0,
+          transition: 'opacity 1.2s ease',
+          marginBottom: 40,
+          textAlign: 'center',
+        }}>
+          YOU'VE BEEN DECODED
+        </div>
+
+        {/* Member badge */}
+        <div style={{
+          opacity: phase >= 4 ? 1 : 0,
+          transform: phase >= 4 ? 'scale(1)' : 'scale(0.9)',
+          transition: 'opacity 1s ease, transform 1s cubic-bezier(0.16, 1, 0.3, 1)',
+          display: 'flex', flexDirection: 'column', alignItems: 'center',
+          padding: '24px 40px',
+          border: '1px solid rgba(201,168,76,0.3)',
+          borderRadius: 12,
+          background: 'rgba(201,168,76,0.04)',
+          backdropFilter: 'blur(20px)',
+          WebkitBackdropFilter: 'blur(20px)',
+          animation: phase >= 4 ? 'badge-glow-pulse 3s ease-in-out infinite' : 'none',
+          marginBottom: 32,
+        }}>
+          <span style={{
+            fontFamily: "'Bebas Neue', sans-serif",
+            fontSize: 20,
+            letterSpacing: '0.25em',
+            color: '#C9A84C',
+            marginBottom: 4,
+          }}>
+            {phase === 6 ? 'CLAIMED' : 'FOUNDING MEMBER'}
+          </span>
+          {phase === 6 ? (
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ marginTop: 4 }}>
+              <polyline points="4 12 10 18 20 6" style={{ strokeDasharray: 30, strokeDashoffset: 0, animation: 'draw-check 0.35s ease forwards' }} />
+            </svg>
+          ) : (
+            <span style={{
+              fontFamily: "'Inter', sans-serif",
+              fontWeight: 300,
+              fontSize: 12,
+              letterSpacing: '0.2em',
+              color: 'rgba(245,240,232,0.4)',
+            }}>
+              № 0001
+            </span>
+          )}
+        </div>
+
+        {/* TAP TO CLAIM */}
+        {phase === 5 && !claimed && (
+          <div style={{
+            fontFamily: "'Inter', sans-serif",
+            fontWeight: 400,
+            fontSize: 10,
+            letterSpacing: '0.3em',
+            color: 'rgba(201,168,76,0.6)',
+            textTransform: 'uppercase',
+            animation: 'claim-pulse 2s ease-in-out infinite',
+            cursor: 'pointer',
+          }}>
+            TAP TO CLAIM
+          </div>
+        )}
+      </div>
+
+      {/* Brand mark */}
+      <div style={{
+        position: 'absolute', bottom: 30, left: '50%', transform: 'translateX(-50%)',
+        fontFamily: "'Inter', sans-serif", fontWeight: 300, fontSize: 8,
+        letterSpacing: '0.25em', color: 'rgba(201,168,76,0.12)', textTransform: 'uppercase',
+      }}>
+        Built by Roviq
+      </div>
+    </div>
+  )
+}
+
 /* ══════════════════════════════════════════════
    PRODUCT CARD
    ══════════════════════════════════════════════ */
@@ -139,9 +488,13 @@ function ProductCard({ product, isActive, isLast }) {
   const [fireTrigger, setFireTrigger] = useState(0)
   const [fireActive, setFireActive] = useState(false)
   const [skullActive, setSkullActive] = useState(false)
-  const [vaultState, setVaultState] = useState('idle')
+  const [vaultState, setVaultState] = useState('idle') // idle | authenticating | scanning | verified | done
   const [videoLoaded, setVideoLoaded] = useState(false)
   const [selectedSize, setSelectedSize] = useState('M')
+  const [vignetteIntensify, setVignetteIntensify] = useState(false)
+
+  // Cipher reveal
+  const { cipherActive, cipherText, cipherFlash, goldPulse, resolvedGoldIndices, handleDoubleTap } = useCipherReveal(product.name)
 
   const handleFire = useCallback(() => {
     if (fireActive) return
@@ -155,11 +508,28 @@ function ProductCard({ product, isActive, isLast }) {
     setTimeout(() => setSkullActive(false), 500)
   }, [skullActive])
 
+  /* ── FINGERPRINT VAULT HANDLER ── */
   const handleVault = useCallback(() => {
     if (vaultState !== 'idle') return
-    setVaultState('pulse')
-    setTimeout(() => setVaultState('done'), 350)
-    setTimeout(() => setVaultState('idle'), 2800)
+
+    // Phase 1: Authenticating
+    setVaultState('authenticating')
+    setVignetteIntensify(true)
+
+    // Phase 2: Scanning
+    setTimeout(() => setVaultState('scanning'), 150)
+
+    // Phase 3: Verified flash
+    setTimeout(() => {
+      setVaultState('verified')
+      setVignetteIntensify(false)
+    }, 900)
+
+    // Phase 4: Done state with VERIFIED text
+    setTimeout(() => setVaultState('done'), 1100)
+
+    // Reset to idle after 2 seconds
+    setTimeout(() => setVaultState('idle'), 3100)
   }, [vaultState])
 
   const reveal = (delay) => ({
@@ -168,8 +538,110 @@ function ProductCard({ product, isActive, isLast }) {
     transition: `opacity 0.6s cubic-bezier(0.16,1,0.3,1) ${delay}s, transform 0.6s cubic-bezier(0.16,1,0.3,1) ${delay}s`,
   })
 
+  // Render the product name with cipher effect
+  const renderProductName = () => {
+    if (cipherText !== null) {
+      // Render character by character for gold flash
+      const displayChars = [...cipherText]
+      const originalChars = [...product.name.replace(/\n/g, '\n')]
+      return displayChars.map((ch, i) => {
+        if (ch === '\n') return <br key={i} />
+        const isResolved = resolvedGoldIndices.has(i)
+        return (
+          <span
+            key={i}
+            style={{
+              color: isResolved ? '#E8D48B' : '#F5F0E8',
+              transition: 'color 0.2s ease',
+              display: 'inline',
+            }}
+          >
+            {ch}
+          </span>
+        )
+      })
+    }
+    return product.name
+  }
+
+  // Determine vault button content
+  const renderVaultContent = () => {
+    switch (vaultState) {
+      case 'authenticating':
+        return (
+          <span style={{
+            fontSize: 10,
+            letterSpacing: '0.2em',
+            opacity: 0.8,
+            animation: 'vault-text-fade 0.15s ease forwards',
+          }}>
+            AUTHENTICATING...
+          </span>
+        )
+      case 'scanning':
+        return (
+          <>
+            <span style={{ fontSize: 10, letterSpacing: '0.2em', opacity: 0.6 }}>
+              AUTHENTICATING...
+            </span>
+            <FingerprintScan phase="scanning" />
+          </>
+        )
+      case 'verified':
+        return (
+          <>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E8D48B" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+              <polyline points="4 12 10 18 20 6" style={{ strokeDasharray: 30, strokeDashoffset: 0, animation: 'draw-check 0.35s ease forwards' }} />
+            </svg>
+            <span style={{ color: '#E8D48B' }}>VERIFIED</span>
+          </>
+        )
+      case 'done':
+        return (
+          <>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E8D48B" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+              <polyline points="4 12 10 18 20 6" style={{ strokeDasharray: 30, strokeDashoffset: 0 }} />
+            </svg>
+            <span style={{ color: '#E8D48B' }}>VERIFIED</span>
+          </>
+        )
+      default:
+        return <span>Add to Vault</span>
+    }
+  }
+
+  const isVaultActive = vaultState !== 'idle'
+  const isVaultDone = vaultState === 'done' || vaultState === 'verified'
+
   return (
-    <div className="feed-card relative w-full flex flex-col justify-end" style={{ background: product.gradient }}>
+    <div
+      className="feed-card relative w-full flex flex-col justify-end"
+      style={{ background: product.gradient }}
+      onClick={handleDoubleTap}
+    >
+      {/* Cipher flash overlay */}
+      {cipherFlash && (
+        <div style={{
+          position: 'absolute', inset: 0, zIndex: 30,
+          background: 'rgba(201,168,76,0.06)',
+          animation: 'cipher-flash 0.2s ease-out forwards',
+          pointerEvents: 'none',
+        }} />
+      )}
+
+      {/* Gold pulse shockwave */}
+      {goldPulse && (
+        <div className="cipher-shockwave" style={{
+          position: 'absolute',
+          left: 22,
+          bottom: '35%',
+          width: 0,
+          height: 0,
+          zIndex: 30,
+          pointerEvents: 'none',
+        }} />
+      )}
+
       {/* Video background with Ken Burns */}
       {product.video && (
         <video
@@ -192,7 +664,13 @@ function ProductCard({ product, isActive, isLast }) {
       )}
 
       {/* Vignette */}
-      <div className="vignette absolute inset-0 z-[1]" />
+      <div
+        className="vignette absolute inset-0 z-[1]"
+        style={{
+          transition: 'opacity 0.3s ease',
+          opacity: vignetteIntensify ? 1.5 : 1,
+        }}
+      />
       {/* Gradient overlay */}
       <div className="gradient-overlay absolute inset-0 z-[2]" />
 
@@ -292,7 +770,7 @@ function ProductCard({ product, isActive, isLast }) {
           </span>
         </div>
 
-        {/* Product name */}
+        {/* Product name — with cipher effect */}
         <h2 style={{
           ...reveal(0.16),
           fontFamily: "'Bebas Neue', 'Inter', sans-serif",
@@ -301,10 +779,13 @@ function ProductCard({ product, isActive, isLast }) {
           lineHeight: 0.92,
           letterSpacing: '0.04em',
           color: '#F5F0E8',
-          textShadow: '0 2px 30px rgba(0,0,0,0.6), 0 0 60px rgba(0,0,0,0.3)',
+          textShadow: cipherActive
+            ? '2px 0 #ff000018, -2px 0 #00ffff18, 0 2px 30px rgba(0,0,0,0.6), 0 0 60px rgba(0,0,0,0.3)'
+            : '0 2px 30px rgba(0,0,0,0.6), 0 0 60px rgba(0,0,0,0.3)',
           whiteSpace: 'pre-line',
           marginBottom: product.subtitle ? 4 : 6,
-        }}>{product.name}</h2>
+          animation: cipherActive ? 'cipher-glitch 0.1s ease infinite' : 'none',
+        }}>{renderProductName()}</h2>
 
         {/* Subtitle */}
         {product.subtitle && (
@@ -366,26 +847,29 @@ function ProductCard({ product, isActive, isLast }) {
           <SizeSelector selectedSize={selectedSize} onSelectSize={setSelectedSize} />
         </div>
 
-        {/* ADD TO VAULT — 3D Glass */}
+        {/* ADD TO VAULT — 3D Glass with Fingerprint Scan */}
         <div style={reveal(0.38)}>
           <button onClick={handleVault} style={{
             position: 'relative', width: '100%', maxWidth: 340, height: 48,
-            border: vaultState === 'done' ? '1px solid rgba(212,185,106,0.5)' : '1px solid rgba(201,168,76,0.25)',
+            border: isVaultDone ? '1px solid rgba(212,185,106,0.5)' : '1px solid rgba(201,168,76,0.25)',
             borderRadius: 14, cursor: 'pointer',
             fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: 12,
             letterSpacing: '0.14em', textTransform: 'uppercase',
             display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10,
             transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)', overflow: 'hidden',
-            background: vaultState === 'done'
+            background: isVaultDone
               ? 'linear-gradient(135deg, rgba(212,185,106,0.22) 0%, rgba(168,137,59,0.18) 100%)'
-              : 'linear-gradient(135deg, rgba(212,185,106,0.12) 0%, rgba(201,168,76,0.08) 50%, rgba(168,137,59,0.12) 100%)',
+              : vaultState === 'scanning'
+                ? 'linear-gradient(135deg, rgba(212,185,106,0.18) 0%, rgba(201,168,76,0.12) 50%, rgba(168,137,59,0.18) 100%)'
+                : 'linear-gradient(135deg, rgba(212,185,106,0.12) 0%, rgba(201,168,76,0.08) 50%, rgba(168,137,59,0.12) 100%)',
             backdropFilter: 'blur(24px) saturate(1.4)',
             WebkitBackdropFilter: 'blur(24px) saturate(1.4)',
-            color: vaultState === 'done' ? '#E8D48B' : '#D4B96A',
-            animation: vaultState === 'pulse' ? 'glass-vault-press 0.55s ease forwards'
-              : vaultState === 'done' ? 'glass-confirmed-glow 2s ease-in-out infinite'
+            color: isVaultDone ? '#E8D48B' : '#D4B96A',
+            animation: vaultState === 'verified' ? 'vault-fingerprint-flash 0.2s ease forwards'
+              : isVaultDone ? 'glass-confirmed-glow 2s ease-in-out infinite'
+              : vaultState === 'scanning' ? 'glass-glow-breathe 3.5s ease-in-out infinite'
               : 'glass-glow-breathe 3.5s ease-in-out infinite',
-            transform: vaultState === 'pulse' ? 'scale(0.96) translateY(1px)' : 'scale(1)',
+            transform: vaultState === 'authenticating' ? 'scale(0.98)' : 'scale(1)',
           }}>
             {/* Top highlight edge — warm gold light catch */}
             <span style={{
@@ -418,16 +902,7 @@ function ProductCard({ product, isActive, isLast }) {
             }} />
             {/* Content */}
             <span style={{ position: 'relative', zIndex: 2, display: 'flex', alignItems: 'center', gap: 10, textShadow: '0 0 20px rgba(201,168,76,0.3)' }}>
-              {vaultState === 'done' ? (
-                <>
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E8D48B" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                    <polyline points="4 12 10 18 20 6" style={{ strokeDasharray: 30, strokeDashoffset: 0, animation: 'draw-check 0.35s ease forwards' }} />
-                  </svg>
-                  <span>In Your Vault</span>
-                </>
-              ) : (
-                <span>Add to Vault</span>
-              )}
+              {renderVaultContent()}
             </span>
           </button>
         </div>
@@ -452,6 +927,7 @@ function ProductCard({ product, isActive, isLast }) {
 export default function Feed() {
   const scrollRef = useRef(null)
   const [activeIndex, setActiveIndex] = useState(0)
+  const totalCards = products.length + 1 // +1 for secret card
 
   useEffect(() => {
     const el = scrollRef.current
@@ -469,8 +945,14 @@ export default function Feed() {
       <DropBanner />
       <div ref={scrollRef} className="feed-scroll no-scrollbar">
         {products.map((product, i) => (
-          <ProductCard key={product.id} product={product} isActive={activeIndex === i} isLast={i === products.length - 1} />
+          <ProductCard
+            key={product.id}
+            product={product}
+            isActive={activeIndex === i}
+            isLast={false}
+          />
         ))}
+        <SecretCard isActive={activeIndex === products.length} />
       </div>
     </>
   )
