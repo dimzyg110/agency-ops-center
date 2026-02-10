@@ -1,6 +1,5 @@
 @import "tailwindcss";
 
-/* ========== CUSTOM PROPERTIES ========== */
 :root {
   --charcoal: #0D0D0D;
   --gold: #C9A84C;
@@ -10,139 +9,130 @@
   --smoke: #2A2A2A;
 }
 
-/* ========== RESET & BASE ========== */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent;
-}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
 html, body, #root {
-  height: 100%;
-  width: 100%;
-  overflow: hidden;
-  background: var(--charcoal);
-  color: var(--offwhite);
+  height: 100%; width: 100%; overflow: hidden;
+  background: var(--charcoal); color: var(--offwhite);
   font-family: 'Inter', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* ========== SCROLLBAR HIDE ========== */
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-/* ========== SNAP SCROLL ========== */
 .feed-scroll {
   scroll-snap-type: y mandatory;
   overflow-y: scroll;
   height: 100%;
   -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
 }
 
 .feed-card {
   scroll-snap-align: start;
   scroll-snap-stop: always;
-  /* Each card fills viewport minus the 40px top banner */
-  height: calc(100dvh - 40px);
-  min-height: calc(100dvh - 40px);
+  height: calc(100dvh - 44px);
+  min-height: calc(100dvh - 44px);
 }
 
-/* ========== GRADIENT OVERLAY ========== */
 .gradient-overlay {
   background: linear-gradient(
     180deg,
-    rgba(13,13,13,0.1) 0%,
-    rgba(13,13,13,0.0) 20%,
-    rgba(13,13,13,0.0) 40%,
-    rgba(13,13,13,0.6) 65%,
-    rgba(13,13,13,0.92) 85%,
-    rgba(13,13,13,1) 100%
+    rgba(13,13,13,0.25) 0%,
+    rgba(13,13,13,0.0) 15%,
+    rgba(13,13,13,0.0) 35%,
+    rgba(13,13,13,0.55) 58%,
+    rgba(13,13,13,0.88) 78%,
+    rgba(13,13,13,0.98) 100%
   );
 }
 
-/* ========== PULSE GLOW ========== */
+.glass {
+  background: rgba(13, 13, 13, 0.72);
+  backdrop-filter: blur(24px) saturate(1.4);
+  -webkit-backdrop-filter: blur(24px) saturate(1.4);
+}
+
+.grain::after {
+  content: '';
+  position: fixed; inset: 0;
+  pointer-events: none; z-index: 9999;
+  opacity: 0.02;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@keyframes ambient-float {
+  0%   { transform: translate(0, 0) scale(1); }
+  33%  { transform: translate(12px, -18px) scale(1.05); }
+  66%  { transform: translate(-8px, 10px) scale(0.97); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+
 @keyframes pulse-glow {
-  0%, 100% { opacity: 0.7; }
+  0%, 100% { opacity: 0.65; }
   50% { opacity: 1; }
 }
 .pulse-glow { animation: pulse-glow 2.5s ease-in-out infinite; }
 
-/* ========== CARD ENTER ========== */
-@keyframes card-enter {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.card-enter { animation: card-enter 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-
-/* ========== CHEVRON BOUNCE ========== */
 @keyframes bounce-up {
-  0%, 100% { transform: translateY(0); opacity: 0.4; }
-  50% { transform: translateY(-10px); opacity: 0.9; }
+  0%, 100% { transform: translateY(0); opacity: 0.35; }
+  50% { transform: translateY(-8px); opacity: 0.85; }
 }
 
-/* ========== FIRE POP ========== */
 @keyframes fire-pop {
-  0% { transform: scale(1); }
-  25% { transform: scale(1.5); }
-  50% { transform: scale(0.85); }
+  0%   { transform: scale(1); }
+  20%  { transform: scale(1.45); }
+  45%  { transform: scale(0.88); }
+  70%  { transform: scale(1.08); }
   100% { transform: scale(1); }
 }
 
-/* ========== VAULT BUTTON PULSE ========== */
 @keyframes vault-pulse {
-  0% { box-shadow: 0 0 0 0 rgba(201,168,76,0.6); }
-  70% { box-shadow: 0 0 0 14px rgba(201,168,76,0); }
+  0%   { box-shadow: 0 0 0 0 rgba(201,168,76,0.55); }
+  60%  { box-shadow: 0 0 0 16px rgba(201,168,76,0); }
   100% { box-shadow: 0 0 0 0 rgba(201,168,76,0); }
 }
 
-/* ========== CHECKMARK ========== */
 @keyframes draw-check {
   from { stroke-dashoffset: 30; }
-  to { stroke-dashoffset: 0; }
+  to   { stroke-dashoffset: 0; }
 }
 
-/* ========== SPARKLE ========== */
 @keyframes sparkle-float {
-  0% { transform: translateY(0) scale(1); opacity: 1; }
-  100% { transform: translateY(-30px) scale(0); opacity: 0; }
+  0%   { transform: translateY(0) scale(1); opacity: 1; }
+  100% { transform: translateY(-28px) scale(0); opacity: 0; }
 }
 
-/* ========== FIRE BURST ========== */
 @keyframes fire-burst {
-  0% { transform: translate(0, 0) scale(1); opacity: 1; }
-  100% { opacity: 0; }
+  0%   { transform: var(--burst-translate) scale(1); opacity: 1; }
+  100% { transform: var(--burst-translate) scale(0.2); opacity: 0; }
 }
 
-/* ========== GOLD SHIMMER ========== */
 @keyframes shimmer {
-  0% { background-position: -200% center; }
+  0%   { background-position: -200% center; }
   100% { background-position: 200% center; }
 }
-.gold-shimmer {
-  background: linear-gradient(90deg, var(--gold-dark) 0%, var(--gold-light) 25%, #E8D48B 50%, var(--gold-light) 75%, var(--gold-dark) 100%);
+.gold-shimmer-text {
+  background: linear-gradient(90deg, var(--gold-dark), var(--gold-light), #E8D48B, var(--gold-light), var(--gold-dark));
   background-size: 200% auto;
-  -webkit-background-clip: text;
-  background-clip: text;
+  -webkit-background-clip: text; background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: shimmer 4s linear infinite;
+  animation: shimmer 5s linear infinite;
 }
 
-/* ========== GLASS ========== */
-.glass {
-  background: rgba(13, 13, 13, 0.72);
-  backdrop-filter: blur(20px) saturate(1.3);
-  -webkit-backdrop-filter: blur(20px) saturate(1.3);
+@keyframes ticker {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
-/* ========== GRAIN OVERLAY ========== */
-.grain::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 9999;
-  opacity: 0.022;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+@keyframes dot-pulse {
+  0%, 100% { box-shadow: 0 0 4px rgba(201,168,76,0.4); }
+  50%      { box-shadow: 0 0 10px rgba(201,168,76,0.7); }
+}
+
+@keyframes btn-shine {
+  0%   { transform: translateX(-100%) skewX(-15deg); }
+  100% { transform: translateX(250%) skewX(-15deg); }
 }

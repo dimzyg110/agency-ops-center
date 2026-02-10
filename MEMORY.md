@@ -17,7 +17,7 @@ _Curated patterns, preferences, and lessons. Updated weekly from daily logs._
 - **AC:** Creative client, values aesthetic and storytelling. Debbie and Clarice execute. Generate concepts → Randy curates → they produce. Active cultivator license (Indoor Tier 2, 5-10K sqft, Lowell). Has prerolls license. Pending manufacturer license (edibles/concentrates — incomplete). First Latino-owned rec cultivator in MA. Physical retail location coming soon.
 - **CH:** Practical client, needs data-driven results. Brian is the point of contact. Growth through SEO, automations, and partner channels. Retailer in East Boston (MR283634). No delivery license. Website repo: `randytorres/ch-web` (React + Vite + Tailwind, Netlify deploy). Blog posts in `src/data/blogPosts.js`.
 - **HOP:** Launch-phase client. Kam is the partner. Needs full GTM before anything else. Sells cannabis products through AC's license (white labeled).
-- **Delivered Inc (Lead):** Licensed delivery operator (MD1303), Clinton MA, ~30 towns Central MA. Founders: Ruben Seyde, Eddy Twal, Tut Liu. Social equity. Can expand statewide. Site hacked (casino spam). Partnership deal: equity + rev share + small upfront. App play = first cannabis delivery app in MA. AC supplies wholesale. Exclusivity until April 2029.
+- **Delivered Inc (Lead):** Licensed delivery operator (MD1303), Clinton MA, ~30 towns Central MA. Founders: Ruben Seyde, Eddy Twal, Tut Liu. Social equity. Can expand statewide. Site hacked (casino spam — confirmed live by 3 agents, 5 URLs in sitemap, WordPress compromised Oct 2022-Aug 2023). Partnership deal: equity + rev share + small upfront. App play = first operator-branded cannabis delivery app in MA. AC supplies wholesale. Exclusivity until April 2029. **Jointly partnership**: Delivered currently fulfills for Jointly (third-party AI shopping app) — building own app = owning the customer. License expires 3/5/2026 (renewal should have been filed by 12/5/2025, they're late). Renewal = 4-step process + $10K fee, NOT just a payment. Google Play bans cannabis sales apps (Android blocked). Lantern tried in 2022, died in 2 months.
 
 ## Operations Patterns
 
@@ -43,6 +43,8 @@ _Curated patterns, preferences, and lessons. Updated weekly from daily logs._
 - Over-building before validation (too many ideas, not enough shipped)
 - Manual social posting (time sink, should be automated)
 - WordPress for client sites — Randy builds in React, each client has unique brand identity. Blog generator should produce React-compatible content, not WP posts.
+- **Opus 4.6T subagent bug**: Works as main session model but fails on multi-turn subagent sessions (thinking.signature field required error). Single-turn subagent tasks work. Fallback: Sonnet 4.5T or Gemini 3 Pro High for subagents.
+- **Opus 4.6 (non-thinking)**: Returns 404 on Antigravity — model not available without thinking enabled.
 - Kimi K2.5 for large file writes — NVIDIA proxy truncates at ~8K chars. **FIXED: use `openrouter/moonshotai/kimi-k2.5` instead.** OpenRouter handles 48K+ in a single write. NVIDIA route still works for small tasks (free). Moonshot direct (`moonshot/kimi-k2.5`) requires balance top-up.
 
 ## Tech Stack for Client Work
@@ -65,5 +67,10 @@ _Curated patterns, preferences, and lessons. Updated weekly from daily logs._
 - Brand vision in reserve: `clients/_leads/delivered/plans/plan-3-full.md` (63K, Kimi)
 
 ---
+
+- **19 skills from skills.sh installed** (Feb 10): programmatic-seo, seo-audit, content-strategy, copywriting, copy-editing, email-sequence, social-content, schema-markup, analytics-tracking, vercel-react-native-skills, competitor-alternatives, referral-program, docx, pdf, pptx, xlsx, doc-coauthoring, webapp-testing, web-design-guidelines. In `~/.agents/skills/`.
+- **Humanizer pipeline works**: Gemini 3 Pro High is reliable for humanizer passes. Opus 4.6T works if task completes in one turn.
+- **No deploy service credentials configured** — need Vercel/Netlify/Cloudflare token from Randy to deploy demos/sites from sandbox. GitHub Pages blocked on private repos (free plan).
+- **Decoded demo built** at `projects/decoded-demo/` — Vite + React + Tailwind, TikTok-style feed. Randy hasn't seen it yet.
 
 _Last updated: 2026-02-10_
