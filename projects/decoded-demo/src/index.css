@@ -3,9 +3,9 @@
 
 :root {
   --charcoal: #0D0D0D;
-  --gold: #C9A84C;
-  --gold-light: #D4B96A;
-  --gold-dark: #A8893B;
+  --silver: #E0E0E0;
+  --silver-light: #CCCCCC;
+  --silver-dark: #999999;
   --offwhite: #F5F0E8;
   --smoke: #2A2A2A;
 }
@@ -93,10 +93,10 @@ video::-webkit-media-controls {
   mix-blend-mode: overlay;
 }
 
-/* ── GOLD DIVIDER ── */
-.gold-divider {
+/* ── SILVER DIVIDER ── */
+.silver-divider {
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(201,168,76,0.3), rgba(201,168,76,0.5), rgba(201,168,76,0.3), transparent);
+  background: linear-gradient(90deg, transparent, rgba(225,225,225,0.3), rgba(225,225,225,0.5), rgba(225,225,225,0.3), transparent);
 }
 
 /* ── TEXT REVEAL (stagger children) ── */
@@ -114,16 +114,16 @@ video::-webkit-media-controls {
   animation: slow-zoom 12s ease-in-out infinite alternate;
 }
 
-/* ── GOLD GLOW BUTTON ── */
+/* ── SILVER GLOW BUTTON ── */
 @keyframes glow-border {
-  0%, 100% { box-shadow: 0 0 15px rgba(201,168,76,0.15), 0 0 40px rgba(201,168,76,0.05), inset 0 1px 0 rgba(255,255,255,0.1); }
-  50%      { box-shadow: 0 0 20px rgba(201,168,76,0.3), 0 0 60px rgba(201,168,76,0.1), inset 0 1px 0 rgba(255,255,255,0.15); }
+  0%, 100% { box-shadow: 0 0 15px rgba(225,225,225,0.15), 0 0 40px rgba(225,225,225,0.05), inset 0 1px 0 rgba(255,255,255,0.1); }
+  50%      { box-shadow: 0 0 20px rgba(225,225,225,0.3), 0 0 60px rgba(225,225,225,0.1), inset 0 1px 0 rgba(255,255,255,0.15); }
 }
 
 /* ── REACTION RING ── */
 @keyframes ring-expand {
-  0%   { transform: scale(0.8); opacity: 0.6; border-color: rgba(201,168,76,0.4); }
-  100% { transform: scale(1.35); opacity: 0; border-color: rgba(201,168,76,0); }
+  0%   { transform: scale(0.8); opacity: 0.6; border-color: rgba(225,225,225,0.4); }
+  100% { transform: scale(1.35); opacity: 0; border-color: rgba(225,225,225,0); }
 }
 
 @keyframes pulse-glow {
@@ -146,9 +146,9 @@ video::-webkit-media-controls {
 }
 
 @keyframes vault-pulse {
-  0%   { box-shadow: 0 0 0 0 rgba(201,168,76,0.55); }
-  60%  { box-shadow: 0 0 0 16px rgba(201,168,76,0); }
-  100% { box-shadow: 0 0 0 0 rgba(201,168,76,0); }
+  0%   { box-shadow: 0 0 0 0 rgba(225,225,225,0.55); }
+  60%  { box-shadow: 0 0 0 16px rgba(225,225,225,0); }
+  100% { box-shadow: 0 0 0 0 rgba(225,225,225,0); }
 }
 
 @keyframes draw-check {
@@ -165,8 +165,8 @@ video::-webkit-media-controls {
   0%   { background-position: -200% center; }
   100% { background-position: 200% center; }
 }
-.gold-shimmer-text {
-  background: linear-gradient(90deg, var(--gold-dark), var(--gold-light), #E8D48B, var(--gold-light), var(--gold-dark));
+.silver-shimmer-text {
+  background: linear-gradient(90deg, var(--silver-dark), var(--silver-light), #F0F0F0, var(--silver-light), var(--silver-dark));
   background-size: 200% auto;
   -webkit-background-clip: text; background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -174,8 +174,8 @@ video::-webkit-media-controls {
 }
 
 @keyframes dot-pulse {
-  0%, 100% { box-shadow: 0 0 4px rgba(201,168,76,0.4); }
-  50%      { box-shadow: 0 0 10px rgba(201,168,76,0.7); }
+  0%, 100% { box-shadow: 0 0 4px rgba(225,225,225,0.4); }
+  50%      { box-shadow: 0 0 10px rgba(225,225,225,0.7); }
 }
 
 @keyframes btn-shine {
@@ -195,19 +195,19 @@ video::-webkit-media-controls {
 @keyframes glass-glow-breathe {
   0%, 100% {
     box-shadow:
-      0 1px 0 0 rgba(232,212,139,0.15) inset,
+      0 1px 0 0 rgba(230,230,230,0.15) inset,
       0 -1px 2px 0 rgba(0, 0, 0, 0.2) inset,
       0 4px 16px -4px rgba(0, 0, 0, 0.5),
-      0 0 24px -6px rgba(201, 168, 76, 0.12),
-      0 0 1px 0 rgba(201, 168, 76, 0.2);
+      0 0 24px -6px rgba(225, 225, 225, 0.12),
+      0 0 1px 0 rgba(225, 225, 225, 0.2);
   }
   50% {
     box-shadow:
-      0 1px 0 0 rgba(232,212,139,0.25) inset,
+      0 1px 0 0 rgba(230,230,230,0.25) inset,
       0 -1px 2px 0 rgba(0, 0, 0, 0.2) inset,
       0 6px 20px -4px rgba(0, 0, 0, 0.55),
-      0 0 32px -6px rgba(201, 168, 76, 0.2),
-      0 0 1px 0 rgba(201, 168, 76, 0.3);
+      0 0 32px -6px rgba(225, 225, 225, 0.2),
+      0 0 1px 0 rgba(225, 225, 225, 0.3);
   }
 }
 
@@ -222,19 +222,19 @@ video::-webkit-media-controls {
 @keyframes glass-confirmed-glow {
   0%, 100% {
     box-shadow:
-      0 1px 0 0 rgba(232,212,139,0.25) inset,
+      0 1px 0 0 rgba(230,230,230,0.25) inset,
       0 -1px 2px 0 rgba(0, 0, 0, 0.2) inset,
       0 4px 16px -4px rgba(0, 0, 0, 0.5),
-      0 0 24px -4px rgba(201, 168, 76, 0.2),
-      0 0 1px 0 rgba(212, 185, 106, 0.35);
+      0 0 24px -4px rgba(225, 225, 225, 0.2),
+      0 0 1px 0 rgba(200, 200, 200, 0.35);
   }
   50% {
     box-shadow:
-      0 1px 0 0 rgba(232,212,139,0.35) inset,
+      0 1px 0 0 rgba(230,230,230,0.35) inset,
       0 -1px 2px 0 rgba(0, 0, 0, 0.2) inset,
       0 6px 20px -4px rgba(0, 0, 0, 0.55),
-      0 0 36px -4px rgba(201, 168, 76, 0.3),
-      0 0 1px 0 rgba(212, 185, 106, 0.45);
+      0 0 36px -4px rgba(225, 225, 225, 0.3),
+      0 0 1px 0 rgba(200, 200, 200, 0.45);
   }
 }
 
@@ -245,9 +245,9 @@ video::-webkit-media-controls {
 
 /* ── SCARCITY TAG SHIMMER BORDER ── */
 @keyframes tag-border-shimmer {
-  0%   { border-color: rgba(201,168,76,0.08); }
-  50%  { border-color: rgba(201,168,76,0.25); }
-  100% { border-color: rgba(201,168,76,0.08); }
+  0%   { border-color: rgba(225,225,225,0.08); }
+  50%  { border-color: rgba(225,225,225,0.25); }
+  100% { border-color: rgba(225,225,225,0.08); }
 }
 
 /* ── SWIPE CHEVRON ── */
@@ -287,11 +287,11 @@ video::-webkit-media-controls {
 
 @keyframes cipher-shockwave {
   0% {
-    box-shadow: 0 0 0 0 rgba(201,168,76,0.25);
+    box-shadow: 0 0 0 0 rgba(225,225,225,0.25);
     opacity: 1;
   }
   100% {
-    box-shadow: 0 0 0 60px rgba(201,168,76,0);
+    box-shadow: 0 0 0 60px rgba(225,225,225,0);
     opacity: 0;
   }
 }
@@ -309,17 +309,17 @@ video::-webkit-media-controls {
 @keyframes badge-glow-pulse {
   0%, 100% {
     box-shadow:
-      0 0 15px rgba(201,168,76,0.08),
-      0 0 1px rgba(201,168,76,0.2),
-      inset 0 0 15px rgba(201,168,76,0.03);
-    border-color: rgba(201,168,76,0.25);
+      0 0 15px rgba(225,225,225,0.08),
+      0 0 1px rgba(225,225,225,0.2),
+      inset 0 0 15px rgba(225,225,225,0.03);
+    border-color: rgba(225,225,225,0.25);
   }
   50% {
     box-shadow:
-      0 0 25px rgba(201,168,76,0.15),
-      0 0 1px rgba(201,168,76,0.35),
-      inset 0 0 20px rgba(201,168,76,0.06);
-    border-color: rgba(201,168,76,0.4);
+      0 0 25px rgba(225,225,225,0.15),
+      0 0 1px rgba(225,225,225,0.35),
+      inset 0 0 20px rgba(225,225,225,0.06);
+    border-color: rgba(225,225,225,0.4);
   }
 }
 
@@ -329,8 +329,8 @@ video::-webkit-media-controls {
 }
 
 @keyframes secret-card-flash {
-  0%   { background: rgba(201,168,76,0.15); }
-  100% { background: rgba(201,168,76,0); }
+  0%   { background: rgba(225,225,225,0.15); }
+  100% { background: rgba(225,225,225,0); }
 }
 
 /* ── CLAIM ANIMATION: Card flip 360° on Y axis ── */
@@ -342,19 +342,19 @@ video::-webkit-media-controls {
   100% { transform: perspective(800px) rotateY(360deg) scale(1); }
 }
 
-/* ── CLAIM ANIMATION: Gold flash/burst overlay ── */
-@keyframes claim-gold-flash {
+/* ── CLAIM ANIMATION: White flash/burst overlay ── */
+@keyframes claim-silver-flash {
   0%   { opacity: 0; }
   15%  { opacity: 1; }
   40%  { opacity: 0.7; }
   100% { opacity: 0; }
 }
 
-/* ── CLAIM ANIMATION: Expanding gold ring ── */
+/* ── CLAIM ANIMATION: Expanding silver ring ── */
 @keyframes claim-ring-expand {
-  0%   { width: 40px; height: 40px; opacity: 0.9; border-width: 3px; border-color: rgba(232,212,139,0.8); }
-  50%  { opacity: 0.5; border-width: 2px; border-color: rgba(232,212,139,0.5); }
-  100% { width: 350px; height: 350px; opacity: 0; border-width: 1px; border-color: rgba(232,212,139,0); }
+  0%   { width: 40px; height: 40px; opacity: 0.9; border-width: 3px; border-color: rgba(230,230,230,0.8); }
+  50%  { opacity: 0.5; border-width: 2px; border-color: rgba(230,230,230,0.5); }
+  100% { width: 350px; height: 350px; opacity: 0; border-width: 1px; border-color: rgba(230,230,230,0); }
 }
 
 /* ── CLAIM ANIMATION: Burst particles ── */
@@ -417,10 +417,10 @@ video::-webkit-media-controls {
 }
 
 @keyframes vault-fingerprint-flash {
-  0%   { background: rgba(201,168,76,0.25); }
-  50%  { background: rgba(201,168,76,0.2); }
+  0%   { background: rgba(225,225,225,0.25); }
+  50%  { background: rgba(225,225,225,0.2); }
   100% {
-    background: linear-gradient(135deg, rgba(212,185,106,0.22) 0%, rgba(168,137,59,0.18) 100%);
+    background: linear-gradient(135deg, rgba(200,200,200,0.22) 0%, rgba(160,160,160,0.18) 100%);
   }
 }
 

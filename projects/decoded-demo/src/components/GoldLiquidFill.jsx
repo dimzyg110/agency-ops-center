@@ -1,11 +1,11 @@
 import { useRef, useEffect, useCallback } from 'react'
 
 /**
- * Effect 3: Gold Liquid Fill — realistic semi-transparent gold liquid
+ * Effect 3: Silver Liquid Fill — realistic semi-transparent silver/white liquid
  * with caustics, bubbles, organic wave motion, shimmer highlights,
  * and a natural drain (fast then clinging drips).
  */
-export default function GoldLiquidFill({ active, onComplete }) {
+export default function SilverLiquidFill({ active, onComplete }) {
   const canvasRef = useRef(null)
   const rafRef = useRef(null)
   const startRef = useRef(null)
@@ -84,13 +84,13 @@ export default function GoldLiquidFill({ active, onComplete }) {
     ctx.lineTo(w, h)
     ctx.closePath()
 
-    // Semi-transparent gold gradient
+    // Semi-transparent silver gradient
     const gradient = ctx.createLinearGradient(0, fillY, 0, h)
-    gradient.addColorStop(0, 'rgba(212,180,75,0.55)')
-    gradient.addColorStop(0.15, 'rgba(201,168,76,0.45)')
-    gradient.addColorStop(0.4, 'rgba(185,150,55,0.38)')
-    gradient.addColorStop(0.7, 'rgba(170,135,45,0.32)')
-    gradient.addColorStop(1, 'rgba(155,120,35,0.25)')
+    gradient.addColorStop(0, 'rgba(200,200,200,0.55)')
+    gradient.addColorStop(0.15, 'rgba(180,180,180,0.45)')
+    gradient.addColorStop(0.4, 'rgba(160,160,160,0.38)')
+    gradient.addColorStop(0.7, 'rgba(140,140,140,0.32)')
+    gradient.addColorStop(1, 'rgba(120,120,120,0.25)')
     ctx.fillStyle = gradient
     ctx.fill()
 
@@ -111,9 +111,9 @@ export default function GoldLiquidFill({ active, onComplete }) {
       const bandY = fillY + (h - fillY) * (0.25 + i * 0.25)
       const bandH = (h - fillY) * 0.15
       const bandGrad = ctx.createLinearGradient(0, bandY, 0, bandY + bandH)
-      bandGrad.addColorStop(0, 'rgba(140,110,30,0)')
-      bandGrad.addColorStop(0.5, `rgba(140,110,30,${0.06 + 0.02 * Math.sin(time * 1.3 + i)})`)
-      bandGrad.addColorStop(1, 'rgba(140,110,30,0)')
+      bandGrad.addColorStop(0, 'rgba(100,100,100,0)')
+      bandGrad.addColorStop(0.5, `rgba(100,100,100,${0.06 + 0.02 * Math.sin(time * 1.3 + i)})`)
+      bandGrad.addColorStop(1, 'rgba(100,100,100,0)')
       ctx.fillStyle = bandGrad
       ctx.fillRect(0, bandY, w, bandH)
     }
@@ -126,14 +126,14 @@ export default function GoldLiquidFill({ active, onComplete }) {
       const causticAlpha = 0.04 + 0.06 * ((Math.sin(time * 1.8 + i * 2.5) + 1) / 2)
 
       const causticGrad = ctx.createRadialGradient(cx, cy, 0, cx, cy, cr)
-      causticGrad.addColorStop(0, `rgba(255,240,180,${causticAlpha})`)
-      causticGrad.addColorStop(0.6, `rgba(232,212,139,${causticAlpha * 0.4})`)
-      causticGrad.addColorStop(1, 'rgba(232,212,139,0)')
+      causticGrad.addColorStop(0, `rgba(255,255,255,${causticAlpha})`)
+      causticGrad.addColorStop(0.6, `rgba(220,220,220,${causticAlpha * 0.4})`)
+      causticGrad.addColorStop(1, 'rgba(220,220,220,0)')
       ctx.fillStyle = causticGrad
       ctx.fillRect(cx - cr, cy - cr, cr * 2, cr * 2)
     }
 
-    // ── BUBBLES — tiny gold particles floating up ──
+    // ── BUBBLES — tiny silver particles floating up ──
     // Spawn new bubbles
     if (fillLevel > 0.05 && Math.random() < 0.35) {
       bubblesRef.current.push({
@@ -159,13 +159,13 @@ export default function GoldLiquidFill({ active, onComplete }) {
       // Draw bubble
       ctx.beginPath()
       ctx.arc(b.x, b.y, b.size, 0, Math.PI * 2)
-      ctx.fillStyle = `rgba(255,240,190,${b.alpha})`
+      ctx.fillStyle = `rgba(240,240,240,${b.alpha})`
       ctx.fill()
 
       // Tiny highlight on bubble
       ctx.beginPath()
       ctx.arc(b.x - b.size * 0.25, b.y - b.size * 0.25, b.size * 0.35, 0, Math.PI * 2)
-      ctx.fillStyle = `rgba(255,255,230,${b.alpha * 0.8})`
+      ctx.fillStyle = `rgba(255,255,255,${b.alpha * 0.8})`
       ctx.fill()
 
       return true
@@ -187,13 +187,13 @@ export default function GoldLiquidFill({ active, onComplete }) {
 
     const hlGrad = ctx.createLinearGradient(shimmerOffset, fillY, w + shimmerOffset, fillY)
     const shimmerAlpha = 0.25 + 0.2 * Math.sin(time * 1.5)
-    hlGrad.addColorStop(0, 'rgba(232,212,139,0)')
-    hlGrad.addColorStop(0.2, `rgba(255,245,200,${shimmerAlpha * 0.3})`)
-    hlGrad.addColorStop(0.35, `rgba(255,240,180,${shimmerAlpha})`)
-    hlGrad.addColorStop(0.5, `rgba(255,250,220,${shimmerAlpha * 1.2})`)
-    hlGrad.addColorStop(0.65, `rgba(255,240,180,${shimmerAlpha})`)
-    hlGrad.addColorStop(0.8, `rgba(232,212,139,${shimmerAlpha * 0.3})`)
-    hlGrad.addColorStop(1, 'rgba(232,212,139,0)')
+    hlGrad.addColorStop(0, 'rgba(220,220,220,0)')
+    hlGrad.addColorStop(0.2, `rgba(240,240,240,${shimmerAlpha * 0.3})`)
+    hlGrad.addColorStop(0.35, `rgba(245,245,245,${shimmerAlpha})`)
+    hlGrad.addColorStop(0.5, `rgba(255,255,255,${shimmerAlpha * 1.2})`)
+    hlGrad.addColorStop(0.65, `rgba(245,245,245,${shimmerAlpha})`)
+    hlGrad.addColorStop(0.8, `rgba(220,220,220,${shimmerAlpha * 0.3})`)
+    hlGrad.addColorStop(1, 'rgba(220,220,220,0)')
     ctx.fillStyle = hlGrad
     ctx.fill()
 
@@ -208,7 +208,7 @@ export default function GoldLiquidFill({ active, onComplete }) {
         if (glintAlpha > 0.15) {
           ctx.beginPath()
           ctx.arc(x, wy, 2 + Math.sin(time * 4 + x) * 1, 0, Math.PI * 2)
-          ctx.fillStyle = `rgba(255,255,240,${glintAlpha})`
+          ctx.fillStyle = `rgba(255,255,255,${glintAlpha})`
           ctx.fill()
         }
       }

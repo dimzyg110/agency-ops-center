@@ -2,7 +2,7 @@ import { useRef, useEffect, useCallback, useState } from 'react'
 
 /**
  * Effect 2: Particle Number Reveal
- * Gold particles start scattered, then swarm together to form "0001".
+ * Silver/white particles start scattered, then swarm together to form "0001".
  * After forming, particles gently breathe/drift in position.
  */
 export default function ParticleNumberReveal({ active, width, height }) {
@@ -121,22 +121,22 @@ export default function ParticleNumberReveal({ active, width, height }) {
         p.y = p.targetY + Math.cos(elapsed * 1.2 + p.breatheOffset * 1.3) * p.breatheAmp * 0.7
       }
 
-      // Gold color with glow
+      // White/silver color with glow
       const alpha = Math.min(elapsed * 2, 1)
       ctx.beginPath()
       ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2)
 
       // Glow effect
-      ctx.shadowColor = 'rgba(201,168,76,0.6)'
+      ctx.shadowColor = 'rgba(225,225,225,0.6)'
       ctx.shadowBlur = 4
-      ctx.fillStyle = `rgba(232,212,139,${alpha * 0.9})`
+      ctx.fillStyle = `rgba(230,230,230,${alpha * 0.9})`
       ctx.fill()
 
       // Core bright dot
       ctx.shadowBlur = 0
       ctx.beginPath()
       ctx.arc(p.x, p.y, p.size * 0.5, 0, Math.PI * 2)
-      ctx.fillStyle = `rgba(255,240,200,${alpha * 0.7})`
+      ctx.fillStyle = `rgba(255,255,255,${alpha * 0.7})`
       ctx.fill()
     }
 

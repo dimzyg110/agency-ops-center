@@ -46,7 +46,7 @@ function DropBanner() {
           fontWeight: 500,
           fontSize: 10,
           letterSpacing: '0.25em',
-          color: '#C9A84C',
+          color: '#E0E0E0',
           opacity: 0.5,
           textTransform: 'uppercase',
         }}>
@@ -66,7 +66,7 @@ function FireBurst({ trigger }) {
     const ps = Array.from({ length: 10 }, (_, i) => {
       const a = (i / 10) * 360, r = 18 + Math.random() * 22
       const rad = (a * Math.PI) / 180
-      return { id: Date.now() + i, tx: Math.cos(rad) * r, ty: Math.sin(rad) * r, color: i % 3 === 0 ? '#D4A03C' : i % 3 === 1 ? '#C9A84C' : '#E8D48B', sz: 2.5 + Math.random() * 2.5 }
+      return { id: Date.now() + i, tx: Math.cos(rad) * r, ty: Math.sin(rad) * r, color: i % 3 === 0 ? '#CCCCCC' : i % 3 === 1 ? '#E0E0E0' : '#F0F0F0', sz: 2.5 + Math.random() * 2.5 }
     })
     setParticles(ps)
     const t = setTimeout(() => setParticles([]), 600)
@@ -90,10 +90,10 @@ function FireBurst({ trigger }) {
 function SwipeUp() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }}>
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" strokeWidth="1.2" strokeLinecap="round" opacity="0.4" style={{ animation: 'chevron-fade 2.5s ease-in-out infinite' }}>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#E0E0E0" strokeWidth="1.2" strokeLinecap="round" opacity="0.4" style={{ animation: 'chevron-fade 2.5s ease-in-out infinite' }}>
         <polyline points="18 15 12 9 6 15" />
       </svg>
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" strokeWidth="1.2" strokeLinecap="round" opacity="0.25" style={{ animation: 'chevron-fade 2.5s ease-in-out infinite', animationDelay: '0.15s' }}>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#E0E0E0" strokeWidth="1.2" strokeLinecap="round" opacity="0.25" style={{ animation: 'chevron-fade 2.5s ease-in-out infinite', animationDelay: '0.15s' }}>
         <polyline points="18 15 12 9 6 15" />
       </svg>
     </div>
@@ -112,14 +112,14 @@ function SizeSelector({ selectedSize, onSelectSize }) {
           onClick={() => onSelectSize(size)}
           style={{
             background: 'rgba(245,240,232,0.06)',
-            border: `1px solid ${selectedSize === size ? 'rgba(245,240,232,0.4)' : 'rgba(245,240,232,0.1)'}`,
+            border: `1px solid ${selectedSize === size ? 'rgba(255,255,255,0.4)' : 'rgba(245,240,232,0.1)'}`,
             borderRadius: 6,
             padding: '4px 10px',
             fontFamily: "'Inter', sans-serif",
             fontWeight: 500,
             fontSize: 10,
             letterSpacing: '0.06em',
-            color: selectedSize === size ? 'rgba(245,240,232,0.9)' : 'rgba(245,240,232,0.5)',
+            color: selectedSize === size ? 'rgba(255,255,255,0.9)' : 'rgba(245,240,232,0.5)',
             cursor: 'pointer',
             transition: 'all 0.2s ease',
             backdropFilter: 'blur(8px)',
@@ -139,8 +139,8 @@ function useCipherReveal(originalText) {
   const [cipherActive, setCipherActive] = useState(false)
   const [cipherText, setCipherText] = useState(null)
   const [cipherFlash, setCipherFlash] = useState(false)
-  const [goldPulse, setGoldPulse] = useState(false)
-  const [resolvedGoldIndices, setResolvedGoldIndices] = useState(new Set())
+  const [silverPulse, setSilverPulse] = useState(false)
+  const [resolvedSilverIndices, setResolvedSilverIndices] = useState(new Set())
   const lastTapRef = useRef(0)
   const cooldownRef = useRef(false)
   const intervalRef = useRef(null)
@@ -156,8 +156,8 @@ function useCipherReveal(originalText) {
     setTimeout(() => setCipherFlash(false), 200)
 
     const resolved = new Set()
-    const goldSet = new Set()
-    setResolvedGoldIndices(new Set())
+    const silverSet = new Set()
+    setResolvedSilverIndices(new Set())
 
     // Phase 1: All characters scramble (0-600ms)
     intervalRef.current = setInterval(() => {
@@ -176,13 +176,13 @@ function useCipherReveal(originalText) {
     const decodeInterval = setInterval(() => {
       if (decodeIdx >= nonSpaceIndices.length) {
         clearInterval(decodeInterval)
-        // Phase 3: All resolved — gold pulse
-        setGoldPulse(true)
+        // Phase 3: All resolved — silver pulse
+        setSilverPulse(true)
         setTimeout(() => {
-          setGoldPulse(false)
+          setSilverPulse(false)
           setCipherActive(false)
           setCipherText(null)
-          setResolvedGoldIndices(new Set())
+          setResolvedSilverIndices(new Set())
           if (intervalRef.current) clearInterval(intervalRef.current)
         }, 400)
         setTimeout(() => { cooldownRef.current = false }, 2000)
@@ -190,12 +190,12 @@ function useCipherReveal(originalText) {
       }
       const charIdx = nonSpaceIndices[decodeIdx]
       resolved.add(charIdx)
-      goldSet.add(charIdx)
-      setResolvedGoldIndices(new Set(goldSet))
-      // Remove gold flash after 200ms
+      silverSet.add(charIdx)
+      setResolvedSilverIndices(new Set(silverSet))
+      // Remove silver flash after 200ms
       setTimeout(() => {
-        goldSet.delete(charIdx)
-        setResolvedGoldIndices(new Set(goldSet))
+        silverSet.delete(charIdx)
+        setResolvedSilverIndices(new Set(silverSet))
       }, 200)
       decodeIdx++
     }, 80)
@@ -214,12 +214,12 @@ function useCipherReveal(originalText) {
       const di2 = setInterval(() => {
         if (idx2 >= nonSpaceIndices.length) {
           clearInterval(di2)
-          setGoldPulse(true)
+          setSilverPulse(true)
           setTimeout(() => {
-            setGoldPulse(false)
+            setSilverPulse(false)
             setCipherActive(false)
             setCipherText(null)
-            setResolvedGoldIndices(new Set())
+            setResolvedSilverIndices(new Set())
             if (intervalRef.current) clearInterval(intervalRef.current)
           }, 400)
           setTimeout(() => { cooldownRef.current = false }, 2000)
@@ -227,11 +227,11 @@ function useCipherReveal(originalText) {
         }
         const charIdx = nonSpaceIndices[idx2]
         resolved.add(charIdx)
-        goldSet.add(charIdx)
-        setResolvedGoldIndices(new Set(goldSet))
+        silverSet.add(charIdx)
+        setResolvedSilverIndices(new Set(silverSet))
         setTimeout(() => {
-          goldSet.delete(charIdx)
-          setResolvedGoldIndices(new Set(goldSet))
+          silverSet.delete(charIdx)
+          setResolvedSilverIndices(new Set(silverSet))
         }, 200)
         idx2++
       }, 80)
@@ -256,7 +256,7 @@ function useCipherReveal(originalText) {
     }
   }, [triggerCipher])
 
-  return { cipherActive, cipherText, cipherFlash, goldPulse, resolvedGoldIndices, handleDoubleTap }
+  return { cipherActive, cipherText, cipherFlash, silverPulse, resolvedSilverIndices, handleDoubleTap }
 }
 
 /* ── FINGERPRINT SCAN COMPONENT ── */
@@ -278,16 +278,16 @@ function FingerprintScan({ phase }) {
         position: 'absolute',
         inset: 0,
         borderRadius: '50%',
-        border: '2px dashed rgba(201,168,76,0.6)',
+        border: '2px dashed rgba(225,225,225,0.6)',
         animation: 'fingerprint-spin 0.8s linear infinite, fingerprint-expand 0.75s ease-out forwards',
       }} />
       {/* Concentric fingerprint rings */}
       <svg width="36" height="36" viewBox="0 0 36 36" style={{ position: 'absolute', inset: 0 }}>
-        <circle cx="18" cy="18" r="4" fill="none" stroke="rgba(201,168,76,0.3)" strokeWidth="1"
+        <circle cx="18" cy="18" r="4" fill="none" stroke="rgba(225,225,225,0.3)" strokeWidth="1"
           style={{ animation: 'fingerprint-ring-pulse 0.75s ease-out 0.1s forwards', opacity: 0, transformOrigin: 'center' }} />
-        <circle cx="18" cy="18" r="8" fill="none" stroke="rgba(201,168,76,0.2)" strokeWidth="0.8"
+        <circle cx="18" cy="18" r="8" fill="none" stroke="rgba(225,225,225,0.2)" strokeWidth="0.8"
           style={{ animation: 'fingerprint-ring-pulse 0.75s ease-out 0.25s forwards', opacity: 0, transformOrigin: 'center' }} />
-        <circle cx="18" cy="18" r="12" fill="none" stroke="rgba(201,168,76,0.1)" strokeWidth="0.6"
+        <circle cx="18" cy="18" r="12" fill="none" stroke="rgba(225,225,225,0.1)" strokeWidth="0.6"
           style={{ animation: 'fingerprint-ring-pulse 0.75s ease-out 0.4s forwards', opacity: 0, transformOrigin: 'center' }} />
       </svg>
     </div>
@@ -305,8 +305,8 @@ function SecretCard({ isActive }) {
   const [showLiquid, setShowLiquid] = useState(false)
   const [showCard, setShowCard] = useState(false)
   const [flipping, setFlipping] = useState(false)
-  const [goldBurst, setGoldBurst] = useState(false)
-  const [goldRing, setGoldRing] = useState(false)
+  const [silverBurst, setSilverBurst] = useState(false)
+  const [silverRing, setSilverRing] = useState(false)
   const timerRefs = useRef([])
 
   // Reset and run animation sequence when card becomes active
@@ -328,10 +328,10 @@ function SecretCard({ isActive }) {
     }
 
     // Animation sequence
-    const t1 = setTimeout(() => setPhase(1), 1500)   // Gold line
+    const t1 = setTimeout(() => setPhase(1), 1500)   // Silver line
     const t2 = setTimeout(() => setPhase(2), 3000)   // DECODED
     const t3 = setTimeout(() => setPhase(3), 4000)   // YOU'VE BEEN DECODED
-    const t4 = setTimeout(() => {                      // Gold liquid fill
+    const t4 = setTimeout(() => {                      // Silver liquid fill
       setPhase(4)
       setShowLiquid(true)
     }, 5500)
@@ -354,12 +354,12 @@ function SecretCard({ isActive }) {
     // Start dramatic claim sequence
     setClaimFlash(true)
     setFlipping(true)
-    setGoldBurst(true)
-    setGoldRing(true)
+    setSilverBurst(true)
+    setSilverRing(true)
 
     // Clear burst after animation
-    setTimeout(() => setGoldBurst(false), 800)
-    setTimeout(() => setGoldRing(false), 1000)
+    setTimeout(() => setSilverBurst(false), 800)
+    setTimeout(() => setSilverRing(false), 1000)
 
     // After flip completes, settle into claimed state
     setTimeout(() => {
@@ -382,15 +382,15 @@ function SecretCard({ isActive }) {
         mixBlendMode: 'overlay',
       }} />
 
-      {/* Gold Liquid Fill (Effect 3) */}
+      {/* Silver Liquid Fill (Effect 3) */}
       <GoldLiquidFill active={showLiquid} onComplete={handleLiquidComplete} />
 
-      {/* Claim flash overlay — bright gold burst */}
+      {/* Claim flash overlay — bright silver burst */}
       {claimFlash && (
         <div style={{
           position: 'absolute', inset: 0, zIndex: 40,
-          background: 'radial-gradient(circle at 50% 50%, rgba(232,212,139,0.35) 0%, rgba(201,168,76,0.15) 40%, rgba(201,168,76,0) 70%)',
-          animation: 'claim-gold-flash 0.9s ease-out forwards',
+          background: 'radial-gradient(circle at 50% 50%, rgba(230,230,230,0.35) 0%, rgba(225,225,225,0.15) 40%, rgba(225,225,225,0) 70%)',
+          animation: 'claim-silver-flash 0.9s ease-out forwards',
           pointerEvents: 'none',
         }} />
       )}
@@ -411,24 +411,24 @@ function SecretCard({ isActive }) {
             fontFamily: "'Bebas Neue', sans-serif",
             fontSize: 48,
             letterSpacing: '0.3em',
-            color: '#C9A84C',
+            color: '#E0E0E0',
             opacity: phase >= 2 ? 1 : 0,
             transition: 'opacity 1.2s ease',
             marginBottom: 16,
             textAlign: 'center',
-            textShadow: '0 0 40px rgba(201,168,76,0.2)',
+            textShadow: '0 0 40px rgba(225,225,225,0.2)',
           }}>
             DECODED
           </div>
         )}
 
-        {/* Gold line — only during pre-card phases */}
+        {/* Silver line — only during pre-card phases */}
         {phase < 5 && (
           <div style={{
             width: phase >= 1 ? 120 : 0,
             height: 1,
-            background: 'linear-gradient(90deg, transparent, #C9A84C, transparent)',
-            boxShadow: '0 0 20px rgba(201,168,76,0.3)',
+            background: 'linear-gradient(90deg, transparent, #E0E0E0, transparent)',
+            boxShadow: '0 0 20px rgba(225,225,225,0.3)',
             transition: 'width 1.5s cubic-bezier(0.16, 1, 0.3, 1)',
             marginBottom: 16,
           }} />
@@ -452,10 +452,10 @@ function SecretCard({ isActive }) {
           </div>
         )}
 
-        {/* Card wrapper with flip animation and gold ring */}
+        {/* Card wrapper with flip animation and silver ring */}
         <div style={{ position: 'relative', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-          {/* Expanding gold ring pulse */}
-          {goldRing && (
+          {/* Expanding silver ring pulse */}
+          {silverRing && (
             <div style={{
               position: 'absolute',
               top: '50%',
@@ -464,14 +464,14 @@ function SecretCard({ isActive }) {
               height: 0,
               transform: 'translate(-50%, -50%)',
               borderRadius: '50%',
-              border: '2px solid rgba(232,212,139,0.7)',
+              border: '2px solid rgba(230,230,230,0.7)',
               animation: 'claim-ring-expand 1s ease-out forwards',
               pointerEvents: 'none',
               zIndex: 20,
             }} />
           )}
-          {/* Gold burst particles */}
-          {goldBurst && (
+          {/* Silver burst particles */}
+          {silverBurst && (
             <div style={{ position: 'absolute', top: '50%', left: '50%', width: 0, height: 0, zIndex: 20, pointerEvents: 'none' }}>
               {Array.from({ length: 16 }, (_, i) => {
                 const angle = (i / 16) * 360
@@ -483,8 +483,8 @@ function SecretCard({ isActive }) {
                     width: 3 + Math.random() * 3,
                     height: 3 + Math.random() * 3,
                     borderRadius: '50%',
-                    background: i % 3 === 0 ? '#E8D48B' : i % 3 === 1 ? '#C9A84C' : '#FFF0C8',
-                    boxShadow: `0 0 6px ${i % 2 === 0 ? '#E8D48B' : '#C9A84C'}`,
+                    background: i % 3 === 0 ? '#F0F0F0' : i % 3 === 1 ? '#E0E0E0' : '#FFFFFF',
+                    boxShadow: `0 0 6px ${i % 2 === 0 ? '#F0F0F0' : '#E0E0E0'}`,
                     left: 0, top: 0,
                     '--burst-tx': `${Math.cos(rad) * dist}px`,
                     '--burst-ty': `${Math.sin(rad) * dist}px`,
@@ -524,7 +524,7 @@ function SecretCard({ isActive }) {
             fontWeight: 400,
             fontSize: 10,
             letterSpacing: '0.3em',
-            color: 'rgba(201,168,76,0.6)',
+            color: 'rgba(225,225,225,0.6)',
             textTransform: 'uppercase',
             animation: 'claim-pulse 2s ease-in-out infinite',
             cursor: 'pointer',
@@ -541,7 +541,7 @@ function SecretCard({ isActive }) {
       <div style={{
         position: 'absolute', bottom: 30, left: '50%', transform: 'translateX(-50%)',
         fontFamily: "'Inter', sans-serif", fontWeight: 300, fontSize: 8,
-        letterSpacing: '0.25em', color: 'rgba(201,168,76,0.12)', textTransform: 'uppercase',
+        letterSpacing: '0.25em', color: 'rgba(225,225,225,0.12)', textTransform: 'uppercase',
       }}>
         Built by Roviq
       </div>
@@ -578,7 +578,7 @@ function ProductCard({ product, isActive, isNear, isLast, audioEnabled }) {
   const [vignetteIntensify, setVignetteIntensify] = useState(false)
 
   // Cipher reveal
-  const { cipherActive, cipherText, cipherFlash, goldPulse, resolvedGoldIndices, handleDoubleTap } = useCipherReveal(product.name)
+  const { cipherActive, cipherText, cipherFlash, silverPulse, resolvedSilverIndices, handleDoubleTap } = useCipherReveal(product.name)
 
   const handleFire = useCallback(() => {
     if (fireActive) return
@@ -625,17 +625,17 @@ function ProductCard({ product, isActive, isNear, isLast, audioEnabled }) {
   // Render the product name with cipher effect
   const renderProductName = () => {
     if (cipherText !== null) {
-      // Render character by character for gold flash
+      // Render character by character for silver flash
       const displayChars = [...cipherText]
       const originalChars = [...product.name.replace(/\n/g, '\n')]
       return displayChars.map((ch, i) => {
         if (ch === '\n') return <br key={i} />
-        const isResolved = resolvedGoldIndices.has(i)
+        const isResolved = resolvedSilverIndices.has(i)
         return (
           <span
             key={i}
             style={{
-              color: isResolved ? '#E8D48B' : '#F5F0E8',
+              color: isResolved ? '#FFFFFF' : '#F5F0E8',
               transition: 'color 0.2s ease',
               display: 'inline',
             }}
@@ -674,19 +674,19 @@ function ProductCard({ product, isActive, isNear, isLast, audioEnabled }) {
       case 'verified':
         return (
           <>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E8D48B" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
               <polyline points="4 12 10 18 20 6" style={{ strokeDasharray: 30, strokeDashoffset: 0, animation: 'draw-check 0.35s ease forwards' }} />
             </svg>
-            <span style={{ color: '#E8D48B' }}>VERIFIED</span>
+            <span style={{ color: '#FFFFFF' }}>VERIFIED</span>
           </>
         )
       case 'done':
         return (
           <>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E8D48B" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
               <polyline points="4 12 10 18 20 6" style={{ strokeDasharray: 30, strokeDashoffset: 0 }} />
             </svg>
-            <span style={{ color: '#E8D48B' }}>VERIFIED</span>
+            <span style={{ color: '#FFFFFF' }}>VERIFIED</span>
           </>
         )
       default:
@@ -707,14 +707,14 @@ function ProductCard({ product, isActive, isNear, isLast, audioEnabled }) {
       {cipherFlash && (
         <div style={{
           position: 'absolute', inset: 0, zIndex: 30,
-          background: 'rgba(201,168,76,0.06)',
+          background: 'rgba(225,225,225,0.06)',
           animation: 'cipher-flash 0.2s ease-out forwards',
           pointerEvents: 'none',
         }} />
       )}
 
-      {/* Gold pulse shockwave */}
-      {goldPulse && (
+      {/* Silver pulse shockwave */}
+      {silverPulse && (
         <div className="cipher-shockwave" style={{
           position: 'absolute',
           left: 22,
@@ -739,11 +739,11 @@ function ProductCard({ product, isActive, isNear, isLast, audioEnabled }) {
             display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 12,
           }}>
             <div style={{
-              width: 32, height: 32, border: '2px solid rgba(201,168,76,0.15)',
-              borderTopColor: 'rgba(201,168,76,0.5)', borderRadius: '50%',
+              width: 32, height: 32, border: '2px solid rgba(225,225,225,0.15)',
+              borderTopColor: 'rgba(225,225,225,0.5)', borderRadius: '50%',
               animation: 'spin 0.8s linear infinite',
             }} />
-            <span style={{ fontFamily: "'Inter', sans-serif", fontSize: 9, letterSpacing: '0.2em', color: 'rgba(201,168,76,0.3)', textTransform: 'uppercase' }}>Loading</span>
+            <span style={{ fontFamily: "'Inter', sans-serif", fontSize: 9, letterSpacing: '0.2em', color: 'rgba(225,225,225,0.3)', textTransform: 'uppercase' }}>Loading</span>
           </div>
         </div>
       )}
@@ -789,7 +789,7 @@ function ProductCard({ product, isActive, isNear, isLast, audioEnabled }) {
       <div style={{
         position: 'absolute', top: 'calc(57px + env(safe-area-inset-top, 0px))', left: 22, zIndex: 5,
         fontFamily: "'Inter', sans-serif", fontWeight: 800, fontSize: 9,
-        letterSpacing: '0.4em', color: 'rgba(201,168,76,0.15)', textTransform: 'uppercase',
+        letterSpacing: '0.4em', color: 'rgba(225,225,225,0.15)', textTransform: 'uppercase',
       }}>DECODED</div>
 
       {/* ── RIGHT SIDE ACTIONS ── */}
@@ -803,23 +803,23 @@ function ProductCard({ product, isActive, isNear, isLast, audioEnabled }) {
         <button onClick={handleFire} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3, background: 'none', border: 'none', cursor: 'pointer', position: 'relative', padding: 0 }}>
           <div style={{
             width: 46, height: 46, borderRadius: '50%',
-            background: fireActive ? 'rgba(201,168,76,0.15)' : 'rgba(245,240,232,0.07)',
-            border: `1px solid ${fireActive ? 'rgba(201,168,76,0.3)' : 'rgba(245,240,232,0.08)'}`,
+            background: fireActive ? 'rgba(225,225,225,0.15)' : 'rgba(245,240,232,0.07)',
+            border: `1px solid ${fireActive ? 'rgba(225,225,225,0.3)' : 'rgba(245,240,232,0.08)'}`,
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             transition: 'all 0.3s ease',
             backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)',
           }}>
-            <span style={{ fontSize: 22, display: 'block', lineHeight: 1, animation: fireActive ? 'fire-pop 0.5s ease forwards' : 'none', filter: fireActive ? 'brightness(1.4) drop-shadow(0 0 8px rgba(201,168,76,0.5))' : 'none', transition: 'filter 0.2s' }}>
-              <svg width="22" height="22" viewBox="0 0 24 24" fill={fireActive ? '#C9A84C' : 'none'} stroke={fireActive ? '#C9A84C' : '#F5F0E8'} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ transition: 'all 0.3s' }}>
+            <span style={{ fontSize: 22, display: 'block', lineHeight: 1, animation: fireActive ? 'fire-pop 0.5s ease forwards' : 'none', filter: fireActive ? 'brightness(1.4) drop-shadow(0 0 8px rgba(225,225,225,0.5))' : 'none', transition: 'filter 0.2s' }}>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill={fireActive ? '#E0E0E0' : 'none'} stroke={fireActive ? '#E0E0E0' : '#F5F0E8'} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ transition: 'all 0.3s' }}>
                 <path d="M12 22c4.97 0 8-3.58 8-8 0-6-8-14-8-14S4 8 4 14c0 4.42 3.03 8 8 8z" />
                 <path d="M12 22c2.21 0 4-1.79 4-4 0-3-4-7-4-7s-4 4-4 7c0 2.21 1.79 4 4 4z" opacity="0.5" />
               </svg>
             </span>
           </div>
           {/* Ring expand on tap */}
-          {fireActive && <div style={{ position: 'absolute', inset: 0, borderRadius: '50%', border: '2px solid rgba(201,168,76,0.4)', animation: 'ring-expand 0.5s ease-out forwards', pointerEvents: 'none' }} />}
+          {fireActive && <div style={{ position: 'absolute', inset: 0, borderRadius: '50%', border: '2px solid rgba(225,225,225,0.4)', animation: 'ring-expand 0.5s ease-out forwards', pointerEvents: 'none' }} />}
           <FireBurst trigger={fireTrigger} />
-          <span style={{ fontSize: 10, color: fireActive ? '#C9A84C' : 'rgba(245,240,232,0.6)', fontFamily: "'Inter', sans-serif", fontWeight: 600, fontVariantNumeric: 'tabular-nums', transition: 'color 0.2s', textShadow: '0 1px 4px rgba(0,0,0,0.5)' }}>{fmtK(fireCount)}</span>
+          <span style={{ fontSize: 10, color: fireActive ? '#E0E0E0' : 'rgba(245,240,232,0.6)', fontFamily: "'Inter', sans-serif", fontWeight: 600, fontVariantNumeric: 'tabular-nums', transition: 'color 0.2s', textShadow: '0 1px 4px rgba(0,0,0,0.5)' }}>{fmtK(fireCount)}</span>
         </button>
 
         {/* Skull */}
@@ -871,13 +871,13 @@ function ProductCard({ product, isActive, isNear, isLast, audioEnabled }) {
         <div style={{ ...reveal(0.08), marginBottom: 10 }}>
           <span style={{
             display: 'inline-flex', alignItems: 'center', gap: 7,
-            background: 'rgba(201,168,76,0.06)', border: '1px solid rgba(201,168,76,0.12)',
+            background: 'rgba(225,225,225,0.06)', border: '1px solid rgba(225,225,225,0.12)',
             borderRadius: 100, padding: '5px 14px 5px 10px',
             backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)',
             animation: 'tag-border-shimmer 3s ease-in-out infinite',
           }}>
-            <span style={{ width: 5, height: 5, borderRadius: '50%', background: '#C9A84C', animation: 'dot-pulse 2s ease-in-out infinite', flexShrink: 0 }} />
-            <span style={{ fontFamily: "'Inter', sans-serif", fontWeight: 500, fontSize: 9, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#C9A84C' }}>{product.tag}</span>
+            <span style={{ width: 5, height: 5, borderRadius: '50%', background: '#FFFFFF', animation: 'dot-pulse 2s ease-in-out infinite', flexShrink: 0 }} />
+            <span style={{ fontFamily: "'Inter', sans-serif", fontWeight: 500, fontSize: 9, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#E0E0E0' }}>{product.tag}</span>
           </span>
         </div>
 
@@ -908,8 +908,8 @@ function ProductCard({ product, isActive, isNear, isLast, audioEnabled }) {
           }}>{product.subtitle}</div>
         )}
 
-        {/* Gold divider */}
-        <div className="gold-divider" style={{ ...reveal(0.22), width: 60, marginBottom: 8 }} />
+        {/* Silver divider */}
+        <div className="silver-divider" style={{ ...reveal(0.22), width: 60, marginBottom: 8 }} />
 
         {/* Price */}
         <div style={{
@@ -939,13 +939,13 @@ function ProductCard({ product, isActive, isNear, isLast, audioEnabled }) {
           <div style={{ display: 'flex', gap: 4, position: 'relative' }}>
             {[{ val: pad(h), label: 'HR' }, { val: pad(m), label: 'MIN' }, { val: pad(s), label: 'SEC' }].map((unit, i) => (
               <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-                {i > 0 && <span style={{ color: 'rgba(201,168,76,0.25)', fontSize: 16, fontFamily: "'Inter', sans-serif", fontWeight: 200 }}>:</span>}
+                {i > 0 && <span style={{ color: 'rgba(225,225,225,0.25)', fontSize: 16, fontFamily: "'Inter', sans-serif", fontWeight: 200 }}>:</span>}
                 <div style={{
-                  background: 'rgba(201,168,76,0.06)', border: '1px solid rgba(201,168,76,0.1)',
+                  background: 'rgba(225,225,225,0.06)', border: '1px solid rgba(225,225,225,0.1)',
                   borderRadius: 6, padding: '4px 8px', minWidth: 38, textAlign: 'center',
                   backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)',
                 }}>
-                  <span style={{ fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: 14, color: '#C9A84C', fontVariantNumeric: 'tabular-nums', letterSpacing: '0.06em' }}>{unit.val}</span>
+                  <span style={{ fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: 14, color: '#E0E0E0', fontVariantNumeric: 'tabular-nums', letterSpacing: '0.06em' }}>{unit.val}</span>
                 </div>
               </div>
             ))}
@@ -962,57 +962,57 @@ function ProductCard({ product, isActive, isNear, isLast, audioEnabled }) {
         <div style={reveal(0.38)}>
           <button onClick={handleVault} style={{
             position: 'relative', width: '100%', height: 48,
-            border: isVaultDone ? '1px solid rgba(212,185,106,0.5)' : '1px solid rgba(201,168,76,0.25)',
+            border: isVaultDone ? '1px solid rgba(200,200,200,0.5)' : '1px solid rgba(225,225,225,0.25)',
             borderRadius: 14, cursor: 'pointer',
             fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: 12,
             letterSpacing: '0.14em', textTransform: 'uppercase',
             display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10,
             transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)', overflow: 'hidden',
             background: isVaultDone
-              ? 'linear-gradient(135deg, rgba(212,185,106,0.22) 0%, rgba(168,137,59,0.18) 100%)'
+              ? 'linear-gradient(135deg, rgba(200,200,200,0.22) 0%, rgba(160,160,160,0.18) 100%)'
               : vaultState === 'scanning'
-                ? 'linear-gradient(135deg, rgba(212,185,106,0.18) 0%, rgba(201,168,76,0.12) 50%, rgba(168,137,59,0.18) 100%)'
-                : 'linear-gradient(135deg, rgba(212,185,106,0.12) 0%, rgba(201,168,76,0.08) 50%, rgba(168,137,59,0.12) 100%)',
+                ? 'linear-gradient(135deg, rgba(200,200,200,0.18) 0%, rgba(180,180,180,0.12) 50%, rgba(160,160,160,0.18) 100%)'
+                : 'linear-gradient(135deg, rgba(200,200,200,0.12) 0%, rgba(180,180,180,0.08) 50%, rgba(160,160,160,0.12) 100%)',
             backdropFilter: 'blur(24px) saturate(1.4)',
             WebkitBackdropFilter: 'blur(24px) saturate(1.4)',
-            color: isVaultDone ? '#E8D48B' : '#D4B96A',
+            color: isVaultDone ? '#FFFFFF' : '#CCCCCC',
             animation: vaultState === 'verified' ? 'vault-fingerprint-flash 0.2s ease forwards'
               : isVaultDone ? 'glass-confirmed-glow 2s ease-in-out infinite'
               : vaultState === 'scanning' ? 'glass-glow-breathe 3.5s ease-in-out infinite'
               : 'glass-glow-breathe 3.5s ease-in-out infinite',
             transform: vaultState === 'authenticating' ? 'scale(0.98)' : 'scale(1)',
           }}>
-            {/* Top highlight edge — warm gold light catch */}
+            {/* Top highlight edge — white light catch */}
             <span style={{
               position: 'absolute', top: 0, left: '8%', right: '8%', height: 1,
-              background: 'linear-gradient(90deg, transparent, rgba(232,212,139,0.3), rgba(212,185,106,0.5), rgba(232,212,139,0.3), transparent)',
+              background: 'linear-gradient(90deg, transparent, rgba(230,230,230,0.3), rgba(200,200,200,0.5), rgba(230,230,230,0.3), transparent)',
               borderRadius: '0 0 50% 50%',
               pointerEvents: 'none',
             }} />
-            {/* Inner top glow — gold glass depth */}
+            {/* Inner top glow — white glass depth */}
             <span style={{
               position: 'absolute', top: 0, left: 0, right: 0, height: '50%',
-              background: 'linear-gradient(180deg, rgba(212,185,106,0.1) 0%, rgba(201,168,76,0.03) 40%, transparent 100%)',
+              background: 'linear-gradient(180deg, rgba(200,200,200,0.1) 0%, rgba(180,180,180,0.03) 40%, transparent 100%)',
               borderRadius: '14px 14px 50% 50%',
               pointerEvents: 'none',
             }} />
             {/* Refraction drift */}
             <span style={{
               position: 'absolute', top: '8%', left: '15%', width: '40%', height: '35%',
-              background: 'radial-gradient(ellipse, rgba(232,212,139,0.08) 0%, transparent 70%)',
+              background: 'radial-gradient(ellipse, rgba(230,230,230,0.08) 0%, transparent 70%)',
               borderRadius: '50%', filter: 'blur(6px)',
               animation: 'glass-refraction-drift 6s ease-in-out infinite',
               pointerEvents: 'none',
             }} />
-            {/* Glass shine sweep — warm gold */}
+            {/* Glass shine sweep — white */}
             <span style={{
               position: 'absolute', top: 0, left: 0, width: '35%', height: '100%',
-              background: 'linear-gradient(90deg, transparent, rgba(232,212,139,0.12), rgba(212,185,106,0.08), transparent)',
+              background: 'linear-gradient(90deg, transparent, rgba(230,230,230,0.12), rgba(200,200,200,0.08), transparent)',
               animation: 'glass-shine-sweep 6s ease-in-out infinite', animationDelay: '1.5s',
               pointerEvents: 'none',
             }} />
             {/* Content */}
-            <span style={{ position: 'relative', zIndex: 2, display: 'flex', alignItems: 'center', gap: 10, textShadow: '0 0 20px rgba(201,168,76,0.3)' }}>
+            <span style={{ position: 'relative', zIndex: 2, display: 'flex', alignItems: 'center', gap: 10, textShadow: '0 0 20px rgba(225,225,225,0.3)' }}>
               {renderVaultContent()}
             </span>
           </button>
@@ -1028,11 +1028,11 @@ function ProductCard({ product, isActive, isNear, isLast, audioEnabled }) {
               <div style={{
                 width: 24, height: 24, borderRadius: '50%', flexShrink: 0,
                 background: 'radial-gradient(circle at 50% 50%, #333 30%, #1a1a1a 32%, #222 60%, #111 100%)',
-                border: '1.5px solid rgba(201,168,76,0.25)',
+                border: '1.5px solid rgba(225,225,225,0.25)',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                 animation: isActive ? 'spin 3s linear infinite' : 'none',
               }}>
-                <div style={{ width: 5, height: 5, borderRadius: '50%', background: '#C9A84C' }} />
+                <div style={{ width: 5, height: 5, borderRadius: '50%', background: '#FFFFFF' }} />
               </div>
               <div style={{ overflow: 'hidden', flex: 1 }}>
                 <div style={{
@@ -1047,7 +1047,7 @@ function ProductCard({ product, isActive, isNear, isLast, audioEnabled }) {
           )}
           {isLast && (
             <div style={{ display: 'flex', justifyContent: 'center' }}>
-              <span style={{ fontFamily: "'Inter', sans-serif", fontWeight: 300, fontSize: 8, letterSpacing: '0.25em', color: 'rgba(201,168,76,0.12)', textTransform: 'uppercase' }}>Built by Roviq</span>
+              <span style={{ fontFamily: "'Inter', sans-serif", fontWeight: 300, fontSize: 8, letterSpacing: '0.25em', color: 'rgba(225,225,225,0.12)', textTransform: 'uppercase' }}>Built by Roviq</span>
             </div>
           )}
         </div>

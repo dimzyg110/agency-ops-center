@@ -4,7 +4,7 @@ import ParticleNumberReveal from './ParticleNumberReveal'
 /**
  * Effect 1: 3D Holographic Membership Card
  * Dark matte card with holographic rainbow shimmer that tracks device tilt or mouse position.
- * Includes idle bobbing animation, gold accents, and the particle number reveal.
+ * Includes idle bobbing animation, silver/white accents, and the particle number reveal.
  */
 export default function HolographicCard({ visible, claimed, onClaim }) {
   const cardRef = useRef(null)
@@ -28,10 +28,8 @@ export default function HolographicCard({ visible, claimed, onClaim }) {
   // DeviceOrientation for mobile tilt
   const handleOrientation = useCallback((e) => {
     if (!visible) return
-    // beta: front/back tilt (-180 to 180), gamma: left/right tilt (-90 to 90)
     const beta = e.beta || 0
     const gamma = e.gamma || 0
-    // Normalize to -1..1 range, clamped
     const x = Math.max(-1, Math.min(1, gamma / 30))
     const y = Math.max(-1, Math.min(1, (beta - 45) / 30))
     setTilt({ x, y })
@@ -53,7 +51,6 @@ export default function HolographicCard({ visible, claimed, onClaim }) {
         // Permission denied or error, fall back to mouse
       }
     } else if (typeof DeviceOrientationEvent !== 'undefined') {
-      // Non-iOS or older iOS that doesn't need permission
       orientPermRef.current = true
       window.addEventListener('deviceorientation', handleOrientation, true)
     }
@@ -75,13 +72,8 @@ export default function HolographicCard({ visible, claimed, onClaim }) {
 
   useEffect(() => {
     if (!visible) return
-
-    // Try orientation API first
     requestOrientationPermission()
-
-    // Also listen for mouse as fallback
     window.addEventListener('mousemove', handleMouseMove)
-
     return () => {
       window.removeEventListener('deviceorientation', handleOrientation, true)
       window.removeEventListener('mousemove', handleMouseMove)
@@ -138,10 +130,10 @@ export default function HolographicCard({ visible, claimed, onClaim }) {
           inset: 0,
           borderRadius: 14,
           background: 'linear-gradient(145deg, #1a1a1a 0%, #111 40%, #0d0d0d 100%)',
-          border: claimed ? '1px solid rgba(232,212,139,0.5)' : '1px solid rgba(201,168,76,0.25)',
+          border: claimed ? '1px solid rgba(230,230,230,0.5)' : '1px solid rgba(225,225,225,0.25)',
           boxShadow: claimed
-            ? `0 20px 60px rgba(0,0,0,0.6), 0 0 30px rgba(201,168,76,0.25), 0 0 1px rgba(201,168,76,0.5), inset 0 1px 0 rgba(255,255,255,0.06)`
-            : `0 20px 60px rgba(0,0,0,0.6), 0 0 1px rgba(201,168,76,0.3), inset 0 1px 0 rgba(255,255,255,0.04)`,
+            ? `0 20px 60px rgba(0,0,0,0.6), 0 0 30px rgba(225,225,225,0.25), 0 0 1px rgba(225,225,225,0.5), inset 0 1px 0 rgba(255,255,255,0.06)`
+            : `0 20px 60px rgba(0,0,0,0.6), 0 0 1px rgba(225,225,225,0.3), inset 0 1px 0 rgba(255,255,255,0.04)`,
           transition: 'box-shadow 0.6s ease',
           overflow: 'hidden',
         }}>
@@ -153,11 +145,11 @@ export default function HolographicCard({ visible, claimed, onClaim }) {
             background: `
               radial-gradient(
                 ellipse 60% 70% at ${shimmerX}% ${shimmerY}%,
-                rgba(255,100,100,0.07) 0%,
-                rgba(255,200,50,0.06) 20%,
-                rgba(100,255,100,0.05) 40%,
-                rgba(50,200,255,0.06) 60%,
-                rgba(200,100,255,0.05) 80%,
+                rgba(255,255,255,0.07) 0%,
+                rgba(220,220,220,0.06) 20%,
+                rgba(200,200,200,0.05) 40%,
+                rgba(180,180,180,0.06) 60%,
+                rgba(160,160,160,0.05) 80%,
                 transparent 100%
               )
             `,
@@ -184,14 +176,14 @@ export default function HolographicCard({ visible, claimed, onClaim }) {
             pointerEvents: 'none',
           }} />
 
-          {/* Gold edge highlight on top */}
+          {/* Silver edge highlight on top */}
           <div style={{
             position: 'absolute',
             top: 0,
             left: '10%',
             right: '10%',
             height: 1,
-            background: 'linear-gradient(90deg, transparent, rgba(201,168,76,0.4), transparent)',
+            background: 'linear-gradient(90deg, transparent, rgba(225,225,225,0.4), transparent)',
             borderRadius: '0 0 50% 50%',
           }} />
 
@@ -211,9 +203,9 @@ export default function HolographicCard({ visible, claimed, onClaim }) {
                 fontFamily: "'Bebas Neue', sans-serif",
                 fontSize: 22,
                 letterSpacing: '0.3em',
-                color: '#C9A84C',
+                color: '#E0E0E0',
                 lineHeight: 1,
-                textShadow: '0 0 20px rgba(201,168,76,0.15)',
+                textShadow: '0 0 20px rgba(225,225,225,0.15)',
               }}>
                 DECODED
               </div>
@@ -244,7 +236,7 @@ export default function HolographicCard({ visible, claimed, onClaim }) {
                   fontWeight: 300,
                   fontSize: 18,
                   letterSpacing: '0.15em',
-                  color: '#C9A84C',
+                  color: '#E0E0E0',
                   opacity: showNumber ? 0 : 0, // Hidden, particles handle display
                 }}>
                   {'№ '}0001
@@ -269,7 +261,7 @@ export default function HolographicCard({ visible, claimed, onClaim }) {
                     fontFamily: "'Bebas Neue', sans-serif",
                     fontSize: 20,
                     letterSpacing: '0.15em',
-                    color: 'rgba(201,168,76,0)',
+                    color: 'rgba(225,225,225,0)',
                     pointerEvents: 'none',
                   }}>
                     {'№ 0001'}
@@ -278,7 +270,7 @@ export default function HolographicCard({ visible, claimed, onClaim }) {
               </div>
 
               {claimed && (
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ filter: 'drop-shadow(0 0 8px rgba(201,168,76,0.4))' }}>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E0E0E0" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ filter: 'drop-shadow(0 0 8px rgba(225,225,225,0.4))' }}>
                   <polyline points="4 12 10 18 20 6" style={{ strokeDasharray: 30, strokeDashoffset: 30, animation: 'claim-draw-check 0.6s ease forwards 0.15s' }} />
                 </svg>
               )}
