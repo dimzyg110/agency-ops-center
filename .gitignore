@@ -21,6 +21,15 @@ clients/*/.env.*
 node_modules/
 dist/
 build/
+__pycache__/
+*.pyc
+
+# Generated output (regenerate, don't version)
+projects/internal/lead-tool/output/snapshot_html/
+projects/internal/lead-tool/output/snapshots/
+
+# Large data files (store externally, not in git)
+projects/internal/newsletter/data/ccc/*.json
 
 # IDE
 .vscode/

@@ -116,7 +116,7 @@ This is not optional. This is not skippable when "moving fast." If you deliver u
 ## Step 3: Assign to Specialists
 
 sessions_spawn(
-  task="[Clear description, requirements, output path, skill to use]",
+  task="[Clear description, requirements, output path, skill to use]. VOICE RULES: Write like a human. No em dashes (use commas or periods). No rule of three. No 'serves as' / 'testament to' / 'landscape' / 'tapestry' / 'delve' / 'crucial' / 'pivotal' / 'fostering' / 'showcasing' / 'underscoring'. No 'It's not just X, it's Y' constructions. No promotional language ('vibrant', 'stunning', 'groundbreaking', 'nestled'). Use 'is/are/has' instead of 'serves as/stands as/boasts'. Vary sentence length. Have opinions. Be specific over vague. Read the humanizer skill at skills/humanizer/SKILL.md for the full pattern list.",
   label="[role]-[task-name]",
   model="[appropriate-model]"
 )
@@ -133,6 +133,7 @@ Both reviewers must:
 - Critique independently (no access to each other's review)
 - Use different models (architectural diversity catches different issues)
 - Check for: missing requirements, factual errors, generic advice, scope creep, pricing reality
+- **Check for AI voice patterns**: em dashes, rule of three, promotional language, vague attributions, "serves as" / "testament to" / "landscape", negative parallelisms ("not just X, it's Y"), sycophantic tone. Flag any section that reads like AI wrote it.
 
 ## Step 5: Synthesize Reviews
 
@@ -140,6 +141,19 @@ Both reviewers must:
 - Single-reviewer issues → Fix if valid, note if subjective
 - Contradictions → Spawn 3rd reviewer as tiebreaker
 - Missing requirements → Send back to specialist with specific instructions
+
+## Step 5.5: ⛔ HUMANIZER GATE — Mandatory before delivery
+
+After reviews are synthesized and fixes applied, spawn one final agent:
+
+sessions_spawn(
+  task="Read the humanizer skill at skills/humanizer/SKILL.md. Then read [deliverable path]. Apply ALL 24 humanizer patterns to remove AI voice. Rewrite sections that sound generated. Keep meaning intact. Add personality where it's flat. Save the humanized version to the SAME file (overwrite). List changes made at the bottom of your response.",
+  label="humanizer-[task-name]",
+  model="google-antigravity/claude-opus-4-6-thinking"
+)
+
+This is NOT optional. Every client-facing deliverable gets humanized before delivery.
+Skip this step = same as skipping reviews. Unacceptable.
 
 ## Step 6: Final Delivery to Randy
 
@@ -181,6 +195,7 @@ ONLY after reviews are synthesized and issues resolved:
 | Researcher         | `openai/gpt-5.2-codex`                        | `nvidia/moonshotai/kimi-k2.5`       | Good at synthesis                |
 | Reviewer 1         | `google-antigravity/claude-opus-4-6-thinking` | `google-antigravity/claude-opus-4-6`| Strict review                    |
 | Reviewer 2         | `google-antigravity/gemini-3-pro-high`        | `openai/gpt-5.2-codex`             | Different perspective            |
+| Humanizer          | `google-antigravity/claude-opus-4-6-thinking` | `google-antigravity/gemini-3-pro-high` | Best at natural voice + style |
 
 ---
 
