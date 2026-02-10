@@ -380,36 +380,73 @@ function ProductCard({ product, isActive, isLast }) {
           <span style={{ fontFamily: "'Inter', sans-serif", fontWeight: 400, fontSize: 8, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(245,240,232,0.2)' }}>{expired ? 'EXPIRED' : 'LEFT'}</span>
         </div>
 
-        {/* ADD TO VAULT */}
+        {/* ADD TO VAULT — 3D Glass */}
         <div style={reveal(0.38)}>
           <button onClick={handleVault} style={{
-            position: 'relative', width: '100%', maxWidth: 340, height: 52,
-            border: vaultState === 'done' ? '1px solid rgba(201,168,76,0.3)' : '1px solid rgba(201,168,76,0.15)',
-            borderRadius: 10, cursor: 'pointer',
+            position: 'relative', width: '100%', maxWidth: 340, height: 54,
+            border: 'none', borderRadius: 14, cursor: 'pointer',
             fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: 12,
             letterSpacing: '0.24em', textTransform: 'uppercase',
             display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10,
             transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)', overflow: 'hidden',
-            background: vaultState === 'done' ? 'linear-gradient(135deg, #A8893B, #C9A84C)' : 'linear-gradient(135deg, #C9A84C 0%, #D4B96A 50%, #C9A84C 100%)',
+            background: vaultState === 'done'
+              ? 'linear-gradient(175deg, #D4B96A 0%, #A8893B 30%, #8B7230 60%, #A8893B 100%)'
+              : 'linear-gradient(175deg, #E8D48B 0%, #D4B96A 15%, #C9A84C 40%, #A8893B 70%, #C9A84C 100%)',
             color: '#0D0D0D',
-            animation: vaultState === 'pulse' ? 'vault-pulse 0.65s ease forwards' : vaultState === 'idle' ? 'glow-border 3s ease-in-out infinite' : 'none',
-            transform: vaultState === 'pulse' ? 'scale(0.97)' : 'scale(1)',
+            animation: vaultState === 'pulse' ? 'glass-vault-press 0.55s ease forwards'
+              : vaultState === 'done' ? 'glass-confirmed-glow 2s ease-in-out infinite'
+              : 'glass-glow-breathe 3.5s ease-in-out infinite',
+            transform: vaultState === 'pulse' ? 'scale(0.96) translateY(1px)' : 'scale(1)',
           }}>
+            {/* Top highlight edge — polished glass catch */}
             <span style={{
-              position: 'absolute', top: 0, left: 0, width: '40%', height: '100%',
-              background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent)',
-              animation: 'btn-shine 3.5s ease-in-out infinite', animationDelay: '1s', pointerEvents: 'none',
+              position: 'absolute', top: 0, left: '10%', right: '10%', height: 1,
+              background: 'linear-gradient(90deg, transparent, rgba(255,248,220,0.6), rgba(255,255,255,0.7), rgba(255,248,220,0.6), transparent)',
+              borderRadius: '0 0 50% 50%',
+              pointerEvents: 'none',
             }} />
-            {vaultState === 'done' ? (
-              <>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0D0D0D" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                  <polyline points="4 12 10 18 20 6" style={{ strokeDasharray: 30, strokeDashoffset: 0, animation: 'draw-check 0.35s ease forwards' }} />
-                </svg>
-                <span>In Your Vault</span>
-              </>
-            ) : (
-              <span>Add to Vault</span>
-            )}
+            {/* Inner top glow — glass depth */}
+            <span style={{
+              position: 'absolute', top: 0, left: 0, right: 0, height: '55%',
+              background: 'linear-gradient(180deg, rgba(255,248,220,0.2) 0%, rgba(255,248,220,0.05) 40%, transparent 100%)',
+              borderRadius: '14px 14px 50% 50%',
+              pointerEvents: 'none',
+            }} />
+            {/* Refraction drift — subtle light movement */}
+            <span style={{
+              position: 'absolute', top: '8%', left: '15%', width: '40%', height: '35%',
+              background: 'radial-gradient(ellipse, rgba(255,255,255,0.12) 0%, transparent 70%)',
+              borderRadius: '50%', filter: 'blur(6px)',
+              animation: 'glass-refraction-drift 6s ease-in-out infinite',
+              pointerEvents: 'none',
+            }} />
+            {/* Glass shine sweep */}
+            <span style={{
+              position: 'absolute', top: 0, left: 0, width: '35%', height: '100%',
+              background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.18), rgba(255,248,220,0.12), transparent)',
+              animation: 'glass-shine-sweep 4s ease-in-out infinite', animationDelay: '1.5s',
+              pointerEvents: 'none',
+            }} />
+            {/* Bottom shadow inside glass */}
+            <span style={{
+              position: 'absolute', bottom: 0, left: 0, right: 0, height: '40%',
+              background: 'linear-gradient(0deg, rgba(0,0,0,0.15) 0%, transparent 100%)',
+              borderRadius: '0 0 14px 14px',
+              pointerEvents: 'none',
+            }} />
+            {/* Content */}
+            <span style={{ position: 'relative', zIndex: 2, display: 'flex', alignItems: 'center', gap: 10, textShadow: '0 1px 0 rgba(255,248,220,0.3)' }}>
+              {vaultState === 'done' ? (
+                <>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0D0D0D" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="4 12 10 18 20 6" style={{ strokeDasharray: 30, strokeDashoffset: 0, animation: 'draw-check 0.35s ease forwards' }} />
+                  </svg>
+                  <span>In Your Vault</span>
+                </>
+              ) : (
+                <span>Add to Vault</span>
+              )}
+            </span>
           </button>
         </div>
 

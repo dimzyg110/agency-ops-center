@@ -202,6 +202,66 @@ html, body, #root {
   100% { transform: translateX(250%) skewX(-15deg); }
 }
 
+/* ── ULTRA LUXURY 3D GLASS BUTTON ── */
+
+@keyframes glass-shine-sweep {
+  0%   { transform: translateX(-120%) skewX(-18deg) scaleY(1); opacity: 0; }
+  10%  { opacity: 1; }
+  50%  { opacity: 0.7; }
+  100% { transform: translateX(280%) skewX(-18deg) scaleY(1); opacity: 0; }
+}
+
+@keyframes glass-glow-breathe {
+  0%, 100% {
+    box-shadow:
+      0 1px 0 0 rgba(255, 248, 220, 0.35) inset,
+      0 -1px 2px 0 rgba(0, 0, 0, 0.25) inset,
+      0 6px 20px -4px rgba(0, 0, 0, 0.6),
+      0 2px 8px 0 rgba(201, 168, 76, 0.12),
+      0 0 30px -6px rgba(201, 168, 76, 0.08);
+  }
+  50% {
+    box-shadow:
+      0 1px 0 0 rgba(255, 248, 220, 0.5) inset,
+      0 -1px 2px 0 rgba(0, 0, 0, 0.25) inset,
+      0 8px 24px -4px rgba(0, 0, 0, 0.65),
+      0 2px 12px 0 rgba(201, 168, 76, 0.22),
+      0 0 40px -6px rgba(201, 168, 76, 0.15);
+  }
+}
+
+@keyframes glass-vault-press {
+  0%   { transform: scale(1) translateY(0); }
+  20%  { transform: scale(0.96) translateY(1px); }
+  50%  { transform: scale(1.02) translateY(-1px); }
+  70%  { transform: scale(0.995) translateY(0); }
+  100% { transform: scale(1) translateY(0); }
+}
+
+@keyframes glass-confirmed-glow {
+  0%, 100% {
+    box-shadow:
+      0 1px 0 0 rgba(255, 248, 220, 0.4) inset,
+      0 -1px 2px 0 rgba(120, 90, 20, 0.3) inset,
+      0 8px 24px -4px rgba(0, 0, 0, 0.6),
+      0 0 20px -2px rgba(201, 168, 76, 0.25),
+      0 0 50px -8px rgba(201, 168, 76, 0.15);
+  }
+  50% {
+    box-shadow:
+      0 1px 0 0 rgba(255, 248, 220, 0.55) inset,
+      0 -1px 2px 0 rgba(120, 90, 20, 0.3) inset,
+      0 8px 28px -4px rgba(0, 0, 0, 0.65),
+      0 0 28px -2px rgba(201, 168, 76, 0.35),
+      0 0 60px -8px rgba(201, 168, 76, 0.22);
+  }
+}
+
+@keyframes glass-refraction-drift {
+  0%, 100% { transform: translateX(-5%) rotate(-1deg); opacity: 0.45; }
+  50%      { transform: translateX(5%) rotate(1deg); opacity: 0.65; }
+}
+
 /* ── SCARCITY TAG SHIMMER BORDER ── */
 @keyframes tag-border-shimmer {
   0%   { border-color: rgba(201,168,76,0.08); }
