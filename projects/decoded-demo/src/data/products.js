@@ -17,7 +17,7 @@ export const products = [
     dropEnd: now + 2 * 3600000 + 34 * 60000,
     fireCount: 2412,
     skullCount: 891,
-    video: `${R2}/noir-strata.mp4`,
+    video: `${import.meta.env.BASE_URL}videos/noir-strata.mp4`,
     music: `${IA}/Crime.mp3`,
     gradient: `
       radial-gradient(ellipse 80% 60% at 25% 85%, rgba(90,50,160,0.18) 0%, transparent 60%),
@@ -37,7 +37,7 @@ export const products = [
     dropEnd: now + 5 * 3600000 + 12 * 60000,
     fireCount: 1837,
     skullCount: 643,
-    video: `${R2}/hand-of-god.mp4`,
+    video: `${import.meta.env.BASE_URL}videos/hand-of-god.mp4`,
     music: `${IA}/Gloomy.mp3`,
     gradient: `
       radial-gradient(ellipse 70% 55% at 70% 80%, rgba(20,100,100,0.15) 0%, transparent 55%),
@@ -57,7 +57,7 @@ export const products = [
     dropEnd: now + 12 * 3600000 + 5 * 60000,
     fireCount: 3291,
     skullCount: 1204,
-    video: `${R2}/all-glory-black.mp4`,
+    video: `${import.meta.env.BASE_URL}videos/all-glory-black.mp4`,
     music: `${IA}/Nightmare.mp3`,
     gradient: `
       radial-gradient(ellipse 75% 50% at 60% 85%, rgba(140,30,30,0.12) 0%, transparent 55%),
@@ -77,7 +77,7 @@ export const products = [
     dropEnd: now + 1 * 3600000 + 48 * 60000,
     fireCount: 967,
     skullCount: 412,
-    video: `${R2}/broke-tee.mp4`,
+    video: `${import.meta.env.BASE_URL}videos/broke-tee.mp4`,
     music: `${IA}/Valhalla.mp3`,
     gradient: `
       radial-gradient(ellipse 65% 55% at 35% 80%, rgba(25,35,100,0.14) 0%, transparent 55%),
@@ -97,7 +97,7 @@ export const products = [
     dropEnd: now + 8 * 3600000 + 22 * 60000,
     fireCount: 2076,
     skullCount: 583,
-    video: `${R2}/angels-hoodie.mp4`,
+    video: `${import.meta.env.BASE_URL}videos/angels-hoodie.mp4`,
     music: `${IA}/Nightmares.mp3`,
     gradient: `
       radial-gradient(ellipse 70% 55% at 45% 85%, rgba(120,80,20,0.14) 0%, transparent 55%),
