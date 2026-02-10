@@ -986,19 +986,17 @@ export default function Feed() {
 
   // Manage music playback — crossfade between tracks
   useEffect(() => {
+    if (!audioEnabled) return
     products.forEach((product, i) => {
       const audio = musicRefs.current[product.id]
       if (!audio) return
-      if (i === activeIndex && audioEnabled && !muted) {
-        audio.volume = 0
-        audio.play().catch(() => {})
-        // Fade in
-        let vol = 0
-        const fadeIn = setInterval(() => { vol = Math.min(vol + 0.05, 0.45); audio.volume = vol; if (vol >= 0.45) clearInterval(fadeIn) }, 50)
+      if (i === activeIndex && !muted) {
+        audio.currentTime = audio.currentTime || 0
+        audio.volume = 0.4
+        const p = audio.play()
+        if (p) p.catch(() => {})
       } else {
-        // Fade out
-        let vol = audio.volume
-        const fadeOut = setInterval(() => { vol = Math.max(vol - 0.05, 0); audio.volume = vol; if (vol <= 0) { clearInterval(fadeOut); audio.pause() } }, 50)
+        audio.pause()
       }
     })
   }, [activeIndex, audioEnabled, muted])

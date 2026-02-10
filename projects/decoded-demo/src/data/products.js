@@ -1,7 +1,7 @@
 const now = Date.now()
 
 const R2 = 'https://pub-12a9e278dc6d454fa3a74b79a8b8e63d.r2.dev/demo'
-const IA = 'https://archive.org/download/darkambient_201908'
+const IA = 'https://ia800608.us.archive.org/13/items/darkambient_201908'
 
 export const DROP_END_TIME = now + 3 * 86400000 + 14 * 3600000
 
