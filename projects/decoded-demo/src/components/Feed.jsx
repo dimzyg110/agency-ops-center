@@ -751,7 +751,7 @@ function ProductCard({ product, isActive, isNear, isLast, audioEnabled }) {
       )}
 
       {/* Video background with Ken Burns */}
-      {product.video && isNear && (
+      {product.video && (
         <div style={{ position: 'absolute', inset: 0, zIndex: 0, pointerEvents: 'none', overflow: 'hidden' }}>
           <video
             ref={videoRef}
@@ -761,7 +761,7 @@ function ProductCard({ product, isActive, isNear, isLast, audioEnabled }) {
             muted
             playsInline
             webkit-playsinline=""
-            preload="auto"
+            preload={isNear ? 'auto' : 'none'}
             controls={false}
             onLoadedData={() => { setVideoLoaded(true); if (isActive && videoRef.current) videoRef.current.play().catch(() => {}) }}
             className={videoLoaded && isActive ? 'video-zoom' : ''}
