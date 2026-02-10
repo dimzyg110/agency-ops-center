@@ -395,7 +395,7 @@ function SecretCard({ isActive }) {
         }} />
       )}
 
-      {/* Content container — absolutely centered to prevent layout shift */}
+      {/* Content container — absolutely centered */}
       <div style={{
         position: 'absolute',
         top: '50%',
@@ -405,46 +405,52 @@ function SecretCard({ isActive }) {
         zIndex: 10,
         width: '100%',
       }}>
-        {/* "DECODED" text */}
-        <div style={{
-          fontFamily: "'Bebas Neue', sans-serif",
-          fontSize: 48,
-          letterSpacing: '0.3em',
-          color: '#C9A84C',
-          opacity: phase >= 2 && phase < 5 ? 1 : 0,
-          transition: 'opacity 1.2s ease',
-          marginBottom: 16,
-          textAlign: 'center',
-          textShadow: '0 0 40px rgba(201,168,76,0.2)',
-        }}>
-          DECODED
-        </div>
+        {/* "DECODED" text — only during pre-card phases */}
+        {phase < 5 && (
+          <div style={{
+            fontFamily: "'Bebas Neue', sans-serif",
+            fontSize: 48,
+            letterSpacing: '0.3em',
+            color: '#C9A84C',
+            opacity: phase >= 2 ? 1 : 0,
+            transition: 'opacity 1.2s ease',
+            marginBottom: 16,
+            textAlign: 'center',
+            textShadow: '0 0 40px rgba(201,168,76,0.2)',
+          }}>
+            DECODED
+          </div>
+        )}
 
-        {/* Gold line */}
-        <div style={{
-          width: phase >= 1 && phase < 5 ? 120 : 0,
-          height: 1,
-          background: 'linear-gradient(90deg, transparent, #C9A84C, transparent)',
-          boxShadow: '0 0 20px rgba(201,168,76,0.3)',
-          transition: 'width 1.5s cubic-bezier(0.16, 1, 0.3, 1)',
-          marginBottom: 16,
-        }} />
+        {/* Gold line — only during pre-card phases */}
+        {phase < 5 && (
+          <div style={{
+            width: phase >= 1 ? 120 : 0,
+            height: 1,
+            background: 'linear-gradient(90deg, transparent, #C9A84C, transparent)',
+            boxShadow: '0 0 20px rgba(201,168,76,0.3)',
+            transition: 'width 1.5s cubic-bezier(0.16, 1, 0.3, 1)',
+            marginBottom: 16,
+          }} />
+        )}
 
-        {/* "YOU'VE BEEN DECODED" */}
-        <div style={{
-          fontFamily: "'Inter', sans-serif",
-          fontWeight: 300,
-          fontSize: 11,
-          letterSpacing: '0.35em',
-          color: 'rgba(245,240,232,0.5)',
-          textTransform: 'uppercase',
-          opacity: phase >= 3 && phase < 5 ? 1 : 0,
-          transition: 'opacity 1.2s ease',
-          marginBottom: 40,
-          textAlign: 'center',
-        }}>
-          YOU'VE BEEN DECODED
-        </div>
+        {/* "YOU'VE BEEN DECODED" — only during pre-card phases */}
+        {phase < 5 && (
+          <div style={{
+            fontFamily: "'Inter', sans-serif",
+            fontWeight: 300,
+            fontSize: 11,
+            letterSpacing: '0.35em',
+            color: 'rgba(245,240,232,0.5)',
+            textTransform: 'uppercase',
+            opacity: phase >= 3 ? 1 : 0,
+            transition: 'opacity 1.2s ease',
+            marginBottom: 40,
+            textAlign: 'center',
+          }}>
+            YOU'VE BEEN DECODED
+          </div>
+        )}
 
         {/* Card wrapper with flip animation and gold ring */}
         <div style={{ position: 'relative', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
