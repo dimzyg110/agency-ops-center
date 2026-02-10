@@ -138,12 +138,11 @@ export default function HolographicCard({ visible, claimed, onClaim }) {
           inset: 0,
           borderRadius: 14,
           background: 'linear-gradient(145deg, #1a1a1a 0%, #111 40%, #0d0d0d 100%)',
-          border: '1px solid rgba(201,168,76,0.25)',
-          boxShadow: `
-            0 20px 60px rgba(0,0,0,0.6),
-            0 0 1px rgba(201,168,76,0.3),
-            inset 0 1px 0 rgba(255,255,255,0.04)
-          `,
+          border: claimed ? '1px solid rgba(232,212,139,0.5)' : '1px solid rgba(201,168,76,0.25)',
+          boxShadow: claimed
+            ? `0 20px 60px rgba(0,0,0,0.6), 0 0 30px rgba(201,168,76,0.25), 0 0 1px rgba(201,168,76,0.5), inset 0 1px 0 rgba(255,255,255,0.06)`
+            : `0 20px 60px rgba(0,0,0,0.6), 0 0 1px rgba(201,168,76,0.3), inset 0 1px 0 rgba(255,255,255,0.04)`,
+          transition: 'box-shadow 0.6s ease',
           overflow: 'hidden',
         }}>
           {/* Holographic rainbow shimmer overlay */}
@@ -279,8 +278,8 @@ export default function HolographicCard({ visible, claimed, onClaim }) {
               </div>
 
               {claimed && (
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <polyline points="4 12 10 18 20 6" style={{ strokeDasharray: 30, strokeDashoffset: 0, animation: 'draw-check 0.35s ease forwards' }} />
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ filter: 'drop-shadow(0 0 8px rgba(201,168,76,0.4))' }}>
+                  <polyline points="4 12 10 18 20 6" style={{ strokeDasharray: 30, strokeDashoffset: 30, animation: 'claim-draw-check 0.6s ease forwards 0.15s' }} />
                 </svg>
               )}
             </div>

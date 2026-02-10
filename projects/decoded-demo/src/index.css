@@ -250,6 +250,11 @@ html, body, #root {
   to   { transform: rotate(360deg); }
 }
 
+@keyframes music-marquee {
+  0%   { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
 
 /* ══════════════════════════════════════════════════════
    FEATURE 1: CIPHER REVEAL ANIMATIONS
@@ -315,6 +320,43 @@ html, body, #root {
 @keyframes secret-card-flash {
   0%   { background: rgba(201,168,76,0.15); }
   100% { background: rgba(201,168,76,0); }
+}
+
+/* ── CLAIM ANIMATION: Card flip 360° on Y axis ── */
+@keyframes claim-card-flip {
+  0%   { transform: perspective(800px) rotateY(0deg) scale(1); }
+  20%  { transform: perspective(800px) rotateY(90deg) scale(1.05); }
+  50%  { transform: perspective(800px) rotateY(200deg) scale(1.08); }
+  80%  { transform: perspective(800px) rotateY(330deg) scale(1.02); }
+  100% { transform: perspective(800px) rotateY(360deg) scale(1); }
+}
+
+/* ── CLAIM ANIMATION: Gold flash/burst overlay ── */
+@keyframes claim-gold-flash {
+  0%   { opacity: 0; }
+  15%  { opacity: 1; }
+  40%  { opacity: 0.7; }
+  100% { opacity: 0; }
+}
+
+/* ── CLAIM ANIMATION: Expanding gold ring ── */
+@keyframes claim-ring-expand {
+  0%   { width: 40px; height: 40px; opacity: 0.9; border-width: 3px; border-color: rgba(232,212,139,0.8); }
+  50%  { opacity: 0.5; border-width: 2px; border-color: rgba(232,212,139,0.5); }
+  100% { width: 350px; height: 350px; opacity: 0; border-width: 1px; border-color: rgba(232,212,139,0); }
+}
+
+/* ── CLAIM ANIMATION: Burst particles ── */
+@keyframes claim-burst-particle {
+  0%   { transform: translate(0, 0) scale(1); opacity: 1; }
+  30%  { opacity: 0.9; }
+  100% { transform: translate(var(--burst-tx), var(--burst-ty)) scale(0.2); opacity: 0; }
+}
+
+/* ── CLAIM ANIMATION: Checkmark stroke draw ── */
+@keyframes claim-draw-check {
+  0%   { stroke-dashoffset: 30; }
+  100% { stroke-dashoffset: 0; }
 }
 
 /* ── HOLOGRAPHIC CARD ANIMATIONS ── */

@@ -304,6 +304,9 @@ function SecretCard({ isActive }) {
   const [claimFlash, setClaimFlash] = useState(false)
   const [showLiquid, setShowLiquid] = useState(false)
   const [showCard, setShowCard] = useState(false)
+  const [flipping, setFlipping] = useState(false)
+  const [goldBurst, setGoldBurst] = useState(false)
+  const [goldRing, setGoldRing] = useState(false)
   const timerRefs = useRef([])
 
   // Reset and run animation sequence when card becomes active
@@ -347,14 +350,25 @@ function SecretCard({ isActive }) {
   }, [])
 
   const handleClaim = useCallback(() => {
-    if (phase !== 6 || claimed) return
+    if (phase !== 6 || claimed || flipping) return
+    // Start dramatic claim sequence
     setClaimFlash(true)
+    setFlipping(true)
+    setGoldBurst(true)
+    setGoldRing(true)
+
+    // Clear burst after animation
+    setTimeout(() => setGoldBurst(false), 800)
+    setTimeout(() => setGoldRing(false), 1000)
+
+    // After flip completes, settle into claimed state
     setTimeout(() => {
       setClaimFlash(false)
+      setFlipping(false)
       setClaimed(true)
       setPhase(7)
-    }, 400)
-  }, [phase, claimed])
+    }, 900)
+  }, [phase, claimed, flipping])
 
   return (
     <div
@@ -371,21 +385,25 @@ function SecretCard({ isActive }) {
       {/* Gold Liquid Fill (Effect 3) */}
       <GoldLiquidFill active={showLiquid} onComplete={handleLiquidComplete} />
 
-      {/* Claim flash overlay */}
+      {/* Claim flash overlay — bright gold burst */}
       {claimFlash && (
         <div style={{
           position: 'absolute', inset: 0, zIndex: 40,
-          background: 'rgba(201,168,76,0.15)',
-          animation: 'secret-card-flash 0.4s ease-out forwards',
+          background: 'radial-gradient(circle at 50% 50%, rgba(232,212,139,0.35) 0%, rgba(201,168,76,0.15) 40%, rgba(201,168,76,0) 70%)',
+          animation: 'claim-gold-flash 0.9s ease-out forwards',
           pointerEvents: 'none',
         }} />
       )}
 
-      {/* Content container */}
+      {/* Content container — absolutely centered to prevent layout shift */}
       <div style={{
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
         display: 'flex', flexDirection: 'column', alignItems: 'center',
-        justifyContent: 'center', position: 'relative', zIndex: 10,
-        gap: 0, width: '100%',
+        zIndex: 10,
+        width: '100%',
       }}>
         {/* "DECODED" text */}
         <div style={{
@@ -428,15 +446,73 @@ function SecretCard({ isActive }) {
           YOU'VE BEEN DECODED
         </div>
 
-        {/* Holographic Card (Effect 1, with Effect 2 particle number inside) */}
-        <HolographicCard
-          visible={showCard}
-          claimed={phase === 7}
-          onClaim={phase === 6 ? handleClaim : null}
-        />
+        {/* Card wrapper with flip animation and gold ring */}
+        <div style={{ position: 'relative', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          {/* Expanding gold ring pulse */}
+          {goldRing && (
+            <div style={{
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              width: 0,
+              height: 0,
+              transform: 'translate(-50%, -50%)',
+              borderRadius: '50%',
+              border: '2px solid rgba(232,212,139,0.7)',
+              animation: 'claim-ring-expand 1s ease-out forwards',
+              pointerEvents: 'none',
+              zIndex: 20,
+            }} />
+          )}
+          {/* Gold burst particles */}
+          {goldBurst && (
+            <div style={{ position: 'absolute', top: '50%', left: '50%', width: 0, height: 0, zIndex: 20, pointerEvents: 'none' }}>
+              {Array.from({ length: 16 }, (_, i) => {
+                const angle = (i / 16) * 360
+                const rad = (angle * Math.PI) / 180
+                const dist = 60 + Math.random() * 50
+                return (
+                  <span key={i} style={{
+                    position: 'absolute',
+                    width: 3 + Math.random() * 3,
+                    height: 3 + Math.random() * 3,
+                    borderRadius: '50%',
+                    background: i % 3 === 0 ? '#E8D48B' : i % 3 === 1 ? '#C9A84C' : '#FFF0C8',
+                    boxShadow: `0 0 6px ${i % 2 === 0 ? '#E8D48B' : '#C9A84C'}`,
+                    left: 0, top: 0,
+                    '--burst-tx': `${Math.cos(rad) * dist}px`,
+                    '--burst-ty': `${Math.sin(rad) * dist}px`,
+                    animation: 'claim-burst-particle 0.7s ease-out forwards',
+                  }} />
+                )
+              })}
+            </div>
+          )}
 
-        {/* TAP TO CLAIM */}
-        {phase === 6 && !claimed && (
+          {/* Holographic Card — with flip wrapper */}
+          <div style={{
+            animation: flipping ? 'claim-card-flip 0.9s ease-in-out forwards' : 'none',
+            transformStyle: 'preserve-3d',
+            perspective: 800,
+          }}>
+            <HolographicCard
+              visible={showCard}
+              claimed={phase === 7}
+              onClaim={phase === 6 ? handleClaim : null}
+            />
+          </div>
+        </div>
+
+        {/* TAP TO CLAIM — absolutely positioned so it doesn't shift the card */}
+        <div style={{
+          position: 'absolute',
+          bottom: -44,
+          left: '50%',
+          transform: 'translateX(-50%)',
+          opacity: phase === 6 && !claimed ? 1 : 0,
+          transition: 'opacity 0.4s ease',
+          pointerEvents: phase === 6 && !claimed ? 'auto' : 'none',
+        }}>
           <div style={{
             fontFamily: "'Inter', sans-serif",
             fontWeight: 400,
@@ -446,13 +522,13 @@ function SecretCard({ isActive }) {
             textTransform: 'uppercase',
             animation: 'claim-pulse 2s ease-in-out infinite',
             cursor: 'pointer',
-            marginTop: 24,
+            whiteSpace: 'nowrap',
           }}
           onClick={handleClaim}
           >
             TAP TO CLAIM
           </div>
-        )}
+        </div>
       </div>
 
       {/* Brand mark */}
@@ -487,22 +563,18 @@ function ProductCard({ product, isActive, isNear, isLast, audioEnabled }) {
     const v = videoRef.current
     if (!v) return
     if (isActive) {
+      v.muted = true // Always muted to prevent iOS play button
       v.play().catch(() => {})
     } else {
       v.pause()
     }
   }, [isActive])
 
-  // Control video volume based on audio state
+  // Video stays muted — music handles all audio
   useEffect(() => {
     const v = videoRef.current
     if (!v) return
-    if (audioEnabled && isActive) {
-      v.muted = false
-      v.volume = 0.15
-    } else {
-      v.muted = true
-    }
+    v.muted = true
   }, [audioEnabled, isActive])
   const [selectedSize, setSelectedSize] = useState('M')
   const [vignetteIntensify, setVignetteIntensify] = useState(false)
@@ -793,6 +865,37 @@ function ProductCard({ product, isActive, isNear, isLast, audioEnabled }) {
           <span style={{ fontSize: 10, color: 'rgba(245,240,232,0.4)', fontFamily: "'Inter', sans-serif", fontWeight: 500, textShadow: '0 1px 4px rgba(0,0,0,0.5)' }}>Share</span>
         </button>
       </div>
+
+      {/* Music ticker — TikTok style */}
+      {product.songName && (
+        <div style={{
+          position: 'absolute', bottom: 'calc(env(safe-area-inset-bottom, 0px) + 10px)',
+          right: 16, zIndex: 15,
+          display: 'flex', alignItems: 'center', gap: 8,
+          maxWidth: 180, overflow: 'hidden',
+        }}>
+          {/* Spinning disc */}
+          <div style={{
+            width: 28, height: 28, borderRadius: '50%', flexShrink: 0,
+            background: 'radial-gradient(circle at 50% 50%, #333 30%, #1a1a1a 32%, #222 60%, #111 100%)',
+            border: '2px solid rgba(201,168,76,0.3)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            animation: isActive ? 'spin 3s linear infinite' : 'none',
+          }}>
+            <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#C9A84C' }} />
+          </div>
+          {/* Scrolling song name */}
+          <div style={{ overflow: 'hidden', flex: 1 }}>
+            <div style={{
+              fontFamily: "'Inter', sans-serif", fontWeight: 400, fontSize: 10,
+              color: 'rgba(245,240,232,0.6)', whiteSpace: 'nowrap',
+              animation: isActive ? 'music-marquee 8s linear infinite' : 'none',
+            }}>
+              {product.songName}
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* ── BOTTOM CONTENT ── */}
       <div style={{ position: 'relative', zIndex: 5, padding: '0 22px 16px' }}>
