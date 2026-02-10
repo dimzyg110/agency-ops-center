@@ -36,12 +36,45 @@ function DropBanner() {
             <span key={i} className="pulse-glow gold-shimmer-text"
               style={{
                 fontFamily: "'Inter', sans-serif", fontWeight: 600,
-                fontSize: 10, letterSpacing: '0.28em',
+                fontSize: 9, letterSpacing: '0.3em',
                 textTransform: 'uppercase', padding: '0 32px',
               }}>{text}</span>
           ))}
         </div>
       </div>
+    </div>
+  )
+}
+
+/* ── GOLD DUST PARTICLES ── */
+
+function GoldDust() {
+  const particles = useMemo(() =>
+    Array.from({ length: 6 }, (_, i) => ({
+      id: i,
+      left: 10 + Math.random() * 80,
+      delay: Math.random() * 8,
+      duration: 10 + Math.random() * 8,
+      size: 1 + Math.random() * 1.5,
+      opacity: 0.15 + Math.random() * 0.2,
+    })), [])
+
+  return (
+    <div style={{ position: 'absolute', inset: 0, overflow: 'hidden', pointerEvents: 'none', zIndex: 3 }}>
+      {particles.map(p => (
+        <div key={p.id} style={{
+          position: 'absolute',
+          left: `${p.left}%`,
+          bottom: '-5%',
+          width: p.size,
+          height: p.size,
+          borderRadius: '50%',
+          background: '#C9A84C',
+          boxShadow: `0 0 ${p.size * 3}px rgba(201,168,76,0.4)`,
+          opacity: p.opacity,
+          animation: `gold-float ${p.duration}s ease-in-out ${p.delay}s infinite`,
+        }} />
+      ))}
     </div>
   )
 }
@@ -81,13 +114,13 @@ function FireBurst({ trigger }) {
   const [particles, setParticles] = useState([])
   useEffect(() => {
     if (!trigger) return
-    const ps = Array.from({ length: 8 }, (_, i) => {
-      const a = (i / 8) * 360, r = 18 + Math.random() * 18
+    const ps = Array.from({ length: 10 }, (_, i) => {
+      const a = (i / 10) * 360, r = 18 + Math.random() * 22
       const rad = (a * Math.PI) / 180
-      return { id: Date.now() + i, tx: Math.cos(rad) * r, ty: Math.sin(rad) * r, color: i % 2 === 0 ? '#FF6B35' : '#C9A84C', sz: 3 + Math.random() * 2 }
+      return { id: Date.now() + i, tx: Math.cos(rad) * r, ty: Math.sin(rad) * r, color: i % 3 === 0 ? '#FF6B35' : i % 3 === 1 ? '#C9A84C' : '#E8D48B', sz: 2.5 + Math.random() * 2.5 }
     })
     setParticles(ps)
-    const t = setTimeout(() => setParticles([]), 550)
+    const t = setTimeout(() => setParticles([]), 600)
     return () => clearTimeout(t)
   }, [trigger])
   return <>
@@ -95,9 +128,9 @@ function FireBurst({ trigger }) {
       <span key={p.id} style={{
         position: 'absolute', left: '50%', top: '50%',
         width: p.sz, height: p.sz, marginLeft: -p.sz / 2, marginTop: -p.sz / 2,
-        borderRadius: '50%', background: p.color, boxShadow: `0 0 6px ${p.color}`,
+        borderRadius: '50%', background: p.color, boxShadow: `0 0 8px ${p.color}`,
         '--burst-translate': `translate(${p.tx}px, ${p.ty}px)`,
-        animation: 'fire-burst 0.5s ease-out forwards', pointerEvents: 'none',
+        animation: 'fire-burst 0.55s ease-out forwards', pointerEvents: 'none',
       }} />
     ))}
   </>
@@ -111,7 +144,7 @@ function AmbientShapes() {
       <div style={{
         position: 'absolute', width: '70vw', height: '70vw', maxWidth: 400, maxHeight: 400,
         bottom: '10%', left: '-15%', borderRadius: '50%',
-        background: 'radial-gradient(circle, rgba(201,168,76,0.045) 0%, transparent 65%)',
+        background: 'radial-gradient(circle, rgba(201,168,76,0.04) 0%, transparent 65%)',
         filter: 'blur(50px)', animation: 'ambient-float 18s ease-in-out infinite',
       }} />
       <div style={{
@@ -129,11 +162,13 @@ function AmbientShapes() {
 
 function SwipeUp() {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3, animation: 'bounce-up 2s ease-in-out infinite' }}>
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#F5F0E8" strokeWidth="1.5" strokeLinecap="round" opacity="0.5">
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }}>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" strokeWidth="1.2" strokeLinecap="round" opacity="0.4" style={{ animation: 'chevron-fade 2.5s ease-in-out infinite' }}>
         <polyline points="18 15 12 9 6 15" />
       </svg>
-      <span style={{ fontSize: 8, letterSpacing: '0.25em', color: 'rgba(245,240,232,0.25)', textTransform: 'uppercase', fontFamily: "'Inter', sans-serif", fontWeight: 400 }}>Swipe</span>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" strokeWidth="1.2" strokeLinecap="round" opacity="0.25" style={{ animation: 'chevron-fade 2.5s ease-in-out infinite', animationDelay: '0.15s' }}>
+        <polyline points="18 15 12 9 6 15" />
+      </svg>
     </div>
   )
 }
@@ -150,6 +185,7 @@ function ProductCard({ product, isActive, isLast }) {
   const [fireActive, setFireActive] = useState(false)
   const [skullActive, setSkullActive] = useState(false)
   const [vaultState, setVaultState] = useState('idle')
+  const [videoLoaded, setVideoLoaded] = useState(false)
 
   const handleFire = useCallback(() => {
     if (fireActive) return
@@ -167,39 +203,49 @@ function ProductCard({ product, isActive, isLast }) {
     if (vaultState !== 'idle') return
     setVaultState('pulse')
     setTimeout(() => setVaultState('done'), 350)
-    setTimeout(() => setVaultState('idle'), 2200)
+    setTimeout(() => setVaultState('idle'), 2800)
   }, [vaultState])
 
   const reveal = (delay) => ({
     opacity: isActive ? 1 : 0,
-    transform: isActive ? 'translateY(0)' : 'translateY(18px)',
-    transition: `opacity 0.5s cubic-bezier(0.16,1,0.3,1) ${delay}s, transform 0.5s cubic-bezier(0.16,1,0.3,1) ${delay}s`,
+    transform: isActive ? 'translateY(0)' : 'translateY(22px)',
+    transition: `opacity 0.6s cubic-bezier(0.16,1,0.3,1) ${delay}s, transform 0.6s cubic-bezier(0.16,1,0.3,1) ${delay}s`,
   })
 
   return (
     <div className="feed-card relative w-full flex flex-col justify-end" style={{ background: product.gradient }}>
-      {/* Video background */}
+      {/* Video background with Ken Burns */}
       {product.video && (
         <video
           autoPlay
           loop
           muted
           playsInline
+          onLoadedData={() => setVideoLoaded(true)}
+          className={videoLoaded && isActive ? 'video-zoom' : ''}
           style={{
             position: 'absolute', inset: 0, width: '100%', height: '100%',
-            objectFit: 'cover', zIndex: 0, opacity: 0.85,
+            objectFit: 'cover', zIndex: 0,
+            opacity: videoLoaded ? 0.9 : 0,
+            transition: 'opacity 1.2s ease-in-out',
           }}
         >
           <source src={product.video} type="video/mp4" />
         </video>
       )}
-      <AmbientShapes />
-      <div className="gradient-overlay absolute inset-0 z-[1]" />
 
-      {/* Brand mark */}
-      <div style={{
+      <AmbientShapes />
+      <GoldDust />
+
+      {/* Vignette */}
+      <div className="vignette absolute inset-0 z-[1]" />
+      {/* Gradient overlay */}
+      <div className="gradient-overlay absolute inset-0 z-[2]" />
+
+      {/* Brand mark — breathing animation */}
+      <div className="brand-breathe" style={{
         position: 'absolute', top: 'calc(42px + env(safe-area-inset-top, 0px))', left: 22, zIndex: 5,
-        fontFamily: "'Inter', sans-serif", fontWeight: 800, fontSize: 10,
+        fontFamily: "'Inter', sans-serif", fontWeight: 800, fontSize: 9,
         letterSpacing: '0.4em', color: 'rgba(201,168,76,0.18)', textTransform: 'uppercase',
       }}>DECODED</div>
 
@@ -208,43 +254,58 @@ function ProductCard({ product, isActive, isLast }) {
         position: 'absolute', right: 14, zIndex: 10,
         bottom: isLast ? '34%' : '30%',
         display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 22,
-        ...reveal(0.45),
+        ...reveal(0.5),
       }}>
         {/* Fire */}
         <button onClick={handleFire} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3, background: 'none', border: 'none', cursor: 'pointer', position: 'relative', padding: 0 }}>
           <div style={{
-            width: 44, height: 44, borderRadius: '50%',
-            background: fireActive ? 'rgba(201,168,76,0.12)' : 'rgba(245,240,232,0.06)',
-            display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'background 0.25s',
+            width: 46, height: 46, borderRadius: '50%',
+            background: fireActive ? 'rgba(201,168,76,0.15)' : 'rgba(245,240,232,0.05)',
+            border: `1px solid ${fireActive ? 'rgba(201,168,76,0.3)' : 'rgba(245,240,232,0.08)'}`,
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            transition: 'all 0.3s ease',
+            backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)',
           }}>
-            <span style={{ fontSize: 24, display: 'block', lineHeight: 1, animation: fireActive ? 'fire-pop 0.5s ease forwards' : 'none', filter: fireActive ? 'brightness(1.4)' : 'none', transition: 'filter 0.2s' }}>🔥</span>
+            <span style={{ fontSize: 22, display: 'block', lineHeight: 1, animation: fireActive ? 'fire-pop 0.5s ease forwards' : 'none', filter: fireActive ? 'brightness(1.4) drop-shadow(0 0 8px rgba(255,107,53,0.5))' : 'none', transition: 'filter 0.2s' }}>🔥</span>
           </div>
+          {/* Ring expand on tap */}
+          {fireActive && <div style={{ position: 'absolute', inset: 0, borderRadius: '50%', border: '2px solid rgba(201,168,76,0.4)', animation: 'ring-expand 0.5s ease-out forwards', pointerEvents: 'none' }} />}
           <FireBurst trigger={fireTrigger} />
-          <span style={{ fontSize: 10, color: fireActive ? '#C9A84C' : 'rgba(245,240,232,0.7)', fontFamily: "'Inter', sans-serif", fontWeight: 600, fontVariantNumeric: 'tabular-nums', transition: 'color 0.2s' }}>{fmtK(fireCount)}</span>
+          <span style={{ fontSize: 10, color: fireActive ? '#C9A84C' : 'rgba(245,240,232,0.6)', fontFamily: "'Inter', sans-serif", fontWeight: 600, fontVariantNumeric: 'tabular-nums', transition: 'color 0.2s', textShadow: '0 1px 4px rgba(0,0,0,0.5)' }}>{fmtK(fireCount)}</span>
         </button>
 
         {/* Skull */}
-        <button onClick={handleSkull} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3, background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>
+        <button onClick={handleSkull} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3, background: 'none', border: 'none', cursor: 'pointer', padding: 0, position: 'relative' }}>
           <div style={{
-            width: 44, height: 44, borderRadius: '50%',
-            background: skullActive ? 'rgba(245,240,232,0.1)' : 'rgba(245,240,232,0.06)',
-            display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'background 0.25s',
+            width: 46, height: 46, borderRadius: '50%',
+            background: skullActive ? 'rgba(245,240,232,0.1)' : 'rgba(245,240,232,0.05)',
+            border: `1px solid ${skullActive ? 'rgba(245,240,232,0.2)' : 'rgba(245,240,232,0.08)'}`,
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            transition: 'all 0.3s ease',
+            backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)',
           }}>
-            <span style={{ fontSize: 22, display: 'block', lineHeight: 1, animation: skullActive ? 'fire-pop 0.5s ease forwards' : 'none' }}>💀</span>
+            <span style={{ fontSize: 20, display: 'block', lineHeight: 1, animation: skullActive ? 'fire-pop 0.5s ease forwards' : 'none' }}>💀</span>
           </div>
-          <span style={{ fontSize: 10, color: 'rgba(245,240,232,0.7)', fontFamily: "'Inter', sans-serif", fontWeight: 600, fontVariantNumeric: 'tabular-nums' }}>{fmtK(skullCount)}</span>
+          {skullActive && <div style={{ position: 'absolute', inset: 0, borderRadius: '50%', border: '2px solid rgba(245,240,232,0.2)', animation: 'ring-expand 0.5s ease-out forwards', pointerEvents: 'none' }} />}
+          <span style={{ fontSize: 10, color: 'rgba(245,240,232,0.6)', fontFamily: "'Inter', sans-serif", fontWeight: 600, fontVariantNumeric: 'tabular-nums', textShadow: '0 1px 4px rgba(0,0,0,0.5)' }}>{fmtK(skullCount)}</span>
         </button>
 
         {/* Share */}
         <button style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3, background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>
-          <div style={{ width: 44, height: 44, borderRadius: '50%', background: 'rgba(245,240,232,0.06)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F5F0E8" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" opacity="0.8">
+          <div style={{
+            width: 46, height: 46, borderRadius: '50%',
+            background: 'rgba(245,240,232,0.05)',
+            border: '1px solid rgba(245,240,232,0.08)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)',
+          }}>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F5F0E8" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" opacity="0.7">
               <path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8" />
               <polyline points="16 6 12 2 8 6" />
               <line x1="12" y1="2" x2="12" y2="15" />
             </svg>
           </div>
-          <span style={{ fontSize: 10, color: 'rgba(245,240,232,0.5)', fontFamily: "'Inter', sans-serif", fontWeight: 500 }}>Share</span>
+          <span style={{ fontSize: 10, color: 'rgba(245,240,232,0.4)', fontFamily: "'Inter', sans-serif", fontWeight: 500, textShadow: '0 1px 4px rgba(0,0,0,0.5)' }}>Share</span>
         </button>
       </div>
 
@@ -255,11 +316,13 @@ function ProductCard({ product, isActive, isLast }) {
         <div style={{ ...reveal(0.08), marginBottom: 14 }}>
           <span style={{
             display: 'inline-flex', alignItems: 'center', gap: 7,
-            background: 'rgba(201,168,76,0.08)', border: '1px solid rgba(201,168,76,0.12)',
+            background: 'rgba(201,168,76,0.06)', border: '1px solid rgba(201,168,76,0.12)',
             borderRadius: 100, padding: '5px 14px 5px 10px',
+            backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)',
+            animation: 'tag-border-shimmer 3s ease-in-out infinite',
           }}>
             <span style={{ width: 5, height: 5, borderRadius: '50%', background: '#C9A84C', animation: 'dot-pulse 2s ease-in-out infinite', flexShrink: 0 }} />
-            <span style={{ fontFamily: "'Inter', sans-serif", fontWeight: 500, fontSize: 10, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#C9A84C' }}>{product.tag}</span>
+            <span style={{ fontFamily: "'Inter', sans-serif", fontWeight: 500, fontSize: 9, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#C9A84C' }}>{product.tag}</span>
           </span>
         </div>
 
@@ -267,76 +330,82 @@ function ProductCard({ product, isActive, isLast }) {
         <h2 style={{
           ...reveal(0.16),
           fontFamily: "'Inter', sans-serif", fontWeight: 900,
-          fontSize: 'clamp(36px, 10vw, 52px)', lineHeight: 0.95,
-          letterSpacing: '-0.03em', color: '#F5F0E8',
-          textShadow: '0 2px 30px rgba(0,0,0,0.6)',
-          whiteSpace: 'pre-line', marginBottom: product.subtitle ? 4 : 10,
+          fontSize: 'clamp(38px, 11vw, 56px)', lineHeight: 0.92,
+          letterSpacing: '-0.035em', color: '#F5F0E8',
+          textShadow: '0 2px 30px rgba(0,0,0,0.6), 0 0 60px rgba(0,0,0,0.3)',
+          whiteSpace: 'pre-line', marginBottom: product.subtitle ? 4 : 6,
         }}>{product.name}</h2>
 
         {/* Subtitle */}
         {product.subtitle && (
           <div style={{
             ...reveal(0.2),
-            fontFamily: "'Inter', sans-serif", fontWeight: 300, fontSize: 14,
-            letterSpacing: '0.2em', textTransform: 'uppercase',
-            color: 'rgba(245,240,232,0.4)', marginBottom: 10,
+            fontFamily: "'Inter', sans-serif", fontWeight: 300, fontSize: 13,
+            letterSpacing: '0.22em', textTransform: 'uppercase',
+            color: 'rgba(245,240,232,0.35)', marginBottom: 6,
           }}>{product.subtitle}</div>
         )}
 
+        {/* Gold divider */}
+        <div className="gold-divider" style={{ ...reveal(0.22), width: 60, marginBottom: 12 }} />
+
         {/* Price */}
         <div style={{
-          ...reveal(0.24),
-          fontFamily: "'Inter', sans-serif", fontWeight: 300, fontSize: 28,
-          color: '#F5F0E8', letterSpacing: '0.01em', marginBottom: 16,
+          ...reveal(0.26),
+          fontFamily: "'Inter', sans-serif", fontWeight: 200, fontSize: 30,
+          color: '#F5F0E8', letterSpacing: '0.02em', marginBottom: 16,
+          textShadow: '0 1px 20px rgba(0,0,0,0.4)',
         }}>
-          <span style={{ fontSize: 18, opacity: 0.5, marginRight: 2 }}>$</span>{product.price}
+          <span style={{ fontSize: 16, opacity: 0.4, marginRight: 2, fontWeight: 300 }}>$</span>{product.price}
+          <span style={{ fontSize: 12, opacity: 0.25, marginLeft: 6, fontWeight: 400, letterSpacing: '0.1em' }}>USD</span>
         </div>
 
         {/* Countdown */}
-        <div style={{ ...reveal(0.3), marginBottom: 22, display: 'flex', alignItems: 'center', gap: 10 }}>
+        <div style={{ ...reveal(0.32), marginBottom: 22, display: 'flex', alignItems: 'center', gap: 10 }}>
           <div style={{ display: 'flex', gap: 4, position: 'relative' }}>
             <Sparkles />
             {[{ val: pad(h), label: 'HR' }, { val: pad(m), label: 'MIN' }, { val: pad(s), label: 'SEC' }].map((unit, i) => (
               <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-                {i > 0 && <span style={{ color: 'rgba(201,168,76,0.35)', fontSize: 16, fontFamily: "'Inter', sans-serif", fontWeight: 300 }}>:</span>}
+                {i > 0 && <span style={{ color: 'rgba(201,168,76,0.25)', fontSize: 16, fontFamily: "'Inter', sans-serif", fontWeight: 200 }}>:</span>}
                 <div style={{
-                  background: 'rgba(201,168,76,0.08)', border: '1px solid rgba(201,168,76,0.1)',
+                  background: 'rgba(201,168,76,0.06)', border: '1px solid rgba(201,168,76,0.1)',
                   borderRadius: 6, padding: '4px 8px', minWidth: 38, textAlign: 'center',
+                  backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)',
                 }}>
-                  <span style={{ fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: 15, color: '#C9A84C', fontVariantNumeric: 'tabular-nums', letterSpacing: '0.05em' }}>{unit.val}</span>
+                  <span style={{ fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: 14, color: '#C9A84C', fontVariantNumeric: 'tabular-nums', letterSpacing: '0.06em' }}>{unit.val}</span>
                 </div>
               </div>
             ))}
           </div>
-          <span style={{ fontFamily: "'Inter', sans-serif", fontWeight: 400, fontSize: 9, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(245,240,232,0.3)' }}>{expired ? 'EXPIRED' : 'LEFT'}</span>
+          <span style={{ fontFamily: "'Inter', sans-serif", fontWeight: 400, fontSize: 8, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(245,240,232,0.2)' }}>{expired ? 'EXPIRED' : 'LEFT'}</span>
         </div>
 
         {/* ADD TO VAULT */}
-        <div style={reveal(0.36)}>
+        <div style={reveal(0.38)}>
           <button onClick={handleVault} style={{
-            position: 'relative', width: '100%', maxWidth: 340, height: 54,
-            border: 'none', borderRadius: 8, cursor: 'pointer',
-            fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: 13,
-            letterSpacing: '0.22em', textTransform: 'uppercase',
+            position: 'relative', width: '100%', maxWidth: 340, height: 52,
+            border: vaultState === 'done' ? '1px solid rgba(201,168,76,0.3)' : '1px solid rgba(201,168,76,0.15)',
+            borderRadius: 10, cursor: 'pointer',
+            fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: 12,
+            letterSpacing: '0.24em', textTransform: 'uppercase',
             display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10,
-            transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)', overflow: 'hidden',
-            background: vaultState === 'done' ? 'linear-gradient(135deg, #A8893B, #C9A84C)' : 'linear-gradient(135deg, #C9A84C 0%, #D4B96A 100%)',
+            transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)', overflow: 'hidden',
+            background: vaultState === 'done' ? 'linear-gradient(135deg, #A8893B, #C9A84C)' : 'linear-gradient(135deg, #C9A84C 0%, #D4B96A 50%, #C9A84C 100%)',
             color: '#0D0D0D',
-            boxShadow: '0 4px 24px rgba(201,168,76,0.2), 0 1px 4px rgba(201,168,76,0.15)',
-            animation: vaultState === 'pulse' ? 'vault-pulse 0.65s ease forwards' : 'none',
+            animation: vaultState === 'pulse' ? 'vault-pulse 0.65s ease forwards' : vaultState === 'idle' ? 'glow-border 3s ease-in-out infinite' : 'none',
             transform: vaultState === 'pulse' ? 'scale(0.97)' : 'scale(1)',
           }}>
             <span style={{
               position: 'absolute', top: 0, left: 0, width: '40%', height: '100%',
-              background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent)',
-              animation: 'btn-shine 3s ease-in-out infinite', animationDelay: '1s', pointerEvents: 'none',
+              background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent)',
+              animation: 'btn-shine 3.5s ease-in-out infinite', animationDelay: '1s', pointerEvents: 'none',
             }} />
             {vaultState === 'done' ? (
               <>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0D0D0D" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0D0D0D" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
                   <polyline points="4 12 10 18 20 6" style={{ strokeDasharray: 30, strokeDashoffset: 0, animation: 'draw-check 0.35s ease forwards' }} />
                 </svg>
-                <span>Added to Vault</span>
+                <span>In Your Vault</span>
               </>
             ) : (
               <span>Add to Vault</span>
@@ -345,9 +414,9 @@ function ProductCard({ product, isActive, isLast }) {
         </div>
 
         {/* Swipe / Roviq */}
-        <div style={{ ...reveal(0.42), display: 'flex', justifyContent: 'center', marginTop: 18 }}>
+        <div style={{ ...reveal(0.44), display: 'flex', justifyContent: 'center', marginTop: 16 }}>
           {isLast ? (
-            <span style={{ fontFamily: "'Inter', sans-serif", fontWeight: 300, fontSize: 9, letterSpacing: '0.2em', color: 'rgba(201,168,76,0.15)', textTransform: 'uppercase' }}>Built by Roviq</span>
+            <span style={{ fontFamily: "'Inter', sans-serif", fontWeight: 300, fontSize: 8, letterSpacing: '0.25em', color: 'rgba(201,168,76,0.12)', textTransform: 'uppercase' }}>Built by Roviq</span>
           ) : (
             <SwipeUp />
           )}
