@@ -28,9 +28,9 @@ function DropBanner() {
   const text = `◈  NEXT DROP: DECODED NOIR — ${days}D ${pad(h % 24)}H ${pad(m)}M  ◈`
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-40 glass"
-      style={{ borderBottom: '1px solid rgba(201,168,76,0.06)', paddingTop: 'env(safe-area-inset-top, 0px)' }}>
-      <div style={{ height: 44, overflow: 'hidden', display: 'flex', alignItems: 'center' }}>
+    <div className="fixed top-0 left-0 right-0 z-40"
+      style={{ paddingTop: 'env(safe-area-inset-top, 0px)' }}>
+      <div style={{ height: 36, overflow: 'hidden', display: 'flex', alignItems: 'center', background: 'linear-gradient(180deg, rgba(13,13,13,0.85) 0%, rgba(13,13,13,0) 100%)' }}>
         <div style={{ display: 'flex', whiteSpace: 'nowrap', animation: 'ticker 24s linear infinite' }}>
           {[...Array(6)].map((_, i) => (
             <span key={i} className="pulse-glow gold-shimmer-text"
@@ -379,7 +379,7 @@ export default function Feed() {
   return (
     <>
       <DropBanner />
-      <div ref={scrollRef} className="feed-scroll no-scrollbar" style={{ paddingTop: 'calc(44px + env(safe-area-inset-top, 0px))' }}>
+      <div ref={scrollRef} className="feed-scroll no-scrollbar" style={{ paddingTop: 'calc(36px + env(safe-area-inset-top, 0px))' }}>
         {products.map((product, i) => (
           <ProductCard key={product.id} product={product} isActive={activeIndex === i} isLast={i === products.length - 1} />
         ))}
