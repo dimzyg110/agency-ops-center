@@ -25,7 +25,7 @@ function DropBanner() {
   const end = useMemo(() => Date.now() + 3 * 86400000 + 14 * 3600000, [])
   const { h, m } = useCountdown(end)
   const days = Math.floor(Math.max(0, end - Date.now()) / 86400000)
-  const text = `◈  NEXT DROP: THE PHANTOM COLLECTION — ${days}D ${pad(h % 24)}H ${pad(m)}M  ◈`
+  const text = `◈  NEXT DROP: DECODED NOIR — ${days}D ${pad(h % 24)}H ${pad(m)}M  ◈`
 
   return (
     <div className="fixed top-0 left-0 right-0 z-40 glass"
@@ -178,6 +178,21 @@ function ProductCard({ product, isActive, isLast }) {
 
   return (
     <div className="feed-card relative w-full flex flex-col justify-end" style={{ background: product.gradient }}>
+      {/* Video background */}
+      {product.video && (
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          style={{
+            position: 'absolute', inset: 0, width: '100%', height: '100%',
+            objectFit: 'cover', zIndex: 0, opacity: 0.85,
+          }}
+        >
+          <source src={product.video} type="video/mp4" />
+        </video>
+      )}
       <AmbientShapes />
       <div className="gradient-overlay absolute inset-0 z-[1]" />
 
