@@ -1,5 +1,8 @@
 import { useState, useEffect, useRef, useMemo, useCallback } from 'react'
 import { products } from '../data/products'
+import FilmNoise from './FilmNoise'
+import GoldLiquidFill from './GoldLiquidFill'
+import HolographicCard from './HolographicCard'
 
 const pad = n => String(n).padStart(2, '0')
 const fmtK = n => n >= 1000 ? (n / 1000).toFixed(1) + 'K' : String(n)
@@ -296,9 +299,11 @@ function FingerprintScan({ phase }) {
    ══════════════════════════════════════════════ */
 
 function SecretCard({ isActive }) {
-  const [phase, setPhase] = useState(0) // 0=black, 1=line, 2=decoded, 3=subtitle, 4=badge, 5=claim, 6=claimed
+  const [phase, setPhase] = useState(0) // 0=black, 1=line, 2=decoded, 3=subtitle, 4=liquidFill, 5=card, 6=claim, 7=claimed
   const [claimed, setClaimed] = useState(false)
   const [claimFlash, setClaimFlash] = useState(false)
+  const [showLiquid, setShowLiquid] = useState(false)
+  const [showCard, setShowCard] = useState(false)
   const timerRefs = useRef([])
 
   // Reset and run animation sequence when card becomes active
@@ -309,10 +314,13 @@ function SecretCard({ isActive }) {
 
     if (!isActive) {
       setPhase(0)
+      setShowLiquid(false)
+      setShowCard(false)
       return
     }
     if (claimed) {
-      setPhase(6)
+      setPhase(7)
+      setShowCard(true)
       return
     }
 
@@ -320,20 +328,31 @@ function SecretCard({ isActive }) {
     const t1 = setTimeout(() => setPhase(1), 1500)   // Gold line
     const t2 = setTimeout(() => setPhase(2), 3000)   // DECODED
     const t3 = setTimeout(() => setPhase(3), 4000)   // YOU'VE BEEN DECODED
-    const t4 = setTimeout(() => setPhase(4), 5500)   // Badge
-    const t5 = setTimeout(() => setPhase(5), 7000)   // TAP TO CLAIM
+    const t4 = setTimeout(() => {                      // Gold liquid fill
+      setPhase(4)
+      setShowLiquid(true)
+    }, 5500)
+    const t5 = setTimeout(() => {                      // Show holographic card
+      setPhase(5)
+      setShowCard(true)
+    }, 8000)
+    const t6 = setTimeout(() => setPhase(6), 9500)    // TAP TO CLAIM
 
-    timerRefs.current = [t1, t2, t3, t4, t5]
+    timerRefs.current = [t1, t2, t3, t4, t5, t6]
     return () => timerRefs.current.forEach(t => clearTimeout(t))
   }, [isActive, claimed])
 
+  const handleLiquidComplete = useCallback(() => {
+    setShowLiquid(false)
+  }, [])
+
   const handleClaim = useCallback(() => {
-    if (phase !== 5 || claimed) return
+    if (phase !== 6 || claimed) return
     setClaimFlash(true)
     setTimeout(() => {
       setClaimFlash(false)
       setClaimed(true)
-      setPhase(6)
+      setPhase(7)
     }, 400)
   }, [phase, claimed])
 
@@ -341,7 +360,6 @@ function SecretCard({ isActive }) {
     <div
       className="feed-card relative w-full flex flex-col items-center justify-center"
       style={{ background: '#0D0D0D', position: 'relative', overflow: 'hidden' }}
-      onClick={handleClaim}
     >
       {/* Film grain overlay */}
       <div style={{
@@ -349,6 +367,9 @@ function SecretCard({ isActive }) {
         backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")",
         mixBlendMode: 'overlay',
       }} />
+
+      {/* Gold Liquid Fill (Effect 3) */}
+      <GoldLiquidFill active={showLiquid} onComplete={handleLiquidComplete} />
 
       {/* Claim flash overlay */}
       {claimFlash && (
@@ -372,7 +393,7 @@ function SecretCard({ isActive }) {
           fontSize: 48,
           letterSpacing: '0.3em',
           color: '#C9A84C',
-          opacity: phase >= 2 ? 1 : 0,
+          opacity: phase >= 2 && phase < 5 ? 1 : 0,
           transition: 'opacity 1.2s ease',
           marginBottom: 16,
           textAlign: 'center',
@@ -383,7 +404,7 @@ function SecretCard({ isActive }) {
 
         {/* Gold line */}
         <div style={{
-          width: phase >= 1 ? 120 : 0,
+          width: phase >= 1 && phase < 5 ? 120 : 0,
           height: 1,
           background: 'linear-gradient(90deg, transparent, #C9A84C, transparent)',
           boxShadow: '0 0 20px rgba(201,168,76,0.3)',
@@ -399,7 +420,7 @@ function SecretCard({ isActive }) {
           letterSpacing: '0.35em',
           color: 'rgba(245,240,232,0.5)',
           textTransform: 'uppercase',
-          opacity: phase >= 3 ? 1 : 0,
+          opacity: phase >= 3 && phase < 5 ? 1 : 0,
           transition: 'opacity 1.2s ease',
           marginBottom: 40,
           textAlign: 'center',
@@ -407,49 +428,15 @@ function SecretCard({ isActive }) {
           YOU'VE BEEN DECODED
         </div>
 
-        {/* Member badge */}
-        <div style={{
-          opacity: phase >= 4 ? 1 : 0,
-          transform: phase >= 4 ? 'scale(1)' : 'scale(0.9)',
-          transition: 'opacity 1s ease, transform 1s cubic-bezier(0.16, 1, 0.3, 1)',
-          display: 'flex', flexDirection: 'column', alignItems: 'center',
-          padding: '24px 40px',
-          border: '1px solid rgba(201,168,76,0.3)',
-          borderRadius: 12,
-          background: 'rgba(201,168,76,0.04)',
-          backdropFilter: 'blur(20px)',
-          WebkitBackdropFilter: 'blur(20px)',
-          animation: phase >= 4 ? 'badge-glow-pulse 3s ease-in-out infinite' : 'none',
-          marginBottom: 32,
-        }}>
-          <span style={{
-            fontFamily: "'Bebas Neue', sans-serif",
-            fontSize: 20,
-            letterSpacing: '0.25em',
-            color: '#C9A84C',
-            marginBottom: 4,
-          }}>
-            {phase === 6 ? 'CLAIMED' : 'FOUNDING MEMBER'}
-          </span>
-          {phase === 6 ? (
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ marginTop: 4 }}>
-              <polyline points="4 12 10 18 20 6" style={{ strokeDasharray: 30, strokeDashoffset: 0, animation: 'draw-check 0.35s ease forwards' }} />
-            </svg>
-          ) : (
-            <span style={{
-              fontFamily: "'Inter', sans-serif",
-              fontWeight: 300,
-              fontSize: 12,
-              letterSpacing: '0.2em',
-              color: 'rgba(245,240,232,0.4)',
-            }}>
-              № 0001
-            </span>
-          )}
-        </div>
+        {/* Holographic Card (Effect 1, with Effect 2 particle number inside) */}
+        <HolographicCard
+          visible={showCard}
+          claimed={phase === 7}
+          onClaim={phase === 6 ? handleClaim : null}
+        />
 
         {/* TAP TO CLAIM */}
-        {phase === 5 && !claimed && (
+        {phase === 6 && !claimed && (
           <div style={{
             fontFamily: "'Inter', sans-serif",
             fontWeight: 400,
@@ -459,7 +446,10 @@ function SecretCard({ isActive }) {
             textTransform: 'uppercase',
             animation: 'claim-pulse 2s ease-in-out infinite',
             cursor: 'pointer',
-          }}>
+            marginTop: 24,
+          }}
+          onClick={handleClaim}
+          >
             TAP TO CLAIM
           </div>
         )}
@@ -709,6 +699,9 @@ function ProductCard({ product, isActive, isNear, isLast, audioEnabled }) {
           <source src={product.video} type="video/mp4" />
         </video>
       )}
+
+      {/* Film Noise overlay on video (Effect 5) */}
+      <FilmNoise isActive={isActive && videoLoaded} />
 
       {/* Vignette */}
       <div

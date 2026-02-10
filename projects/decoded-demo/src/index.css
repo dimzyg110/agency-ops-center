@@ -317,6 +317,22 @@ html, body, #root {
   100% { background: rgba(201,168,76,0); }
 }
 
+/* ── HOLOGRAPHIC CARD ANIMATIONS ── */
+
+@keyframes holo-card-entrance {
+  0%   { opacity: 0; transform: scale(0.85) rotateX(8deg); }
+  100% { opacity: 1; transform: scale(1) rotateX(0deg); }
+}
+
+@keyframes holo-card-bob-anim {
+  0%, 100% { transform: translateY(0px); }
+  50%      { transform: translateY(-6px); }
+}
+
+.holo-card-bob {
+  animation: holo-card-bob-anim 4s ease-in-out infinite;
+}
+
 
 /* ══════════════════════════════════════════════════════
    FEATURE 3: FINGERPRINT SCAN ANIMATIONS
