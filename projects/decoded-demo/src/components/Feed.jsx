@@ -266,7 +266,12 @@ function ProductCard({ product, isActive, isLast }) {
             transition: 'all 0.3s ease',
             backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)',
           }}>
-            <span style={{ fontSize: 22, display: 'block', lineHeight: 1, animation: fireActive ? 'fire-pop 0.5s ease forwards' : 'none', filter: fireActive ? 'brightness(1.4) drop-shadow(0 0 8px rgba(255,107,53,0.5))' : 'none', transition: 'filter 0.2s' }}>🔥</span>
+            <span style={{ fontSize: 22, display: 'block', lineHeight: 1, animation: fireActive ? 'fire-pop 0.5s ease forwards' : 'none', filter: fireActive ? 'brightness(1.4) drop-shadow(0 0 8px rgba(201,168,76,0.5))' : 'none', transition: 'filter 0.2s' }}>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill={fireActive ? '#C9A84C' : 'none'} stroke={fireActive ? '#C9A84C' : '#F5F0E8'} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ transition: 'all 0.3s' }}>
+                <path d="M12 22c4.97 0 8-3.58 8-8 0-6-8-14-8-14S4 8 4 14c0 4.42 3.03 8 8 8z" />
+                <path d="M12 22c2.21 0 4-1.79 4-4 0-3-4-7-4-7s-4 4-4 7c0 2.21 1.79 4 4 4z" opacity="0.5" />
+              </svg>
+            </span>
           </div>
           {/* Ring expand on tap */}
           {fireActive && <div style={{ position: 'absolute', inset: 0, borderRadius: '50%', border: '2px solid rgba(201,168,76,0.4)', animation: 'ring-expand 0.5s ease-out forwards', pointerEvents: 'none' }} />}
@@ -284,7 +289,14 @@ function ProductCard({ product, isActive, isLast }) {
             transition: 'all 0.3s ease',
             backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)',
           }}>
-            <span style={{ fontSize: 20, display: 'block', lineHeight: 1, animation: skullActive ? 'fire-pop 0.5s ease forwards' : 'none' }}>💀</span>
+            <span style={{ fontSize: 20, display: 'block', lineHeight: 1, animation: skullActive ? 'fire-pop 0.5s ease forwards' : 'none' }}>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill={skullActive ? '#F5F0E8' : 'none'} stroke="#F5F0E8" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ transition: 'all 0.3s' }}>
+                <circle cx="12" cy="10" r="8" />
+                <path d="M8 16v4h2l1-1 1 1h2v-4" />
+                <circle cx="9" cy="10" r="1.5" fill="#F5F0E8" />
+                <circle cx="15" cy="10" r="1.5" fill="#F5F0E8" />
+              </svg>
+            </span>
           </div>
           {skullActive && <div style={{ position: 'absolute', inset: 0, borderRadius: '50%', border: '2px solid rgba(245,240,232,0.2)', animation: 'ring-expand 0.5s ease-out forwards', pointerEvents: 'none' }} />}
           <span style={{ fontSize: 10, color: 'rgba(245,240,232,0.6)', fontFamily: "'Inter', sans-serif", fontWeight: 600, fontVariantNumeric: 'tabular-nums', textShadow: '0 1px 4px rgba(0,0,0,0.5)' }}>{fmtK(skullCount)}</span>
@@ -384,15 +396,18 @@ function ProductCard({ product, isActive, isLast }) {
         <div style={reveal(0.38)}>
           <button onClick={handleVault} style={{
             position: 'relative', width: '100%', maxWidth: 340, height: 54,
-            border: 'none', borderRadius: 14, cursor: 'pointer',
+            border: vaultState === 'done' ? '1px solid rgba(201,168,76,0.35)' : '1px solid rgba(245,240,232,0.12)',
+            borderRadius: 14, cursor: 'pointer',
             fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: 12,
             letterSpacing: '0.24em', textTransform: 'uppercase',
             display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10,
             transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)', overflow: 'hidden',
             background: vaultState === 'done'
-              ? 'linear-gradient(175deg, #D4B96A 0%, #A8893B 30%, #8B7230 60%, #A8893B 100%)'
-              : 'linear-gradient(175deg, #E8D48B 0%, #D4B96A 15%, #C9A84C 40%, #A8893B 70%, #C9A84C 100%)',
-            color: '#0D0D0D',
+              ? 'rgba(201,168,76,0.15)'
+              : 'rgba(245,240,232,0.06)',
+            backdropFilter: 'blur(20px) saturate(1.3)',
+            WebkitBackdropFilter: 'blur(20px) saturate(1.3)',
+            color: vaultState === 'done' ? '#C9A84C' : '#F5F0E8',
             animation: vaultState === 'pulse' ? 'glass-vault-press 0.55s ease forwards'
               : vaultState === 'done' ? 'glass-confirmed-glow 2s ease-in-out infinite'
               : 'glass-glow-breathe 3.5s ease-in-out infinite',
@@ -401,21 +416,21 @@ function ProductCard({ product, isActive, isLast }) {
             {/* Top highlight edge — polished glass catch */}
             <span style={{
               position: 'absolute', top: 0, left: '10%', right: '10%', height: 1,
-              background: 'linear-gradient(90deg, transparent, rgba(255,248,220,0.6), rgba(255,255,255,0.7), rgba(255,248,220,0.6), transparent)',
+              background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.25), rgba(255,255,255,0.35), rgba(255,255,255,0.25), transparent)',
               borderRadius: '0 0 50% 50%',
               pointerEvents: 'none',
             }} />
             {/* Inner top glow — glass depth */}
             <span style={{
-              position: 'absolute', top: 0, left: 0, right: 0, height: '55%',
-              background: 'linear-gradient(180deg, rgba(255,248,220,0.2) 0%, rgba(255,248,220,0.05) 40%, transparent 100%)',
+              position: 'absolute', top: 0, left: 0, right: 0, height: '50%',
+              background: 'linear-gradient(180deg, rgba(255,255,255,0.08) 0%, transparent 100%)',
               borderRadius: '14px 14px 50% 50%',
               pointerEvents: 'none',
             }} />
-            {/* Refraction drift — subtle light movement */}
+            {/* Refraction drift */}
             <span style={{
               position: 'absolute', top: '8%', left: '15%', width: '40%', height: '35%',
-              background: 'radial-gradient(ellipse, rgba(255,255,255,0.12) 0%, transparent 70%)',
+              background: 'radial-gradient(ellipse, rgba(255,255,255,0.06) 0%, transparent 70%)',
               borderRadius: '50%', filter: 'blur(6px)',
               animation: 'glass-refraction-drift 6s ease-in-out infinite',
               pointerEvents: 'none',
@@ -423,22 +438,15 @@ function ProductCard({ product, isActive, isLast }) {
             {/* Glass shine sweep */}
             <span style={{
               position: 'absolute', top: 0, left: 0, width: '35%', height: '100%',
-              background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.18), rgba(255,248,220,0.12), transparent)',
+              background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.1), rgba(255,255,255,0.06), transparent)',
               animation: 'glass-shine-sweep 4s ease-in-out infinite', animationDelay: '1.5s',
               pointerEvents: 'none',
             }} />
-            {/* Bottom shadow inside glass */}
-            <span style={{
-              position: 'absolute', bottom: 0, left: 0, right: 0, height: '40%',
-              background: 'linear-gradient(0deg, rgba(0,0,0,0.15) 0%, transparent 100%)',
-              borderRadius: '0 0 14px 14px',
-              pointerEvents: 'none',
-            }} />
             {/* Content */}
-            <span style={{ position: 'relative', zIndex: 2, display: 'flex', alignItems: 'center', gap: 10, textShadow: '0 1px 0 rgba(255,248,220,0.3)' }}>
+            <span style={{ position: 'relative', zIndex: 2, display: 'flex', alignItems: 'center', gap: 10 }}>
               {vaultState === 'done' ? (
                 <>
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0D0D0D" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
                     <polyline points="4 12 10 18 20 6" style={{ strokeDasharray: 30, strokeDashoffset: 0, animation: 'draw-check 0.35s ease forwards' }} />
                   </svg>
                   <span>In Your Vault</span>
