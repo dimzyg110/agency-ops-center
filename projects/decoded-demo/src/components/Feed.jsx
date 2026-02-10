@@ -1015,6 +1015,7 @@ export default function Feed() {
           src={product.music}
           loop
           preload="auto"
+          onEnded={e => { e.target.currentTime = 0; e.target.play().catch(() => {}) }}
         />
       ))}
 
