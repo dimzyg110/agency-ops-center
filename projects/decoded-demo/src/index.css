@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
 :root {
   --charcoal: #0D0D0D;
@@ -83,15 +84,6 @@ html, body, #root {
   background: linear-gradient(90deg, transparent, rgba(201,168,76,0.3), rgba(201,168,76,0.5), rgba(201,168,76,0.3), transparent);
 }
 
-/* ── LETTER BREATHE (DECODED watermark) ── */
-@keyframes letter-breathe {
-  0%, 100% { letter-spacing: 0.4em; opacity: 0.15; }
-  50%      { letter-spacing: 0.55em; opacity: 0.22; }
-}
-.brand-breathe {
-  animation: letter-breathe 6s ease-in-out infinite;
-}
-
 /* ── TEXT REVEAL (stagger children) ── */
 @keyframes text-reveal {
   from { opacity: 0; transform: translateY(24px) rotateX(15deg); filter: blur(4px); }
@@ -113,26 +105,10 @@ html, body, #root {
   50%      { box-shadow: 0 0 20px rgba(201,168,76,0.3), 0 0 60px rgba(201,168,76,0.1), inset 0 1px 0 rgba(255,255,255,0.15); }
 }
 
-/* ── GOLD DUST PARTICLES ── */
-@keyframes gold-float {
-  0%   { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0; }
-  10%  { opacity: 1; }
-  90%  { opacity: 1; }
-  100% { transform: translateY(-100vh) translateX(30px) rotate(180deg); opacity: 0; }
-}
-
 /* ── REACTION RING ── */
 @keyframes ring-expand {
   0%   { transform: scale(0.8); opacity: 0.6; border-color: rgba(201,168,76,0.4); }
-  100% { transform: scale(1.6); opacity: 0; border-color: rgba(201,168,76,0); }
-}
-
-/* ── EXISTING ANIMATIONS ── */
-@keyframes ambient-float {
-  0%   { transform: translate(0, 0) scale(1); }
-  33%  { transform: translate(12px, -18px) scale(1.05); }
-  66%  { transform: translate(-8px, 10px) scale(0.97); }
-  100% { transform: translate(0, 0) scale(1); }
+  100% { transform: scale(1.35); opacity: 0; border-color: rgba(201,168,76,0); }
 }
 
 @keyframes pulse-glow {
@@ -165,11 +141,6 @@ html, body, #root {
   to   { stroke-dashoffset: 0; }
 }
 
-@keyframes sparkle-float {
-  0%   { transform: translateY(0) scale(1); opacity: 1; }
-  100% { transform: translateY(-28px) scale(0); opacity: 0; }
-}
-
 @keyframes fire-burst {
   0%   { transform: var(--burst-translate) scale(1); opacity: 1; }
   100% { transform: var(--burst-translate) scale(0.2); opacity: 0; }
@@ -185,11 +156,6 @@ html, body, #root {
   -webkit-background-clip: text; background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: shimmer 5s linear infinite;
-}
-
-@keyframes ticker {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
 }
 
 @keyframes dot-pulse {
