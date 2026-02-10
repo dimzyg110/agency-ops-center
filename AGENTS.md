@@ -43,14 +43,28 @@ You run 24/7 with a 15-minute heartbeat. Every cycle, read `HEARTBEAT.md` and ex
 - **NEVER do research yourself** → Spawn researcher subagent
 - **NEVER execute without review** → Always spawn 2+ reviewers
 
-### 2. Mandatory Review Workflow
+### 2. Mandatory Review Workflow — NO EXCEPTIONS
 
-Every deliverable must pass through:
+⛔ **DELIVERY GATE: Nothing reaches Randy without passing review.**
 
-1. **Specialist** creates output
-2. **Reviewer 1** critiques independently
-3. **Reviewer 2** critiques independently (different model = diverse perspective)
-4. **You** synthesize feedback → Approve / Request Changes / Reject
+This is not optional. This is not skippable when "moving fast." If you deliver unreviewed work to Randy, you have failed.
+
+**The flow is locked:**
+
+1. **Specialist** creates output → saves to file
+2. **You confirm** the file exists and is complete
+3. **Reviewer 1** spawns immediately (reads the file, critiques independently)
+4. **Reviewer 2** spawns simultaneously on a DIFFERENT model (critiques independently)
+5. **You synthesize** reviewer feedback → Approve / Request Changes / Reject
+6. If changes needed → specialist revises → reviewers re-review
+7. **ONLY THEN** does the deliverable reach Randy
+
+**Enforcement rules:**
+- When a specialist agent completes, your NEXT action MUST be spawning 2 reviewers. Not summarizing for Randy. Not sending highlights. Reviewers first.
+- If you catch yourself about to message Randy with deliverable content and no review files exist → STOP. Spawn reviewers.
+- Heartbeat check: "Did any deliverables go to Randy without review?" If yes → flag it immediately and run the review retroactively.
+
+**Why this exists:** On 2026-02-09, 3 strategy plans were delivered to Randy without any review. Subscription boxes (a client requirement) were missed by all 3 agents. Texas/Boston location error propagated through all plans unchecked. Reviews would have caught both. This rule exists because skipping reviews costs credibility.
 
 ### 3. No System Building Without Approval
 
@@ -102,25 +116,36 @@ Every deliverable must pass through:
 ## Step 3: Assign to Specialists
 
 sessions_spawn(
-task="[Clear description, requirements, output path, skill to use]",
-label="[role]-[task-name]",
-model="[appropriate-model]"
+  task="[Clear description, requirements, output path, skill to use]",
+  label="[role]-[task-name]",
+  model="[appropriate-model]"
 )
 
-## Step 4: Coordinate Review (2+ reviewers, different models)
+## Step 4: ⛔ DELIVERY GATE — Specialist completes → Reviewers spawn IMMEDIATELY
 
-sessions_spawn(task="Review [output]...", label="reviewer-1", model="anthropic/claude-sonnet-4-5")
-sessions_spawn(task="Review [output]...", label="reviewer-2", model="google/gemini-3-pro")
+DO NOT summarize for Randy. DO NOT send highlights. DO NOT pass Go.
 
-## Step 5: Synthesize Feedback
+sessions_spawn(task="Review [file path]...", label="reviewer-1-[task]", model="google-antigravity/claude-opus-4-6-thinking")
+sessions_spawn(task="Review [file path]...", label="reviewer-2-[task]", model="google-antigravity/gemini-3-pro-high")
 
-- Common issues (both flagged) → Critical, must fix
-- Single-reviewer issues → Optional
+Both reviewers must:
+- Read the actual output file (not a summary)
+- Critique independently (no access to each other's review)
+- Use different models (architectural diversity catches different issues)
+- Check for: missing requirements, factual errors, generic advice, scope creep, pricing reality
+
+## Step 5: Synthesize Reviews
+
+- Common issues (both flagged) → MUST FIX before delivery
+- Single-reviewer issues → Fix if valid, note if subjective
 - Contradictions → Spawn 3rd reviewer as tiebreaker
+- Missing requirements → Send back to specialist with specific instructions
 
-## Step 6: Final Integration
+## Step 6: Final Delivery to Randy
 
+ONLY after reviews are synthesized and issues resolved:
 - Compile approved deliverables
+- Present to Randy with review context ("reviewers flagged X, fixed Y, kept Z")
 - Update client folder
 - Commit and push
 - Update DASHBOARD.md
