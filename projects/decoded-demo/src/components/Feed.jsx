@@ -481,7 +481,7 @@ function SecretCard({ isActive }) {
    PRODUCT CARD
    ══════════════════════════════════════════════ */
 
-function ProductCard({ product, isActive, isLast }) {
+function ProductCard({ product, isActive, isLast, audioEnabled }) {
   const { h, m, s, expired } = useCountdown(product.dropEnd)
   const [fireCount, setFireCount] = useState(product.fireCount)
   const [skullCount, setSkullCount] = useState(product.skullCount)
@@ -490,6 +490,19 @@ function ProductCard({ product, isActive, isLast }) {
   const [skullActive, setSkullActive] = useState(false)
   const [vaultState, setVaultState] = useState('idle') // idle | authenticating | scanning | verified | done
   const [videoLoaded, setVideoLoaded] = useState(false)
+  const videoRef = useRef(null)
+
+  // Control video volume based on audio state
+  useEffect(() => {
+    const v = videoRef.current
+    if (!v) return
+    if (audioEnabled && isActive) {
+      v.muted = false
+      v.volume = 0.15
+    } else {
+      v.muted = true
+    }
+  }, [audioEnabled, isActive])
   const [selectedSize, setSelectedSize] = useState('M')
   const [vignetteIntensify, setVignetteIntensify] = useState(false)
 
@@ -645,6 +658,7 @@ function ProductCard({ product, isActive, isLast }) {
       {/* Video background with Ken Burns */}
       {product.video && (
         <video
+          ref={videoRef}
           autoPlay
           loop
           muted
@@ -927,6 +941,9 @@ function ProductCard({ product, isActive, isLast }) {
 export default function Feed() {
   const scrollRef = useRef(null)
   const [activeIndex, setActiveIndex] = useState(0)
+  const [audioEnabled, setAudioEnabled] = useState(false)
+  const [muted, setMuted] = useState(false)
+  const musicRefs = useRef({})
   const totalCards = products.length + 1 // +1 for secret card
 
   useEffect(() => {
@@ -940,9 +957,74 @@ export default function Feed() {
     return () => el.removeEventListener('scroll', onScroll)
   }, [])
 
+  // Enable audio on first user interaction
+  useEffect(() => {
+    const enable = () => { setAudioEnabled(true); document.removeEventListener('touchstart', enable); document.removeEventListener('click', enable) }
+    document.addEventListener('touchstart', enable, { once: true })
+    document.addEventListener('click', enable, { once: true })
+    return () => { document.removeEventListener('touchstart', enable); document.removeEventListener('click', enable) }
+  }, [])
+
+  // Manage music playback — crossfade between tracks
+  useEffect(() => {
+    products.forEach((product, i) => {
+      const audio = musicRefs.current[product.id]
+      if (!audio) return
+      if (i === activeIndex && audioEnabled && !muted) {
+        audio.volume = 0
+        audio.play().catch(() => {})
+        // Fade in
+        let vol = 0
+        const fadeIn = setInterval(() => { vol = Math.min(vol + 0.05, 0.45); audio.volume = vol; if (vol >= 0.45) clearInterval(fadeIn) }, 50)
+      } else {
+        // Fade out
+        let vol = audio.volume
+        const fadeOut = setInterval(() => { vol = Math.max(vol - 0.05, 0); audio.volume = vol; if (vol <= 0) { clearInterval(fadeOut); audio.pause() } }, 50)
+      }
+    })
+  }, [activeIndex, audioEnabled, muted])
+
+  const toggleMute = useCallback(() => setMuted(m => !m), [])
+
   return (
     <>
       <DropBanner />
+
+      {/* Audio elements for music tracks */}
+      {products.map(product => (
+        <audio
+          key={`music-${product.id}`}
+          ref={el => { if (el) musicRefs.current[product.id] = el }}
+          src={product.music}
+          loop
+          preload="none"
+        />
+      ))}
+
+      {/* Mute toggle */}
+      <button onClick={toggleMute} style={{
+        position: 'fixed', top: 'calc(env(safe-area-inset-top, 0px) + 6px)', right: 14, zIndex: 50,
+        width: 32, height: 32, borderRadius: '50%',
+        background: 'rgba(245,240,232,0.07)', border: '1px solid rgba(245,240,232,0.1)',
+        backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)',
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        cursor: 'pointer', padding: 0,
+      }}>
+        {muted ? (
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F5F0E8" strokeWidth="1.5" strokeLinecap="round" opacity="0.5">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+            <line x1="23" y1="9" x2="17" y2="15" />
+            <line x1="17" y1="9" x2="23" y2="15" />
+          </svg>
+        ) : (
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" strokeWidth="1.5" strokeLinecap="round" opacity="0.7">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+            <path d="M15.54 8.46a5 5 0 010 7.07" />
+            <path d="M19.07 4.93a10 10 0 010 14.14" />
+          </svg>
+        )}
+      </button>
+
       <div ref={scrollRef} className="feed-scroll no-scrollbar">
         {products.map((product, i) => (
           <ProductCard
@@ -950,6 +1032,7 @@ export default function Feed() {
             product={product}
             isActive={activeIndex === i}
             isLast={false}
+            audioEnabled={audioEnabled && !muted}
           />
         ))}
         <SecretCard isActive={activeIndex === products.length} />
