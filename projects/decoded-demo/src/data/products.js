@@ -6,6 +6,48 @@ export const DROP_END_TIME = now + 3 * 86400000 + 14 * 3600000
 
 export const products = [
   {
+    id: 4,
+    name: "BROKE\nTEE",
+    subtitle: null,
+    price: 125,
+    tag: "806 Exclusive",
+    materials: "Japanese cotton · 280gsm",
+    edition: 100,
+    dropEnd: now + 1 * 3600000 + 48 * 60000,
+    fireCount: 967,
+    skullCount: 412,
+    video: `${import.meta.env.BASE_URL}videos/broke-tee.mp4`,
+    music: `${import.meta.env.BASE_URL}audio/song4.mp3`,
+    songName: "The Weeknd — Hurt You / I Was Never There",
+    gradient: `
+      radial-gradient(ellipse 65% 55% at 35% 80%, rgba(25,35,100,0.14) 0%, transparent 55%),
+      radial-gradient(ellipse 50% 40% at 80% 25%, rgba(201,168,76,0.06) 0%, transparent 45%),
+      radial-gradient(circle at 50% 55%, rgba(15,15,45,0.45) 0%, transparent 65%),
+      linear-gradient(185deg, #131315 0%, #0c0c20 40%, #0D0D0D 100%)
+    `,
+  },
+  {
+    id: 3,
+    name: "ALL\nGLORY",
+    subtitle: "Black",
+    price: 140,
+    tag: "Drop Exclusive",
+    materials: "Organic cotton · 320gsm",
+    edition: 75,
+    dropEnd: now + 12 * 3600000 + 5 * 60000,
+    fireCount: 3291,
+    skullCount: 1204,
+    video: `${import.meta.env.BASE_URL}videos/all-glory-black.mp4`,
+    music: `${import.meta.env.BASE_URL}audio/song3.mp3`,
+    songName: "The Weeknd ft. Playboi Carti — Timeless",
+    gradient: `
+      radial-gradient(ellipse 75% 50% at 60% 85%, rgba(140,30,30,0.12) 0%, transparent 55%),
+      radial-gradient(ellipse 55% 40% at 30% 10%, rgba(201,168,76,0.04) 0%, transparent 45%),
+      radial-gradient(circle at 55% 45%, rgba(40,15,15,0.4) 0%, transparent 65%),
+      linear-gradient(175deg, #0D0D0D 0%, #1a0c0c 38%, #0D0D0D 100%)
+    `,
+  },
+  {
     id: 1,
     name: "NOIR\nSTRATA",
     subtitle: "Black Top",
@@ -45,48 +87,6 @@ export const products = [
       radial-gradient(ellipse 50% 45% at 20% 20%, rgba(201,168,76,0.05) 0%, transparent 45%),
       radial-gradient(circle at 45% 60%, rgba(15,35,40,0.4) 0%, transparent 65%),
       linear-gradient(190deg, #111 0%, #0a1a1e 40%, #0D0D0D 100%)
-    `,
-  },
-  {
-    id: 3,
-    name: "ALL\nGLORY",
-    subtitle: "Black",
-    price: 140,
-    tag: "Drop Exclusive",
-    materials: "Organic cotton · 320gsm",
-    edition: 75,
-    dropEnd: now + 12 * 3600000 + 5 * 60000,
-    fireCount: 3291,
-    skullCount: 1204,
-    video: `${import.meta.env.BASE_URL}videos/all-glory-black.mp4`,
-    music: `${import.meta.env.BASE_URL}audio/song3.mp3`,
-    songName: "The Weeknd ft. Playboi Carti — Timeless",
-    gradient: `
-      radial-gradient(ellipse 75% 50% at 60% 85%, rgba(140,30,30,0.12) 0%, transparent 55%),
-      radial-gradient(ellipse 55% 40% at 30% 10%, rgba(201,168,76,0.04) 0%, transparent 45%),
-      radial-gradient(circle at 55% 45%, rgba(40,15,15,0.4) 0%, transparent 65%),
-      linear-gradient(175deg, #0D0D0D 0%, #1a0c0c 38%, #0D0D0D 100%)
-    `,
-  },
-  {
-    id: 4,
-    name: "BROKE\nTEE",
-    subtitle: null,
-    price: 125,
-    tag: "806 Exclusive",
-    materials: "Japanese cotton · 280gsm",
-    edition: 100,
-    dropEnd: now + 1 * 3600000 + 48 * 60000,
-    fireCount: 967,
-    skullCount: 412,
-    video: `${import.meta.env.BASE_URL}videos/broke-tee.mp4`,
-    music: `${import.meta.env.BASE_URL}audio/song4.mp3`,
-    songName: "The Weeknd — Hurt You / I Was Never There",
-    gradient: `
-      radial-gradient(ellipse 65% 55% at 35% 80%, rgba(25,35,100,0.14) 0%, transparent 55%),
-      radial-gradient(ellipse 50% 40% at 80% 25%, rgba(201,168,76,0.06) 0%, transparent 45%),
-      radial-gradient(circle at 50% 55%, rgba(15,15,45,0.45) 0%, transparent 65%),
-      linear-gradient(185deg, #131315 0%, #0c0c20 40%, #0D0D0D 100%)
     `,
   },
   {
