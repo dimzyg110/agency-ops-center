@@ -43,7 +43,7 @@ _Curated patterns, preferences, and lessons. Updated weekly from daily logs._
 - Over-building before validation (too many ideas, not enough shipped)
 - Manual social posting (time sink, should be automated)
 - WordPress for client sites — Randy builds in React, each client has unique brand identity. Blog generator should produce React-compatible content, not WP posts.
-- Kimi K2.5 for large file writes — JSON serialization limit at ~8K chars in NVIDIA API. Use chunked writes or respawn on another model for long outputs. Model quality is excellent though.
+- Kimi K2.5 for large file writes — NVIDIA proxy truncates at ~8K chars. **FIXED: use `openrouter/moonshotai/kimi-k2.5` instead.** OpenRouter handles 48K+ in a single write. NVIDIA route still works for small tasks (free). Moonshot direct (`moonshot/kimi-k2.5`) requires balance top-up.
 
 ---
 
