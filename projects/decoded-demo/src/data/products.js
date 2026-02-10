@@ -1,7 +1,6 @@
 const now = Date.now()
 
 const R2 = 'https://pub-12a9e278dc6d454fa3a74b79a8b8e63d.r2.dev/demo'
-const IA = 'https://ia800608.us.archive.org/13/items/darkambient_201908'
 
 export const DROP_END_TIME = now + 3 * 86400000 + 14 * 3600000
 
@@ -18,7 +17,7 @@ export const products = [
     fireCount: 2412,
     skullCount: 891,
     video: `${import.meta.env.BASE_URL}videos/noir-strata.mp4`,
-    music: `${IA}/Crime.mp3`,
+    music: `${import.meta.env.BASE_URL}audio/song1.mp3`,
     gradient: `
       radial-gradient(ellipse 80% 60% at 25% 85%, rgba(90,50,160,0.18) 0%, transparent 60%),
       radial-gradient(ellipse 60% 50% at 75% 15%, rgba(201,168,76,0.06) 0%, transparent 50%),
@@ -38,7 +37,7 @@ export const products = [
     fireCount: 1837,
     skullCount: 643,
     video: `${import.meta.env.BASE_URL}videos/hand-of-god.mp4`,
-    music: `${IA}/Gloomy.mp3`,
+    music: `${import.meta.env.BASE_URL}audio/song2.mp3`,
     gradient: `
       radial-gradient(ellipse 70% 55% at 70% 80%, rgba(20,100,100,0.15) 0%, transparent 55%),
       radial-gradient(ellipse 50% 45% at 20% 20%, rgba(201,168,76,0.05) 0%, transparent 45%),
@@ -58,7 +57,7 @@ export const products = [
     fireCount: 3291,
     skullCount: 1204,
     video: `${import.meta.env.BASE_URL}videos/all-glory-black.mp4`,
-    music: `${IA}/Nightmare.mp3`,
+    music: `${import.meta.env.BASE_URL}audio/song3.mp3`,
     gradient: `
       radial-gradient(ellipse 75% 50% at 60% 85%, rgba(140,30,30,0.12) 0%, transparent 55%),
       radial-gradient(ellipse 55% 40% at 30% 10%, rgba(201,168,76,0.04) 0%, transparent 45%),
@@ -78,7 +77,7 @@ export const products = [
     fireCount: 967,
     skullCount: 412,
     video: `${import.meta.env.BASE_URL}videos/broke-tee.mp4`,
-    music: `${IA}/Valhalla.mp3`,
+    music: `${import.meta.env.BASE_URL}audio/song4.mp3`,
     gradient: `
       radial-gradient(ellipse 65% 55% at 35% 80%, rgba(25,35,100,0.14) 0%, transparent 55%),
       radial-gradient(ellipse 50% 40% at 80% 25%, rgba(201,168,76,0.06) 0%, transparent 45%),
@@ -98,7 +97,7 @@ export const products = [
     fireCount: 2076,
     skullCount: 583,
     video: `${import.meta.env.BASE_URL}videos/angels-hoodie.mp4`,
-    music: `${IA}/Nightmares.mp3`,
+    music: `${import.meta.env.BASE_URL}audio/song5.mp3`,
     gradient: `
       radial-gradient(ellipse 70% 55% at 45% 85%, rgba(120,80,20,0.14) 0%, transparent 55%),
       radial-gradient(ellipse 55% 40% at 70% 15%, rgba(201,168,76,0.07) 0%, transparent 45%),
