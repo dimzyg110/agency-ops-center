@@ -15,8 +15,9 @@ _Curated patterns, preferences, and lessons. Updated weekly from daily logs._
 ## Client Patterns
 
 - **AC:** Creative client, values aesthetic and storytelling. Debbie and Clarice execute. Generate concepts → Randy curates → they produce. Active cultivator license (Indoor Tier 2, 5-10K sqft, Lowell). Has prerolls license. Pending manufacturer license (edibles/concentrates — incomplete). First Latino-owned rec cultivator in MA. Physical retail location coming soon.
-- **CH:** Practical client, needs data-driven results. Brian is the point of contact. Growth through SEO, automations, and partner channels.
-- **HOP:** Launch-phase client. Kam is the partner. Needs full GTM before anything else.
+- **CH:** Practical client, needs data-driven results. Brian is the point of contact. Growth through SEO, automations, and partner channels. Retailer in East Boston (MR283634). No delivery license. Website repo: `randytorres/ch-web` (React + Vite + Tailwind, Netlify deploy). Blog posts in `src/data/blogPosts.js`.
+- **HOP:** Launch-phase client. Kam is the partner. Needs full GTM before anything else. Sells cannabis products through AC's license (white labeled).
+- **Delivered Inc (Lead):** Licensed delivery operator (MD1303), Clinton MA, ~30 towns Central MA. Founders: Ruben Seyde, Eddy Twal, Tut Liu. Social equity. Can expand statewide. Site hacked (casino spam). Partnership deal: equity + rev share + small upfront. App play = first cannabis delivery app in MA. AC supplies wholesale. Exclusivity until April 2029.
 
 ## Operations Patterns
 
@@ -41,7 +42,9 @@ _Curated patterns, preferences, and lessons. Updated weekly from daily logs._
 - Cold outreach (Randy won't do it, clients don't respond)
 - Over-building before validation (too many ideas, not enough shipped)
 - Manual social posting (time sink, should be automated)
+- WordPress for client sites — Randy builds in React, each client has unique brand identity. Blog generator should produce React-compatible content, not WP posts.
+- Kimi K2.5 for large file writes — JSON serialization limit at ~8K chars in NVIDIA API. Use chunked writes or respawn on another model for long outputs. Model quality is excellent though.
 
 ---
 
-_Last updated: 2026-02-09 (migration baseline)_
+_Last updated: 2026-02-10_
