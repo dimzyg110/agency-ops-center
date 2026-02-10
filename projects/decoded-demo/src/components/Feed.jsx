@@ -666,6 +666,28 @@ function ProductCard({ product, isActive, isNear, isLast, audioEnabled }) {
         }} />
       )}
 
+      {/* Loading shimmer while video loads */}
+      {product.video && !videoLoaded && (
+        <div style={{
+          position: 'absolute', inset: 0, zIndex: 0,
+          background: 'linear-gradient(135deg, #0D0D0D 0%, #1a1a1a 50%, #0D0D0D 100%)',
+          backgroundSize: '200% 200%',
+          animation: 'shimmer 2s ease-in-out infinite',
+        }}>
+          <div style={{
+            position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)',
+            display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 12,
+          }}>
+            <div style={{
+              width: 32, height: 32, border: '2px solid rgba(201,168,76,0.15)',
+              borderTopColor: 'rgba(201,168,76,0.5)', borderRadius: '50%',
+              animation: 'spin 0.8s linear infinite',
+            }} />
+            <span style={{ fontFamily: "'Inter', sans-serif", fontSize: 9, letterSpacing: '0.2em', color: 'rgba(201,168,76,0.3)', textTransform: 'uppercase' }}>Loading</span>
+          </div>
+        </div>
+      )}
+
       {/* Video background with Ken Burns */}
       {product.video && isNear && (
         <video
@@ -1049,7 +1071,7 @@ export default function Feed() {
             key={product.id}
             product={product}
             isActive={activeIndex === i}
-            isNear={Math.abs(activeIndex - i) <= 1}
+            isNear={Math.abs(activeIndex - i) <= 2}
             isLast={false}
             audioEnabled={audioEnabled && !muted}
           />
