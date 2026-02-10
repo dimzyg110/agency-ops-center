@@ -870,9 +870,9 @@ function ProductCard({ product, isActive, isNear, isLast, audioEnabled }) {
       {product.songName && (
         <div style={{
           position: 'absolute', bottom: 'calc(env(safe-area-inset-bottom, 0px) + 10px)',
-          right: 16, zIndex: 15,
+          left: 22, zIndex: 15,
           display: 'flex', alignItems: 'center', gap: 8,
-          maxWidth: 180, overflow: 'hidden',
+          maxWidth: 200, overflow: 'hidden',
         }}>
           {/* Spinning disc */}
           <div style={{
