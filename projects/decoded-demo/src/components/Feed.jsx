@@ -799,11 +799,11 @@ function ProductCard({ product, isActive, isNear, isLast, audioEnabled }) {
             controls={false}
             onLoadedData={() => { setVideoLoaded(true); if (isActive && videoRef.current) videoRef.current.play().catch(() => {}) }}
             style={{
-              position: 'absolute',
-              width: 1, height: 1,
-              opacity: 0,
+              position: 'absolute', inset: 0,
+              width: '100%', height: '100%',
+              objectFit: 'cover', zIndex: 0,
+              opacity: 0.001,
               pointerEvents: 'none',
-              zIndex: -1,
             }}
           />
           <canvas
@@ -913,37 +913,6 @@ function ProductCard({ product, isActive, isNear, isLast, audioEnabled }) {
           <span style={{ fontSize: 10, color: 'rgba(245,240,232,0.4)', fontFamily: "'Inter', sans-serif", fontWeight: 500, textShadow: '0 1px 4px rgba(0,0,0,0.5)' }}>Share</span>
         </button>
       </div>
-
-      {/* Music ticker — TikTok style */}
-      {product.songName && (
-        <div style={{
-          position: 'absolute', bottom: 'calc(env(safe-area-inset-bottom, 0px) + 10px)',
-          left: 22, right: 22, zIndex: 15,
-          display: 'flex', alignItems: 'center', gap: 8,
-          overflow: 'hidden',
-        }}>
-          {/* Spinning disc */}
-          <div style={{
-            width: 28, height: 28, borderRadius: '50%', flexShrink: 0,
-            background: 'radial-gradient(circle at 50% 50%, #333 30%, #1a1a1a 32%, #222 60%, #111 100%)',
-            border: '2px solid rgba(201,168,76,0.3)',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            animation: isActive ? 'spin 3s linear infinite' : 'none',
-          }}>
-            <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#C9A84C' }} />
-          </div>
-          {/* Scrolling song name */}
-          <div style={{ overflow: 'hidden', flex: 1 }}>
-            <div style={{
-              fontFamily: "'Inter', sans-serif", fontWeight: 400, fontSize: 10,
-              color: 'rgba(245,240,232,0.6)', whiteSpace: 'nowrap',
-              animation: isActive ? 'music-marquee 8s linear infinite' : 'none',
-            }}>
-              {product.songName}
-            </div>
-          </div>
-        </div>
-      )}
 
       {/* ── BOTTOM CONTENT ── */}
       <div style={{ position: 'relative', zIndex: 5, padding: '0 22px 16px' }}>
@@ -1099,9 +1068,36 @@ function ProductCard({ product, isActive, isNear, isLast, audioEnabled }) {
           </button>
         </div>
 
-        {/* Roviq */}
-        <div style={{ ...reveal(0.44), display: 'flex', justifyContent: 'center', marginTop: 10 }}>
-          <span style={{ fontFamily: "'Inter', sans-serif", fontWeight: 300, fontSize: 8, letterSpacing: '0.25em', color: 'rgba(201,168,76,0.12)', textTransform: 'uppercase' }}>Built by Roviq</span>
+        {/* Music ticker + Roviq */}
+        <div style={{ ...reveal(0.44), marginTop: 10 }}>
+          {product.songName && (
+            <div style={{
+              display: 'flex', alignItems: 'center', gap: 8,
+              overflow: 'hidden', marginBottom: 6,
+            }}>
+              <div style={{
+                width: 24, height: 24, borderRadius: '50%', flexShrink: 0,
+                background: 'radial-gradient(circle at 50% 50%, #333 30%, #1a1a1a 32%, #222 60%, #111 100%)',
+                border: '1.5px solid rgba(201,168,76,0.25)',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                animation: isActive ? 'spin 3s linear infinite' : 'none',
+              }}>
+                <div style={{ width: 5, height: 5, borderRadius: '50%', background: '#C9A84C' }} />
+              </div>
+              <div style={{ overflow: 'hidden', flex: 1 }}>
+                <div style={{
+                  fontFamily: "'Inter', sans-serif", fontWeight: 400, fontSize: 10,
+                  color: 'rgba(245,240,232,0.45)', whiteSpace: 'nowrap',
+                  animation: isActive ? 'music-marquee 8s linear infinite' : 'none',
+                }}>
+                  {product.songName}
+                </div>
+              </div>
+            </div>
+          )}
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <span style={{ fontFamily: "'Inter', sans-serif", fontWeight: 300, fontSize: 8, letterSpacing: '0.25em', color: 'rgba(201,168,76,0.12)', textTransform: 'uppercase' }}>Built by Roviq</span>
+          </div>
         </div>
       </div>
     </div>
