@@ -752,25 +752,28 @@ function ProductCard({ product, isActive, isNear, isLast, audioEnabled }) {
 
       {/* Video background with Ken Burns */}
       {product.video && isNear && (
-        <video
-          ref={videoRef}
-          autoPlay
-          loop
-          muted
-          playsInline
-          webkit-playsinline=""
-          preload="auto"
-          onLoadedData={() => { setVideoLoaded(true); if (isActive && videoRef.current) videoRef.current.play().catch(() => {}) }}
-          className={videoLoaded && isActive ? 'video-zoom' : ''}
-          style={{
-            position: 'absolute', inset: 0, width: '100%', height: '100%',
-            objectFit: 'cover', zIndex: 0,
-            opacity: videoLoaded ? 0.9 : 0,
-            transition: 'opacity 1.2s ease-in-out',
-          }}
-        >
-          <source src={product.video} type="video/mp4" />
-        </video>
+        <div style={{ position: 'absolute', inset: 0, zIndex: 0, pointerEvents: 'none', overflow: 'hidden' }}>
+          <video
+            ref={videoRef}
+            src={product.video}
+            autoPlay
+            loop
+            muted
+            playsInline
+            webkit-playsinline=""
+            preload="auto"
+            controls={false}
+            onLoadedData={() => { setVideoLoaded(true); if (isActive && videoRef.current) videoRef.current.play().catch(() => {}) }}
+            className={videoLoaded && isActive ? 'video-zoom' : ''}
+            style={{
+              width: '100%', height: '100%',
+              objectFit: 'cover',
+              opacity: videoLoaded ? 0.9 : 0,
+              transition: 'opacity 1.2s ease-in-out',
+              pointerEvents: 'none',
+            }}
+          />
+        </div>
       )}
 
       {/* Film Noise overlay on video (Effect 5) */}
