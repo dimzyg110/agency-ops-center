@@ -1045,9 +1045,11 @@ function ProductCard({ product, isActive, isNear, isLast, audioEnabled }) {
               </div>
             </div>
           )}
-          <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <span style={{ fontFamily: "'Inter', sans-serif", fontWeight: 300, fontSize: 8, letterSpacing: '0.25em', color: 'rgba(201,168,76,0.12)', textTransform: 'uppercase' }}>Built by Roviq</span>
-          </div>
+          {isLast && (
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+              <span style={{ fontFamily: "'Inter', sans-serif", fontWeight: 300, fontSize: 8, letterSpacing: '0.25em', color: 'rgba(201,168,76,0.12)', textTransform: 'uppercase' }}>Built by Roviq</span>
+            </div>
+          )}
         </div>
       </div>
     </div>
@@ -1136,7 +1138,7 @@ export default function Feed() {
             product={product}
             isActive={activeIndex === i}
             isNear={Math.abs(activeIndex - i) <= 2}
-            isLast={false}
+            isLast={i === products.length - 1}
             audioEnabled={audioEnabled}
           />
         ))}
