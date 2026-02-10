@@ -1,11 +1,11 @@
 import { useRef, useEffect, useCallback } from 'react'
 
 /**
- * Effect 3: Silver Liquid Fill — realistic semi-transparent silver/white liquid
+ * Effect 3: Gold Liquid Fill — realistic semi-transparent silver/white liquid
  * with caustics, bubbles, organic wave motion, shimmer highlights,
  * and a natural drain (fast then clinging drips).
  */
-export default function SilverLiquidFill({ active, onComplete }) {
+export default function GoldLiquidFill({ active, onComplete }) {
   const canvasRef = useRef(null)
   const rafRef = useRef(null)
   const startRef = useRef(null)
@@ -86,11 +86,11 @@ export default function SilverLiquidFill({ active, onComplete }) {
 
     // Semi-transparent silver gradient
     const gradient = ctx.createLinearGradient(0, fillY, 0, h)
-    gradient.addColorStop(0, 'rgba(200,200,200,0.55)')
-    gradient.addColorStop(0.15, 'rgba(180,180,180,0.45)')
-    gradient.addColorStop(0.4, 'rgba(160,160,160,0.38)')
-    gradient.addColorStop(0.7, 'rgba(140,140,140,0.32)')
-    gradient.addColorStop(1, 'rgba(120,120,120,0.25)')
+    gradient.addColorStop(0, 'rgba(180,150,60,0.55)')
+    gradient.addColorStop(0.15, 'rgba(160,130,50,0.45)')
+    gradient.addColorStop(0.4, 'rgba(140,115,40,0.38)')
+    gradient.addColorStop(0.7, 'rgba(120,100,30,0.32)')
+    gradient.addColorStop(1, 'rgba(100,85,25,0.25)')
     ctx.fillStyle = gradient
     ctx.fill()
 
@@ -111,9 +111,9 @@ export default function SilverLiquidFill({ active, onComplete }) {
       const bandY = fillY + (h - fillY) * (0.25 + i * 0.25)
       const bandH = (h - fillY) * 0.15
       const bandGrad = ctx.createLinearGradient(0, bandY, 0, bandY + bandH)
-      bandGrad.addColorStop(0, 'rgba(100,100,100,0)')
-      bandGrad.addColorStop(0.5, `rgba(100,100,100,${0.06 + 0.02 * Math.sin(time * 1.3 + i)})`)
-      bandGrad.addColorStop(1, 'rgba(100,100,100,0)')
+      bandGrad.addColorStop(0, 'rgba(80,65,20,0)')
+      bandGrad.addColorStop(0.5, `rgba(80,65,20,${0.06 + 0.02 * Math.sin(time * 1.3 + i)})`)
+      bandGrad.addColorStop(1, 'rgba(80,65,20,0)')
       ctx.fillStyle = bandGrad
       ctx.fillRect(0, bandY, w, bandH)
     }
@@ -127,8 +127,8 @@ export default function SilverLiquidFill({ active, onComplete }) {
 
       const causticGrad = ctx.createRadialGradient(cx, cy, 0, cx, cy, cr)
       causticGrad.addColorStop(0, `rgba(255,255,255,${causticAlpha})`)
-      causticGrad.addColorStop(0.6, `rgba(220,220,220,${causticAlpha * 0.4})`)
-      causticGrad.addColorStop(1, 'rgba(220,220,220,0)')
+      causticGrad.addColorStop(0.6, `rgba(201,168,76,${causticAlpha * 0.4})`)
+      causticGrad.addColorStop(1, 'rgba(201,168,76,0)')
       ctx.fillStyle = causticGrad
       ctx.fillRect(cx - cr, cy - cr, cr * 2, cr * 2)
     }
@@ -159,7 +159,7 @@ export default function SilverLiquidFill({ active, onComplete }) {
       // Draw bubble
       ctx.beginPath()
       ctx.arc(b.x, b.y, b.size, 0, Math.PI * 2)
-      ctx.fillStyle = `rgba(240,240,240,${b.alpha})`
+      ctx.fillStyle = `rgba(232,212,139,${b.alpha})`
       ctx.fill()
 
       // Tiny highlight on bubble
@@ -187,13 +187,13 @@ export default function SilverLiquidFill({ active, onComplete }) {
 
     const hlGrad = ctx.createLinearGradient(shimmerOffset, fillY, w + shimmerOffset, fillY)
     const shimmerAlpha = 0.25 + 0.2 * Math.sin(time * 1.5)
-    hlGrad.addColorStop(0, 'rgba(220,220,220,0)')
-    hlGrad.addColorStop(0.2, `rgba(240,240,240,${shimmerAlpha * 0.3})`)
-    hlGrad.addColorStop(0.35, `rgba(245,245,245,${shimmerAlpha})`)
+    hlGrad.addColorStop(0, 'rgba(201,168,76,0)')
+    hlGrad.addColorStop(0.2, `rgba(232,212,139,${shimmerAlpha * 0.3})`)
+    hlGrad.addColorStop(0.35, `rgba(232,212,139,${shimmerAlpha})`)
     hlGrad.addColorStop(0.5, `rgba(255,255,255,${shimmerAlpha * 1.2})`)
-    hlGrad.addColorStop(0.65, `rgba(245,245,245,${shimmerAlpha})`)
-    hlGrad.addColorStop(0.8, `rgba(220,220,220,${shimmerAlpha * 0.3})`)
-    hlGrad.addColorStop(1, 'rgba(220,220,220,0)')
+    hlGrad.addColorStop(0.65, `rgba(232,212,139,${shimmerAlpha})`)
+    hlGrad.addColorStop(0.8, `rgba(201,168,76,${shimmerAlpha * 0.3})`)
+    hlGrad.addColorStop(1, 'rgba(201,168,76,0)')
     ctx.fillStyle = hlGrad
     ctx.fill()
 

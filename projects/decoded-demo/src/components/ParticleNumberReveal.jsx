@@ -127,9 +127,9 @@ export default function ParticleNumberReveal({ active, width, height }) {
       ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2)
 
       // Glow effect
-      ctx.shadowColor = 'rgba(225,225,225,0.6)'
+      ctx.shadowColor = 'rgba(201,168,76,0.6)'
       ctx.shadowBlur = 4
-      ctx.fillStyle = `rgba(230,230,230,${alpha * 0.9})`
+      ctx.fillStyle = `rgba(232,212,139,${alpha * 0.9})`
       ctx.fill()
 
       // Core bright dot

@@ -130,10 +130,10 @@ export default function HolographicCard({ visible, claimed, onClaim }) {
           inset: 0,
           borderRadius: 14,
           background: 'linear-gradient(145deg, #1a1a1a 0%, #111 40%, #0d0d0d 100%)',
-          border: claimed ? '1px solid rgba(230,230,230,0.5)' : '1px solid rgba(225,225,225,0.25)',
+          border: claimed ? '1px solid rgba(232,212,139,0.5)' : '1px solid rgba(201,168,76,0.25)',
           boxShadow: claimed
-            ? `0 20px 60px rgba(0,0,0,0.6), 0 0 30px rgba(225,225,225,0.25), 0 0 1px rgba(225,225,225,0.5), inset 0 1px 0 rgba(255,255,255,0.06)`
-            : `0 20px 60px rgba(0,0,0,0.6), 0 0 1px rgba(225,225,225,0.3), inset 0 1px 0 rgba(255,255,255,0.04)`,
+            ? `0 20px 60px rgba(0,0,0,0.6), 0 0 30px rgba(201,168,76,0.25), 0 0 1px rgba(201,168,76,0.5), inset 0 1px 0 rgba(255,255,255,0.06)`
+            : `0 20px 60px rgba(0,0,0,0.6), 0 0 1px rgba(201,168,76,0.3), inset 0 1px 0 rgba(255,255,255,0.04)`,
           transition: 'box-shadow 0.6s ease',
           overflow: 'hidden',
         }}>
@@ -147,7 +147,7 @@ export default function HolographicCard({ visible, claimed, onClaim }) {
                 ellipse 60% 70% at ${shimmerX}% ${shimmerY}%,
                 rgba(255,255,255,0.07) 0%,
                 rgba(220,220,220,0.06) 20%,
-                rgba(200,200,200,0.05) 40%,
+                rgba(201,168,76,0.05) 40%,
                 rgba(180,180,180,0.06) 60%,
                 rgba(160,160,160,0.05) 80%,
                 transparent 100%
@@ -183,7 +183,7 @@ export default function HolographicCard({ visible, claimed, onClaim }) {
             left: '10%',
             right: '10%',
             height: 1,
-            background: 'linear-gradient(90deg, transparent, rgba(225,225,225,0.4), transparent)',
+            background: 'linear-gradient(90deg, transparent, rgba(201,168,76,0.4), transparent)',
             borderRadius: '0 0 50% 50%',
           }} />
 
@@ -203,9 +203,9 @@ export default function HolographicCard({ visible, claimed, onClaim }) {
                 fontFamily: "'Bebas Neue', sans-serif",
                 fontSize: 22,
                 letterSpacing: '0.3em',
-                color: '#E0E0E0',
+                color: '#C9A84C',
                 lineHeight: 1,
-                textShadow: '0 0 20px rgba(225,225,225,0.15)',
+                textShadow: '0 0 20px rgba(201,168,76,0.15)',
               }}>
                 DECODED
               </div>
@@ -236,7 +236,7 @@ export default function HolographicCard({ visible, claimed, onClaim }) {
                   fontWeight: 300,
                   fontSize: 18,
                   letterSpacing: '0.15em',
-                  color: '#E0E0E0',
+                  color: '#C9A84C',
                   opacity: showNumber ? 0 : 0, // Hidden, particles handle display
                 }}>
                   {'№ '}0001
@@ -261,7 +261,7 @@ export default function HolographicCard({ visible, claimed, onClaim }) {
                     fontFamily: "'Bebas Neue', sans-serif",
                     fontSize: 20,
                     letterSpacing: '0.15em',
-                    color: 'rgba(225,225,225,0)',
+                    color: 'rgba(201,168,76,0)',
                     pointerEvents: 'none',
                   }}>
                     {'№ 0001'}
@@ -270,7 +270,7 @@ export default function HolographicCard({ visible, claimed, onClaim }) {
               </div>
 
               {claimed && (
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E0E0E0" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ filter: 'drop-shadow(0 0 8px rgba(225,225,225,0.4))' }}>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ filter: 'drop-shadow(0 0 8px rgba(201,168,76,0.4))' }}>
                   <polyline points="4 12 10 18 20 6" style={{ strokeDasharray: 30, strokeDashoffset: 30, animation: 'claim-draw-check 0.6s ease forwards 0.15s' }} />
                 </svg>
               )}

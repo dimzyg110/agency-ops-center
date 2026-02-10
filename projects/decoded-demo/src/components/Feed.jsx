@@ -66,7 +66,7 @@ function FireBurst({ trigger }) {
     const ps = Array.from({ length: 10 }, (_, i) => {
       const a = (i / 10) * 360, r = 18 + Math.random() * 22
       const rad = (a * Math.PI) / 180
-      return { id: Date.now() + i, tx: Math.cos(rad) * r, ty: Math.sin(rad) * r, color: i % 3 === 0 ? '#CCCCCC' : i % 3 === 1 ? '#E0E0E0' : '#F0F0F0', sz: 2.5 + Math.random() * 2.5 }
+      return { id: Date.now() + i, tx: Math.cos(rad) * r, ty: Math.sin(rad) * r, color: i % 3 === 0 ? '#C82828' : i % 3 === 1 ? '#E04040' : '#FF5555', sz: 2.5 + Math.random() * 2.5 }
     })
     setParticles(ps)
     const t = setTimeout(() => setParticles([]), 600)
@@ -385,12 +385,12 @@ function SecretCard({ isActive }) {
       {/* Silver Liquid Fill (Effect 3) */}
       <GoldLiquidFill active={showLiquid} onComplete={handleLiquidComplete} />
 
-      {/* Claim flash overlay — bright silver burst */}
+      {/* Claim flash overlay — bright gold burst */}
       {claimFlash && (
         <div style={{
           position: 'absolute', inset: 0, zIndex: 40,
-          background: 'radial-gradient(circle at 50% 50%, rgba(230,230,230,0.35) 0%, rgba(225,225,225,0.15) 40%, rgba(225,225,225,0) 70%)',
-          animation: 'claim-silver-flash 0.9s ease-out forwards',
+          background: 'radial-gradient(circle at 50% 50%, rgba(232,212,139,0.35) 0%, rgba(201,168,76,0.15) 40%, rgba(201,168,76,0) 70%)',
+          animation: 'claim-gold-flash 0.9s ease-out forwards',
           pointerEvents: 'none',
         }} />
       )}
@@ -411,12 +411,12 @@ function SecretCard({ isActive }) {
             fontFamily: "'Bebas Neue', sans-serif",
             fontSize: 48,
             letterSpacing: '0.3em',
-            color: '#E0E0E0',
+            color: '#C9A84C',
             opacity: phase >= 2 ? 1 : 0,
             transition: 'opacity 1.2s ease',
             marginBottom: 16,
             textAlign: 'center',
-            textShadow: '0 0 40px rgba(225,225,225,0.2)',
+            textShadow: '0 0 40px rgba(201,168,76,0.2)',
           }}>
             DECODED
           </div>
@@ -427,8 +427,8 @@ function SecretCard({ isActive }) {
           <div style={{
             width: phase >= 1 ? 120 : 0,
             height: 1,
-            background: 'linear-gradient(90deg, transparent, #E0E0E0, transparent)',
-            boxShadow: '0 0 20px rgba(225,225,225,0.3)',
+            background: 'linear-gradient(90deg, transparent, #C9A84C, transparent)',
+            boxShadow: '0 0 20px rgba(201,168,76,0.3)',
             transition: 'width 1.5s cubic-bezier(0.16, 1, 0.3, 1)',
             marginBottom: 16,
           }} />
@@ -789,7 +789,7 @@ function ProductCard({ product, isActive, isNear, isLast, audioEnabled }) {
       <div style={{
         position: 'absolute', top: 'calc(57px + env(safe-area-inset-top, 0px))', left: 22, zIndex: 5,
         fontFamily: "'Inter', sans-serif", fontWeight: 800, fontSize: 9,
-        letterSpacing: '0.4em', color: 'rgba(225,225,225,0.15)', textTransform: 'uppercase',
+        letterSpacing: '0.4em', color: 'rgba(180,30,30,0.25)', textTransform: 'uppercase',
       }}>DECODED</div>
 
       {/* ── RIGHT SIDE ACTIONS ── */}
@@ -803,23 +803,23 @@ function ProductCard({ product, isActive, isNear, isLast, audioEnabled }) {
         <button onClick={handleFire} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3, background: 'none', border: 'none', cursor: 'pointer', position: 'relative', padding: 0 }}>
           <div style={{
             width: 46, height: 46, borderRadius: '50%',
-            background: fireActive ? 'rgba(225,225,225,0.15)' : 'rgba(245,240,232,0.07)',
-            border: `1px solid ${fireActive ? 'rgba(225,225,225,0.3)' : 'rgba(245,240,232,0.08)'}`,
+            background: fireActive ? 'rgba(200,40,40,0.15)' : 'rgba(245,240,232,0.07)',
+            border: `1px solid ${fireActive ? 'rgba(200,40,40,0.3)' : 'rgba(245,240,232,0.08)'}`,
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             transition: 'all 0.3s ease',
             backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)',
           }}>
-            <span style={{ fontSize: 22, display: 'block', lineHeight: 1, animation: fireActive ? 'fire-pop 0.5s ease forwards' : 'none', filter: fireActive ? 'brightness(1.4) drop-shadow(0 0 8px rgba(225,225,225,0.5))' : 'none', transition: 'filter 0.2s' }}>
-              <svg width="22" height="22" viewBox="0 0 24 24" fill={fireActive ? '#E0E0E0' : 'none'} stroke={fireActive ? '#E0E0E0' : '#F5F0E8'} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ transition: 'all 0.3s' }}>
+            <span style={{ fontSize: 22, display: 'block', lineHeight: 1, animation: fireActive ? 'fire-pop 0.5s ease forwards' : 'none', filter: fireActive ? 'brightness(1.4) drop-shadow(0 0 8px rgba(200,40,40,0.5))' : 'none', transition: 'filter 0.2s' }}>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill={fireActive ? '#C82828' : 'none'} stroke={fireActive ? '#C82828' : '#F5F0E8'} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ transition: 'all 0.3s' }}>
                 <path d="M12 22c4.97 0 8-3.58 8-8 0-6-8-14-8-14S4 8 4 14c0 4.42 3.03 8 8 8z" />
                 <path d="M12 22c2.21 0 4-1.79 4-4 0-3-4-7-4-7s-4 4-4 7c0 2.21 1.79 4 4 4z" opacity="0.5" />
               </svg>
             </span>
           </div>
           {/* Ring expand on tap */}
-          {fireActive && <div style={{ position: 'absolute', inset: 0, borderRadius: '50%', border: '2px solid rgba(225,225,225,0.4)', animation: 'ring-expand 0.5s ease-out forwards', pointerEvents: 'none' }} />}
+          {fireActive && <div style={{ position: 'absolute', inset: 0, borderRadius: '50%', border: '2px solid rgba(200,40,40,0.4)', animation: 'ring-expand 0.5s ease-out forwards', pointerEvents: 'none' }} />}
           <FireBurst trigger={fireTrigger} />
-          <span style={{ fontSize: 10, color: fireActive ? '#E0E0E0' : 'rgba(245,240,232,0.6)', fontFamily: "'Inter', sans-serif", fontWeight: 600, fontVariantNumeric: 'tabular-nums', transition: 'color 0.2s', textShadow: '0 1px 4px rgba(0,0,0,0.5)' }}>{fmtK(fireCount)}</span>
+          <span style={{ fontSize: 10, color: fireActive ? '#C82828' : 'rgba(245,240,232,0.6)', fontFamily: "'Inter', sans-serif", fontWeight: 600, fontVariantNumeric: 'tabular-nums', transition: 'color 0.2s', textShadow: '0 1px 4px rgba(0,0,0,0.5)' }}>{fmtK(fireCount)}</span>
         </button>
 
         {/* Skull */}
@@ -876,7 +876,7 @@ function ProductCard({ product, isActive, isNear, isLast, audioEnabled }) {
             backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)',
             animation: 'tag-border-shimmer 3s ease-in-out infinite',
           }}>
-            <span style={{ width: 5, height: 5, borderRadius: '50%', background: '#FFFFFF', animation: 'dot-pulse 2s ease-in-out infinite', flexShrink: 0 }} />
+            <span style={{ width: 5, height: 5, borderRadius: '50%', background: '#C82828', animation: 'dot-pulse 2s ease-in-out infinite', flexShrink: 0 }} />
             <span style={{ fontFamily: "'Inter', sans-serif", fontWeight: 500, fontSize: 9, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#E0E0E0' }}>{product.tag}</span>
           </span>
         </div>
@@ -939,18 +939,18 @@ function ProductCard({ product, isActive, isNear, isLast, audioEnabled }) {
           <div style={{ display: 'flex', gap: 4, position: 'relative' }}>
             {[{ val: pad(h), label: 'HR' }, { val: pad(m), label: 'MIN' }, { val: pad(s), label: 'SEC' }].map((unit, i) => (
               <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-                {i > 0 && <span style={{ color: 'rgba(225,225,225,0.25)', fontSize: 16, fontFamily: "'Inter', sans-serif", fontWeight: 200 }}>:</span>}
+                {i > 0 && <span style={{ color: h < 1 ? 'rgba(200,40,40,0.4)' : 'rgba(225,225,225,0.25)', fontSize: 16, fontFamily: "'Inter', sans-serif", fontWeight: 200 }}>:</span>}
                 <div style={{
-                  background: 'rgba(225,225,225,0.06)', border: '1px solid rgba(225,225,225,0.1)',
+                  background: h < 1 ? 'rgba(200,40,40,0.08)' : 'rgba(225,225,225,0.06)', border: h < 1 ? '1px solid rgba(200,40,40,0.2)' : '1px solid rgba(225,225,225,0.1)',
                   borderRadius: 6, padding: '4px 8px', minWidth: 38, textAlign: 'center',
                   backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)',
                 }}>
-                  <span style={{ fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: 14, color: '#E0E0E0', fontVariantNumeric: 'tabular-nums', letterSpacing: '0.06em' }}>{unit.val}</span>
+                  <span style={{ fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: 14, color: h < 1 ? '#C82828' : '#E0E0E0', fontVariantNumeric: 'tabular-nums', letterSpacing: '0.06em' }}>{unit.val}</span>
                 </div>
               </div>
             ))}
           </div>
-          <span style={{ fontFamily: "'Inter', sans-serif", fontWeight: 400, fontSize: 8, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(245,240,232,0.2)' }}>{expired ? 'EXPIRED' : 'REMAINING'}</span>
+          <span style={{ fontFamily: "'Inter', sans-serif", fontWeight: 400, fontSize: 8, letterSpacing: '0.2em', textTransform: 'uppercase', color: h < 1 ? 'rgba(200,40,40,0.4)' : 'rgba(245,240,232,0.2)' }}>{expired ? 'EXPIRED' : 'REMAINING'}</span>
         </div>
 
         {/* Size Selector */}

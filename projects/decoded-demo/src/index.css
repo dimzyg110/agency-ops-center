@@ -96,7 +96,7 @@ video::-webkit-media-controls {
 /* ── SILVER DIVIDER ── */
 .silver-divider {
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(225,225,225,0.3), rgba(225,225,225,0.5), rgba(225,225,225,0.3), transparent);
+  background: linear-gradient(90deg, transparent, rgba(180,30,30,0.4), rgba(180,30,30,0.6), rgba(180,30,30,0.4), transparent);
 }
 
 /* ── TEXT REVEAL (stagger children) ── */
@@ -343,7 +343,7 @@ video::-webkit-media-controls {
 }
 
 /* ── CLAIM ANIMATION: White flash/burst overlay ── */
-@keyframes claim-silver-flash {
+@keyframes claim-gold-flash {
   0%   { opacity: 0; }
   15%  { opacity: 1; }
   40%  { opacity: 0.7; }
