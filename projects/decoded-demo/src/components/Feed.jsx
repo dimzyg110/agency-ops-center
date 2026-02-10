@@ -664,6 +664,7 @@ function ProductCard({ product, isActive, isLast, audioEnabled }) {
           muted
           playsInline
           webkit-playsinline=""
+          preload="auto"
           onLoadedData={() => setVideoLoaded(true)}
           className={videoLoaded && isActive ? 'video-zoom' : ''}
           style={{
@@ -957,9 +958,17 @@ export default function Feed() {
     return () => el.removeEventListener('scroll', onScroll)
   }, [])
 
-  // Enable audio on first user interaction
+  // Enable audio on first user interaction + preload all tracks
   useEffect(() => {
-    const enable = () => { setAudioEnabled(true); document.removeEventListener('touchstart', enable); document.removeEventListener('click', enable) }
+    const enable = () => {
+      setAudioEnabled(true)
+      // Force-load all music tracks into buffer
+      Object.values(musicRefs.current).forEach(audio => {
+        audio.load()
+      })
+      document.removeEventListener('touchstart', enable)
+      document.removeEventListener('click', enable)
+    }
     document.addEventListener('touchstart', enable, { once: true })
     document.addEventListener('click', enable, { once: true })
     return () => { document.removeEventListener('touchstart', enable); document.removeEventListener('click', enable) }
@@ -997,7 +1006,7 @@ export default function Feed() {
           ref={el => { if (el) musicRefs.current[product.id] = el }}
           src={product.music}
           loop
-          preload="none"
+          preload="auto"
         />
       ))}
 
