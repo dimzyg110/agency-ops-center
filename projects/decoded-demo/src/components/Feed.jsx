@@ -1060,13 +1060,9 @@ function ProductCard({ product, isActive, isNear, isLast, audioEnabled }) {
           </button>
         </div>
 
-        {/* Swipe / Roviq */}
+        {/* Roviq */}
         <div style={{ ...reveal(0.44), display: 'flex', justifyContent: 'center', marginTop: 10 }}>
-          {isLast ? (
-            <span style={{ fontFamily: "'Inter', sans-serif", fontWeight: 300, fontSize: 8, letterSpacing: '0.25em', color: 'rgba(201,168,76,0.12)', textTransform: 'uppercase' }}>Built by Roviq</span>
-          ) : (
-            <SwipeUp />
-          )}
+          <span style={{ fontFamily: "'Inter', sans-serif", fontWeight: 300, fontSize: 8, letterSpacing: '0.25em', color: 'rgba(201,168,76,0.12)', textTransform: 'uppercase' }}>Built by Roviq</span>
         </div>
       </div>
     </div>
