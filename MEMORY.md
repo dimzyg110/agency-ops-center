@@ -45,6 +45,25 @@ _Curated patterns, preferences, and lessons. Updated weekly from daily logs._
 - WordPress for client sites — Randy builds in React, each client has unique brand identity. Blog generator should produce React-compatible content, not WP posts.
 - Kimi K2.5 for large file writes — NVIDIA proxy truncates at ~8K chars. **FIXED: use `openrouter/moonshotai/kimi-k2.5` instead.** OpenRouter handles 48K+ in a single write. NVIDIA route still works for small tasks (free). Moonshot direct (`moonshot/kimi-k2.5`) requires balance top-up.
 
+## Tech Stack for Client Work
+
+- **Delivered**: Blaze POS (open API at `apidocs.blaze.me`, BPN partner network). App = React Native frontend, Blaze = backend. Blaze handles dispatch, driver app, payments, manifests, inventory. App only needs to be the customer experience layer.
+- **CH**: React + Vite + Tailwind on Netlify. Blog posts in `src/data/blogPosts.js`. Repo: `randytorres/ch-web` (private).
+- **AC**: Swift native iOS (AC Blacksite app — Randy built). Cinematic UX.
+- **All clients**: React-based sites, unique brand identities, NO WordPress.
+
+## Delivered Partnership — Key Facts
+
+- Blaze POS is their platform (they approached Blaze for partnership too)
+- License MD1303 covers statewide delivery — scaling is operational, not regulatory
+- Social equity exclusivity locked until April 2029 (CCC voted 4-0)
+- Only 27 delivery operators in MA — no one has a mobile app
+- Midnight Cannabis Lounge = the brand direction (premium launch standard)
+- React Native for cross-platform (iOS + Android), 12-week MVP, Delivered owns app IP
+- AC supplies wholesale (house brand "Delivered Collection" at 35%+ margins)
+- Proposal V2 final: `clients/_leads/delivered/PROPOSAL-DRAFT.md` (commit `32a4e39`)
+- Brand vision in reserve: `clients/_leads/delivered/plans/plan-3-full.md` (63K, Kimi)
+
 ---
 
 _Last updated: 2026-02-10_
