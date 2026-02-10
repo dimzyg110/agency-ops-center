@@ -19,6 +19,8 @@
 - Owner drops frequently — perfect for app experimentation and testing
 - Reference: AC Blacksite app (hidden Space Invaders game, cinematic onboarding, premium home screen + event view)
 - The app is what makes this different — every other brand has a Shopify store, nobody has THIS
+- **Quarterly subscription boxes** — client is interested. Integrate into app + community strategy
+- They also need a website but the app is the real play
 
 ## Notes
 - ~20.4K Instagram followers, low engagement (0.27%)
