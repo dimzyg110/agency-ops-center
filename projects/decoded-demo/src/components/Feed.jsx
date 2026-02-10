@@ -369,57 +369,57 @@ function ProductCard({ product, isActive, isLast }) {
         <div style={reveal(0.38)}>
           <button onClick={handleVault} style={{
             position: 'relative', width: '100%', maxWidth: 340, height: 48,
-            border: vaultState === 'done' ? '1px solid rgba(201,168,76,0.35)' : '1px solid rgba(245,240,232,0.12)',
+            border: vaultState === 'done' ? '1px solid rgba(212,185,106,0.5)' : '1px solid rgba(201,168,76,0.25)',
             borderRadius: 14, cursor: 'pointer',
             fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: 12,
             letterSpacing: '0.14em', textTransform: 'uppercase',
             display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10,
             transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)', overflow: 'hidden',
             background: vaultState === 'done'
-              ? 'rgba(201,168,76,0.15)'
-              : 'rgba(245,240,232,0.06)',
-            backdropFilter: 'blur(20px) saturate(1.3)',
-            WebkitBackdropFilter: 'blur(20px) saturate(1.3)',
-            color: vaultState === 'done' ? '#C9A84C' : '#F5F0E8',
+              ? 'linear-gradient(135deg, rgba(212,185,106,0.22) 0%, rgba(168,137,59,0.18) 100%)'
+              : 'linear-gradient(135deg, rgba(212,185,106,0.12) 0%, rgba(201,168,76,0.08) 50%, rgba(168,137,59,0.12) 100%)',
+            backdropFilter: 'blur(24px) saturate(1.4)',
+            WebkitBackdropFilter: 'blur(24px) saturate(1.4)',
+            color: vaultState === 'done' ? '#E8D48B' : '#D4B96A',
             animation: vaultState === 'pulse' ? 'glass-vault-press 0.55s ease forwards'
               : vaultState === 'done' ? 'glass-confirmed-glow 2s ease-in-out infinite'
               : 'glass-glow-breathe 3.5s ease-in-out infinite',
             transform: vaultState === 'pulse' ? 'scale(0.96) translateY(1px)' : 'scale(1)',
           }}>
-            {/* Top highlight edge — polished glass catch */}
+            {/* Top highlight edge — warm gold light catch */}
             <span style={{
-              position: 'absolute', top: 0, left: '10%', right: '10%', height: 1,
-              background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.25), rgba(255,255,255,0.35), rgba(255,255,255,0.25), transparent)',
+              position: 'absolute', top: 0, left: '8%', right: '8%', height: 1,
+              background: 'linear-gradient(90deg, transparent, rgba(232,212,139,0.3), rgba(212,185,106,0.5), rgba(232,212,139,0.3), transparent)',
               borderRadius: '0 0 50% 50%',
               pointerEvents: 'none',
             }} />
-            {/* Inner top glow — glass depth */}
+            {/* Inner top glow — gold glass depth */}
             <span style={{
               position: 'absolute', top: 0, left: 0, right: 0, height: '50%',
-              background: 'linear-gradient(180deg, rgba(255,255,255,0.08) 0%, transparent 100%)',
+              background: 'linear-gradient(180deg, rgba(212,185,106,0.1) 0%, rgba(201,168,76,0.03) 40%, transparent 100%)',
               borderRadius: '14px 14px 50% 50%',
               pointerEvents: 'none',
             }} />
             {/* Refraction drift */}
             <span style={{
               position: 'absolute', top: '8%', left: '15%', width: '40%', height: '35%',
-              background: 'radial-gradient(ellipse, rgba(255,255,255,0.06) 0%, transparent 70%)',
+              background: 'radial-gradient(ellipse, rgba(232,212,139,0.08) 0%, transparent 70%)',
               borderRadius: '50%', filter: 'blur(6px)',
               animation: 'glass-refraction-drift 6s ease-in-out infinite',
               pointerEvents: 'none',
             }} />
-            {/* Glass shine sweep */}
+            {/* Glass shine sweep — warm gold */}
             <span style={{
               position: 'absolute', top: 0, left: 0, width: '35%', height: '100%',
-              background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.1), rgba(255,255,255,0.06), transparent)',
+              background: 'linear-gradient(90deg, transparent, rgba(232,212,139,0.12), rgba(212,185,106,0.08), transparent)',
               animation: 'glass-shine-sweep 6s ease-in-out infinite', animationDelay: '1.5s',
               pointerEvents: 'none',
             }} />
             {/* Content */}
-            <span style={{ position: 'relative', zIndex: 2, display: 'flex', alignItems: 'center', gap: 10 }}>
+            <span style={{ position: 'relative', zIndex: 2, display: 'flex', alignItems: 'center', gap: 10, textShadow: '0 0 20px rgba(201,168,76,0.3)' }}>
               {vaultState === 'done' ? (
                 <>
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E8D48B" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
                     <polyline points="4 12 10 18 20 6" style={{ strokeDasharray: 30, strokeDashoffset: 0, animation: 'draw-check 0.35s ease forwards' }} />
                   </svg>
                   <span>In Your Vault</span>

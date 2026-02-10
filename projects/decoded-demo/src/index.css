@@ -180,17 +180,19 @@ html, body, #root {
 @keyframes glass-glow-breathe {
   0%, 100% {
     box-shadow:
-      0 1px 0 0 rgba(255, 255, 255, 0.1) inset,
-      0 -1px 2px 0 rgba(0, 0, 0, 0.15) inset,
-      0 4px 16px -4px rgba(0, 0, 0, 0.4),
-      0 0 20px -6px rgba(245, 240, 232, 0.06);
+      0 1px 0 0 rgba(232,212,139,0.15) inset,
+      0 -1px 2px 0 rgba(0, 0, 0, 0.2) inset,
+      0 4px 16px -4px rgba(0, 0, 0, 0.5),
+      0 0 24px -6px rgba(201, 168, 76, 0.12),
+      0 0 1px 0 rgba(201, 168, 76, 0.2);
   }
   50% {
     box-shadow:
-      0 1px 0 0 rgba(255, 255, 255, 0.18) inset,
-      0 -1px 2px 0 rgba(0, 0, 0, 0.15) inset,
-      0 6px 20px -4px rgba(0, 0, 0, 0.5),
-      0 0 30px -6px rgba(245, 240, 232, 0.1);
+      0 1px 0 0 rgba(232,212,139,0.25) inset,
+      0 -1px 2px 0 rgba(0, 0, 0, 0.2) inset,
+      0 6px 20px -4px rgba(0, 0, 0, 0.55),
+      0 0 32px -6px rgba(201, 168, 76, 0.2),
+      0 0 1px 0 rgba(201, 168, 76, 0.3);
   }
 }
 
@@ -205,17 +207,19 @@ html, body, #root {
 @keyframes glass-confirmed-glow {
   0%, 100% {
     box-shadow:
-      0 1px 0 0 rgba(201, 168, 76, 0.2) inset,
-      0 -1px 2px 0 rgba(0, 0, 0, 0.15) inset,
-      0 4px 16px -4px rgba(0, 0, 0, 0.4),
-      0 0 20px -4px rgba(201, 168, 76, 0.15);
+      0 1px 0 0 rgba(232,212,139,0.25) inset,
+      0 -1px 2px 0 rgba(0, 0, 0, 0.2) inset,
+      0 4px 16px -4px rgba(0, 0, 0, 0.5),
+      0 0 24px -4px rgba(201, 168, 76, 0.2),
+      0 0 1px 0 rgba(212, 185, 106, 0.35);
   }
   50% {
     box-shadow:
-      0 1px 0 0 rgba(201, 168, 76, 0.3) inset,
-      0 -1px 2px 0 rgba(0, 0, 0, 0.15) inset,
-      0 6px 20px -4px rgba(0, 0, 0, 0.5),
-      0 0 30px -4px rgba(201, 168, 76, 0.22);
+      0 1px 0 0 rgba(232,212,139,0.35) inset,
+      0 -1px 2px 0 rgba(0, 0, 0, 0.2) inset,
+      0 6px 20px -4px rgba(0, 0, 0, 0.55),
+      0 0 36px -4px rgba(201, 168, 76, 0.3),
+      0 0 1px 0 rgba(212, 185, 106, 0.45);
   }
 }
 
