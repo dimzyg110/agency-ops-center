@@ -682,12 +682,13 @@ function ProductCard({ product, isActive, isNear, isLast, audioEnabled }) {
       {product.video && isNear && (
         <video
           ref={videoRef}
+          autoPlay
           loop
           muted
           playsInline
           webkit-playsinline=""
           preload="auto"
-          onLoadedData={() => setVideoLoaded(true)}
+          onLoadedData={() => { setVideoLoaded(true); if (isActive && videoRef.current) videoRef.current.play().catch(() => {}) }}
           className={videoLoaded && isActive ? 'video-zoom' : ''}
           style={{
             position: 'absolute', inset: 0, width: '100%', height: '100%',
