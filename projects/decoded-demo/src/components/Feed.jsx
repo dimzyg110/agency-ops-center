@@ -873,9 +873,9 @@ function ProductCard({ product, isActive, isNear, isLast, audioEnabled }) {
       {product.songName && (
         <div style={{
           position: 'absolute', bottom: 'calc(env(safe-area-inset-bottom, 0px) + 10px)',
-          left: 22, zIndex: 15,
+          left: 22, right: 22, zIndex: 15,
           display: 'flex', alignItems: 'center', gap: 8,
-          maxWidth: 200, overflow: 'hidden',
+          overflow: 'hidden',
         }}>
           {/* Spinning disc */}
           <div style={{
@@ -1075,7 +1075,6 @@ export default function Feed() {
   const scrollRef = useRef(null)
   const [activeIndex, setActiveIndex] = useState(0)
   const [audioEnabled, setAudioEnabled] = useState(false)
-  const [muted, setMuted] = useState(false)
   const musicRefs = useRef({})
   const totalCards = products.length + 1 // +1 for secret card
 
@@ -1090,13 +1089,17 @@ export default function Feed() {
     return () => el.removeEventListener('scroll', onScroll)
   }, [])
 
-  // Enable audio on first user interaction + preload all tracks
+  // Enable audio on first user interaction + preload all tracks + play all videos (iOS fix)
   useEffect(() => {
     const enable = () => {
       setAudioEnabled(true)
       // Force-load all music tracks into buffer
       Object.values(musicRefs.current).forEach(audio => {
         audio.load()
+      })
+      // Find ALL video elements and play them (iOS requires user gesture to autoplay)
+      document.querySelectorAll('video').forEach(video => {
+        video.play().catch(() => {})
       })
       document.removeEventListener('touchstart', enable)
       document.removeEventListener('click', enable)
@@ -1112,7 +1115,7 @@ export default function Feed() {
     products.forEach((product, i) => {
       const audio = musicRefs.current[product.id]
       if (!audio) return
-      if (i === activeIndex && !muted) {
+      if (i === activeIndex) {
         audio.currentTime = audio.currentTime || 0
         audio.volume = 0.4
         const p = audio.play()
@@ -1121,9 +1124,7 @@ export default function Feed() {
         audio.pause()
       }
     })
-  }, [activeIndex, audioEnabled, muted])
-
-  const toggleMute = useCallback(() => setMuted(m => !m), [])
+  }, [activeIndex, audioEnabled])
 
   return (
     <>
@@ -1141,30 +1142,6 @@ export default function Feed() {
         />
       ))}
 
-      {/* Mute toggle */}
-      <button onClick={toggleMute} style={{
-        position: 'fixed', top: 'calc(env(safe-area-inset-top, 0px) + 6px)', right: 14, zIndex: 50,
-        width: 32, height: 32, borderRadius: '50%',
-        background: 'rgba(245,240,232,0.07)', border: '1px solid rgba(245,240,232,0.1)',
-        backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)',
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
-        cursor: 'pointer', padding: 0,
-      }}>
-        {muted ? (
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F5F0E8" strokeWidth="1.5" strokeLinecap="round" opacity="0.5">
-            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
-            <line x1="23" y1="9" x2="17" y2="15" />
-            <line x1="17" y1="9" x2="23" y2="15" />
-          </svg>
-        ) : (
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" strokeWidth="1.5" strokeLinecap="round" opacity="0.7">
-            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
-            <path d="M15.54 8.46a5 5 0 010 7.07" />
-            <path d="M19.07 4.93a10 10 0 010 14.14" />
-          </svg>
-        )}
-      </button>
-
       <div ref={scrollRef} className="feed-scroll no-scrollbar">
         {products.map((product, i) => (
           <ProductCard
@@ -1173,7 +1150,7 @@ export default function Feed() {
             isActive={activeIndex === i}
             isNear={Math.abs(activeIndex - i) <= 2}
             isLast={false}
-            audioEnabled={audioEnabled && !muted}
+            audioEnabled={audioEnabled}
           />
         ))}
         <SecretCard isActive={activeIndex === products.length} />
