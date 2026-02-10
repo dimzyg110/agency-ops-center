@@ -96,7 +96,7 @@ html, body, #root {
   100% { transform: scale(1.08); }
 }
 .video-zoom {
-  animation: slow-zoom 12s ease-out forwards;
+  animation: slow-zoom 12s ease-in-out infinite alternate;
 }
 
 /* ── GOLD GLOW BUTTON ── */

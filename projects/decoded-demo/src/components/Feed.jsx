@@ -177,6 +177,7 @@ function ProductCard({ product, isActive, isLast }) {
           loop
           muted
           playsInline
+          webkit-playsinline=""
           onLoadedData={() => setVideoLoaded(true)}
           className={videoLoaded && isActive ? 'video-zoom' : ''}
           style={{
