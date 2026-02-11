@@ -125,7 +125,7 @@ sessions_spawn(
 
 DO NOT summarize for Randy. DO NOT send highlights. DO NOT pass Go.
 
-sessions_spawn(task="Review [file path]...", label="reviewer-1-[task]", model="google-antigravity/claude-opus-4-6-thinking")
+sessions_spawn(task="Review [file path]...", label="reviewer-1-[task]", model="openai-codex/gpt-5.3-codex")
 sessions_spawn(task="Review [file path]...", label="reviewer-2-[task]", model="google-antigravity/gemini-3-pro-high")
 
 Both reviewers must:
@@ -189,13 +189,13 @@ ONLY after reviews are synthesized and issues resolved:
 
 | Role               | Primary Model                                 | Fallback                            | Why                              |
 | ------------------ | --------------------------------------------- | ----------------------------------- | -------------------------------- |
-| Orchestrator (You) | `google-antigravity/claude-opus-4-6-thinking` | `google-antigravity/claude-opus-4-6`| Best at planning & coordination  |
-| Developer          | `google-antigravity/claude-opus-4-6-thinking` | `google-antigravity/claude-opus-4-6`| Best code quality                |
+| Orchestrator (You) | `google-antigravity/claude-sonnet-4-5-thinking` | `google-antigravity/gemini-3-pro-high`| Best at planning & coordination  |
+| Developer          | `google-antigravity/claude-sonnet-4-5-thinking` | `google-antigravity/gemini-3-pro-high`| Best code quality                |
 | Designer           | `google-antigravity/gemini-3-pro-high`        | `google-antigravity/gemini-3-flash` | Strong visual/creative reasoning |
-| Researcher         | `openai/gpt-5.2-codex`                        | `nvidia/moonshotai/kimi-k2.5`       | Good at synthesis                |
-| Reviewer 1         | `google-antigravity/claude-opus-4-6-thinking` | `google-antigravity/claude-opus-4-6`| Strict review                    |
+| Researcher         | `google-antigravity/gemini-3-pro-high`        | `nvidia/moonshotai/kimi-k2.5`       | Good at synthesis                |
+| Reviewer 1         | `openai-codex/gpt-5.3-codex`                  | `google-antigravity/claude-sonnet-4-5-thinking`| Codex CLI - strict review        |
 | Reviewer 2         | `google-antigravity/gemini-3-pro-high`        | `openai/gpt-5.2-codex`             | Different perspective            |
-| Humanizer          | `google-antigravity/claude-opus-4-6-thinking` | `google-antigravity/gemini-3-pro-high` | Best at natural voice + style |
+| Humanizer          | `google-antigravity/claude-sonnet-4-5-thinking` | `google-antigravity/gemini-3-pro-high` | Best at natural voice + style |
 
 ---
 

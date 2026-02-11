@@ -37,12 +37,11 @@ Only 3 models touch GLASS. No exceptions unless Randy explicitly says otherwise:
 | Role | Model | Access |
 |------|-------|--------|
 | Chief Architect / Backend | **GPT 5.3 Codex** | CLI only (`codex exec`) |
-| Second Lead / Reviews | **Opus 4.6T** | API subagent |
+| Code Reviews / QA | **GPT 5.3 Codex** | CLI only (`codex exec`) |
 | Frontend | **Kimi K2.5** | API subagent (`openrouter/moonshotai/kimi-k2.5`) |
 
 - No Gemini, no GPT-5.2, no other models on GLASS work.
-- Codex 5.3 = final authority on architecture and backend.
-- Opus 4.6T = mandatory review on every PR + backend second opinion.
+- Codex 5.3 = final authority on architecture, backend, AND code reviews.
 - Kimi K2.5 = frontend only (`apps/web/`).
 
 **Role prompts are MANDATORY.** Every GLASS agent spawn must include:
