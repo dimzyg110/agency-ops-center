@@ -53,10 +53,10 @@ _Curated patterns, preferences, and lessons. Updated weekly from daily logs._
 - **Test scrape successful**: Firecrawl captured full HTML (240KB) from Cannabis Healing menu.
 
 ### Model Configuration
-- **Opus 4.6 models don't exist** in Google Antigravity API (both base and thinking variants return "Unknown model").
-- **Codex 5.3 only via CLI**: `gpt-5.3-codex` not available via API, must use Codex CLI (`codex exec`).
+- **Opus 4.6 models unreliable**: Listed in config, simple tests pass, but complex tasks fail with "Request contains an invalid argument" API error. Falls back to Sonnet 4.5. Only use for trivial single-turn tasks.
+- **Codex 5.3 CLI doesn't exist**: `/usr/local/bin/codex` is a blog tool (codex-cli npm package), not OpenAI Codex. No `codex exec` command available. TOOLS.md reference is incorrect. Use `openai/gpt-5.2-codex` via API instead.
 - **OpenClaw OAuth for Codex**: Store credentials in `auth-profiles.json`, valid until 2026-12-20.
 
 ---
 
-_Last updated: 2026-02-11 (GLASS deployment complete, scrapers pending)_
+_Last updated: 2026-02-11 21:06 UTC (GLASS auth broken, 3 fix attempts failed, backend also broken now)_
