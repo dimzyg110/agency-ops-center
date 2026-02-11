@@ -12,6 +12,18 @@
 4. Wait for confirmation
 5. After writing → commit immediately
 
+### GPT 5.3 Codex — CLI Only
+
+- **GPT 5.3 Codex is NOT available via API.** Only through the Codex CLI (`codex exec`).
+- Always run Codex CLI in the **background** so it doesn't block responses:
+  ```bash
+  codex exec --full-auto -m gpt-5.3-codex -C /path "task" 2>&1 &
+  ```
+- Use `background: true` on exec calls, then monitor with `process poll/log`.
+- Codex CLI **cannot access GitHub** from sandbox (no network). After it writes files, the COO handles `git push` and `gh pr create`.
+- Codex CLI may **time out on very large file generation** (ChatGPT Plus tier limits). Break large tasks into focused chunks if needed.
+- For API-based subagents, use `openai/gpt-5.2-codex` instead (different model, works via API).
+
 ### Subagent Rate Limits
 
 - **Max 2 subagents from the same provider at a time** (e.g., max 2 Antigravity agents concurrently)
