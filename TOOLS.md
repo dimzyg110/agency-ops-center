@@ -45,6 +45,11 @@ Only 3 models touch GLASS. No exceptions unless Randy explicitly says otherwise:
 - Opus 4.6T = mandatory review on every PR + backend second opinion.
 - Kimi K2.5 = frontend only (`apps/web/`).
 
+**Role prompts are MANDATORY.** Every GLASS agent spawn must include:
+- Developer agents: `"Read /data/workspace/team/DEVELOPER.md for your role definition. Then: [task]"`
+- Reviewer agents: `"Read /data/workspace/team/QA.md for your role definition. Then: [task]"`
+- Codex CLI tasks: include the role context in the task prompt since it can read files directly.
+
 ### GLASS Repo — Parallel Agent Isolation
 
 Agents MUST NOT share the same working directory. Use **git worktrees** so each lane gets its own isolated checkout:
