@@ -30,6 +30,22 @@
 - Stagger across providers when possible (Antigravity, NVIDIA, OpenAI Codex)
 - Queue remaining tasks to run after the first batch completes
 
+### GLASS Repo — Parallel Agent Isolation
+
+Agents MUST NOT share the same working directory. Use **git worktrees** so each lane gets its own isolated checkout:
+
+```
+/data/workspace/projects/glass/src/   ← main (COO only)
+/tmp/glass-backend/                   ← codex/backend-skeleton (Codex 5.3)
+/tmp/glass-frontend/                  ← kimi/frontend-shell (Kimi K2.5)
+/tmp/glass-platform/                  ← codex/platform-infra (Codex 5.3)
+```
+
+- **Never point two agents at the same directory.** Uncommitted files leak across branches.
+- When spawning an agent, always specify `-C /tmp/glass-<lane>/` for Codex CLI or the full path in subagent task descriptions.
+- COO handles all `git push` and `gh pr create` from main worktree after agent finishes.
+- To add a new worktree: `git worktree add /tmp/glass-<lane> -b <branch> main`
+
 ### Safe Commands (No Approval Needed)
 
 - `ls`, `cat`, `head`, `tail` (read files/directories)
