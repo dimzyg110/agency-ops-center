@@ -39,6 +39,24 @@ _Curated patterns, preferences, and lessons. Updated weekly from daily logs._
 - Over-building before validation (too many ideas, not enough shipped)
 - Manual social posting (time sink, should be automated)
 
+## GLASS Deployment Learnings (2026-02-11)
+
+### Railway Deployment
+- **railway.toml Dockerfile path bug**: Railway kept reverting to wrong Dockerfile (`apps/web/Dockerfile` instead of `services/api/Dockerfile`). Fixed by explicitly setting in root railway.toml and committing.
+- **Clerk authentication requires BOTH keys**: `@clerk/fastify` plugin needs `secretKey` AND `publishableKey` in config. Missing publishable key causes 500 errors on all requests including `/health`.
+- **Database migrations from sandbox blocked**: Railway Postgres rejects connections from OpenClaw sandbox (network restrictions). Must run via `railway run --service <name> '<command>'` or from authorized environment.
+- **Multi-service deployment**: Each service needs its own railway.toml with correct dockerfilePath. Root repo railway.toml controls which service builds.
+
+### Scraper Architecture
+- **Playwright requires custom base image**: Use `mcr.microsoft.com/playwright:v1.50.1-jammy` as base, install Node.js separately.
+- **10 MA dispensaries configured**: Cannabis Healing (client) + 9 competitors, all on Dutchie platform.
+- **Test scrape successful**: Firecrawl captured full HTML (240KB) from Cannabis Healing menu.
+
+### Model Configuration
+- **Opus 4.6 models don't exist** in Google Antigravity API (both base and thinking variants return "Unknown model").
+- **Codex 5.3 only via CLI**: `gpt-5.3-codex` not available via API, must use Codex CLI (`codex exec`).
+- **OpenClaw OAuth for Codex**: Store credentials in `auth-profiles.json`, valid until 2026-12-20.
+
 ---
 
-_Last updated: 2026-02-09 (migration baseline)_
+_Last updated: 2026-02-11 (GLASS deployment complete, scrapers pending)_
