@@ -43,6 +43,8 @@ _Curated patterns, preferences, and lessons. Updated weekly from daily logs._
 - Over-building before validation (too many ideas, not enough shipped)
 - Manual social posting (time sink, should be automated)
 - WordPress for client sites — Randy builds in React, each client has unique brand identity. Blog generator should produce React-compatible content, not WP posts.
+- **"Lead magnets" as a concept** — Randy rejected the Margin Snapshot Portal (Feb 11). "Feels old school and not helpful." Wants infrastructure that creates ongoing relationships, not funnel tricks. Build things operators depend on daily, not PDFs they download once.
+- **Competing feature-for-feature with established SaaS** — Apex Trading is the MA wholesale standard (METRC integration, CRM, multi-state). Don't replicate. Differentiate on layers they don't cover (delivery, demand gen, local intelligence).
 - **Opus 4.6T subagent bug**: Works as main session model but fails on multi-turn subagent sessions (thinking.signature field required error). Single-turn subagent tasks work. Fallback: Sonnet 4.5T or Gemini 3 Pro High for subagents.
 - **Opus 4.6 (non-thinking)**: Returns 404 on Antigravity — model not available without thinking enabled.
 - Kimi K2.5 for large file writes — NVIDIA proxy truncates at ~8K chars. **FIXED: use `openrouter/moonshotai/kimi-k2.5` instead.** OpenRouter handles 48K+ in a single write. NVIDIA route still works for small tasks (free). Moonshot direct (`moonshot/kimi-k2.5`) requires balance top-up.
@@ -78,4 +80,8 @@ _Curated patterns, preferences, and lessons. Updated weekly from daily logs._
 - **No deploy service credentials configured** — need Vercel/Netlify/Cloudflare token from Randy to deploy demos/sites from sandbox. GitHub Pages blocked on private repos (free plan).
 - **Decoded demo built** at `projects/decoded-demo/` — Vite + React + Tailwind, TikTok-style feed. Randy hasn't seen it yet.
 
-_Last updated: 2026-02-10 (evening)_
+- **Roviq website direction (V3)**: White/editorial theme, ACME-inspired layout. Bracketed nav with numbers, left-aligned hero, video placeholder. Geist Pixel/Sans/Mono fonts kept. Randy providing hero video. Red accent `#D94F3D`. Commit `0d22df7` on `Roviq-AI/roviq-web`.
+- **ION (Independent Operators Network)**: Randy-approved concept (directionally). Private wholesale buying + intelligence network for independent MA cannabis operators. AC = anchor seller, Delivered = delivery layer, Cue = bundled in-store incentives, CCC data = intelligence. Apex Trading is the incumbent. ION differentiates on delivery, demand gen, local depth. Needs legal/compliance validation.
+- **Apex Trading**: Industry standard wholesale platform in MA. METRC integration, CRM, email marketing, invoicing. Competitors: LeafLink ($5B+ annual orders), Leaf Trade. Pricing hidden behind demo calls. ION doesn't replace it, operates on layers Apex doesn't cover.
+
+_Last updated: 2026-02-11 (early morning)_
