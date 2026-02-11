@@ -53,7 +53,7 @@ _Curated patterns, preferences, and lessons. Updated weekly from daily logs._
 - **Test scrape successful**: Firecrawl captured full HTML (240KB) from Cannabis Healing menu.
 
 ### Model Configuration
-- **Opus 4.6 models unreliable**: Listed in config, simple tests pass, but complex tasks fail with "Request contains an invalid argument" API error. Falls back to Sonnet 4.5. Only use for trivial single-turn tasks.
+- **Opus 4.6T / Antigravity tool bug FIXED**: All Antigravity models were failing with tools due to missing `thoughtSignature` on function responses. Fixed in Pi source (`/tmp/pi-mono/packages/ai/src/providers/google-shared.ts`), needs OpenClaw restart to apply. After restart, Opus 4.6T and all Antigravity models should work properly with tool use.
 - **Codex 5.3 CLI doesn't exist**: `/usr/local/bin/codex` is a blog tool (codex-cli npm package), not OpenAI Codex. No `codex exec` command available. TOOLS.md reference is incorrect. Use `openai/gpt-5.2-codex` via API instead.
 - **OpenClaw OAuth for Codex**: Store credentials in `auth-profiles.json`, valid until 2026-12-20.
 
