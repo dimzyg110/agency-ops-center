@@ -218,5 +218,14 @@ _Curated patterns, preferences, and lessons. Updated weekly from daily logs._
 - **Additional public data sources to integrate**: Google Reviews (Places API ready), Census demographics (free API), CCC enforcement actions (scraping), Otreeba strain database (free REST API for effects/terpenes), Boston Cannabis Registry (data.boston.gov).
 - **Ecosystem integration plan**: Hub-and-spoke architecture. GLASS = data gravity well (single source of truth for products/prices). Each product keeps domain-specific DB but shares catalog via GLASS API. Plan at `projects/ECOSYSTEM-INTEGRATION-PLAN.md` (72KB).
 - **Codex 5.3 CLI not in sandbox**: `codex` command not found. Can't use CLI-based Codex for subagent tasks. Use API-accessible models instead.
+- **MA flower price collapsed 73%**: Official CCC data shows $14.68/g (Jan 2020) → $4.01/g (Nov 2025). Headline-worthy intelligence nobody else has surfaced.
+- **Lab testing data is the moat**: 298K state test results. Cross-reference with menu claims = "THC Accuracy Score" — catches label fraud. Unique data asset.
+- **Multi-model synthesis works**: 5 independent plans (Opus ecosystem, Kimi data, Opus data, Codex master, Opus messaging) created, 450KB+ total. Synthesis resolves conflicts, picks best ideas.
+- **Site messaging for "Maria"**: Non-technical dispensary owner persona. Plain English, outcome-first. Hero: "Know exactly what the store down the street charges."
+- **Anti-patterns confirmed banned**: "Join 500+ operators" (fake social proof), inconsistent stats, jargon like "multi-tenant", "For Developers" sections Maria doesn't need.
+- **Hub-and-spoke architecture locked**: GLASS as data gravity well. Products as spokes with domain-specific DBs, sharing product/pricing via GLASS API.
+- **5 integration plans complete**: `MASTER-INTEGRATION-PLAN.md` (90KB buildable blueprint), `GLASS-MESSAGING-REVIEW.md` (35KB copy rewrites), `ECOSYSTEM-INTEGRATION-PLAN.md` (71KB), `CODEX-DATA-INTEGRATION-PLAN.md` (99KB), `OPUS-DATA-INTEGRATION-PLAN.md` (97KB).
+- **Master plan synthesis decisions**: Pivoted lab test design, merged licenses table, table (not MV) for operator scores, split Google reviews design.
+- **CH driver program spec'd**: $512/mo, 4.7x ROI. Cue expansion to drivers validated.
 
-_Last updated: 2026-02-12 (6:35 PM UTC session)_
+_Last updated: 2026-02-12 (6:46 PM UTC session)_
