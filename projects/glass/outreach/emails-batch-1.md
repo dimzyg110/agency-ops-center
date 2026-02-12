@@ -214,7 +214,7 @@ Built a tool tracking prices across 490+ MA dispensaries. Your Southwick locatio
 
 When flower is at market average but other categories are significantly below — it usually means there's room to move without losing customers.
 
-Your report card (free): **glassintel.xyz/report/pioneer-valley-trading-southwick**
+Your report card (free): **glassintel.xyz/report/pioneer-valley-trading-company-southwick**
 
 — Randy
 
@@ -342,9 +342,9 @@ P.S. Your Uxbridge store (640 Douglas Street) shows the exact same pricing patte
 
 ---
 
-## Email #11 — Caroline's Cannabis (Uxbridge)
+## Email #11 — Caroline's Cannabis (Uxbridge) — ⛔ DO NOT SEND (duplicate of #10)
 
-*[NOTE: Same recipient as #10. Send #10 only — it references both locations. Keep this as backup if sending separate campaigns.]*
+*[SKIP: Same recipient as #10 (caroline@carolinescannabis.com). Email #10 already covers both Hopedale + Uxbridge locations.]*
 
 **To:** caroline@carolinescannabis.com
 **Store:** Caroline's Cannabis — 640 Douglas Street, Uxbridge
@@ -458,7 +458,7 @@ Second data point for you — this time on your Westfield location. 680 products
 
 Your edibles prove customers will pay above market. Everything else is significantly below. With 157 preroll products at $11.05, that's $7.52 per unit below what the rest of the state charges.
 
-Your report card (free): **glassintel.xyz/report/pioneer-valley-trading**
+Your report card (free): **glassintel.xyz/report/pioneer-valley-trading-company**
 
 — Randy
 
@@ -738,7 +738,7 @@ Tracking pricing across 490+ MA dispensaries. Your Greenfield store — 437 prod
 - **Your prerolls avg $9.61** — 48.2% below market ($18.57). Lowest preroll pricing in your area.
 - **4 pending license applications** in Greenfield right now.
 
-Your flower and concentrates say "premium." Your prerolls say "dollar store." That's a 63-point spread. 101 prerolls at $9.61 vs. flower customers paying $40.42 — same store, completely different value signals.
+Your flower and concentrates are positioned premium. Your prerolls are 48% below market — that's a 63-point spread across the same store. 101 prerolls at $9.61 when the market sits at $18.57. Could be intentional (traffic builder), but it's worth seeing the full picture.
 
 **5 dispensaries** in the Pioneer Valley. 4 more applications pending in Greenfield.
 
@@ -797,17 +797,18 @@ Hey Shaka,
 
 Built a tool tracking prices across 490+ MA dispensaries. Your Cambridge store — 267 products tracked:
 
-- **You're in Cambridge** — one of the most competitive corridors in the state. 2 new license applications pending in Cambridge, plus 23 more in Boston right next door.
-- **267 products** on your menu — we've got pricing data on all of them vs. every dispensary in the state.
-- **Mass Ave is prime real estate** — your foot traffic profile is different from suburban stores. The data shows how Cambridge pricing compares to the rest of the state.
+- **Your flower avg $28.64** — 18.8% below market ($35.29). Across 213 flower SKUs, that's a significant gap. Cambridge foot traffic supports higher pricing than most markets.
+- **Your prerolls avg $14.61** — 21.3% below market ($18.57). 31 preroll products priced well under the state average.
+- **Your vapes avg $35.83** — right at market ($35.48). Competitive positioning here.
+- **2 pending license applications** in Cambridge, plus 23 more in Boston. Mass Ave customers overlap — when new Boston stores open, you feel it.
 
-I don't have a perfect category breakdown to share in an email, but your full report card has every product, every price, mapped against market averages.
+Your flower and prerolls are both 19-21% below market. On Mass Ave, that's leaving real money on the table.
 
 Your report card (free): **glassintel.xyz/report/greensoul-dispensary**
 
 — Randy
 
-P.S. Cambridge only has 2 pending applications, but Boston has 23. Those customers overlap. When new Boston stores open, Cambridge stores feel it. Worth watching.
+P.S. Your edibles at $26.30 are 47% above the state average ($17.90) — and it's working. 10 products, premium pricing, Cambridge customers paying it. The question is whether your flower customers would do the same.
 
 ---
 
