@@ -120,5 +120,26 @@ _Curated patterns, preferences, and lessons. Updated weekly from daily logs._
 - **Weedmaps scraper verified at scale**: 760 products from one store (New Dia Fenway), 32 pages, zero errors. ~10-15s per page. Full MA run = ~5 hours.
 - **Randy's font preferences**: Financier Display, Die Grotesk, Geist Pixel (premium editorial). Falls back to Playfair Display, Geist, Geist Mono (free CDN). Also likes: NORD, Cooper Light, Reckless Standard, Martina Plantijn, Signifier, Innovator Grotesk, TWK Lausanne, Saans.
 - **Parallel scraping works**: Dutchie on sandbox CamoFox + Weedmaps on roviq-browser Railway. Zero AI tokens — pure Node.js automation.
+- **CamoFox is single-browser**: Can't run two scrapers simultaneously on the same CamoFox instance. Tab creation hangs indefinitely when both compete. Solution: sequential execution (Dutchie first, then Weedmaps).
+- **Railway CamoFox blocked by Weedmaps**: Datacenter IPs get 0 results from Weedmaps directory pages. Local CamoFox works perfectly. Weedmaps scraper must always use `localhost:9377`.
+- **Don't block main thread**: Never use inline `sleep` loops to poll background tasks. Background everything and respond immediately. Randy called this out.
+- **Codex CLI naming collision**: `codex-cli@0.1.3` on npm is a blog generator, NOT OpenAI's Codex. Real package is `@openai/codex`. Removed — using OpenClaw subagents via OAuth instead.
+- **OpenAI project API keys don't work with Codex CLI**: Responses API returns 401. OAuth via OpenClaw (`openai-codex/gpt-5.3-codex`) works fine for subagents.
+- **glass-web Railway deploy via CLI**: `railway up --service glass-web` from repo root (`/data/workspace/projects/glass/src/`) works. Config as Code path should be `railway-web.toml` (no leading `/`) or `apps/web/railway.toml`.
+- **roviq-browser snapshot fix**: Original `buildSnapshot()` DOM walker missed React SPA content (empty snapshots). Fixed with accessibility snapshot + robust DOM fallback. Weedmaps now returns 68K char snapshots on Railway. Commit `e169217`.
+- **Parallel scraping restored**: Dutchie on local CamoFox (`localhost:9377`) + Weedmaps on roviq-browser Railway (`roviq-browser-production.up.railway.app`). Both work simultaneously.
+- **networkidle hangs on SPAs**: Weedmaps keeps persistent websocket connections, causing `networkidle` to never fire. Use `domcontentloaded + waitForTimeout(3000)` instead.
+- **roviq-browser anti-detection config**: locale `en-US`, timezone `America/New_York`, viewport 1440x900, light color scheme, ad/tracker route blocking. Added `/tabs/:id/evaluate` endpoint for JS execution.
+- **COO operating rule**: Never execute tasks directly. Always spawn subagents. Stay available. Only do things that take <30 seconds inline.
+- **Cue positioning**: Cue is a full AI commerce platform (demand forecasting, inventory optimization, brand incentives), NOT just a virtual budtender. Virtual Budtender is a separate product in the ecosystem. 4 ecosystem cards: GLASS → Virtual Budtender → Cue → Delivery.
+- **Delivered → Delivery**: No deal closed with Delivered Inc yet. LP says "Delivery" until partnership signed.
+- **Railway deploy gotcha**: `railway up` builds succeed but don't always replace the running container. Old deploy stays active if healthcheck passes. `railway logs` command shows the old deploy's logs. Check hostname in logs to verify which deploy is active.
+- **DATABASE_URL in sandbox = Neon, not Railway**: Always override with Railway URL when running scrapers: `DATABASE_URL="postgresql://postgres:rcsulogGljjcDcBMxfMeGNlqbmbgHspa@turntable.proxy.rlwy.net:18582/railway"`
+- **Weedmaps scraper verified at scale**: 760 products from one store (New Dia Fenway), 32 pages, zero errors. ~10-15s per page. Full MA run = ~5 hours.
+- **Randy's font preferences**: Financier Display, Die Grotesk, Geist Pixel (premium editorial). Falls back to Playfair Display, Geist, Geist Mono (free CDN). Also likes: NORD, Cooper Light, Reckless Standard, Martina Plantijn, Signifier, Innovator Grotesk, TWK Lausanne, Saans.
+- **Parallel scraping works**: Dutchie on sandbox CamoFox + Weedmaps on roviq-browser Railway. Zero AI tokens — pure Node.js automation.
+- **SIGNAL**: SEO Intelligence, Generation, Navigation, and Authority Layer. Cannabis SEO automation tool at `projects/signal/`. CLI with generate/pipeline/publish/status. React/Netlify GitHub PR publishing only, no WordPress. Revenue: $1,500-2K/mo pilot → $10K+ MRR SaaS.
+- **Newsletter**: "The Operator's Margin Report". Pipeline at `projects/internal/newsletter/`. Python scrapers + GLASS data processor. Beehiiv for distribution (not yet connected — needs form ID from Randy). Test issue generated Feb 12 with real GLASS data.
+- **CCC ↔ GLASS cross-reference**: CCC official avg price $8.19/g vs GLASS scraped $11.13/g = 36% markup. This is unique data nobody else has.
 
-_Last updated: 2026-02-12 (5:35 AM UTC session)_
+_Last updated: 2026-02-12 (7:39 AM UTC session)_
