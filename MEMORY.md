@@ -100,5 +100,11 @@ _Curated patterns, preferences, and lessons. Updated weekly from daily logs._
 
 - **Dutchie scraper POC** (Feb 12): 235 MA dispensary slugs discovered via Firecrawl. Menu pages return 402 via Firecrawl — need CamoFox or JSON endpoint. Script at `projects/glass/src/scripts/scrape-dutchie-ma.ts`. Slug data at `scripts/dutchie-slugs.json`. Firecrawl API key in sandbox env as `FIRECRAWL_API_KEY`.
 - **Dutchie architecture**: ~60-70% of MA dispensaries use Dutchie. Embed URL pattern: `dutchie.com/api/v2/embedded-menu/{SLUG}.js`. Directory at `dutchie.com/us/dispensaries/ma-{city}`. GraphQL at `dutchie.com/graphql` (Cloudflare blocked). Dutchie+ API at `plus.dutchie.com/plus/2021-07/graphql` (requires Bearer auth). Daily scraping cadence is sufficient per Randy.
+- **CamoFox scraping works on Dutchie**: `camofox_create_tab` → navigate to product page → click age gate → `camofox_snapshot` returns full structured product data (name, brand, THC%, price, weight). Bypasses Cloudflare. For standalone scripts, use `playwright` + Camoufox binary at `/root/.cache/camoufox/camoufox-bin`. `page.accessibility.snapshot()` is NOT available — use `page.evaluate()` for DOM extraction.
+- **Dutchie POC results**: 912+ products from 3 stores (~300/store avg). 5 categories per store: flower, pre-rolls, vaporizers, edibles, concentrates. Extrapolated: ~70K price observations per full 235-store run.
+- **Antigravity account dead**: All models removed from config (Feb 12). Auth profile, plugin, 6 model entries, 4 fallbacks deleted. Randy confirmed account doesn't work.
+- **Scraper V2 final plan** at `projects/glass/SCRAPER-V2-FINAL.md`. Key decisions: no `prices_normalized` table (add columns to existing), Drizzle ORM, two-level job model with resume, browser crash recovery, parser contract tests, Railway spike before deploy, Dutchie-only Week 1.
+- **MA cannabis market size**: 650+ licensed retailers, 686 total licensed ops (Feb 2026). Dutchie covers ~235+ (40%), Weedmaps ~300-400 listings, iHeartJane ~100-150.
+- **Railway pricing**: vCPU ~$20/mo continuous, RAM ~$10/GB/mo continuous. Scraper cron job = ~$34/mo (8-10h/day, 2 vCPU + 4GB).
 
-_Last updated: 2026-02-12 (2:50 AM UTC session)_
+_Last updated: 2026-02-12 (3:30 AM UTC session)_
