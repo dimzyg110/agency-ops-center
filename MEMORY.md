@@ -115,4 +115,10 @@ _Curated patterns, preferences, and lessons. Updated weekly from daily logs._
 - **DB pool close fix**: Both orchestrators now call `dbPool.end()` in `.finally()` to exit cleanly.
 - **15 GLASS commits pushed** to `Roviq-AI/glass.git` main (`20ecb02..b7788b9`).
 
-_Last updated: 2026-02-12 (4:35 AM UTC session)_
+- **Railway deploy gotcha**: `railway up` builds succeed but don't always replace the running container. Old deploy stays active if healthcheck passes. Manual "Redeploy" in dashboard or git-triggered deploys are more reliable.
+- **DATABASE_URL in sandbox = Neon, not Railway**: Always override with Railway URL when running scrapers: `DATABASE_URL="postgresql://postgres:rcsulogGljjcDcBMxfMeGNlqbmbgHspa@turntable.proxy.rlwy.net:18582/railway"`
+- **Weedmaps scraper verified at scale**: 760 products from one store (New Dia Fenway), 32 pages, zero errors. ~10-15s per page. Full MA run = ~5 hours.
+- **Randy's font preferences**: Financier Display, Die Grotesk, Geist Pixel (premium editorial). Falls back to Playfair Display, Geist, Geist Mono (free CDN). Also likes: NORD, Cooper Light, Reckless Standard, Martina Plantijn, Signifier, Innovator Grotesk, TWK Lausanne, Saans.
+- **Parallel scraping works**: Dutchie on sandbox CamoFox + Weedmaps on roviq-browser Railway. Zero AI tokens — pure Node.js automation.
+
+_Last updated: 2026-02-12 (5:35 AM UTC session)_
