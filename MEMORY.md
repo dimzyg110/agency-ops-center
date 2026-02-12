@@ -47,6 +47,8 @@ _Curated patterns, preferences, and lessons. Updated weekly from daily logs._
 - **Competing feature-for-feature with established SaaS** — Apex Trading is the MA wholesale standard (METRC integration, CRM, multi-state). Don't replicate. Differentiate on layers they don't cover (delivery, demand gen, local intelligence).
 - **Opus 4.6T subagent bug**: Works as main session model but fails on multi-turn subagent sessions (thinking.signature field required error). Single-turn subagent tasks work. Large consolidation tasks also crash (terminated before writing output). Fallback: Gemini 3 Pro High for subagents needing long writes or multi-turn.
 - **Opus 4.6 (non-thinking)**: Returns 404 on Antigravity — model not available without thinking enabled.
+- **Antigravity Opus models removed from config** (Feb 12) — all unavailable, causing instant subagent failures. Gemini + Sonnet Antigravity models kept.
+- **CamoFox browser plugin installed** (Feb 12) — `@askjo/camofox-browser`, anti-detection Firefox fork. Good for scraping bot-protected dispensary sites. Gateway restart needed to activate.
 - Kimi K2.5 for large file writes — NVIDIA proxy truncates at ~8K chars. **FIXED: use `openrouter/moonshotai/kimi-k2.5` instead.** OpenRouter handles 48K+ in a single write. NVIDIA route still works for small tasks (free). Moonshot direct (`moonshot/kimi-k2.5`) requires balance top-up.
 - **iOS Safari video autoplay**: `muted + playsInline + autoPlay` should work without user gesture. Common failure causes: (1) conditional rendering that destroys/recreates video elements (breaks autoplay), (2) too many simultaneous videos, (3) Low Power Mode, (4) video at tiny size (1x1px won't autoplay), (5) wrong H.264 profile. Use baseline profile level 3.1 for maximum iOS compatibility. Only render one video at a time (active card).
 - **Canvas video rendering** to avoid native play button: works but video must be full-size for iOS to autoplay it. Canvas approach adds CPU overhead on mobile.
@@ -87,4 +89,8 @@ _Curated patterns, preferences, and lessons. Updated weekly from daily logs._
 - **AC Toll Processing outreach**: 85 personalized emails ready at `clients/ac/toll-processing/outreach-emails.md`. 65 cultivators + 21 microbusinesses + 321 retailers prospected. Page live at `advancedcultivatorsllc.com/toll-processing` (pw: `ac2026`). Commit `a4154e6`.
 - **Subagent screenshots unreliable**: Fresh screenshots from live URLs looked worse than original images. Randy said "go back to previous versions." Lesson: don't replace working assets without Randy seeing the replacements first.
 
-_Last updated: 2026-02-11 (late night session)_
+- **GLASS P0 fixes completed** (Feb 12): Auth redirect loop (Clerk `<SignedIn>/<SignedOut>`), backend auto-provisioning for Clerk users, schema mismatch (`pgSchema('glass')` → `pgTable()`). Plus P1 wins (logout, token cache, threats, CORS). 5 commits in GLASS submodule, not yet pushed. Still need: Redis, scraper/intelligence deploy, seed data, `schema.sql` migration.
+- **Context window set to 195K** for auto-compaction (Feb 12). Safeguard mode.
+- **Skill setup improvements done** (Feb 12): 15 skill descriptions rewritten with routing trees, AGENTS.md slimmed (109 lines → skills), 3 new skills (deployment, git-workflow, newsletter), `fast-browser-use` deleted, `output/` dir created.
+
+_Last updated: 2026-02-12 (1:20 AM UTC session)_
