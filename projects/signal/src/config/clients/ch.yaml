@@ -1,0 +1,42 @@
+client:
+  name: "Cannabis Healing"
+  slug: "ch"
+  domain: "cannabishealing.com"
+  platform: "react-netlify"
+  repo: "randytorres/ch-web"
+  contentDir: "src/data"
+
+audience:
+  primary: "Airport travelers near Logan"
+  secondary: "East Boston residents, tourists"
+  language: ["en", "es"]
+
+keywords:
+  primary:
+    - "dispensary near logan airport"
+    - "cannabis near boston airport"
+    - "east boston dispensary"
+  location:
+    - "weed near logan airport"
+    - "dispensary east boston ma"
+  product:
+    - "edibles near logan airport"
+    - "pre rolls east boston"
+
+content:
+  locationPages:
+    enabled: true
+    towns: ["East Boston", "Chelsea", "Revere", "Winthrop"]
+  productPages:
+    enabled: true
+    categories: ["flower", "edibles", "pre-rolls", "vapes"]
+  marketReports:
+    enabled: true
+    frequency: "weekly"
+  blogPosts:
+    enabled: true
+    frequency: "2x-weekly"
+
+tone:
+  voice: "Welcoming, knowledgeable, local"
+  avoid: ["salesy", "corporate", "stoner slang"]
