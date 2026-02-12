@@ -106,5 +106,9 @@ _Curated patterns, preferences, and lessons. Updated weekly from daily logs._
 - **Scraper V2 final plan** at `projects/glass/SCRAPER-V2-FINAL.md`. Key decisions: no `prices_normalized` table (add columns to existing), Drizzle ORM, two-level job model with resume, browser crash recovery, parser contract tests, Railway spike before deploy, Dutchie-only Week 1.
 - **MA cannabis market size**: 650+ licensed retailers, 686 total licensed ops (Feb 2026). Dutchie covers ~235+ (40%), Weedmaps ~300-400 listings, iHeartJane ~100-150.
 - **Railway pricing**: vCPU ~$20/mo continuous, RAM ~$10/GB/mo continuous. Scraper cron job = ~$34/mo (8-10h/day, 2 vCPU + 4GB).
+- **CamoFox HTTP API** at `localhost:9377` — the correct way to use CamoFox from scripts. Don't launch Playwright separately (conflicts with OpenClaw plugin). Endpoints: POST /tabs, GET /tabs/:id/snapshot, POST /tabs/:id/click, POST /tabs/:id/scroll, POST /tabs/:id/navigate, DELETE /tabs/:id. userId + sessionKey required.
+- **Scraper V2 working**: 293 products from 2 stores (Pure Oasis + NETA Brookline) inserted into prod DB. Pipeline: CamoFox HTTP API → snapshot → parse → normalize → upsert via pg. Runtime ~60s/store. Scripts at `projects/glass/src/scripts/scrape-dutchie.ts` + `scripts/lib/`.
+- **Kimi K2.5 for UX audits**: Good at comprehensive design specs, produced 1,060-line audit with color palettes, component hierarchy, onboarding flows. Use OpenRouter route (`openrouter/moonshotai/kimi-k2.5`).
+- **GLASS UX direction (pending review)**: "Bloomberg Terminal meets Apple", electric teal `#00F0C8`, "GLΛSS" wordmark, 60-second dispensary onboarding, landing page + newsletter + delivery waitlist + RSS. At `projects/glass/GLASS-UX-AUDIT.md`.
 
-_Last updated: 2026-02-12 (3:30 AM UTC session)_
+_Last updated: 2026-02-12 (3:52 AM UTC session)_
