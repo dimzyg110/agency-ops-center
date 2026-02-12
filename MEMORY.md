@@ -228,4 +228,6 @@ _Curated patterns, preferences, and lessons. Updated weekly from daily logs._
 - **Master plan synthesis decisions**: Pivoted lab test design, merged licenses table, table (not MV) for operator scores, split Google reviews design.
 - **CH driver program spec'd**: $512/mo, 4.7x ROI. Cue expansion to drivers validated.
 
-_Last updated: 2026-02-12 (6:46 PM UTC session)_
+- **Codex subagent JSON escaping bug**: Large multi-line TypeScript file writes via `edit` tool crash with "Unterminated string in JSON" error. Workaround: use `write` for new files, break schema changes into smaller chunks, or use shell commands for complex edits.
+
+_Last updated: 2026-02-12 (6:58 PM UTC session)_
