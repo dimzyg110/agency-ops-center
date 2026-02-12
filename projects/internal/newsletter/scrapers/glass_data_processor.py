@@ -4,7 +4,7 @@
 Queries the GLASS PostgreSQL database for:
   - Price Wire: Average prices by category, biggest movers
   - Threat Radar: New competitors, active threats, enforcement
-  - Brand Movers: Top brands by shelf presence, changes
+  - Strain Movers: Top strains by shelf presence, changes
   - Market Stats: Total operators, products, price observations
 
 Outputs structured JSON matching the newsletter data contract.
@@ -27,10 +27,9 @@ from typing import Any, Dict, List, Optional
 # Database connection
 # ---------------------------------------------------------------------------
 
-GLASS_DATABASE_URL = os.environ.get(
-    "GLASS_DATABASE_URL",
-    "postgresql://postgres:rcsulogGljjcDcBMxfMeGNlqbmbgHspa@turntable.proxy.rlwy.net:18582/railway",
-)
+DATABASE_URL = os.environ.get("DATABASE_URL")
+if not DATABASE_URL:
+    raise ValueError("DATABASE_URL environment variable is required")
 
 # Categories we care about for Price Wire
 CORE_CATEGORIES = ["flower", "edible", "vape", "concentrate", "preroll"]
@@ -45,7 +44,7 @@ def _get_connection():
         sys.exit(1)
 
     try:
-        conn = psycopg2.connect(GLASS_DATABASE_URL)
+        conn = psycopg2.connect(DATABASE_URL)
         return conn
     except Exception as exc:
         print(f"ERROR: Cannot connect to GLASS database: {exc}", file=sys.stderr)
@@ -208,11 +207,24 @@ def fetch_threat_radar(conn) -> Dict[str, Any]:
     }
 
     try:
-        # New operators added in the last 7 days (with real names/cities)
+        # New operators added in the last 7 days (with real names/cities),
+        # excluding the initial bulk import day if it exists.
         cur.execute("""
+            WITH daily_counts AS (
+                SELECT DATE(created_at) AS created_date, COUNT(*) AS cnt
+                FROM operators
+                GROUP BY DATE(created_at)
+            ),
+            bulk_import_day AS (
+                SELECT created_date
+                FROM daily_counts
+                ORDER BY cnt DESC, created_date ASC
+                LIMIT 1
+            )
             SELECT name, city, state, platform, created_at::date
             FROM operators
             WHERE created_at > NOW() - INTERVAL '7 days'
+              AND DATE(created_at) != (SELECT created_date FROM bulk_import_day)
               AND name NOT LIKE 'New Operator%%'
               AND city IS NOT NULL
               AND city != 'Unknown'
@@ -237,11 +249,23 @@ def fetch_threat_radar(conn) -> Dict[str, Any]:
             })
         result["new_operator_count"] = len(result["new_operators"])
 
-        # Total new operators count (including unknown ones)
+        # Total new operators count in last 7 days, excluding bulk import day
         cur.execute("""
+            WITH daily_counts AS (
+                SELECT DATE(created_at) AS created_date, COUNT(*) AS cnt
+                FROM operators
+                GROUP BY DATE(created_at)
+            ),
+            bulk_import_day AS (
+                SELECT created_date
+                FROM daily_counts
+                ORDER BY cnt DESC, created_date ASC
+                LIMIT 1
+            )
             SELECT COUNT(*)
             FROM operators
             WHERE created_at > NOW() - INTERVAL '7 days'
+              AND DATE(created_at) != (SELECT created_date FROM bulk_import_day)
         """)
         result["new_operator_count_total"] = cur.fetchone()[0]
 
@@ -286,16 +310,16 @@ def fetch_threat_radar(conn) -> Dict[str, Any]:
 # Brand Movers
 # ---------------------------------------------------------------------------
 
-def fetch_brand_movers(conn) -> Dict[str, Any]:
-    """Fetch top brands by shelf presence from GLASS."""
+def fetch_strain_movers(conn) -> Dict[str, Any]:
+    """Fetch top strains by shelf presence from GLASS."""
     cur = conn.cursor()
     result: Dict[str, Any] = {
-        "top_brands": [],
-        "total_brands_tracked": 0,
+        "top_strains": [],
+        "total_strains_tracked": 0,
     }
 
     try:
-        # Top brands by number of stores carrying them
+        # Top strains by number of stores carrying them
         # Filter out junk "brands" that are actually product attributes
         cur.execute("""
             SELECT p2.brand,
@@ -322,9 +346,9 @@ def fetch_brand_movers(conn) -> Dict[str, Any]:
         """)
 
         for row in cur.fetchall():
-            brand, store_count, product_obs, avg_price = row
-            result["top_brands"].append({
-                "brand": brand,
+            strain, store_count, product_obs, avg_price = row
+            result["top_strains"].append({
+                "strain": strain,
                 "store_count": store_count,
                 "product_observations": product_obs,
                 "avg_price": float(avg_price),
@@ -336,10 +360,10 @@ def fetch_brand_movers(conn) -> Dict[str, Any]:
             FROM products
             WHERE brand IS NOT NULL AND brand != '' AND LENGTH(brand) > 3
         """)
-        result["total_brands_tracked"] = cur.fetchone()[0]
+        result["total_strains_tracked"] = cur.fetchone()[0]
 
     except Exception as exc:
-        print(f"WARNING: Brand movers query failed: {exc}", file=sys.stderr)
+        print(f"WARNING: Strain movers query failed: {exc}", file=sys.stderr)
     finally:
         cur.close()
 
@@ -474,8 +498,8 @@ def fetch_all_glass_data() -> Dict[str, Any]:
         print("  Fetching Threat Radar data...", file=sys.stderr)
         threat_radar = fetch_threat_radar(conn)
 
-        print("  Fetching Brand Movers data...", file=sys.stderr)
-        brand_movers = fetch_brand_movers(conn)
+        print("  Fetching Strain Movers data...", file=sys.stderr)
+        brand_movers = fetch_strain_movers(conn)
 
         print("  Fetching Market Stats...", file=sys.stderr)
         market_stats = fetch_market_stats(conn)

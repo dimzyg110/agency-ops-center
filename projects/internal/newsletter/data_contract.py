@@ -49,8 +49,8 @@ GLASS_SCHEMA = {
         "description": "New competitor detection and active threat intelligence",
     },
     "brand_movers": {
-        "required_keys": ["top_brands", "total_brands_tracked"],
-        "description": "Top brands by shelf presence across MA dispensaries",
+        "required_keys": ["top_strains", "total_strains_tracked"],
+        "description": "Top strains by shelf presence across MA dispensaries",
     },
     "market_stats": {
         "required_keys": ["total_operators", "total_products", "total_price_observations"],

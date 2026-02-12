@@ -11,36 +11,36 @@
 
 | Category | Avg Price | Median | Observations |
 |----------|----------|--------|-------------|
-| 🌿 Flower | **$38.95** | $30.00 | 8,604 |
-| 🚬 Pre-Rolls | **$18.91** | $12.00 | 5,756 |
-| 💨 Vapes | **$34.89** | $30.00 | 4,615 |
-| 🍫 Edibles | **$18.80** | $20.00 | 3,859 |
-| 💎 Concentrates | **$43.07** | $35.00 | 1,651 |
+| 🌿 Flower | **$37.17** | $30.00 | 33,903 |
+| 🚬 Pre-Rolls | **$18.80** | $12.00 | 19,442 |
+| 💨 Vapes | **$35.36** | $31.25 | 15,149 |
+| 🍫 Edibles | **$18.97** | $20.00 | 12,612 |
+| 💎 Concentrates | **$42.29** | $35.00 | 5,602 |
 
-*Based on 24,485 price observations this week.*
+*Based on 86,708 price observations this week.*
 
 **💥 BIGGEST VALUE FINDS:**
-- Alpine Guava 0.5g High Supply Sativa at Clear Sky Belchertown (Northampton): **$10.50** (76% below concentrate avg)
+- Alpine Guava 0.5g High Supply Sativa at Clear Sky Belchertown (Northampton): **$10.50** (75% below concentrate avg)
+- Tongue Splasher #1 Smalls... Tongue Splasher #1 Smalls Tongue Splasher #1... at Liberty Easthampton (Amherst): **$10.50** (72% below flower avg)
+- Tongue Splasher #1 Smalls... Tongue Splasher #1 Smalls Tongue Splasher #1... at Liberty Easthampton Ma Med (Northampton): **$10.50** (72% below flower avg)
+- MAC Kief 63.57% TAC MAC Hybrid at Mass Alternative Care Amherst Med (Northampton): **$12.00** (72% below concentrate avg)
 - Chem X 1g High Supply Sativa at Clear Sky Belchertown (Northampton): **$12.00** (72% below concentrate avg)
-- Fried Ice Cream South Shore... Fried Ice Cream South Shore Plug Indica at Botera Franklin1 (Uxbridge): **$12.00** (69% below flower avg)
-- Chemistry Preground South... Chemistry Preground South Shore Plug 7g... at Botera Franklin1 (Uxbridge): **$12.00** (69% below flower avg)
-- Creamsicle Runtz South Shore... Creamsicle Runtz South Shore Plug Hybrid at Botera Franklin1 (Uxbridge): **$12.00** (69% below flower avg)
 
 **📈 PREMIUM SHELF:**
-- Doob Cube Max 28pk No.9 Collection Hybrid at Apex Noire (Allston): **$150.00** (+693% above preroll avg)
-- Doob Cube MAX Pre-Roll... No.9 Collection Hybrid at Elevated Roots (Abington): **$140.00** (+640% above preroll avg)
-- Doob Cube MAX Pre-Roll... No.9 Collection Hybrid at Elevate 118 (Plymouth): **$140.00** (+640% above preroll avg)
+- THC EkkoEssence 10,000mg Fast Acting Bulk THC Emulsion 10000mg at Marks Organix Inc (Merrimac): **$250.00** (+1218% above edible avg)
+- Bling Cheesecake 28G Realm Sativa Fruit Realm at Garden Remedies Melrose Rec (Boston): **$175.00** (+831% above preroll avg)
+- Spritzer 28G Realm Sativa Sweet Realm at Garden Remedies Rec Marlborough (Worcester): **$175.00** (+831% above preroll avg)
 
 ---
 
 ### 🔥 TOP STORY
-**Rhode Island businesswoman sentenced to prison for laundering nearly $500,000 of her boyfriend’s fentanyl trafficking proceeds through Massachusetts marijuana dispensary**
+**Social consumption poised to bring change to Mass. cannabis industry - masslive.com**
 
-In late 2021 to early 2022, Perez enlisted his financially savvy girlfriend Correa to assist him in concealing his drug proceeds. Correa contacted a friend who was opening a marijuana dispensary in Millville, Massachusetts and seeking investors.
+The CCC says cannabis businesses in Massachusetts grossed more than $1.65 billion in sales in 2025, “setting a new annual record ahead of potential changes coming in 2026 including new social consumption licenses,” according to the commission.
 
-_Source: Fallriverreporter · 2026-02-08_
+_Source: MassLive · 2026-02-12_
 
-[Read more](https://fallriverreporter.com/rhode-island-businesswoman-sentenced-to-prison-for-laundering-nearly-500000-of-her-boyfriends-fentanyl-trafficking-proceeds-through-massachusetts-marijuana-dispensary/)
+[Read more](https://www.masslive.com/westernmass/2026/02/outlook-2026-social-consumption-poised-to-bring-change-to-mass-cannabis-industry.html)
 
 
 ---
@@ -65,17 +65,11 @@ licensed cannabis operators tracked across Massachusetts this week
 
 ### 🔴 THREAT RADAR
 
-**20 new dispensaries detected this week on MA menus.**
+**3 new dispensaries detected this week on MA menus.**
 
-- **Baked Cannabis** — Boston, MA
-- **Berkshire Roots East Boston** — Boston, MA
-- **Alternative Therapies Group Amesbury** — Haverhill, MA
-- **Pure Oasis Dtx** — Boston, MA
-- **311 Page Springfield** — Northampton, MA
-- **Apex Noire** — Allston, MA
-- **Pure Oasis LLC** — Allston, MA
-- **6 Brickss Springfield** — Northampton, MA
-- *...and 12 more*
+- **Roviq Test** — Boston, MA
+- **NETA Brookline** — Brookline, MA
+- **Happy Valley Worcester** — Worcester, MA
 
 **ACTIVE ALERTS:**
 - 🔴 **Worcester Cluster** [price_war]: Three Worcester-area menus dropped eighth pricing below $32 on weekends, compressing margin benchmarks for mid-shelf...
@@ -86,22 +80,22 @@ licensed cannabis operators tracked across Massachusetts this week
 
 ---
 
-### 🏷️ BRAND MOVERS
+### 🌿 STRAIN MOVERS
 
-*Top brands by shelf presence across MA dispensary menus this week.*
+*Top strains by shelf presence across MA dispensary menus this week.*
 
-- **Blue Dream** — in 19 stores, avg $33.40
-- **Pineapple Express** — in 17 stores, avg $33.75
-- **Acapulco Gold** — in 16 stores, avg $37.24
-- **Blueberry** — in 14 stores, avg $21.82
-- **Strawberry Cough** — in 13 stores, avg $48.27
-- **Good Chemistry** — in 13 stores, avg $38.63
-- **Khalifa Kush** — in 13 stores, avg $32.96
-- **Sour Diesel** — in 13 stores, avg $33.45
-- **Elderflower** — in 12 stores, avg $37.10
-- **Khalifa Mints** — in 12 stores, avg $33.21
+- **Blue Dream** — in 44 stores, avg $36.95
+- **Pineapple Express** — in 41 stores, avg $39.58
+- **Khalifa Kush** — in 34 stores, avg $30.23
+- **Sour Diesel** — in 34 stores, avg $34.36
+- **Acapulco Gold** — in 32 stores, avg $39.59
+- **Gelato** — in 30 stores, avg $36.86
+- **Bountiful Farms** — in 30 stores, avg $39.98
+- **Strawberry Cough** — in 29 stores, avg $49.21
+- **Milk Chocolate Bar** — in 29 stores, avg $21.86
+- **Good Chemistry** — in 28 stores, avg $33.90
 
-*15,326 total brands tracked across MA.*
+*45,031 total strains tracked across MA.*
 
 ---
 
@@ -111,31 +105,27 @@ licensed cannabis operators tracked across Massachusetts this week
 - [Demographic source](https://masscannabiscontrol.com/resource/meau-plav)
 
 ### 📋 LICENSE WATCH
-- [Breaking News; Dispensary Openings; Legal Wrangling; Cannabis Licensing - Rockland County Business Journal](https://rcbizjournal.com/2026/02/07/hudson-valley-cannabis-news/) — Rcbizjournal · 2026-02-08
+*No major license updates this week.*
 
 ---
 
 ### 🛠️ TOOL OF THE WEEK
 
-**Odoo ERP for Cannabis Production Industry | ThinkTech**
+**Cheech and Chong's Cannabis Company Expands Retail Tech Stack With Flowhub Partnership | Morningstar**
 
-Odoo ERP for cannabis production companies to manage seed-to-sale traceability, batch tracking, compliance, inventory, and manufacturing with full visibility.
+Flowhub is the technology platform behind the best dispensaries in America. Founded in 2015 by CEO Kyle Sherman, Flowhub powers compliance, point of sale, payments, ecommerce, inventory management, marketing, and analytics for thousands of cannabis ...
 
-[Check it out →](https://thethinktech.com/odoo-erp-for-cannabis-production/)
+[Check it out →](https://www.morningstar.com/news/accesswire/1134952msn/cheech-and-chongs-cannabis-company-expands-retail-tech-stack-with-flowhub-partnership)
 
 ---
 
 ### 📅 UPCOMING EVENTS
-- [CommCan - Homegrown Cannabis & Edibles in Massachusetts - 2026-01-05 - Massachusetts](https://commcan.com/)
-- [Register - Vancouver 2026 | Grow Up Conference and Expo | presented by Quality Horticulture - 2026-01-19 - Massachusetts](https://growupconference.com/vancouver/register/)
-- [Cannabis State Roundtable - National Governors Association - 2026-01-28 - Massachusetts](https://www.nga.org/meetings/cannabis-state-roundtable/)
-- [Proposed cannabis reforms get mixed reviews from bar | Massachusetts Lawyers Weekly - 2026-02-03 - Massachusetts](https://masslawyersweekly.com/2026/02/03/massachusetts-cannabis-law-reform-ccc-licensing/)
-- [Massachusetts Adult-use Cannabis Sales Generated $1.65 Billion Total In 2025 - Cannabis Control Commission Massachusetts - 2026-04-01 - Massachusetts](https://masscannabiscontrol.com/2026/01/massachusetts-adult-use-cannabis-sales-generated-1-65-billion-in-2025/)
+- [Medical Practicum - CannMed 2026 - Innovation & Collaboration Summit | Lake Tahoe - 2026-06-16 - Massachusetts](https://cannmedevents.com/medical-practicum-workshop/)
 
 ### ⚡ QUICK HITS
-- [Massachusetts marijuana dispensary used to launder $450K in fentanyl cash](https://www.wwlp.com/news/crime/massachusetts-marijuana-dispensary-used-to-launder-450k-in-fentanyl-cash/) — Wwlp · 2026-02-08
-- [From Seed to Sale to Stability: The Massachusetts Cannabis Business Survival Guide](https://metapress.com/from-seed-to-sale-to-stability-the-massachusetts-cannabis-business-survival-guide/) — Metapress · 2026-02-08
-- [Boston Cannabis Board Public Meeting | Boston.gov](https://www.boston.gov/public-notices/16563801) — Boston · 2026-02-08
+- [Who is behind the $1.5 million spent to abolish legal weed sales in Massachusetts? | Business | ack.net](https://www.ack.net/business/who-is-behind-the-1-5-million-spent-to-abolish-legal-weed-sales-in-massachusetts/article_fc2b8254-e1a6-405b-86ca-a8fc6951830c.html) — Ack · 2026-02-12
+- [Rhode Island businesswoman sentenced for laundering fentanyl proceeds through Massachusetts marijuana dispensary](https://newslinklive.com/2026/02/07/rhode-island-businesswoman-sentenced-for-laundering-fentanyl-proceeds-through-massachusetts-marijuana-dispensary/) — Newslinklive · 2026-02-12
+- [Tensions flare over cannabis testing lab treatment | WWLP](https://www.wwlp.com/news/massachusetts/tensions-flare-over-cannabis-testing-lab-treatment/) — Wwlp · 2026-02-12
 
 ---
 

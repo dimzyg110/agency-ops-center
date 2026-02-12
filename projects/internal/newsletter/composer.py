@@ -21,6 +21,24 @@ import html
 
 from data_contract import DATASET_FILES, GLASS_SCHEMA
 
+BLOCKED_DOMAINS = {
+    'dontlegalizedrugs.com',
+    'infowars.com',
+    'dailystormer.com',
+}
+
+NON_MA_PUBLICATION_DOMAINS = {
+    'rcbizjournal.com',
+    'hudsonvalley',
+    'njbiz.com',
+    'silive.com',
+}
+
+MA_LICENSE_KEYWORDS = {
+    'massachusetts', 'mass.', ' ma ', 'boston', 'cambridge', 'worcester',
+    'springfield', 'ccc', 'cannabis control commission', 'commonwealth',
+}
+
 
 # ============================================================================
 # Data Loading
@@ -261,7 +279,16 @@ def select_events(events: list[dict] | None, count: int = 5) -> list[dict]:
             pass
         return datetime.max  # Push unparseable dates to end
     
-    sorted_events = sorted(events, key=parse_event_date)
+    today = datetime.now().date()
+    future_events = []
+    for event in events:
+        parsed = parse_event_date(event)
+        if parsed == datetime.max:
+            continue
+        if parsed.date() >= today:
+            future_events.append(event)
+
+    sorted_events = sorted(future_events, key=parse_event_date)
     return sorted_events[:count]
 
 
@@ -312,6 +339,16 @@ def extract_demographic_card(market: dict | list | None) -> dict | None:
     return None
 
 
+def _is_blocked_or_non_ma_domain(url: str) -> bool:
+    url_lower = (url or '').lower()
+    return any(domain in url_lower for domain in (BLOCKED_DOMAINS | NON_MA_PUBLICATION_DOMAINS))
+
+
+def _is_ma_license_content(title: str, content: str) -> bool:
+    text = f" {title} {content} ".lower()
+    return any(keyword in text for keyword in MA_LICENSE_KEYWORDS)
+
+
 def extract_license_news(news: list[dict] | None, reddit: list[dict] | None) -> list[dict]:
     """Extract license-related news from available sources."""
     license_items = []
@@ -321,14 +358,22 @@ def extract_license_news(news: list[dict] | None, reddit: list[dict] | None) -> 
     # Check news
     if news:
         for item in news:
-            title = (item.get('title') or item.get('headline') or '').lower()
-            if any(kw in title for kw in license_keywords):
-                license_items.append({
-                    "title": item.get('title') or item.get('headline'),
-                    "url": item.get("url"),
-                    "source": item.get("source"),
-                    "published": item.get("published"),
-                })
+            title_raw = item.get('title') or item.get('headline') or ''
+            title = title_raw.lower()
+            content = (item.get('excerpt') or item.get('description') or item.get('content') or '').lower()
+            url = item.get('url') or ''
+            if not any(kw in title for kw in license_keywords):
+                continue
+            if _is_blocked_or_non_ma_domain(url):
+                continue
+            if not _is_ma_license_content(title, content):
+                continue
+            license_items.append({
+                "title": title_raw,
+                "url": url,
+                "source": item.get("source"),
+                "published": item.get("published"),
+            })
     
     # Check reddit
     if reddit:
@@ -786,26 +831,27 @@ def format_threat_radar(glass_data: dict) -> list[str]:
 
 
 def format_brand_movers(glass_data: dict) -> list[str]:
-    """Format GLASS Brand Movers section for the newsletter."""
+    """Format GLASS Strain Movers section for the newsletter."""
     lines: list[str] = []
     brand_data = glass_data.get("brand_movers", {})
-    if not brand_data or not brand_data.get("top_brands"):
+    top_strains = brand_data.get("top_strains", [])
+    if not brand_data or not top_strains:
         return []
 
-    lines.append("### 🏷️ BRAND MOVERS")
+    lines.append("### 🌿 STRAIN MOVERS")
     lines.append("")
-    lines.append("*Top brands by shelf presence across MA dispensary menus this week.*")
+    lines.append("*Top strains by shelf presence across MA dispensary menus this week.*")
     lines.append("")
 
-    for brand in brand_data["top_brands"][:10]:
+    for strain in top_strains[:10]:
         lines.append(
-            f"- **{brand['brand']}** — in {brand['store_count']} stores, "
-            f"avg ${brand['avg_price']:.2f}"
+            f"- **{strain['strain']}** — in {strain['store_count']} stores, "
+            f"avg ${strain['avg_price']:.2f}"
         )
 
-    total = brand_data.get("total_brands_tracked", 0)
+    total = brand_data.get("total_strains_tracked", 0)
     if total:
-        lines.append(f"\n*{total:,} total brands tracked across MA.*")
+        lines.append(f"\n*{total:,} total strains tracked across MA.*")
     lines.append("")
     return lines
 
@@ -914,7 +960,7 @@ def generate_markdown(data: dict[str, Any], week_date: str) -> str:
         lines.append("---")
         lines.append("")
 
-    # Brand Movers (NEW — GLASS powered)
+    # Strain Movers (NEW — GLASS powered)
     brand_lines = format_brand_movers(glass_data)
     if brand_lines:
         lines.extend(brand_lines)
