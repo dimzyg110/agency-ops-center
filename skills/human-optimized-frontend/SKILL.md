@@ -1,10 +1,7 @@
 ---
 name: human-optimized-frontend
-description: >
-  Generates a frontend interface that is visually pleasing and experientially sound by jointly optimizing
-  aesthetics, motion graphics, and user experience (UX) using quantified evaluation.
-  Use only when the user explicitly invokes this skill by name to redesign a frontend.
-  Trigger keywords: use human-optimized-frontend, redesign frontend, redesign interface.
+description: |-
+  Use when: redesigning an existing frontend with a focus on quantified evaluation, aesthetics, and motion metrics. Don't use when: building from scratch (use frontend-design-ultimate), extracting design (use frontend-design-extractor), or needing pure UX critique (use ui-ux-pro-max). Routing tree: "Building new site from scratch?" → frontend-design-ultimate; "Need UX critique or design tokens?" → ui-ux-pro-max; "Redesigning existing frontend with quantified eval?" → human-optimized-frontend; "Need design workflow (wireframe → theme → code)?" → frontend-design (superdesign); "Extracting design from existing codebase?" → frontend-design-extractor
 ---
 
 ## Activation Criteria

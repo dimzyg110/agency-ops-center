@@ -1,6 +1,7 @@
 ---
 name: frontend-design-extractor
-description: "Extract reusable UI/UX design systems from frontend codebases: design tokens, global styles, components, interaction patterns, and page templates. Use when analyzing any frontend repo (React/Vue/Angular/Next/Vite/etc.) to document or migrate UI/UX for reuse across projects. Focus on UI/UX only; explicitly ignore business logic and domain workflows."
+description: |-
+  Use when: extracting design from existing codebase (tokens, components, patterns). Don't use when: building from scratch (use frontend-design-ultimate) or redesigning (use human-optimized-frontend). Routing tree: "Building new site from scratch?" → frontend-design-ultimate; "Need UX critique or design tokens?" → ui-ux-pro-max; "Redesigning existing frontend with quantified eval?" → human-optimized-frontend; "Need design workflow (wireframe → theme → code)?" → frontend-design (superdesign); "Extracting design from existing codebase?" → frontend-design-extractor
 ---
 
 # Frontend Design Extractor

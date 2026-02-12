@@ -1,6 +1,7 @@
 ---
 name: theme-gen
-description: Generate a complete design system from brand colors using AI. Use when starting a new project or standardizing colors.
+description: |-
+  Use when: generating a design system from brand colors. Don't use when: need full site build (use frontend-design-ultimate).
 ---
 
 # Theme Generator

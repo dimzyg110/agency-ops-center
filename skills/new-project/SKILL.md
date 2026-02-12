@@ -1,6 +1,7 @@
 ---
 name: new-project
-description: Pipeline for validating, designing, and building new projects with quality gates
+description: |-
+  Use when: internal Roviq project or product idea needs validation. Don't use when: onboarding an external client (use client-onboarding).
 ---
 
 # New Project Pipeline Skill

@@ -53,6 +53,8 @@ Avoiding AI patterns is only half the job. Sterile, voiceless writing is just as
 
 **Acknowledge complexity.** Real humans have mixed feelings. "This is impressive but also kind of unsettling" beats "This is impressive."
 
+**Vary sentence length.** Have opinions. Be specific over vague.
+
 **Use "I" when it fits.** First person isn't unprofessional - it's honest. "I keep coming back to..." or "Here's what gets me..." signals a real person thinking.
 
 **Let some mess in.** Perfect structure feels algorithmic. Tangents, asides, and half-formed thoughts are human.
@@ -435,3 +437,20 @@ Provide:
 This skill is based on [Wikipedia:Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing), maintained by WikiProject AI Cleanup. The patterns documented there come from observations of thousands of instances of AI-generated text on Wikipedia.
 
 Key insight from Wikipedia: "LLMs use statistical algorithms to guess what should come next. The result tends toward the most statistically likely result that applies to the widest variety of cases."
+
+## COO Humanizer Gate
+
+### Step 5.5: ⛔ HUMANIZER GATE — Mandatory before delivery
+
+After reviews are synthesized and fixes applied, spawn one final agent:
+
+```javascript
+sessions_spawn(
+  task="Read the humanizer skill at skills/humanizer/SKILL.md. Then read [deliverable path]. Apply ALL 24 humanizer patterns to remove AI voice. Rewrite sections that sound generated. Keep meaning intact. Add personality where it's flat. Save the humanized version to the SAME file (overwrite). List changes made at the bottom of your response.",
+  label="humanizer-[task-name]",
+  model="google-antigravity/claude-opus-4-6-thinking"
+)
+```
+
+This is NOT optional. Every client-facing deliverable gets humanized before delivery.
+Skip this step = same as skipping reviews. Unacceptable.

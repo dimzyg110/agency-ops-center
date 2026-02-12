@@ -1,6 +1,7 @@
 ---
 name: frontend-design
-description: Expert frontend design guidelines for creating beautiful, modern UIs. Use when building landing pages, dashboards, or any user interface.
+description: |-
+  Use when: building new UI from scratch and need design workflow (layout → theme → animation → code). Don't use when: extracting design from existing code (use frontend-design-extractor) or need full production site (use frontend-design-ultimate). Routing tree: "Building new site from scratch?" → frontend-design-ultimate; "Need UX critique or design tokens?" → ui-ux-pro-max; "Redesigning existing frontend with quantified eval?" → human-optimized-frontend; "Need design workflow (wireframe → theme → code)?" → frontend-design (superdesign); "Extracting design from existing codebase?" → frontend-design-extractor
 metadata: {"clawdbot":{"emoji":"🎨"}}
 ---
 

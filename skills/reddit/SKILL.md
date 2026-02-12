@@ -1,6 +1,7 @@
 ---
 name: reddit
-description: Browse, search, post, and moderate Reddit. Read-only works without auth; posting/moderation requires OAuth setup.
+description: |-
+  Use when: Reddit-specific browsing, searching, or posting. Don't use when: general web search (use web_search).
 metadata: {"clawdbot":{"emoji":"📣","requires":{"bins":["node"]}}}
 ---
 

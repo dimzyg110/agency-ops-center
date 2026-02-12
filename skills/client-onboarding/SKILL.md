@@ -1,6 +1,7 @@
 ---
 name: client-onboarding
-description: Onboard new digital agency client with full project setup
+description: |-
+  Use when: new client identified, need folder structure + brief + research. Don't use when: existing client needs new deliverable (that's regular task execution).
 ---
 
 # CLIENT ONBOARDING

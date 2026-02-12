@@ -1,6 +1,7 @@
 ---
 name: byterover
-description: "Manages project knowledge using ByteRover context tree. Provides two operations: query (retrieve knowledge) and curate (store knowledge). Invoke when user requests information lookup, pattern discovery, or knowledge persistence. Developed by ByteRover Inc. (https://byterover.dev/)"
+description: |-
+  Use when: persisting patterns, conventions, or architectural decisions for a specific project. Don't use when: simple memory_search suffices. Developed by ByteRover Inc. (https://byterover.dev/)
 metadata:
   author: ByteRover Inc. (https://byterover.dev/)
   version: "1.2.1"

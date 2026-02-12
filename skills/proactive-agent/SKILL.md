@@ -1,7 +1,8 @@
 ---
 name: proactive-agent
 version: 1.2.3
-description: "Transform AI agents from task-followers into proactive partners that anticipate needs and continuously improve. Includes memory architecture with pre-compaction flush (so context survives when the window fills), reverse prompting (surfaces ideas you didn't know to ask for), security hardening, self-healing patterns (diagnoses and fixes its own issues), and alignment systems (stays on mission, remembers who it serves). Battle-tested patterns for agents that learn from every interaction and create value without being asked."
+description: |-
+  Use when: configuring an agent to be proactive (anticipate needs, self-heal, reverse-prompt). Don't use when: agent is already configured and running — this is a setup/architecture skill, not a runtime skill.
 ---
 
 # Proactive Agent

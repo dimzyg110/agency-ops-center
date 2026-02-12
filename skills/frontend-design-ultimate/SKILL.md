@@ -1,6 +1,7 @@
 ---
 name: frontend-design-ultimate
-description: Create distinctive, production-grade static sites with React, Tailwind CSS, and shadcn/ui — no mockups needed. Generates bold, memorable designs from plain text requirements with anti-AI-slop aesthetics, mobile-first responsive patterns, and single-file bundling. Use when building landing pages, marketing sites, portfolios, dashboards, or any static web UI. Supports both Vite (pure static) and Next.js (Vercel deploy) workflows.
+description: |-
+  Use when: building new site from scratch (landing pages, marketing sites, portfolios) using React/Tailwind/shadcn. Don't use when: redesigning existing frontend (use human-optimized-frontend), extracting design systems (use frontend-design-extractor), or need UX critique without code (use ui-ux-pro-max). Routing tree: "Building new site from scratch?" → frontend-design-ultimate; "Need UX critique or design tokens?" → ui-ux-pro-max; "Redesigning existing frontend with quantified eval?" → human-optimized-frontend; "Need design workflow (wireframe → theme → code)?" → frontend-design (superdesign); "Extracting design from existing codebase?" → frontend-design-extractor
 homepage: https://github.com/kesslerio/frontend-design-ultimate-clawhub-skill
 metadata:
   openclaw:

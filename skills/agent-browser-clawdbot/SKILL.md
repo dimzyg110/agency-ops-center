@@ -1,6 +1,6 @@
 ---
 name: agent-browser
-description: Headless browser automation CLI optimized for AI agents with accessibility tree snapshots and ref-based element selection
+description: Headless browser automation CLI optimized for AI agents with accessibility tree snapshots and ref-based element selection. Use when: automating web tasks via accessibility tree. Don't use when: simple page snapshots (use built-in browser tool) or complex testing workflows (use playwright-cli).
 metadata: {"clawdbot":{"emoji":"🌐","requires":{"commands":["agent-browser"]},"homepage":"https://github.com/vercel-labs/agent-browser"}}
 ---
 

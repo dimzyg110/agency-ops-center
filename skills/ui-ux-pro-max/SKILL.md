@@ -1,6 +1,7 @@
 ---
 name: ui-ux-pro-max
-description: UI/UX design intelligence and implementation guidance for building polished interfaces. Use when the user asks for UI design, UX flows, information architecture, visual style direction, design systems/tokens, component specs, copy/microcopy, accessibility, or to generate/critique/refine frontend UI (HTML/CSS/JS, React, Next.js, Vue, Svelte, Tailwind). Includes workflows for (1) generating new UI layouts and styling, (2) improving existing UI/UX, (3) producing design-system tokens and component guidelines, and (4) turning UX recommendations into concrete code changes.
+description: |-
+  Use when: user needs UX flows, information architecture, design critique, or design-system tokens. Don't use when: building a full static site (use frontend-design-ultimate) or redesigning an existing app (use human-optimized-frontend). Routing tree: "Building new site from scratch?" → frontend-design-ultimate; "Need UX critique or design tokens?" → ui-ux-pro-max; "Redesigning existing frontend with quantified eval?" → human-optimized-frontend; "Need design workflow (wireframe → theme → code)?" → frontend-design (superdesign); "Extracting design from existing codebase?" → frontend-design-extractor
 ---
 
 Follow these steps to deliver high-quality UI/UX output with minimal back-and-forth.

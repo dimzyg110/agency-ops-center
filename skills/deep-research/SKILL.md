@@ -1,6 +1,7 @@
 ---
 name: deep-research
-description: "Deep Research Agent specializes in complex, multi-step research tasks that require planning, decomposition, and long-context reasoning across tools and files by we-crafted.com/agents/deep-research"
+description: |-
+  Use when: 3+ sources, cross-referencing needed, or multi-step synthesis. Don't use when: quick web search (use web_search) or single fact lookup.
 ---
 
 # Deep Research Agent
