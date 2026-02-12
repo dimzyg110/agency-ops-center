@@ -109,6 +109,10 @@ _Curated patterns, preferences, and lessons. Updated weekly from daily logs._
 - **CamoFox HTTP API** at `localhost:9377` — the correct way to use CamoFox from scripts. Don't launch Playwright separately (conflicts with OpenClaw plugin). Endpoints: POST /tabs, GET /tabs/:id/snapshot, POST /tabs/:id/click, POST /tabs/:id/scroll, POST /tabs/:id/navigate, DELETE /tabs/:id. userId + sessionKey required.
 - **Scraper V2 working**: 293 products from 2 stores (Pure Oasis + NETA Brookline) inserted into prod DB. Pipeline: CamoFox HTTP API → snapshot → parse → normalize → upsert via pg. Runtime ~60s/store. Scripts at `projects/glass/src/scripts/scrape-dutchie.ts` + `scripts/lib/`.
 - **Kimi K2.5 for UX audits**: Good at comprehensive design specs, produced 1,060-line audit with color palettes, component hierarchy, onboarding flows. Use OpenRouter route (`openrouter/moonshotai/kimi-k2.5`).
-- **GLASS UX direction (pending review)**: "Bloomberg Terminal meets Apple", electric teal `#00F0C8`, "GLΛSS" wordmark, 60-second dispensary onboarding, landing page + newsletter + delivery waitlist + RSS. At `projects/glass/GLASS-UX-AUDIT.md`.
+- **GLASS UX direction (revised by Randy)**: Drop electric teal, go **black & white luxury** palette. Remove "connect your menu" (can't do yet). Add **Cue** (virtual budtender) — description + signup form. GLASS = pathway to Cue + Delivered + ecosystem tools. Don't oversell. Match Roviq site design language (`roviqai.xyz` — was blank when checked). Kimi's audit at `projects/glass/GLASS-UX-AUDIT.md` needs revision with these changes.
+- **Weedmaps scraper built and merged**: Parser + orchestrator + fixtures. 24 products from Diem Cannabis page 1 verified. All pushed to GitHub. Key files: `scripts/lib/weedmaps-parser.ts`, `scripts/scrape-weedmaps.ts`.
+- **CamoFox HTTP timeout fix**: 45s `AbortController` in `camofoxFetch`. Fixes orchestrator hangs for both Dutchie and Weedmaps. Commit `b7788b9`.
+- **DB pool close fix**: Both orchestrators now call `dbPool.end()` in `.finally()` to exit cleanly.
+- **15 GLASS commits pushed** to `Roviq-AI/glass.git` main (`20ecb02..b7788b9`).
 
-_Last updated: 2026-02-12 (3:52 AM UTC session)_
+_Last updated: 2026-02-12 (4:35 AM UTC session)_
