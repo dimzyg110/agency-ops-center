@@ -1,5 +1,5 @@
 # Newsletter Review Checklist - Week of February 12, 2026
-Generated: 2026-02-12 07:32:56
+Generated: 2026-02-12 11:58:11
 
 ## Data Sources
 [ ] News data loaded: ✓
@@ -27,15 +27,11 @@ Generated: 2026-02-12 07:32:56
 [ ] Mobile responsive layout verified
 
 ## Items to Verify
-[ ] TOP STORY: Rhode Island businesswoman sentenced to prison for laundering nearly $500,000 of her boyfriend’s fentanyl trafficking proceeds through Massachusetts marijuana dispensary
-    Link: https://fallriverreporter.com/rhode-island-businesswoman-sentenced-to-prison-for-laundering-nearly-500000-of-her-boyfriends-fentanyl-trafficking-proceeds-through-massachusetts-marijuana-dispensary/
-[ ] TOOL: Odoo ERP for Cannabis Production Industry | ThinkTech
-    Link: https://thethinktech.com/odoo-erp-for-cannabis-production/
-[ ] EVENT: CommCan - Homegrown Cannabis & Edibles in Massachusetts - 2026-01-05 - Massachusetts
-[ ] EVENT: Register - Vancouver 2026 | Grow Up Conference and Expo | presented by Quality Horticulture - 2026-01-19 - Massachusetts
-[ ] EVENT: Cannabis State Roundtable - National Governors Association - 2026-01-28 - Massachusetts
-[ ] EVENT: Proposed cannabis reforms get mixed reviews from bar | Massachusetts Lawyers Weekly - 2026-02-03 - Massachusetts
-[ ] EVENT: Massachusetts Adult-use Cannabis Sales Generated $1.65 Billion Total In 2025 - Cannabis Control Commission Massachusetts - 2026-04-01 - Massachusetts
+[ ] TOP STORY: Social consumption poised to bring change to Mass. cannabis industry - masslive.com
+    Link: https://www.masslive.com/westernmass/2026/02/outlook-2026-social-consumption-poised-to-bring-change-to-mass-cannabis-industry.html
+[ ] TOOL: Cheech and Chong's Cannabis Company Expands Retail Tech Stack With Flowhub Partnership | Morningstar
+    Link: https://www.morningstar.com/news/accesswire/1134952msn/cheech-and-chongs-cannabis-company-expands-retail-tech-stack-with-flowhub-partnership
+[ ] EVENT: Medical Practicum - CannMed 2026 - Innovation & Collaboration Summit | Lake Tahoe - 2026-06-16 - Massachusetts
 
 ## Sign-off
 [ ] Content approved by: _________________
