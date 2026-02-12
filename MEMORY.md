@@ -98,4 +98,7 @@ _Curated patterns, preferences, and lessons. Updated weekly from daily logs._
 - **Railway deploys: FAILED doesn't kill old deploy**: When a new Railway deploy fails, the previous successful deploy keeps running. The `railway logs` command shows the old deploy's logs. Check hostname in logs to verify which deploy is active.
 - **Skill setup improvements done** (Feb 12): 15 skill descriptions rewritten with routing trees, AGENTS.md slimmed (109 lines → skills), 3 new skills (deployment, git-workflow, newsletter), `fast-browser-use` deleted, `output/` dir created.
 
-_Last updated: 2026-02-12 (1:20 AM UTC session)_
+- **Dutchie scraper POC** (Feb 12): 235 MA dispensary slugs discovered via Firecrawl. Menu pages return 402 via Firecrawl — need CamoFox or JSON endpoint. Script at `projects/glass/src/scripts/scrape-dutchie-ma.ts`. Slug data at `scripts/dutchie-slugs.json`. Firecrawl API key in sandbox env as `FIRECRAWL_API_KEY`.
+- **Dutchie architecture**: ~60-70% of MA dispensaries use Dutchie. Embed URL pattern: `dutchie.com/api/v2/embedded-menu/{SLUG}.js`. Directory at `dutchie.com/us/dispensaries/ma-{city}`. GraphQL at `dutchie.com/graphql` (Cloudflare blocked). Dutchie+ API at `plus.dutchie.com/plus/2021-07/graphql` (requires Bearer auth). Daily scraping cadence is sufficient per Randy.
+
+_Last updated: 2026-02-12 (2:50 AM UTC session)_
