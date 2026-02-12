@@ -60,6 +60,9 @@ SECTION_ALIASES = {
     "quick hits": "quick_hits",
     "the number": "the_number",
     "margin tip": "margin_tip",
+    "price wire": "price_wire",
+    "threat radar": "threat_radar",
+    "brand movers": "brand_movers",
 }
 
 GENERIC_LINK_TITLES = {

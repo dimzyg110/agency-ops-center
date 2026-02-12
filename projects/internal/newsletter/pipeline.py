@@ -22,6 +22,7 @@ STAGES = [
     ("social", "scrapers/social_scraper.py", ["--limit", "20"]),
     ("tools", "scrapers/tools_scraper.py", []),
     ("ccc_ingest", "scrapers/ccc_ingest.py", []),
+    ("glass", "scrapers/glass_data_processor.py", []),
     ("market", "scrapers/market_data_processor.py", []),
     ("validate", "content_validator.py", []),
     ("compose", "composer.py", []),
@@ -29,11 +30,10 @@ STAGES = [
 ]
 
 # Stages that gate composition/distribution.
-# NOTE: No gate stages — all stages report issues but never block the pipeline.
-# The pipeline run report includes all quality/validation results for human review.
-GATE_STAGES: set[str] = set()
+# Validate is a gate: critical validation errors block the compose stage.
+GATE_STAGES: set[str] = {"validate"}
 
-OUTPUT_REQUIRED = {"news", "events", "social", "tools", "ccc_ingest", "market"}
+OUTPUT_REQUIRED = {"news", "events", "social", "tools", "ccc_ingest", "glass", "market"}
 
 
 @dataclass
@@ -354,14 +354,33 @@ def main() -> int:
         )
         results.append(result)
 
-        # Fail-fast: if a gate stage fails, stop the pipeline
+        # Quality gate enforcement: if a gate stage fails, stop the pipeline.
+        # This prevents producing a draft when critical validation errors exist.
         if name in GATE_STAGES and result.status == "failed":
             logging.error(
-                "Gate stage '%s' failed — stopping pipeline.",
+                "🚫 QUALITY GATE BLOCKED: Stage '%s' failed — stopping pipeline.",
                 name,
             )
+            logging.error(
+                "The pipeline will NOT produce a draft until these issues are resolved."
+            )
             if result.stdout:
-                logging.error("Validation output:\n%s", result.stdout)
+                # Try to extract and display the most important issues
+                try:
+                    report = json.loads(result.stdout)
+                    issues = report.get("issues", [])
+                    errors = [i for i in issues if i.get("severity") == "error"]
+                    warnings = [i for i in issues if i.get("severity") == "warning"]
+                    logging.error(
+                        "  Validation found %d error(s) and %d warning(s).",
+                        len(errors), len(warnings),
+                    )
+                    for issue in errors[:10]:
+                        logging.error("  ❌ %s", issue.get("message", str(issue)))
+                    if len(errors) > 10:
+                        logging.error("  ... and %d more errors.", len(errors) - 10)
+                except (json.JSONDecodeError, TypeError):
+                    logging.error("Validation output:\n%s", result.stdout[:2000])
             break
 
     run_report = {

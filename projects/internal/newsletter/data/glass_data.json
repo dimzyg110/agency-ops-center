@@ -1,0 +1,514 @@
+{
+  "generated_at": "2026-02-12T07:32:56.198614+00:00",
+  "status": "success",
+  "price_wire": {
+    "category_averages": [
+      {
+        "category": "flower",
+        "avg_price": 38.95,
+        "median_price": 30.0,
+        "observation_count": 8604,
+        "min_price": 5.25,
+        "max_price": 399.99
+      },
+      {
+        "category": "preroll",
+        "avg_price": 18.91,
+        "median_price": 12.0,
+        "observation_count": 5756,
+        "min_price": 5.25,
+        "max_price": 379.0
+      },
+      {
+        "category": "vape",
+        "avg_price": 34.89,
+        "median_price": 30.0,
+        "observation_count": 4615,
+        "min_price": 8.88,
+        "max_price": 249.0
+      },
+      {
+        "category": "edible",
+        "avg_price": 18.8,
+        "median_price": 20.0,
+        "observation_count": 3859,
+        "min_price": 5.25,
+        "max_price": 120.0
+      },
+      {
+        "category": "concentrate",
+        "avg_price": 43.07,
+        "median_price": 35.0,
+        "observation_count": 1651,
+        "min_price": 6.0,
+        "max_price": 350.0
+      }
+    ],
+    "biggest_drops": [
+      {
+        "product": "0.5g High Supply Sativa",
+        "brand": "Alpine Guava",
+        "category": "concentrate",
+        "price": 10.5,
+        "operator": "Clear Sky Belchertown",
+        "city": "northampton",
+        "category_avg": 43.07,
+        "pct_vs_avg": -75.6
+      },
+      {
+        "product": "1g High Supply Sativa",
+        "brand": "Chem X",
+        "category": "concentrate",
+        "price": 12.0,
+        "operator": "Clear Sky Belchertown",
+        "city": "northampton",
+        "category_avg": 43.07,
+        "pct_vs_avg": -72.1
+      },
+      {
+        "product": "Fried Ice Cream South Shore Plug Indica",
+        "brand": "Fried Ice Cream South Shore...",
+        "category": "flower",
+        "price": 12.0,
+        "operator": "Botera Franklin1",
+        "city": "uxbridge",
+        "category_avg": 38.95,
+        "pct_vs_avg": -69.2
+      },
+      {
+        "product": "Chemistry Preground South Shore Plug 7g...",
+        "brand": "Chemistry Preground South...",
+        "category": "flower",
+        "price": 12.0,
+        "operator": "Botera Franklin1",
+        "city": "uxbridge",
+        "category_avg": 38.95,
+        "pct_vs_avg": -69.2
+      },
+      {
+        "product": "Creamsicle Runtz South Shore Plug Hybrid",
+        "brand": "Creamsicle Runtz South Shore...",
+        "category": "flower",
+        "price": 12.0,
+        "operator": "Botera Franklin1",
+        "city": "uxbridge",
+        "category_avg": 38.95,
+        "pct_vs_avg": -69.2
+      },
+      {
+        "product": "Fire OG South Shore Plug Hybrid",
+        "brand": "Fire OG South Shore Plug...",
+        "category": "flower",
+        "price": 12.0,
+        "operator": "Botera Franklin1",
+        "city": "uxbridge",
+        "category_avg": 38.95,
+        "pct_vs_avg": -69.2
+      },
+      {
+        "product": "Banana OG South Shore Plug Indica",
+        "brand": "Banana OG South Shore Plug...",
+        "category": "flower",
+        "price": 12.0,
+        "operator": "Botera Franklin1",
+        "city": "uxbridge",
+        "category_avg": 38.95,
+        "pct_vs_avg": -69.2
+      },
+      {
+        "product": "Berry Gelato Shake South Shore Plug 7g...",
+        "brand": "Berry Gelato Shake South...",
+        "category": "flower",
+        "price": 12.0,
+        "operator": "Botera Franklin1",
+        "city": "uxbridge",
+        "category_avg": 38.95,
+        "pct_vs_avg": -69.2
+      }
+    ],
+    "biggest_increases": [
+      {
+        "product": "28pk No.9 Collection Hybrid",
+        "brand": "Doob Cube Max",
+        "category": "preroll",
+        "price": 150.0,
+        "operator": "Apex Noire",
+        "city": "allston",
+        "category_avg": 18.91,
+        "pct_vs_avg": 693.1
+      },
+      {
+        "product": "No.9 Collection Hybrid",
+        "brand": "Doob Cube MAX Pre-Roll...",
+        "category": "preroll",
+        "price": 140.0,
+        "operator": "Elevated Roots",
+        "city": "abington",
+        "category_avg": 18.91,
+        "pct_vs_avg": 640.2
+      },
+      {
+        "product": "No.9 Collection Hybrid",
+        "brand": "Doob Cube MAX Pre-Roll...",
+        "category": "preroll",
+        "price": 140.0,
+        "operator": "Elevate 118",
+        "city": "plymouth",
+        "category_avg": 18.91,
+        "pct_vs_avg": 640.2
+      },
+      {
+        "product": "NYC Haze Smash Hits Hybrid Smash Hits Cannabis",
+        "brand": "Chem''s Smash Stash",
+        "category": "preroll",
+        "price": 135.0,
+        "operator": "Canna Provisions",
+        "city": "great-barrington",
+        "category_avg": 18.91,
+        "pct_vs_avg": 613.8
+      },
+      {
+        "product": "NYC Haze Smash Hits Hybrid Smash Hits Cannabis",
+        "brand": "Chem''s Smash Stash",
+        "category": "preroll",
+        "price": 135.0,
+        "operator": "Canna Provisions Holyoke",
+        "city": "amherst",
+        "category_avg": 18.91,
+        "pct_vs_avg": 613.8
+      },
+      {
+        "product": "Biscotti x Sherb - Pre-Roll - 0.5g/28pk Biscotti...",
+        "brand": "Biscotti x Sherb - Pre-Roll -...",
+        "category": "preroll",
+        "price": 86.0,
+        "operator": "Cal Verde Naturals Llc Belmont",
+        "city": "boston",
+        "category_avg": 18.91,
+        "pct_vs_avg": 354.7
+      },
+      {
+        "product": "Doob Cube Micro Magnum Pre-Roll Variety 28pk",
+        "brand": "Doob Cube Micro Magnum...",
+        "category": "preroll",
+        "price": 85.0,
+        "operator": "Elevate 118",
+        "city": "plymouth",
+        "category_avg": 18.91,
+        "pct_vs_avg": 349.4
+      },
+      {
+        "product": "Smash Hits - Blueberry Muffin & GG #4 Smash Hits...",
+        "brand": "Indica Half Stash",
+        "category": "preroll",
+        "price": 80.0,
+        "operator": "Canna Provisions",
+        "city": "great-barrington",
+        "category_avg": 18.91,
+        "pct_vs_avg": 323.0
+      }
+    ],
+    "total_observations": 24485
+  },
+  "threat_radar": {
+    "new_operators": [
+      {
+        "name": "Baked Cannabis",
+        "city": "Boston",
+        "state": "MA",
+        "platform": "dutchie",
+        "detected_date": "2026-02-12"
+      },
+      {
+        "name": "Berkshire Roots East Boston",
+        "city": "Boston",
+        "state": "MA",
+        "platform": "dutchie",
+        "detected_date": "2026-02-12"
+      },
+      {
+        "name": "Alternative Therapies Group Amesbury",
+        "city": "Haverhill",
+        "state": "MA",
+        "platform": "dutchie",
+        "detected_date": "2026-02-12"
+      },
+      {
+        "name": "Pure Oasis Dtx",
+        "city": "Boston",
+        "state": "MA",
+        "platform": "dutchie",
+        "detected_date": "2026-02-12"
+      },
+      {
+        "name": "311 Page Springfield",
+        "city": "Northampton",
+        "state": "MA",
+        "platform": "dutchie",
+        "detected_date": "2026-02-12"
+      },
+      {
+        "name": "Apex Noire",
+        "city": "Allston",
+        "state": "MA",
+        "platform": "weedmaps",
+        "detected_date": "2026-02-12"
+      },
+      {
+        "name": "Pure Oasis LLC",
+        "city": "Allston",
+        "state": "MA",
+        "platform": "weedmaps",
+        "detected_date": "2026-02-12"
+      },
+      {
+        "name": "6 Brickss Springfield",
+        "city": "Northampton",
+        "state": "MA",
+        "platform": "dutchie",
+        "detected_date": "2026-02-12"
+      },
+      {
+        "name": "Ack Natural",
+        "city": "Nantucket",
+        "state": "MA",
+        "platform": "dutchie",
+        "detected_date": "2026-02-12"
+      },
+      {
+        "name": "Advesa Ma Inc Dba Blue River Terps Cambridge",
+        "city": "Boston",
+        "state": "MA",
+        "platform": "dutchie",
+        "detected_date": "2026-02-12"
+      },
+      {
+        "name": "Advesa Ma Inc Dba Blue River Terps Somerville",
+        "city": "Boston",
+        "state": "MA",
+        "platform": "dutchie",
+        "detected_date": "2026-02-12"
+      },
+      {
+        "name": "Alternative Compassion Services Hull",
+        "city": "Boston",
+        "state": "MA",
+        "platform": "dutchie",
+        "detected_date": "2026-02-12"
+      },
+      {
+        "name": "Alternative Compassion Services Hull Rec",
+        "city": "Boston",
+        "state": "MA",
+        "platform": "dutchie",
+        "detected_date": "2026-02-12"
+      },
+      {
+        "name": "Alternative Therapies Group Salem",
+        "city": "Boston",
+        "state": "MA",
+        "platform": "dutchie",
+        "detected_date": "2026-02-12"
+      },
+      {
+        "name": "Alternative Therapies Group Salisbury",
+        "city": "Haverhill",
+        "state": "MA",
+        "platform": "dutchie",
+        "detected_date": "2026-02-12"
+      },
+      {
+        "name": "Amp Adult Retail Salem",
+        "city": "Boston",
+        "state": "MA",
+        "platform": "dutchie",
+        "detected_date": "2026-02-12"
+      },
+      {
+        "name": "Apothca Arlington",
+        "city": "Boston",
+        "state": "MA",
+        "platform": "dutchie",
+        "detected_date": "2026-02-12"
+      },
+      {
+        "name": "Ayr Dispensary Back Bay",
+        "city": "Boston",
+        "state": "MA",
+        "platform": "dutchie",
+        "detected_date": "2026-02-12"
+      },
+      {
+        "name": "Ayr Dispensary Watertown",
+        "city": "Boston",
+        "state": "MA",
+        "platform": "dutchie",
+        "detected_date": "2026-02-12"
+      },
+      {
+        "name": "Firebrand Cannabis",
+        "city": "Boston",
+        "state": "MA",
+        "platform": "dutchie",
+        "detected_date": "2026-02-12"
+      }
+    ],
+    "new_operator_count": 20,
+    "active_threats": [
+      {
+        "type": "price_war",
+        "severity": "critical",
+        "entity": "Worcester Cluster",
+        "description": "Three Worcester-area menus dropped eighth pricing below $32 on weekends, compressing margin benchmarks for mid-shelf flower.",
+        "source_url": "https://dutchie.com/dispensaries/worcester-ma",
+        "detected_date": "2026-02-11"
+      },
+      {
+        "type": "new_competitor",
+        "severity": "high",
+        "entity": "New Adult-Use Retail Applicant - Kendall Square",
+        "description": "Host community agreement filed for a new adult-use retailer near Kendall Square, increasing premium flower competition in Cambridge/Somerville corridors.",
+        "source_url": "https://masscannabiscontrol.com/licensing-tracker/",
+        "detected_date": "2026-02-10"
+      },
+      {
+        "type": "supply_disruption",
+        "severity": "high",
+        "entity": "Berkshire Distribution Lane",
+        "description": "Adverse weather and carrier delays reduced weekly inbound concentrate shipments into western MA retailers.",
+        "source_url": "https://www.mass.gov/orgs/massachusetts-department-of-transportation",
+        "detected_date": "2026-02-10"
+      },
+      {
+        "type": "enforcement",
+        "severity": "medium",
+        "entity": "Boston Metro Compliance Sweep",
+        "description": "Local inspectors increased spot checks on promotional claims and test label visibility across Boston-area storefronts.",
+        "source_url": "https://www.boston.gov/",
+        "detected_date": "2026-02-09"
+      },
+      {
+        "type": "regulation",
+        "severity": "medium",
+        "entity": "Massachusetts Cannabis Control Commission",
+        "description": "Draft guidance signals tighter packaging disclosure enforcement for infused products, likely increasing relabeling costs for edibles.",
+        "source_url": "https://masscannabiscontrol.com/",
+        "detected_date": "2026-02-08"
+      },
+      {
+        "type": "price_war",
+        "severity": "low",
+        "entity": "Lowell/North Shore Value Segment",
+        "description": "Sustained bundle discounts on prerolls and gummies detected across Lowell and Salem, pressuring basket-level gross margin.",
+        "source_url": "https://www.iheartjane.com/",
+        "detected_date": "2026-02-07"
+      }
+    ],
+    "active_threat_count": 6,
+    "new_operator_count_total": 484
+  },
+  "brand_movers": {
+    "top_brands": [
+      {
+        "brand": "Blue Dream",
+        "store_count": 19,
+        "product_observations": 37,
+        "avg_price": 33.4
+      },
+      {
+        "brand": "Pineapple Express",
+        "store_count": 17,
+        "product_observations": 34,
+        "avg_price": 33.75
+      },
+      {
+        "brand": "Acapulco Gold",
+        "store_count": 16,
+        "product_observations": 23,
+        "avg_price": 37.24
+      },
+      {
+        "brand": "Blueberry",
+        "store_count": 14,
+        "product_observations": 17,
+        "avg_price": 21.82
+      },
+      {
+        "brand": "Strawberry Cough",
+        "store_count": 13,
+        "product_observations": 15,
+        "avg_price": 48.27
+      },
+      {
+        "brand": "Good Chemistry",
+        "store_count": 13,
+        "product_observations": 31,
+        "avg_price": 38.63
+      },
+      {
+        "brand": "Khalifa Kush",
+        "store_count": 13,
+        "product_observations": 23,
+        "avg_price": 32.96
+      },
+      {
+        "brand": "Sour Diesel",
+        "store_count": 13,
+        "product_observations": 20,
+        "avg_price": 33.45
+      },
+      {
+        "brand": "Elderflower",
+        "store_count": 12,
+        "product_observations": 15,
+        "avg_price": 37.1
+      },
+      {
+        "brand": "Khalifa Mints",
+        "store_count": 12,
+        "product_observations": 14,
+        "avg_price": 33.21
+      },
+      {
+        "brand": "Northern Lights",
+        "store_count": 12,
+        "product_observations": 15,
+        "avg_price": 34.63
+      },
+      {
+        "brand": "Super Boof",
+        "store_count": 12,
+        "product_observations": 20,
+        "avg_price": 31.55
+      },
+      {
+        "brand": "White Widow",
+        "store_count": 12,
+        "product_observations": 23,
+        "avg_price": 33.91
+      },
+      {
+        "brand": "Space Queen",
+        "store_count": 11,
+        "product_observations": 21,
+        "avg_price": 43.29
+      },
+      {
+        "brand": "Double Krush",
+        "store_count": 11,
+        "product_observations": 15,
+        "avg_price": 27.47
+      }
+    ],
+    "total_brands_tracked": 15326
+  },
+  "market_stats": {
+    "total_operators": 492,
+    "active_operators": 10,
+    "total_products": 24147,
+    "price_observations_7d": 25564,
+    "total_price_observations": 25565,
+    "operators_with_prices_7d": 86,
+    "categories_tracked": 7
+  }
+}

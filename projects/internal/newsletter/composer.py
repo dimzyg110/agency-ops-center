@@ -19,7 +19,7 @@ from pathlib import Path
 from typing import Any, Optional
 import html
 
-from data_contract import DATASET_FILES
+from data_contract import DATASET_FILES, GLASS_SCHEMA
 
 
 # ============================================================================
@@ -50,6 +50,7 @@ def load_all_data(data_dir: Path) -> dict[str, Any]:
     reddit_raw = load_json_file(data_dir / DATASET_FILES["reddit"])
     tools_raw = load_json_file(data_dir / DATASET_FILES["tools"])
     market_raw = load_json_file(data_dir / DATASET_FILES["market"])
+    glass_raw = load_json_file(data_dir / DATASET_FILES["glass"])
     
     # Extract lists from nested structures
     data = {
@@ -58,6 +59,7 @@ def load_all_data(data_dir: Path) -> dict[str, Any]:
         'reddit': reddit_raw.get('posts', []) if isinstance(reddit_raw, dict) else (reddit_raw or []),
         'tools': tools_raw.get('tools', []) if isinstance(tools_raw, dict) else (tools_raw or []),
         'market': market_raw if isinstance(market_raw, dict) else {},
+        'glass': glass_raw if isinstance(glass_raw, dict) else {},
     }
     
     return data
@@ -121,13 +123,24 @@ def score_news_item(item: dict) -> float:
     
     # ── Source quality ──
     source = (item.get('source') or '').lower()
+    url = (item.get('url') or '').lower()
     ma_sources = ['masslive', 'boston globe', 'boston.com', 'wbur', 'wcvb', 'nbc boston']
     national_sources = ['marijuana moment', 'mjbizdaily', 'cannabis business times']
     if any(s in source for s in ma_sources):
         score += 20
     elif any(s in source for s in national_sources):
         score += 8
-    
+
+    # ── Penalize non-MA regional publications that might slip through ──
+    non_ma_domains = ['rcbizjournal.com', 'hudsonvalley', 'njbiz.com', 'silive.com']
+    if any(d in url for d in non_ma_domains):
+        score -= 60  # Heavy penalty — these are not MA content
+
+    # ── Penalize dubious sources ──
+    blocked_sources = ['dontlegalizedrugs', 'infowars', 'dailystormer']
+    if any(d in url for d in blocked_sources):
+        score -= 100
+
     # ── Engagement signals ──
     score += item.get('engagement', 0) * 0.1
     score += item.get('shares', 0) * 0.5
@@ -652,6 +665,151 @@ def format_event(event: dict) -> str:
 # Newsletter Generation
 # ============================================================================
 
+def format_price_wire(glass_data: dict) -> list[str]:
+    """Format GLASS Price Wire section for the newsletter.
+
+    Shows MA average prices by category, biggest drops, biggest increases.
+    """
+    lines: list[str] = []
+    price_wire = glass_data.get("price_wire", {})
+    if not price_wire or not price_wire.get("category_averages"):
+        return []
+
+    lines.append("### 📊 PRICE WIRE")
+    lines.append("")
+    lines.append("*Live pricing from 490+ MA dispensary menus, updated daily via GLASS.*")
+    lines.append("")
+
+    # Category averages table
+    lines.append("| Category | Avg Price | Median | Observations |")
+    lines.append("|----------|----------|--------|-------------|")
+
+    category_labels = {
+        "flower": "🌿 Flower",
+        "edible": "🍫 Edibles",
+        "vape": "💨 Vapes",
+        "concentrate": "💎 Concentrates",
+        "preroll": "🚬 Pre-Rolls",
+    }
+
+    for cat in price_wire["category_averages"]:
+        label = category_labels.get(cat["category"], cat["category"].title())
+        lines.append(
+            f"| {label} | **${cat['avg_price']:.2f}** | "
+            f"${cat['median_price']:.2f} | {cat['observation_count']:,} |"
+        )
+
+    total_obs = price_wire.get("total_observations", 0)
+    lines.append("")
+    lines.append(f"*Based on {total_obs:,} price observations this week.*")
+    lines.append("")
+
+    # Biggest drops (deals)
+    drops = price_wire.get("biggest_drops", [])
+    if drops:
+        lines.append("**💥 BIGGEST VALUE FINDS:**")
+        for item in drops[:5]:
+            pct = abs(item.get("pct_vs_avg", 0))
+            lines.append(
+                f"- {item['brand']} {item['product']} at {item['operator']} "
+                f"({item['city'].title()}): **${item['price']:.2f}** "
+                f"({pct:.0f}% below {item['category']} avg)"
+            )
+        lines.append("")
+
+    # Biggest increases (premium)
+    increases = price_wire.get("biggest_increases", [])
+    if increases:
+        lines.append("**📈 PREMIUM SHELF:**")
+        for item in increases[:3]:
+            pct = item.get("pct_vs_avg", 0)
+            lines.append(
+                f"- {item['brand']} {item['product']} at {item['operator']} "
+                f"({item['city'].title()}): **${item['price']:.2f}** "
+                f"(+{pct:.0f}% above {item['category']} avg)"
+            )
+        lines.append("")
+
+    return lines
+
+
+def format_threat_radar(glass_data: dict) -> list[str]:
+    """Format GLASS Threat Radar section for the newsletter.
+
+    Shows new competitors detected, active threats, enforcement activity.
+    """
+    lines: list[str] = []
+    threat_data = glass_data.get("threat_radar", {})
+    if not threat_data:
+        return []
+
+    new_ops = threat_data.get("new_operators", [])
+    threats = threat_data.get("active_threats", [])
+
+    if not new_ops and not threats:
+        return []
+
+    lines.append("### 🔴 THREAT RADAR")
+    lines.append("")
+
+    # New operators detected
+    new_count = threat_data.get("new_operator_count", 0)
+    if new_count > 0:
+        lines.append(f"**{new_count} new dispensaries detected this week on MA menus.**")
+        lines.append("")
+        for op in new_ops[:8]:
+            lines.append(f"- **{op['name']}** — {op['city']}, {op['state']}")
+        if new_count > 8:
+            lines.append(f"- *...and {new_count - 8} more*")
+        lines.append("")
+
+    # Active threats
+    if threats:
+        severity_emoji = {
+            "critical": "🔴",
+            "high": "🟠",
+            "medium": "🟡",
+            "low": "🟢",
+        }
+        lines.append("**ACTIVE ALERTS:**")
+        for threat in threats[:5]:
+            emoji = severity_emoji.get(threat.get("severity", ""), "⚪")
+            desc = threat.get("description", "")
+            if len(desc) > 120:
+                desc = desc[:120].rsplit(" ", 1)[0] + "..."
+            lines.append(
+                f"- {emoji} **{threat.get('entity', 'Unknown')}** [{threat['type']}]: {desc}"
+            )
+        lines.append("")
+
+    return lines
+
+
+def format_brand_movers(glass_data: dict) -> list[str]:
+    """Format GLASS Brand Movers section for the newsletter."""
+    lines: list[str] = []
+    brand_data = glass_data.get("brand_movers", {})
+    if not brand_data or not brand_data.get("top_brands"):
+        return []
+
+    lines.append("### 🏷️ BRAND MOVERS")
+    lines.append("")
+    lines.append("*Top brands by shelf presence across MA dispensary menus this week.*")
+    lines.append("")
+
+    for brand in brand_data["top_brands"][:10]:
+        lines.append(
+            f"- **{brand['brand']}** — in {brand['store_count']} stores, "
+            f"avg ${brand['avg_price']:.2f}"
+        )
+
+    total = brand_data.get("total_brands_tracked", 0)
+    if total:
+        lines.append(f"\n*{total:,} total brands tracked across MA.*")
+    lines.append("")
+    return lines
+
+
 def generate_markdown(data: dict[str, Any], week_date: str) -> str:
     """Generate the newsletter in Markdown format."""
     
@@ -665,6 +823,15 @@ def generate_markdown(data: dict[str, Any], week_date: str) -> str:
     license_news = extract_license_news(data['news'], data['reddit'])
     big_number, number_context = extract_big_number(data['market'], data['news'])
     margin_tip = generate_margin_tip(data['reddit'], data['tools'])
+    glass_data = data.get('glass', {})
+
+    # Enhance THE NUMBER with GLASS market stats if available
+    market_stats = glass_data.get("market_stats", {})
+    if market_stats and big_number == "N/A":
+        total_ops = market_stats.get("total_operators", 0)
+        if total_ops:
+            big_number = f"{total_ops:,}"
+            number_context = "dispensaries tracked across Massachusetts menus via GLASS"
     
     # Build newsletter
     lines = []
@@ -676,6 +843,13 @@ def generate_markdown(data: dict[str, Any], week_date: str) -> str:
     lines.append("")
     lines.append("---")
     lines.append("")
+    
+    # Price Wire (NEW — GLASS powered, leads the newsletter)
+    price_wire_lines = format_price_wire(glass_data)
+    if price_wire_lines:
+        lines.extend(price_wire_lines)
+        lines.append("---")
+        lines.append("")
     
     # Top Story
     lines.append("### 🔥 TOP STORY")
@@ -732,6 +906,20 @@ def generate_markdown(data: dict[str, Any], week_date: str) -> str:
         lines.append("")
     lines.append("---")
     lines.append("")
+
+    # Threat Radar (NEW — GLASS powered)
+    threat_lines = format_threat_radar(glass_data)
+    if threat_lines:
+        lines.extend(threat_lines)
+        lines.append("---")
+        lines.append("")
+
+    # Brand Movers (NEW — GLASS powered)
+    brand_lines = format_brand_movers(glass_data)
+    if brand_lines:
+        lines.extend(brand_lines)
+        lines.append("---")
+        lines.append("")
 
     # Demographic & Equity Signal
     lines.append("### 🌍 DEMOGRAPHIC & EQUITY SIGNAL")
@@ -906,10 +1094,12 @@ def generate_markdown(data: dict[str, Any], week_date: str) -> str:
     lines.append("")
     lines.append("*The Operator's Margin Report is written for dispensary operators who are tired of generic industry news. Every number is sourced. Every tip is actionable.*")
     lines.append("")
+    lines.append("*Powered by [GLASS](https://glass.roviq.com) — real-time price intelligence from 490+ MA dispensary menus.*")
+    lines.append("")
     lines.append("Got a question? A tip? Reply to this email.")
     lines.append("")
-    lines.append("— The Margin Report Team")
-    lines.append("*Published weekly by Roviq · Boston, MA*")
+    lines.append("*The Operator's Margin Report is published by Roviq — AI-powered intelligence for cannabis operators.*")
+    lines.append("*Boston, MA · [roviq.com](https://roviq.com)*")
     
     return "\n".join(lines)
 

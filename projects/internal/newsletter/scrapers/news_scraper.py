@@ -49,6 +49,23 @@ JUNK_TITLE_PATTERNS = [
     "bill tracker", "login instructions",
 ]
 
+# Blocked domains — non-credible or misleading sources
+BLOCKED_DOMAINS = [
+    "dontlegalizedrugs.com",
+    "dailystormer.com",
+    "infowars.com",
+]
+
+# Domains that indicate NON-MA content (wrong state publications)
+NON_MA_PUBLICATION_DOMAINS = [
+    "rcbizjournal.com",       # Rockland County (NY) Business Journal
+    "hudsonvalley360.com",    # Hudson Valley, NY
+    "njbiz.com",              # New Jersey
+    "ctpost.com",             # Connecticut
+    "nj.com",                 # New Jersey
+    "silive.com",             # Staten Island, NY
+]
+
 MA_KEYWORDS = [
     "massachusetts", "boston", "cambridge", "worcester", "springfield",
     "mass.", "mass ", "ccc", "ma ", " ma",
@@ -56,9 +73,20 @@ MA_KEYWORDS = [
 
 
 def is_junk(result: dict) -> bool:
-    """Filter out navigation pages, about pages, etc."""
+    """Filter out navigation pages, about pages, blocked domains, etc."""
     url = result.get("url", "").lower()
     title = result.get("title", "").lower()
+    domain = result.get("domain", "").lower()
+
+    # Block non-credible sources entirely
+    for blocked in BLOCKED_DOMAINS:
+        if blocked in domain or blocked in url:
+            return True
+
+    # Block non-MA regional publications (e.g., Rockland County NY)
+    for non_ma in NON_MA_PUBLICATION_DOMAINS:
+        if non_ma in domain:
+            return True
 
     for pattern in JUNK_URL_PATTERNS:
         if pattern in url:
