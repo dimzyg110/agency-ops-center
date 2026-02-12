@@ -229,5 +229,13 @@ _Curated patterns, preferences, and lessons. Updated weekly from daily logs._
 - **CH driver program spec'd**: $512/mo, 4.7x ROI. Cue expansion to drivers validated.
 
 - **Codex subagent JSON escaping bug**: Large multi-line TypeScript file writes via `edit` tool crash with "Unterminated string in JSON" error. Workaround: use `write` for new files, break schema changes into smaller chunks, or use shell commands for complex edits.
+- **Gemini 2.5 Flash = new cheap workhorse**: $0.15/$0.60 per M tokens, 1M context, reasoning. Built a 542-line React component in 52s for $0.05. 33x cheaper than Opus on input. Use for: reviews, frontend builds, bulk tasks.
+- **Gemini agents inject stray unicode**: Gemini 2.5 Flash/Pro can inject random unicode characters (e.g., Arabic `رو`) into code edits. Always verify output of Gemini-spawned file edits.
+- **Gemini agents assume APIs exist**: Unlike Codex/Opus which check first, Gemini agents assume helper functions exist without verifying. Add explicit "verify this function exists or create it" to task descriptions.
+- **OpenRouter credits deplete silently**: Agents fail with 402 on first API call. No warning. GLM-5 and Kimi K2.5 (OpenRouter route) both affected. NVIDIA free tier also flaky — DeepSeek R1 returns empty responses. Always have fallback model (Google Gemini, Anthropic) ready.
+- **Google AI provider configured**: `google-generative-ai` API type, models at `google/gemini-2.5-pro` and `google/gemini-2.5-flash`. API key from Randy's Google AI Studio.
+- **glassintel.xyz**: GLASS production domain (used in outreach emails). Needs verification with Randy that this is correct and deployed.
+- **Public report card endpoint**: `GET /api/v1/public/report-card/:slug` — slug-based lookup, 10 req/min rate limit, redacted data (market_avg zeroed, competitor names removed). Frontend at `/report/:slug`.
+- **Outreach batch 1**: 25 personalized emails at `projects/glass/outreach/emails-batch-1.md`. 22 unique recipients. Real per-category pricing data. Reviewed 8/10 + 9/10. Minor revisions needed (#25 weak data, #23 tone, #11 duplicate, URL verification).
 
-_Last updated: 2026-02-12 (6:58 PM UTC session)_
+_Last updated: 2026-02-12 (11:00 PM UTC session)_
