@@ -81,6 +81,11 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument("--dry-run", action="store_true", help="Show what would run")
     parser.add_argument("--verbose", action="store_true", help="Verbose logging")
+    parser.add_argument(
+        "--publish-beehiiv",
+        action="store_true",
+        help="After composing, create a draft post on Beehiiv for review",
+    )
     return parser.parse_args()
 
 
@@ -408,9 +413,65 @@ def main() -> int:
     print(json.dumps(run_report["summary"], ensure_ascii=False, indent=2))
     print(f"Pipeline report written to {output_path}")
 
+    # ------------------------------------------------------------------
+    # Optional Beehiiv publishing
+    # ------------------------------------------------------------------
+    if args.publish_beehiiv and not args.dry_run:
+        _publish_to_beehiiv(base_dir, results)
+
     if any(r.status == "failed" for r in results):
         return 1
     return 0
+
+
+def _publish_to_beehiiv(base_dir: Path, results: List[StageResult]) -> None:
+    """Create a draft post on Beehiiv from the latest composed newsletter."""
+    import os
+
+    api_key = os.environ.get("BEEHIIV_API_KEY", "")
+    pub_id = os.environ.get("BEEHIIV_PUBLICATION_ID", "")
+
+    if not api_key or not pub_id:
+        logging.error(
+            "🔴 BEEHIIV: Set BEEHIIV_API_KEY and BEEHIIV_PUBLICATION_ID env vars to publish."
+        )
+        return
+
+    # Find the latest HTML draft
+    today = utc_now().date().isoformat()
+    html_path = base_dir / "drafts" / f"newsletter_{today}.html"
+    if not html_path.exists():
+        logging.error("🔴 BEEHIIV: No HTML draft found at %s", html_path)
+        return
+
+    try:
+        from beehiiv_client import BeehiivClient, BeehiivError
+    except ImportError:
+        logging.error("🔴 BEEHIIV: Could not import beehiiv_client module.")
+        return
+
+    html_content = html_path.read_text(encoding="utf-8")
+    title = f"The Operator's Margin Report — Week of {utc_now().strftime('%B %d, %Y')}"
+
+    client = BeehiivClient(api_key, pub_id)
+    try:
+        post = client.create_post(
+            title=title,
+            content_html=html_content,
+            subtitle="Survival intel for Massachusetts cannabis operators.",
+            status="draft",
+        )
+        print(f"✅ BEEHIIV: Draft created — review at https://app.beehiiv.com/dashboard")
+        logging.info("Beehiiv draft post ID: %s", post.get("id"))
+    except BeehiivError as e:
+        if e.code == "SEND_API_DISABLED":
+            print(
+                "⚠️  BEEHIIV: Post creation requires Scale plan. "
+                "Copy the HTML from the drafts/ folder into Beehiiv manually.\n"
+                f"   Draft: {html_path}"
+            )
+        else:
+            logging.error("🔴 BEEHIIV publish failed: %s", e)
 
 
 if __name__ == "__main__":
