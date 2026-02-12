@@ -1,32 +1,63 @@
 # Dashboard
 
-**Last updated:** 2026-02-11
+**Last updated:** 2026-02-12 (8:55 PM UTC)
 
 ---
 
 ## Active Build: GLASS
 
-**Status:** Phase 2 + Phase 4 complete, reviews in progress
+**Status:** Live at glassintel.xyz — Phases 0-4 on main, Phases 3+5 on branches ready to merge
 **Repo:** `github.com/Roviq-AI/glass` (private)
+**Deploy:** Railway (glass-api + glass-web)
 
 ### Phase Status
 
 | Phase | What | Status |
 |-------|------|--------|
 | 0 | Contracts, CI, ownership | ✅ Done |
-| 1 | Backend skeleton, DB schema, frontend shell, auth | ✅ Done |
-| 2 | Scraping core (Firecrawl, Playwright, BullMQ) | ✅ Merged (PR #8) |
-| 4 | Threat Radar intelligence (CCC ingest, scoring) | 🔄 PR #9 — dual review in progress |
-| 3 | Price Wire + Morning Brief | ⬜ Next |
-| 5 | Margin Engine v1 | ⬜ Queued |
-| 6 | Pilot + hardening | ⬜ Queued |
+| 1 | Backend skeleton, DB schema, frontend shell, auth | ✅ Done + Phase 1 CCC tables/scores deploying |
+| 2 | Scraping core (Firecrawl, Playwright, BullMQ) | ✅ Merged — 100,849 products from 517 dispensaries |
+| 4 | Threat Radar intelligence (CCC ingest, scoring) | ✅ Merged (PR #9) |
+| 3 | Price Wire + Morning Brief | 🔄 Built on branches (`codex/phase3-pricewire` + `kimi/phase3-morning-brief`) — reviewed, ready to merge |
+| 5 | Margin Engine v1 | 🔄 Built on branch (`opus/phase5-margin-engine`) — reviewed, ready to merge |
+| 6 | Pilot + hardening | ⬜ Next — need 7 days stable scraping |
 
-### GLASS Known Gaps
-- [ ] Contracts V2 PR #2 — needs cleanup (accidental WIP files), then merge
-- [ ] BullMQ worker framework in `services/api`
-- [ ] Drizzle SQL migrations
-- [ ] Frontend typecheck — 743 tsc errors (strict disabled for MVP build)
-- [ ] `severity_breakdown.total` mismatch between backend/frontend
+### GLASS Data Assets
+
+| Dataset | Rows | Status |
+|---------|------|--------|
+| Products scraped (Dutchie + Weedmaps) | 100,849 | ✅ In DB |
+| Price observations | 117,017 | ✅ First full MA snapshot |
+| CCC lab tests (THC/THCA%) | 298,343 | ⏳ Import running |
+| CCC facility sales | 67,334 | ⏳ Queued |
+| CCC licensed operators (with emails!) | 773 | ✅ Downloaded |
+| CCC county market data | 1,754 | ✅ Downloaded |
+| Operators geocoded | 490/492 | ✅ |
+
+### GLASS Live Features
+- Store Report Card (green/yellow/red pricing comparison)
+- 4-step onboarding (60 seconds to value)
+- Flywheel/waitlist system
+- Admin dashboard with data quality score
+- GA4 tracking
+- Clerk auth + security hardening (all data endpoints locked)
+- Beehiiv newsletter + Resend auto-invite wired
+
+### GLASS Known Issues
+- [ ] Daily scraping not stable (Dutchie: 195/235, Weedmaps: 10/173)
+- [ ] Brand parsing garbage ("stock. Order soon." as brand name)
+- [ ] Fake sparklines in UI — need honest empty states
+- [ ] 298K lab test import — verify completion
+- [ ] services/scrape: 2 TS errors (string | undefined)
+- [ ] services/intelligence: missing @types/node
+- [ ] apps/web: Vite build broken (package resolution)
+- [ ] 55 commits ahead of origin (unpushed)
+- [ ] Codex 5.3 CLI not available in sandbox
+
+### GLASS Revenue Path
+**"7 days stable scraping + 1 data quality fix + 1 good email = first paying customer"**
+- Cue at $199/mo, 99.7% margin
+- Target: 3-5 paid in 30 days, $5-7K MRR by 90 days
 
 ---
 
