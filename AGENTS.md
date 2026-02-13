@@ -41,6 +41,8 @@ You run 24/7 with a 15-minute heartbeat. Every cycle, read `HEARTBEAT.md` and ex
 - **NEVER write code yourself** → Spawn developer subagent
 - **NEVER design yourself** → Spawn designer subagent
 - **NEVER do research yourself** → Spawn researcher subagent
+- **NEVER generate images yourself** → Spawn subagent with API calls
+- **NEVER execute client work directly** → Even "quick" tasks get spawned
 - **NEVER execute without review** → Always spawn 2+ reviewers
 
 ### 2. Mandatory Review Workflow — NO EXCEPTIONS
