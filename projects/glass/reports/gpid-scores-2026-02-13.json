@@ -1,0 +1,3668 @@
+{
+  "generatedAt": "2026-02-13T23:18:00.281Z",
+  "platformCoverage": [
+    {
+      "platform": "dutchie",
+      "total_operators": "200",
+      "total_products": "55267",
+      "total_prices_all_time": "66318",
+      "total_prices_last_24h": "8522"
+    },
+    {
+      "platform": "jane",
+      "total_operators": "42",
+      "total_products": "11894",
+      "total_prices_all_time": "21246",
+      "total_prices_last_24h": "21246"
+    },
+    {
+      "platform": "leafly",
+      "total_operators": "77",
+      "total_products": "34466",
+      "total_prices_all_time": "41598",
+      "total_prices_last_24h": "41598"
+    },
+    {
+      "platform": "weedmaps",
+      "total_operators": "208",
+      "total_products": "65450",
+      "total_prices_all_time": "88004",
+      "total_prices_last_24h": "28914"
+    }
+  ],
+  "operatorOverlap": [
+    {
+      "platform_presence": "3 platform(s): dutchie, leafly, weedmaps",
+      "operator_count": "1"
+    },
+    {
+      "platform_presence": "2 platform(s): dutchie, weedmaps",
+      "operator_count": "35"
+    },
+    {
+      "platform_presence": "2 platform(s): leafly, weedmaps",
+      "operator_count": "6"
+    },
+    {
+      "platform_presence": "2 platform(s): jane, weedmaps",
+      "operator_count": "5"
+    },
+    {
+      "platform_presence": "2 platform(s): dutchie, leafly",
+      "operator_count": "4"
+    },
+    {
+      "platform_presence": "1 platform(s): weedmaps",
+      "operator_count": "161"
+    },
+    {
+      "platform_presence": "1 platform(s): dutchie",
+      "operator_count": "160"
+    },
+    {
+      "platform_presence": "1 platform(s): leafly",
+      "operator_count": "66"
+    },
+    {
+      "platform_presence": "1 platform(s): jane",
+      "operator_count": "37"
+    }
+  ],
+  "gpidMatch": {
+    "totalSkuProducts": 167008,
+    "matchedProducts": 69,
+    "orphanProducts": 166939,
+    "matchRate": 0.00041315386089289135,
+    "orphanRate": 0.9995868461391071,
+    "multiPlatformProducts": {
+      "two": 69,
+      "three": 0,
+      "four": 0
+    }
+  },
+  "fieldCompleteness": {
+    "perPlatform": [
+      {
+        "platform": "dutchie",
+        "totalProducts": 55267,
+        "pctBrand": 0.39944270541190946,
+        "pctCategory": 1,
+        "pctWeight": 0.7805381149691497,
+        "pctThc": 0.8075162393471692,
+        "pctStrain": 0.9477988673168437,
+        "overall": 0.7870591854090144
+      },
+      {
+        "platform": "jane",
+        "totalProducts": 11894,
+        "pctBrand": 0.965528838069615,
+        "pctCategory": 1,
+        "pctWeight": 0.7757692954430806,
+        "pctThc": 0.6657138052799731,
+        "pctStrain": 0.8837228854884815,
+        "overall": 0.8581469648562301
+      },
+      {
+        "platform": "leafly",
+        "totalProducts": 34466,
+        "pctBrand": 0.9412464457726455,
+        "pctCategory": 1,
+        "pctWeight": 0.04169326292578193,
+        "pctThc": 0.6949747577322579,
+        "pctStrain": 0,
+        "overall": 0.5355828932861371
+      },
+      {
+        "platform": "weedmaps",
+        "totalProducts": 65450,
+        "pctBrand": 0.4722689075630252,
+        "pctCategory": 1,
+        "pctWeight": 0.46155844155844156,
+        "pctThc": 0.467440794499618,
+        "pctStrain": 0,
+        "overall": 0.48025362872421695
+      }
+    ],
+    "weightedOverall": 0.6200566206000827
+  },
+  "brandNormalization": {
+    "distinctBrandCount": 19671,
+    "suspectedAliasPairs": [
+      {
+        "brand_a": "soon.",
+        "brand_b": "soon.\"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "nature''s heritage",
+        "brand_b": "nature's heritage",
+        "sim": "1"
+      },
+      {
+        "brand_a": "nature's heritage",
+        "brand_b": "nature’s heritage",
+        "sim": "1"
+      },
+      {
+        "brand_a": "nature's heritage",
+        "brand_b": "nature's heritage \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "high supply",
+        "brand_b": "high supply™",
+        "sim": "1"
+      },
+      {
+        "brand_a": "cali blaze",
+        "brand_b": "cali-blaze",
+        "sim": "1"
+      },
+      {
+        "brand_a": "happy valley",
+        "brand_b": "happy valley\"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "happy valley",
+        "brand_b": "happy valley \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "rythm",
+        "brand_b": "rythm \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "rythm",
+        "brand_b": "rythm\"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "betty''s eddies",
+        "brand_b": "betty's eddies",
+        "sim": "1"
+      },
+      {
+        "brand_a": "treeworks",
+        "brand_b": "treeworks\"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "treeworks",
+        "brand_b": "treeworks \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "perpetual",
+        "brand_b": "perpetual \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "pax",
+        "brand_b": "pax®",
+        "sim": "1"
+      },
+      {
+        "brand_a": "find",
+        "brand_b": "find.",
+        "sim": "1"
+      },
+      {
+        "brand_a": "dime industries",
+        "brand_b": "dime industries**",
+        "sim": "1"
+      },
+      {
+        "brand_a": "good news",
+        "brand_b": "good news™",
+        "sim": "1"
+      },
+      {
+        "brand_a": "cresco",
+        "brand_b": "cresco™",
+        "sim": "1"
+      },
+      {
+        "brand_a": "cultivators classic",
+        "brand_b": "cultivators classic \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "coast cannabis co.",
+        "brand_b": "coast cannabis co™",
+        "sim": "1"
+      },
+      {
+        "brand_a": "farmer''s cut",
+        "brand_b": "farmer's cut",
+        "sim": "1"
+      },
+      {
+        "brand_a": "khalifa kush",
+        "brand_b": "khalifa kush \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "theory wellness",
+        "brand_b": "theory wellness \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "theory wellness",
+        "brand_b": "theory wellness\"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "hi5",
+        "brand_b": "hi5\"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "breathe free",
+        "brand_b": "breathe free \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "dogwalkers",
+        "brand_b": "dogwalkers \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "dogwalkers",
+        "brand_b": "dogwalkers\"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "northeast alternatives",
+        "brand_b": "northeast alternatives \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "northeast alternatives",
+        "brand_b": "northeast alternatives\"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "witch dr",
+        "brand_b": "witch dr.",
+        "sim": "1"
+      },
+      {
+        "brand_a": "claravita",
+        "brand_b": "claravita™",
+        "sim": "1"
+      },
+      {
+        "brand_a": "in house",
+        "brand_b": "in-house",
+        "sim": "1"
+      },
+      {
+        "brand_a": "in house",
+        "brand_b": "in house**",
+        "sim": "1"
+      },
+      {
+        "brand_a": "zig zag",
+        "brand_b": "zig-zag",
+        "sim": "1"
+      },
+      {
+        "brand_a": "infused pre roll",
+        "brand_b": "infused pre-roll",
+        "sim": "1"
+      },
+      {
+        "brand_a": "(h)",
+        "brand_b": "(h) \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "smash hits",
+        "brand_b": "smash hits\"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "buzzy",
+        "brand_b": "buzzy**",
+        "sim": "1"
+      },
+      {
+        "brand_a": "infused pre-roll",
+        "brand_b": "infused pre-roll \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "infused pre- roll",
+        "brand_b": "infused pre-roll",
+        "sim": "1"
+      },
+      {
+        "brand_a": "smash hits",
+        "brand_b": "smash hits \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "infused -pre roll",
+        "brand_b": "infused pre-roll",
+        "sim": "1"
+      },
+      {
+        "brand_a": "buds",
+        "brand_b": "buds)",
+        "sim": "1"
+      },
+      {
+        "brand_a": "blue dream",
+        "brand_b": "blue dream \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "pine + star",
+        "brand_b": "pine+star",
+        "sim": "1"
+      },
+      {
+        "brand_a": "pine & star",
+        "brand_b": "pine + star",
+        "sim": "1"
+      },
+      {
+        "brand_a": "single pre roll",
+        "brand_b": "single pre-roll",
+        "sim": "1"
+      },
+      {
+        "brand_a": "single pre-roll",
+        "brand_b": "single pre-roll \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "nature''s heritage",
+        "brand_b": "nature’s heritage",
+        "sim": "1"
+      },
+      {
+        "brand_a": "nature''s heritage",
+        "brand_b": "nature's heritage \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "pre roll (1g)",
+        "brand_b": "pre roll (1g)\"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "pre roll (1g)",
+        "brand_b": "pre-roll (1g) \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "devil''s lettuce",
+        "brand_b": "devil's lettuce",
+        "sim": "1"
+      },
+      {
+        "brand_a": "devil's lettuce",
+        "brand_b": "devil's lettuce \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "no. 9",
+        "brand_b": "no.9",
+        "sim": "1"
+      },
+      {
+        "brand_a": "mindy's edibles",
+        "brand_b": "mindy’s edibles",
+        "sim": "1"
+      },
+      {
+        "brand_a": "valorem",
+        "brand_b": "valorem \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "effin'",
+        "brand_b": "effin''",
+        "sim": "1"
+      },
+      {
+        "brand_a": "sesh''n",
+        "brand_b": "sesh'n",
+        "sim": "1"
+      },
+      {
+        "brand_a": "cowboy kush",
+        "brand_b": "cowboy kush**",
+        "sim": "1"
+      },
+      {
+        "brand_a": "mkx oil co",
+        "brand_b": "mkx oil co.",
+        "sim": "1"
+      },
+      {
+        "brand_a": "ayrloom",
+        "brand_b": "ayrloom \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "effin",
+        "brand_b": "effin'",
+        "sim": "1"
+      },
+      {
+        "brand_a": "bubby''s baked",
+        "brand_b": "bubby's baked",
+        "sim": "1"
+      },
+      {
+        "brand_a": "cart",
+        "brand_b": "cart \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "nea fire",
+        "brand_b": "nea: fire",
+        "sim": "1"
+      },
+      {
+        "brand_a": "honey",
+        "brand_b": "honey®",
+        "sim": "1"
+      },
+      {
+        "brand_a": "(i)",
+        "brand_b": "(i) \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "trees co",
+        "brand_b": "trees co.",
+        "sim": "1"
+      },
+      {
+        "brand_a": "nea premium",
+        "brand_b": "nea premium \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "(s)",
+        "brand_b": "(s) \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "high ledges",
+        "brand_b": "high ledges \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "shake",
+        "brand_b": "shake\"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "ayrloom",
+        "brand_b": "ayrloom\"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "love",
+        "brand_b": "love!",
+        "sim": "1"
+      },
+      {
+        "brand_a": "mfny",
+        "brand_b": "mfny \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "mindy''s",
+        "brand_b": "mindy's™",
+        "sim": "1"
+      },
+      {
+        "brand_a": "vape cartridge",
+        "brand_b": "vape cartridge \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "vape cartridge",
+        "brand_b": "vape cartridge ()",
+        "sim": "1"
+      },
+      {
+        "brand_a": "space poppers",
+        "brand_b": "space poppers!",
+        "sim": "1"
+      },
+      {
+        "brand_a": "(h/i)",
+        "brand_b": "(i/h)",
+        "sim": "1"
+      },
+      {
+        "brand_a": "kiva confections",
+        "brand_b": "kiva confections \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "pre rolls",
+        "brand_b": "pre-rolls",
+        "sim": "1"
+      },
+      {
+        "brand_a": "remedi",
+        "brand_b": "remedi™",
+        "sim": "1"
+      },
+      {
+        "brand_a": "value zip",
+        "brand_b": "value zip\"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "gibby''s garden",
+        "brand_b": "gibby's garden",
+        "sim": "1"
+      },
+      {
+        "brand_a": "og",
+        "brand_b": "og (",
+        "sim": "1"
+      },
+      {
+        "brand_a": "randy's",
+        "brand_b": "randy’s",
+        "sim": "1"
+      },
+      {
+        "brand_a": "pre-rolls",
+        "brand_b": "pre-rolls\"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "infused pre roll",
+        "brand_b": "infused pre-roll \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "durban poison",
+        "brand_b": "durban poison \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "infused 5 pack",
+        "brand_b": "infused 5-pack",
+        "sim": "1"
+      },
+      {
+        "brand_a": "papers & tips",
+        "brand_b": "papers + tips",
+        "sim": "1"
+      },
+      {
+        "brand_a": "ayrloom \"",
+        "brand_b": "ayrloom\"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "bar",
+        "brand_b": "bar\"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "hi lo",
+        "brand_b": "hi-lo",
+        "sim": "1"
+      },
+      {
+        "brand_a": "infused pre roll",
+        "brand_b": "infused pre- roll",
+        "sim": "1"
+      },
+      {
+        "brand_a": "infused pre-roll single",
+        "brand_b": "infused single pre-roll",
+        "sim": "1"
+      },
+      {
+        "brand_a": "ruby farms",
+        "brand_b": "ruby farms \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "sleep",
+        "brand_b": "sleep)",
+        "sim": "1"
+      },
+      {
+        "brand_a": "value zip",
+        "brand_b": "value zip \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "infused -pre roll",
+        "brand_b": "infused pre roll",
+        "sim": "1"
+      },
+      {
+        "brand_a": "jack herer",
+        "brand_b": "jack herer \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "natures heritage",
+        "brand_b": "natures heritage \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "orange cannabis co",
+        "brand_b": "orange cannabis co.",
+        "sim": "1"
+      },
+      {
+        "brand_a": "solar cannabis co",
+        "brand_b": "solar cannabis co.",
+        "sim": "1"
+      },
+      {
+        "brand_a": "stingers ( sweets )",
+        "brand_b": "stingers sweets",
+        "sim": "1"
+      },
+      {
+        "brand_a": "no 9 collection",
+        "brand_b": "no.9 collection",
+        "sim": "1"
+      },
+      {
+        "brand_a": "no. 9 collection",
+        "brand_b": "no.9 collection",
+        "sim": "1"
+      },
+      {
+        "brand_a": "bud''s",
+        "brand_b": "bud's",
+        "sim": "1"
+      },
+      {
+        "brand_a": "fast acting gummies",
+        "brand_b": "fast-acting gummies",
+        "sim": "1"
+      },
+      {
+        "brand_a": "fl oz",
+        "brand_b": "fl. oz",
+        "sim": "1"
+      },
+      {
+        "brand_a": "in''fyooz",
+        "brand_b": "in'fyooz",
+        "sim": "1"
+      },
+      {
+        "brand_a": "dante''s inferno",
+        "brand_b": "dante's inferno",
+        "sim": "1"
+      },
+      {
+        "brand_a": "fl oz",
+        "brand_b": "fl. oz.",
+        "sim": "1"
+      },
+      {
+        "brand_a": "wedding cake",
+        "brand_b": "wedding cake \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "in\"fyooz",
+        "brand_b": "in'fyooz",
+        "sim": "1"
+      },
+      {
+        "brand_a": "king size pre-roll",
+        "brand_b": "king-size pre-roll",
+        "sim": "1"
+      },
+      {
+        "brand_a": "rugged roots",
+        "brand_b": "rugged roots\"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "live resin cartridge",
+        "brand_b": "live resin cartridge)",
+        "sim": "1"
+      },
+      {
+        "brand_a": "mac 1",
+        "brand_b": "mac-1",
+        "sim": "1"
+      },
+      {
+        "brand_a": "sour diesel (s)",
+        "brand_b": "sour diesel [s]",
+        "sim": "1"
+      },
+      {
+        "brand_a": "(sativa)",
+        "brand_b": "(sativa) \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "jay''s",
+        "brand_b": "jay's",
+        "sim": "1"
+      },
+      {
+        "brand_a": "all-in-one briq essentials all in one",
+        "brand_b": "all-in-one briq essentials all-in-one",
+        "sim": "1"
+      },
+      {
+        "brand_a": "belushi''s farm",
+        "brand_b": "belushi's farm",
+        "sim": "1"
+      },
+      {
+        "brand_a": "blue dream (s)",
+        "brand_b": "blue dream [s]",
+        "sim": "1"
+      },
+      {
+        "brand_a": "cheddar cheeze",
+        "brand_b": "cheddar cheeze \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "effin",
+        "brand_b": "effin''",
+        "sim": "1"
+      },
+      {
+        "brand_a": "lil' jay's",
+        "brand_b": "lil'' jay''s",
+        "sim": "1"
+      },
+      {
+        "brand_a": "pre-pack smalls",
+        "brand_b": "pre-pack smalls \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "go to",
+        "brand_b": "go>to",
+        "sim": "1"
+      },
+      {
+        "brand_a": "papers 1 1/4",
+        "brand_b": "papers 1 1/4\"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "rainbow push pop",
+        "brand_b": "rainbow push-pop",
+        "sim": "1"
+      },
+      {
+        "brand_a": "smash hits \"",
+        "brand_b": "smash hits\"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "vessel",
+        "brand_b": "vessel®",
+        "sim": "1"
+      },
+      {
+        "brand_a": "chocolate bar",
+        "brand_b": "chocolate bar\"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "gg #4",
+        "brand_b": "gg#4",
+        "sim": "1"
+      },
+      {
+        "brand_a": "glazed",
+        "brand_b": "glazed.",
+        "sim": "1"
+      },
+      {
+        "brand_a": "maui wowie (s)",
+        "brand_b": "maui wowie [s]",
+        "sim": "1"
+      },
+      {
+        "brand_a": "betty eddies",
+        "brand_b": "betty'' eddies",
+        "sim": "1"
+      },
+      {
+        "brand_a": "ea",
+        "brand_b": "ea)",
+        "sim": "1"
+      },
+      {
+        "brand_a": "(h/s)",
+        "brand_b": "(s/h)",
+        "sim": "1"
+      },
+      {
+        "brand_a": "kush mints",
+        "brand_b": "kush mints \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "musk #1",
+        "brand_b": "musk #1 \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "no 9 collection",
+        "brand_b": "no. 9 collection",
+        "sim": "1"
+      },
+      {
+        "brand_a": "northern lights (i)",
+        "brand_b": "northern lights [i]",
+        "sim": "1"
+      },
+      {
+        "brand_a": "sour diesel [s]",
+        "brand_b": "sour diesel [s}\"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "gg #4",
+        "brand_b": "gg #4 \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "hash",
+        "brand_b": "hash)",
+        "sim": "1"
+      },
+      {
+        "brand_a": "in house**",
+        "brand_b": "in-house",
+        "sim": "1"
+      },
+      {
+        "brand_a": "papers (1 1/4\")",
+        "brand_b": "papers 1 1/4",
+        "sim": "1"
+      },
+      {
+        "brand_a": "papers 1 1/4",
+        "brand_b": "papers, 1 1/4",
+        "sim": "1"
+      },
+      {
+        "brand_a": "pot & head",
+        "brand_b": "pot & head\"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "preroll springtime",
+        "brand_b": "preroll springtime\"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "rosin wand",
+        "brand_b": "rosin wand \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "x 5) springtime",
+        "brand_b": "x 5) springtime\"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "good vibes",
+        "brand_b": "good vibes**",
+        "sim": "1"
+      },
+      {
+        "brand_a": "honeydew #2",
+        "brand_b": "honeydew #2\"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "honeydew #2",
+        "brand_b": "honeydew#2",
+        "sim": "1"
+      },
+      {
+        "brand_a": "j bam",
+        "brand_b": "j-bam",
+        "sim": "1"
+      },
+      {
+        "brand_a": "lil jay's",
+        "brand_b": "lil' jay's",
+        "sim": "1"
+      },
+      {
+        "brand_a": "pre roll",
+        "brand_b": "pre-roll",
+        "sim": "1"
+      },
+      {
+        "brand_a": "rosin vape cart",
+        "brand_b": "rosin vape cart)",
+        "sim": "1"
+      },
+      {
+        "brand_a": "bulk flower",
+        "brand_b": "bulk flower \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "cereal milk (h)",
+        "brand_b": "cereal milk [h]",
+        "sim": "1"
+      },
+      {
+        "brand_a": "devil driver",
+        "brand_b": "devil driver \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "green crack (s)",
+        "brand_b": "green crack [s]",
+        "sim": "1"
+      },
+      {
+        "brand_a": "happy valley \"",
+        "brand_b": "happy valley\"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "hash infused pre-roll",
+        "brand_b": "hash infused pre-roll)",
+        "sim": "1"
+      },
+      {
+        "brand_a": "nature's heritage \"",
+        "brand_b": "nature’s heritage",
+        "sim": "1"
+      },
+      {
+        "brand_a": "pre- roll",
+        "brand_b": "pre-roll",
+        "sim": "1"
+      },
+      {
+        "brand_a": "pre rolls",
+        "brand_b": "pre-rolls\"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "thread battery",
+        "brand_b": "thread battery,",
+        "sim": "1"
+      },
+      {
+        "brand_a": "bedtime betty''s",
+        "brand_b": "bedtime betty’s",
+        "sim": "1"
+      },
+      {
+        "brand_a": "diamonds pax pod",
+        "brand_b": "diamonds pax pod)",
+        "sim": "1"
+      },
+      {
+        "brand_a": "durban poison (s)",
+        "brand_b": "durban poison [s]",
+        "sim": "1"
+      },
+      {
+        "brand_a": "lemon s''mores",
+        "brand_b": "lemon s’mores",
+        "sim": "1"
+      },
+      {
+        "brand_a": "pre-pack popcorn",
+        "brand_b": "pre-pack popcorn \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "sour diesel (s)",
+        "brand_b": "sour diesel [s}\"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "tea & lemonade",
+        "brand_b": "tea + lemonade",
+        "sim": "1"
+      },
+      {
+        "brand_a": "triangle kush",
+        "brand_b": "triangle kush \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "white widow (h)",
+        "brand_b": "white widow [h]",
+        "sim": "1"
+      },
+      {
+        "brand_a": "bedtime betty's",
+        "brand_b": "bedtime betty’s",
+        "sim": "1"
+      },
+      {
+        "brand_a": "blue zkz (i)",
+        "brand_b": "blue zkz [i]",
+        "sim": "1"
+      },
+      {
+        "brand_a": "cherry gelato (h)",
+        "brand_b": "cherry gelato [h]",
+        "sim": "1"
+      },
+      {
+        "brand_a": "fast acting",
+        "brand_b": "fast-acting",
+        "sim": "1"
+      },
+      {
+        "brand_a": "grapes ''n cream",
+        "brand_b": "grapes n cream",
+        "sim": "1"
+      },
+      {
+        "brand_a": "high peaks",
+        "brand_b": "high peaks \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "hitmaker",
+        "brand_b": "hitmaker \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "lamb''s bread",
+        "brand_b": "lamb's bread (s)",
+        "sim": "1"
+      },
+      {
+        "brand_a": "lemon meringue",
+        "brand_b": "lemon meringue \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "lil jay's",
+        "brand_b": "lil'' jay''s",
+        "sim": "1"
+      },
+      {
+        "brand_a": "motorbreath #15",
+        "brand_b": "motorbreath 15",
+        "sim": "1"
+      },
+      {
+        "brand_a": "pine & star",
+        "brand_b": "pine+star",
+        "sim": "1"
+      },
+      {
+        "brand_a": "pre roll",
+        "brand_b": "pre- roll",
+        "sim": "1"
+      },
+      {
+        "brand_a": "pre roll (",
+        "brand_b": "pre-roll",
+        "sim": "1"
+      },
+      {
+        "brand_a": "pre roll pack",
+        "brand_b": "pre-roll pack",
+        "sim": "1"
+      },
+      {
+        "brand_a": "s''mores",
+        "brand_b": "s'mores",
+        "sim": "1"
+      },
+      {
+        "brand_a": "value zip \"",
+        "brand_b": "value zip\"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "alpine strawberry (s)",
+        "brand_b": "alpine strawberry [s]",
+        "sim": "1"
+      },
+      {
+        "brand_a": "b eazy",
+        "brand_b": "b-eazy",
+        "sim": "1"
+      },
+      {
+        "brand_a": "cbn",
+        "brand_b": "cbn)",
+        "sim": "1"
+      },
+      {
+        "brand_a": "constellation s",
+        "brand_b": "constellation's",
+        "sim": "1"
+      },
+      {
+        "brand_a": "cured sugar",
+        "brand_b": "cured sugar \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "dab fx - tarantula",
+        "brand_b": "dab fx tarantula",
+        "sim": "1"
+      },
+      {
+        "brand_a": "gelato (h)",
+        "brand_b": "gelato [h]",
+        "sim": "1"
+      },
+      {
+        "brand_a": "grapes 'n cream",
+        "brand_b": "grapes n cream",
+        "sim": "1"
+      },
+      {
+        "brand_a": "grapes n cream",
+        "brand_b": "grapes n'' cream",
+        "sim": "1"
+      },
+      {
+        "brand_a": "holyoke especial",
+        "brand_b": "holyoke especial \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "holyoke especial",
+        "brand_b": "holyoke especial\"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "infused pre- roll",
+        "brand_b": "infused pre-roll \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "in\"fyooz",
+        "brand_b": "in''fyooz",
+        "sim": "1"
+      },
+      {
+        "brand_a": "lemon haze (s)",
+        "brand_b": "lemon haze [s]",
+        "sim": "1"
+      },
+      {
+        "brand_a": "pack pre-roll",
+        "brand_b": "pre-roll pack",
+        "sim": "1"
+      },
+      {
+        "brand_a": "permanent marker (i)",
+        "brand_b": "permanent marker [i]",
+        "sim": "1"
+      },
+      {
+        "brand_a": "pre rolled tips",
+        "brand_b": "pre-rolled tips",
+        "sim": "1"
+      },
+      {
+        "brand_a": "pre- roll pack",
+        "brand_b": "pre-roll pack",
+        "sim": "1"
+      },
+      {
+        "brand_a": "purple punch (i)",
+        "brand_b": "purple punch [i]",
+        "sim": "1"
+      },
+      {
+        "brand_a": "rosin cart",
+        "brand_b": "rosin cart \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "rythm \"",
+        "brand_b": "rythm\"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "so f''n gassy",
+        "brand_b": "so f'n gassy",
+        "sim": "1"
+      },
+      {
+        "brand_a": "super boof (h)",
+        "brand_b": "super boof [h]",
+        "sim": "1"
+      },
+      {
+        "brand_a": "thc ayrloom",
+        "brand_b": "thc ayrloom \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "(60ml rso tincture)",
+        "brand_b": "(60ml) rso tincture",
+        "sim": "1"
+      },
+      {
+        "brand_a": "acapulco gold (s)",
+        "brand_b": "acapulco gold [s]",
+        "sim": "1"
+      },
+      {
+        "brand_a": "bedtime betty''s",
+        "brand_b": "bedtime betty's",
+        "sim": "1"
+      },
+      {
+        "brand_a": "blueberry kush (i)",
+        "brand_b": "blueberry kush [i]",
+        "sim": "1"
+      },
+      {
+        "brand_a": "blue dream pre roll",
+        "brand_b": "blue dream pre-roll",
+        "sim": "1"
+      },
+      {
+        "brand_a": "candy rain (i)",
+        "brand_b": "candy rain [i]",
+        "sim": "1"
+      },
+      {
+        "brand_a": "cartridge [1g] select",
+        "brand_b": "cartridge 1g select",
+        "sim": "1"
+      },
+      {
+        "brand_a": "chicken n wafflez",
+        "brand_b": "chicken n' wafflez",
+        "sim": "1"
+      },
+      {
+        "brand_a": "choice chews (dorks)",
+        "brand_b": "choice chews dorks",
+        "sim": "1"
+      },
+      {
+        "brand_a": "do si dos",
+        "brand_b": "do-si-dos",
+        "sim": "1"
+      },
+      {
+        "brand_a": "gmo (i)",
+        "brand_b": "gmo [i]",
+        "sim": "1"
+      },
+      {
+        "brand_a": "grapes ''n cream",
+        "brand_b": "grapes 'n cream",
+        "sim": "1"
+      },
+      {
+        "brand_a": "grapes ''n cream",
+        "brand_b": "grapes n'' cream",
+        "sim": "1"
+      },
+      {
+        "brand_a": "gummies",
+        "brand_b": "gummies\"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "(ih)",
+        "brand_b": "(ih) \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "infused pre ground",
+        "brand_b": "infused pre-ground",
+        "sim": "1"
+      },
+      {
+        "brand_a": "infused -pre roll",
+        "brand_b": "infused pre-roll \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "jack herer (s)",
+        "brand_b": "jack herer [s]",
+        "sim": "1"
+      },
+      {
+        "brand_a": "jay''s party pack",
+        "brand_b": "jay's party pack",
+        "sim": "1"
+      },
+      {
+        "brand_a": "k dynamite",
+        "brand_b": "k-dynamite",
+        "sim": "1"
+      },
+      {
+        "brand_a": "kush mints (h)",
+        "brand_b": "kush mints) (h)",
+        "sim": "1"
+      },
+      {
+        "brand_a": "moon lit",
+        "brand_b": "moon-lit",
+        "sim": "1"
+      },
+      {
+        "brand_a": "motorbreath #15 \"",
+        "brand_b": "motorbreath 15",
+        "sim": "1"
+      },
+      {
+        "brand_a": "papers (1 1/4\")",
+        "brand_b": "papers 1 1/4\"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "papers 1 1/4\"",
+        "brand_b": "papers, 1 1/4",
+        "sim": "1"
+      },
+      {
+        "brand_a": "pineapple coconut express",
+        "brand_b": "pineapple coconut-express",
+        "sim": "1"
+      },
+      {
+        "brand_a": "popcorn 1:1 thc.cbd",
+        "brand_b": "popcorn 1:1 thc/cbd",
+        "sim": "1"
+      },
+      {
+        "brand_a": "pre roll",
+        "brand_b": "pre roll (",
+        "sim": "1"
+      },
+      {
+        "brand_a": "sativa seltzer (5mg)",
+        "brand_b": "sativa seltzer 5mg",
+        "sim": "1"
+      },
+      {
+        "brand_a": "skywalker og (i)",
+        "brand_b": "skywalker og [i]",
+        "sim": "1"
+      },
+      {
+        "brand_a": "sunset runtz",
+        "brand_b": "sunset runtz \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "thc",
+        "brand_b": "thc\"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "total",
+        "brand_b": "total)",
+        "sim": "1"
+      },
+      {
+        "brand_a": "vape (h)",
+        "brand_b": "vape (h/h)",
+        "sim": "1"
+      },
+      {
+        "brand_a": "vape pen (battery)",
+        "brand_b": "vape pen battery",
+        "sim": "1"
+      },
+      {
+        "brand_a": "whole flower",
+        "brand_b": "whole flower \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "zips",
+        "brand_b": "zips!",
+        "sim": "1"
+      },
+      {
+        "brand_a": "007 up",
+        "brand_b": "007-up",
+        "sim": "1"
+      },
+      {
+        "brand_a": "[10pk]",
+        "brand_b": "[10pk] \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "apple fritter (h)",
+        "brand_b": "apple fritter [h]",
+        "sim": "1"
+      },
+      {
+        "brand_a": "bananaconda (live rosin)",
+        "brand_b": "bananaconda live rosin",
+        "sim": "1"
+      },
+      {
+        "brand_a": "black cherry seltzer",
+        "brand_b": "black cherry seltzer\"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "blue dream (h)",
+        "brand_b": "blue dream [h]",
+        "sim": "1"
+      },
+      {
+        "brand_a": "canal st runtz",
+        "brand_b": "canal st. runtz",
+        "sim": "1"
+      },
+      {
+        "brand_a": "carol ann''s lemonade",
+        "brand_b": "carol ann’s lemonade",
+        "sim": "1"
+      },
+      {
+        "brand_a": "dogwalkers \"",
+        "brand_b": "dogwalkers\"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "durban poison distillate cartridge",
+        "brand_b": "durban poison: distillate cartridge",
+        "sim": "1"
+      },
+      {
+        "brand_a": "elderflower (h)",
+        "brand_b": "elderflower [h]",
+        "sim": "1"
+      },
+      {
+        "brand_a": "gary payton (h)",
+        "brand_b": "gary payton [h]",
+        "sim": "1"
+      },
+      {
+        "brand_a": "gg #4 \"",
+        "brand_b": "gg#4",
+        "sim": "1"
+      },
+      {
+        "brand_a": "grapes 'n cream",
+        "brand_b": "grapes n'' cream",
+        "sim": "1"
+      },
+      {
+        "brand_a": "green",
+        "brand_b": "green.",
+        "sim": "1"
+      },
+      {
+        "brand_a": "hash infused joint",
+        "brand_b": "hash infused joint)",
+        "sim": "1"
+      },
+      {
+        "brand_a": "highsman hit stick™ infused indoor flower",
+        "brand_b": "highsman hit stick™, infused indoor flower",
+        "sim": "1"
+      },
+      {
+        "brand_a": "hybrid (h)",
+        "brand_b": "hybrid [h]",
+        "sim": "1"
+      },
+      {
+        "brand_a": "indica (i)",
+        "brand_b": "indica [i]",
+        "sim": "1"
+      },
+      {
+        "brand_a": "infinity roll",
+        "brand_b": "infinity-roll",
+        "sim": "1"
+      },
+      {
+        "brand_a": "i.n.s.a",
+        "brand_b": "i.n.s.a.",
+        "sim": "1"
+      },
+      {
+        "brand_a": "live rosin \"",
+        "brand_b": "live rosin\"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "l''orange",
+        "brand_b": "l'orange",
+        "sim": "1"
+      },
+      {
+        "brand_a": "mimosa (s)",
+        "brand_b": "mimosa [s]",
+        "sim": "1"
+      },
+      {
+        "brand_a": "motorbreath #15",
+        "brand_b": "motorbreath #15 \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "northern grow",
+        "brand_b": "northern grow*",
+        "sim": "1"
+      },
+      {
+        "brand_a": "pineapple express (s)",
+        "brand_b": "pineapple express [s]",
+        "sim": "1"
+      },
+      {
+        "brand_a": "pre roll (",
+        "brand_b": "pre- roll",
+        "sim": "1"
+      },
+      {
+        "brand_a": "rainbow upload x bites",
+        "brand_b": "rainbow upload x-bites",
+        "sim": "1"
+      },
+      {
+        "brand_a": "rolling tray (medium)",
+        "brand_b": "rolling tray medium",
+        "sim": "1"
+      },
+      {
+        "brand_a": "rs 11",
+        "brand_b": "rs-11",
+        "sim": "1"
+      },
+      {
+        "brand_a": "silver haze (s)",
+        "brand_b": "silver haze [s]",
+        "sim": "1"
+      },
+      {
+        "brand_a": "single",
+        "brand_b": "single \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "slappin apple",
+        "brand_b": "slappin'' apple",
+        "sim": "1"
+      },
+      {
+        "brand_a": "smashin passion",
+        "brand_b": "smashin'' passion",
+        "sim": "1"
+      },
+      {
+        "brand_a": "spearmint swirl",
+        "brand_b": "spearmint swirl \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "strawberry cough (s)",
+        "brand_b": "strawberry cough [s]",
+        "sim": "1"
+      },
+      {
+        "brand_a": "thc 100mg thc",
+        "brand_b": "thc) 100mg thc",
+        "sim": "1"
+      },
+      {
+        "brand_a": "tinctures good vibes (pocket)",
+        "brand_b": "tinctures good vibes pocket",
+        "sim": "1"
+      },
+      {
+        "brand_a": "trop cherry (s)",
+        "brand_b": "trop cherry [s]",
+        "sim": "1"
+      },
+      {
+        "brand_a": "aj''s sour diesel",
+        "brand_b": "aj's sour diesel",
+        "sim": "1"
+      },
+      {
+        "brand_a": "aj's sour diesel",
+        "brand_b": "aj’s sour diesel",
+        "sim": "1"
+      },
+      {
+        "brand_a": "and bananas (h)",
+        "brand_b": "and bananas [h]",
+        "sim": "1"
+      },
+      {
+        "brand_a": "bad ''n boujee",
+        "brand_b": "bad n'' boujee",
+        "sim": "1"
+      },
+      {
+        "brand_a": "banana dreamin gummies",
+        "brand_b": "banana dreamin' gummies",
+        "sim": "1"
+      },
+      {
+        "brand_a": "bath soak (4oz)",
+        "brand_b": "bath soak 4oz",
+        "sim": "1"
+      },
+      {
+        "brand_a": "blue razz (h)",
+        "brand_b": "blue razz [h]",
+        "sim": "1"
+      },
+      {
+        "brand_a": "cartridge",
+        "brand_b": "cartridge \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "cbg",
+        "brand_b": "cbg)",
+        "sim": "1"
+      },
+      {
+        "brand_a": "celebrate - sour lemon",
+        "brand_b": "celebrate sour lemon",
+        "sim": "1"
+      },
+      {
+        "brand_a": "classic 1 1/4",
+        "brand_b": "classic 1 1/4\"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "coca cola",
+        "brand_b": "coca-cola",
+        "sim": "1"
+      },
+      {
+        "brand_a": "do si do",
+        "brand_b": "do-si-do",
+        "sim": "1"
+      },
+      {
+        "brand_a": "e85 pre roll",
+        "brand_b": "e85 pre-roll",
+        "sim": "1"
+      },
+      {
+        "brand_a": "fl. oz",
+        "brand_b": "fl. oz.",
+        "sim": "1"
+      },
+      {
+        "brand_a": "gift card $75",
+        "brand_b": "gift card 75",
+        "sim": "1"
+      },
+      {
+        "brand_a": "gypsie road",
+        "brand_b": "gypsie road \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "iced tea mango lemonade",
+        "brand_b": "iced tea/mango lemonade",
+        "sim": "1"
+      },
+      {
+        "brand_a": "infused -pre roll",
+        "brand_b": "infused pre- roll",
+        "sim": "1"
+      },
+      {
+        "brand_a": "jack''s dream",
+        "brand_b": "jack's dream (s)",
+        "sim": "1"
+      },
+      {
+        "brand_a": "jam berry dream seltzer",
+        "brand_b": "jam berry seltzer *dream",
+        "sim": "1"
+      },
+      {
+        "brand_a": "jetty extracts",
+        "brand_b": "jetty extracts \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "kali snapple",
+        "brand_b": "kali snapple \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "kickin' garlic salt",
+        "brand_b": "kickin'' garlic salt",
+        "sim": "1"
+      },
+      {
+        "brand_a": "klaus",
+        "brand_b": "klaus.",
+        "sim": "1"
+      },
+      {
+        "brand_a": "kush cream (shake)",
+        "brand_b": "kush cream shake",
+        "sim": "1"
+      },
+      {
+        "brand_a": "lavender lemon",
+        "brand_b": "lemon lavender",
+        "sim": "1"
+      },
+      {
+        "brand_a": "layer cake (i)",
+        "brand_b": "layer cake [i]",
+        "sim": "1"
+      },
+      {
+        "brand_a": "lemon s''mores pre-roll",
+        "brand_b": "lemon s'mores pre-roll",
+        "sim": "1"
+      },
+      {
+        "brand_a": "lemon s''mores pre-roll",
+        "brand_b": "lemon s’mores pre-roll",
+        "sim": "1"
+      },
+      {
+        "brand_a": "mg cbd hemp",
+        "brand_b": "mg cbd hemp\"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "mr. bubble #33",
+        "brand_b": "mr. bubble #33\"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "mr. bubble #33\"",
+        "brand_b": "mr.bubble #33\"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "pack pre-roll",
+        "brand_b": "pre roll pack",
+        "sim": "1"
+      },
+      {
+        "brand_a": "pack pre rolls",
+        "brand_b": "pre-rolls pack",
+        "sim": "1"
+      },
+      {
+        "brand_a": "passion fruit (h)",
+        "brand_b": "passion fruit [h]",
+        "sim": "1"
+      },
+      {
+        "brand_a": "peaches ''n cream",
+        "brand_b": "peaches n'' cream",
+        "sim": "1"
+      },
+      {
+        "brand_a": "peach mango seltzer",
+        "brand_b": "peach mango seltzer\"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "pineapple express (h)",
+        "brand_b": "pineapple express [h]",
+        "sim": "1"
+      },
+      {
+        "brand_a": "poppin' pineapple gummies",
+        "brand_b": "poppin'' pineapple gummies",
+        "sim": "1"
+      },
+      {
+        "brand_a": "pre-roll 5 pack",
+        "brand_b": "pre-roll 5 pack)",
+        "sim": "1"
+      },
+      {
+        "brand_a": "pre roll pack",
+        "brand_b": "pre- roll pack",
+        "sim": "1"
+      },
+      {
+        "brand_a": "raspberry lemon",
+        "brand_b": "raspberry lemon \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "rosin cartridge",
+        "brand_b": "rosin cartridge \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "rosin cold cure",
+        "brand_b": "rosin cold cure)",
+        "sim": "1"
+      },
+      {
+        "brand_a": "rso (indica)",
+        "brand_b": "rso indica",
+        "sim": "1"
+      },
+      {
+        "brand_a": "smashin passion",
+        "brand_b": "smashin’ passion",
+        "sim": "1"
+      },
+      {
+        "brand_a": "smashin'' passion",
+        "brand_b": "smashin’ passion",
+        "sim": "1"
+      },
+      {
+        "brand_a": "sour tangie (s)",
+        "brand_b": "sour tangie [s]",
+        "sim": "1"
+      },
+      {
+        "brand_a": "stonefruit (h)",
+        "brand_b": "stonefruit [h]",
+        "sim": "1"
+      },
+      {
+        "brand_a": "sugar syrup tincture",
+        "brand_b": "sugar] syrup tincture",
+        "sim": "1"
+      },
+      {
+        "brand_a": "theory wellness \"",
+        "brand_b": "theory wellness\"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "+ tips",
+        "brand_b": "+ tips ...",
+        "sim": "1"
+      },
+      {
+        "brand_a": "trainwreck (s)",
+        "brand_b": "trainwreck [s]",
+        "sim": "1"
+      },
+      {
+        "brand_a": "treeworks \"",
+        "brand_b": "treeworks\"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "violet vixen",
+        "brand_b": "violet vixen \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "watermelon (i)",
+        "brand_b": "watermelon [i]",
+        "sim": "1"
+      },
+      {
+        "brand_a": "watermelon pineapple",
+        "brand_b": "watermelon pineapple \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "watermelon (rosin gummies)",
+        "brand_b": "watermelon rosin gummies",
+        "sim": "1"
+      },
+      {
+        "brand_a": "wedding cake (h)",
+        "brand_b": "wedding cake [h]",
+        "sim": "1"
+      },
+      {
+        "brand_a": "wedding cake (i)",
+        "brand_b": "wedding cake [i]",
+        "sim": "1"
+      },
+      {
+        "brand_a": "zoap (h)",
+        "brand_b": "zoap [h]",
+        "sim": "1"
+      },
+      {
+        "brand_a": "(1 1/4\")",
+        "brand_b": "(1 1/4)",
+        "sim": "1"
+      },
+      {
+        "brand_a": "#2 (h) \"",
+        "brand_b": "#2 [h] \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "aj''s sour diesel",
+        "brand_b": "aj’s sour diesel",
+        "sim": "1"
+      },
+      {
+        "brand_a": "alien marker (smalls)",
+        "brand_b": "alien marker smalls",
+        "sim": "1"
+      },
+      {
+        "brand_a": "all-in-one 2g disposable vape live resin sativa",
+        "brand_b": "all-in-one 2g sativa live resin disposable vape",
+        "sim": "1"
+      },
+      {
+        "brand_a": "almond coconut & sea salt",
+        "brand_b": "almond coconut sea salt",
+        "sim": "1"
+      },
+      {
+        "brand_a": "arctic frost (hybrid) + cookie monster (hybrid)",
+        "brand_b": "arctic frost (hybrid) /cookie monster (hybrid)",
+        "sim": "1"
+      },
+      {
+        "brand_a": "b.a.m (s)",
+        "brand_b": "b.a.m. (s)",
+        "sim": "1"
+      },
+      {
+        "brand_a": "bananaconda #4",
+        "brand_b": "bananaconda #4 \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "& bananas",
+        "brand_b": "& bananas \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "bangin berry",
+        "brand_b": "bangin'' berry",
+        "sim": "1"
+      },
+      {
+        "brand_a": "battery + charger",
+        "brand_b": "battery charger",
+        "sim": "1"
+      },
+      {
+        "brand_a": "battery w charger",
+        "brand_b": "battery w/ charger",
+        "sim": "1"
+      },
+      {
+        "brand_a": "beach cooler (smalls)",
+        "brand_b": "beach cooler smalls",
+        "sim": "1"
+      },
+      {
+        "brand_a": "bedtime betty''s lemon agave",
+        "brand_b": "bedtime betty''s. lemon agave",
+        "sim": "1"
+      },
+      {
+        "brand_a": "blueberry muffin (i)",
+        "brand_b": "blueberry muffin [i]",
+        "sim": "1"
+      },
+      {
+        "brand_a": "blue muffin infused tarantula preroll",
+        "brand_b": "blue muffin tarantula infused preroll",
+        "sim": "1"
+      },
+      {
+        "brand_a": "blu piff",
+        "brand_b": "blu piff *",
+        "sim": "1"
+      },
+      {
+        "brand_a": "booklet, 20 book",
+        "brand_b": "booklet, 20 book)",
+        "sim": "1"
+      },
+      {
+        "brand_a": "cannon pre-roll",
+        "brand_b": "cannon pre-roll \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "cap carb cap",
+        "brand_b": "carb cap",
+        "sim": "1"
+      },
+      {
+        "brand_a": "carbon fiber (h)",
+        "brand_b": "carbon fiber [h]",
+        "sim": "1"
+      },
+      {
+        "brand_a": "cart tac 81.86%",
+        "brand_b": "cart tac 86.81%",
+        "sim": "1"
+      },
+      {
+        "brand_a": "chocolate og (shake)",
+        "brand_b": "chocolate og shake",
+        "sim": "1"
+      },
+      {
+        "brand_a": "clipper black lighter",
+        "brand_b": "clipper lighter black",
+        "sim": "1"
+      },
+      {
+        "brand_a": "coco cloud (h)\"",
+        "brand_b": "coco cloud [h]",
+        "sim": "1"
+      },
+      {
+        "brand_a": "cranberry lime seltzer",
+        "brand_b": "cranberry lime seltzer\"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "c.r.e.a.m",
+        "brand_b": "c.r.e.a.m.",
+        "sim": "1"
+      },
+      {
+        "brand_a": "crunch berriez pre roll",
+        "brand_b": "crunch berriez pre-roll",
+        "sim": "1"
+      },
+      {
+        "brand_a": "da'' bomb",
+        "brand_b": "da''bomb",
+        "sim": "1"
+      },
+      {
+        "brand_a": "dark chocolate mint - chocolate bar",
+        "brand_b": "dark chocolate mint – chocolate bar",
+        "sim": "1"
+      },
+      {
+        "brand_a": "dayglow cold cured live rosin",
+        "brand_b": "dayglow live rosin cold cured",
+        "sim": "1"
+      },
+      {
+        "brand_a": "devil''s lettuce",
+        "brand_b": "devil's lettuce \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "dogs .35g dogwalkers",
+        "brand_b": "dogs .35g dogwalkers\"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "dorks dweeby blue raz",
+        "brand_b": "dweeby blue raz dorks",
+        "sim": "1"
+      },
+      {
+        "brand_a": "dream star (s)",
+        "brand_b": "dream star [s]",
+        "sim": "1"
+      },
+      {
+        "brand_a": "duffle bag",
+        "brand_b": "duffle bag \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "freshly squeezed 2:1 cbg:thc",
+        "brand_b": "freshly squeezed 2:1 (cbg:thc)",
+        "sim": "1"
+      },
+      {
+        "brand_a": "fruitstripez pre roll",
+        "brand_b": "fruitstripez pre-roll",
+        "sim": "1"
+      },
+      {
+        "brand_a": "garden grape (i)",
+        "brand_b": "garden grape [i]",
+        "sim": "1"
+      },
+      {
+        "brand_a": "gdp briq essentials",
+        "brand_b": "gdp essentials briq",
+        "sim": "1"
+      },
+      {
+        "brand_a": "gelato 41 (h)",
+        "brand_b": "gelato 41 [h]",
+        "sim": "1"
+      },
+      {
+        "brand_a": "gelonade (s)",
+        "brand_b": "gelonade [s]",
+        "sim": "1"
+      },
+      {
+        "brand_a": "gg4 (h)",
+        "brand_b": "gg4 [h]",
+        "sim": "1"
+      },
+      {
+        "brand_a": "gift card -$10",
+        "brand_b": "gift card $10",
+        "sim": "1"
+      },
+      {
+        "brand_a": "glazed apricot lime strain",
+        "brand_b": "glazed lime apricot strain",
+        "sim": "1"
+      },
+      {
+        "brand_a": "gmo x sour saunders sd bx2",
+        "brand_b": "gmo x sour saunders/ sd bx2",
+        "sim": "1"
+      },
+      {
+        "brand_a": "grandaddy purple (i)",
+        "brand_b": "grandaddy purple [i]",
+        "sim": "1"
+      },
+      {
+        "brand_a": "granddaddy purp (i)",
+        "brand_b": "granddaddy purp [i]",
+        "sim": "1"
+      },
+      {
+        "brand_a": "grape (i)",
+        "brand_b": "grape [i]",
+        "sim": "1"
+      },
+      {
+        "brand_a": "green crack & northern lights",
+        "brand_b": "green crack/northern lights",
+        "sim": "1"
+      },
+      {
+        "brand_a": "green crush briq essentials",
+        "brand_b": "green crush essentials briq",
+        "sim": "1"
+      },
+      {
+        "brand_a": "g rollz hemp cone w/ cbd",
+        "brand_b": "g rollz hemp cone w/cbd",
+        "sim": "1"
+      },
+      {
+        "brand_a": "ground flower",
+        "brand_b": "ground-flower",
+        "sim": "1"
+      },
+      {
+        "brand_a": "grow\" various colors",
+        "brand_b": "grow\"- various colors",
+        "sim": "1"
+      },
+      {
+        "brand_a": "hand pipe (3.5\")",
+        "brand_b": "hand pipe 3.5\"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "haze-deli tac 26.32",
+        "brand_b": "haze-deli tac 26.32%",
+        "sim": "1"
+      },
+      {
+        "brand_a": "headed stranger (h)",
+        "brand_b": "headed stranger [h]",
+        "sim": "1"
+      },
+      {
+        "brand_a": "headed stranger (s)",
+        "brand_b": "headed stranger [s]",
+        "sim": "1"
+      },
+      {
+        "brand_a": "holyoke especial \"",
+        "brand_b": "holyoke especial\"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "honey banana (h)",
+        "brand_b": "honey banana [h]",
+        "sim": "1"
+      },
+      {
+        "brand_a": "honeydew #2\"",
+        "brand_b": "honeydew#2",
+        "sim": "1"
+      },
+      {
+        "brand_a": "jayna''s sunshine shake",
+        "brand_b": "jayna's sunshine shake",
+        "sim": "1"
+      },
+      {
+        "brand_a": "key lime pie infused tarantula preroll",
+        "brand_b": "key lime pie tarantula infused preroll",
+        "sim": "1"
+      },
+      {
+        "brand_a": "king palm \"mini\"",
+        "brand_b": "king palm mini",
+        "sim": "1"
+      },
+      {
+        "brand_a": "king size (wide)",
+        "brand_b": "king size wide",
+        "sim": "1"
+      },
+      {
+        "brand_a": "lamb''s bread pre-roll",
+        "brand_b": "lamb's bread pre-roll",
+        "sim": "1"
+      },
+      {
+        "brand_a": "lemonade 'bliss' gummies",
+        "brand_b": "lemonade bliss gummies",
+        "sim": "1"
+      },
+      {
+        "brand_a": "lemon cane (s)",
+        "brand_b": "lemon cane [s]",
+        "sim": "1"
+      },
+      {
+        "brand_a": "lemon drop (s)",
+        "brand_b": "lemon drop [s]",
+        "sim": "1"
+      },
+      {
+        "brand_a": "lemon lime celebrate seltzer",
+        "brand_b": "lemon lime seltzer *celebrate",
+        "sim": "1"
+      },
+      {
+        "brand_a": "lemon s'mores pre-roll",
+        "brand_b": "lemon s’mores pre-roll",
+        "sim": "1"
+      },
+      {
+        "brand_a": "lemon twist (live resin)",
+        "brand_b": "lemon twist live resin",
+        "sim": "1"
+      },
+      {
+        "brand_a": "lychee luxe [h]",
+        "brand_b": "lychee luxe [h]\"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "melatonin",
+        "brand_b": "melatonin]",
+        "sim": "1"
+      },
+      {
+        "brand_a": "mimosa (h)",
+        "brand_b": "mimosa [h]",
+        "sim": "1"
+      },
+      {
+        "brand_a": "+ mimosa (s)",
+        "brand_b": "+ mimosa [s]",
+        "sim": "1"
+      },
+      {
+        "brand_a": "mr. bubble #33",
+        "brand_b": "mr.bubble #33\"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "mr. pif soda",
+        "brand_b": "mr. pif soda\"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "northeast alternatives \"",
+        "brand_b": "northeast alternatives\"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "northern haze",
+        "brand_b": "northern haze \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "n.y sour diesel",
+        "brand_b": "n.y. sour diesel",
+        "sim": "1"
+      },
+      {
+        "brand_a": "og (i)",
+        "brand_b": "og (i) i",
+        "sim": "1"
+      },
+      {
+        "brand_a": "og kush (h)",
+        "brand_b": "og kush [h]",
+        "sim": "1"
+      },
+      {
+        "brand_a": "og kush (i)",
+        "brand_b": "og kush [i]",
+        "sim": "1"
+      },
+      {
+        "brand_a": "one hitter pipe",
+        "brand_b": "one-hitter pipe",
+        "sim": "1"
+      },
+      {
+        "brand_a": "orange blossom (cured resin)",
+        "brand_b": "orange blossom cured resin",
+        "sim": "1"
+      },
+      {
+        "brand_a": "oreoz (h)",
+        "brand_b": "oreoz [h]",
+        "sim": "1"
+      },
+      {
+        "brand_a": "pack pre-roll",
+        "brand_b": "pre- roll pack",
+        "sim": "1"
+      },
+      {
+        "brand_a": "papers (1 1/4\")",
+        "brand_b": "papers, 1 1/4",
+        "sim": "1"
+      },
+      {
+        "brand_a": "pineapple express briq essentials",
+        "brand_b": "pineapple express essentials briq",
+        "sim": "1"
+      },
+      {
+        "brand_a": "poet''s walk 2.0",
+        "brand_b": "poet's walk 2.0 (s)",
+        "sim": "1"
+      },
+      {
+        "brand_a": "pomegranate punch celebrate seltzer",
+        "brand_b": "pomegranate punch seltzer *celebrate",
+        "sim": "1"
+      },
+      {
+        "brand_a": "pound cake (s)",
+        "brand_b": "pound cake [s]",
+        "sim": "1"
+      },
+      {
+        "brand_a": "pre roll (1g)\"",
+        "brand_b": "pre-roll (1g) \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "push pop (smalls)",
+        "brand_b": "push pop smalls",
+        "sim": "1"
+      },
+      {
+        "brand_a": "raspberry lime achieve seltzer",
+        "brand_b": "raspberry lime seltzer *achieve",
+        "sim": "1"
+      },
+      {
+        "brand_a": "raspberry lime (h)",
+        "brand_b": "raspberry lime [h]",
+        "sim": "1"
+      },
+      {
+        "brand_a": "rocket pop (h)",
+        "brand_b": "rocket pop [h]",
+        "sim": "1"
+      },
+      {
+        "brand_a": "roll tac 30.59",
+        "brand_b": "roll tac 30.59%",
+        "sim": "1"
+      },
+      {
+        "brand_a": "rosin pax pod",
+        "brand_b": "rosin pax pod)",
+        "sim": "1"
+      },
+      {
+        "brand_a": "sativa blend (s)",
+        "brand_b": "sativa blend [s]",
+        "sim": "1"
+      },
+      {
+        "brand_a": "single pre roll",
+        "brand_b": "single pre-roll \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "sleep (i)",
+        "brand_b": "sleep [i]",
+        "sim": "1"
+      },
+      {
+        "brand_a": "slim & tips",
+        "brand_b": "slim + tips",
+        "sim": "1"
+      },
+      {
+        "brand_a": "splat #3",
+        "brand_b": "splat #3 \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "stardawg guava",
+        "brand_b": "stardawg guava \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "stoopid grapes sugar wax",
+        "brand_b": "stoopid grapes wax sugar",
+        "sim": "1"
+      },
+      {
+        "brand_a": "strawberry (h)",
+        "brand_b": "strawberry [h]",
+        "sim": "1"
+      },
+      {
+        "brand_a": "sugar (baller jar)",
+        "brand_b": "sugar baller jar",
+        "sim": "1"
+      },
+      {
+        "brand_a": "tac 23.11 \"",
+        "brand_b": "tac 23.11% \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "tropical pressure (oso)",
+        "brand_b": "tropical pressure - oso",
+        "sim": "1"
+      },
+      {
+        "brand_a": "tropical punch (h)",
+        "brand_b": "tropical punch [h]",
+        "sim": "1"
+      },
+      {
+        "brand_a": "tropsanto #5",
+        "brand_b": "tropsanto #5 \"",
+        "sim": "1"
+      },
+      {
+        "brand_a": "t- shirt green",
+        "brand_b": "t-shirt green",
+        "sim": "1"
+      },
+      {
+        "brand_a": "vape cartridge \"",
+        "brand_b": "vape cartridge ()",
+        "sim": "1"
+      },
+      {
+        "brand_a": "water 'yer melon",
+        "brand_b": "water yer melon",
+        "sim": "1"
+      },
+      {
+        "brand_a": "weekend - paloma mocktail",
+        "brand_b": "weekend paloma mocktail",
+        "sim": "1"
+      },
+      {
+        "brand_a": "wraps (2 pack)",
+        "brand_b": "wraps 2 pack",
+        "sim": "1"
+      },
+      {
+        "brand_a": "x bites",
+        "brand_b": "x-bites",
+        "sim": "1"
+      },
+      {
+        "brand_a": "x oishii (i)",
+        "brand_b": "x oishii [i]",
+        "sim": "1"
+      },
+      {
+        "brand_a": "zip-up hoodie (xl)",
+        "brand_b": "zip-up hoodie xl",
+        "sim": "1"
+      },
+      {
+        "brand_a": "southern hashpitality",
+        "brand_b": "southern hashpitality (h)",
+        "sim": "0.95652175"
+      },
+      {
+        "brand_a": "strawberry sour diesel",
+        "brand_b": "strawberry sour diesel (s)",
+        "sim": "0.95652175"
+      },
+      {
+        "brand_a": "melted strawberries",
+        "brand_b": "melted strawberries [s]",
+        "sim": "0.95238096"
+      },
+      {
+        "brand_a": "strawberry fields [h]",
+        "brand_b": "strawberry fields (s/h)",
+        "sim": "0.95238096"
+      },
+      {
+        "brand_a": "red headed stranger",
+        "brand_b": "red headed stranger (s)",
+        "sim": "0.95"
+      },
+      {
+        "brand_a": "citrus sour diesel",
+        "brand_b": "citrus sour diesel (s)",
+        "sim": "0.95"
+      },
+      {
+        "brand_a": "infused pre-roll (h)",
+        "brand_b": "infused pre-roll (h/i)",
+        "sim": "0.95"
+      },
+      {
+        "brand_a": "sour cherry diesel",
+        "brand_b": "sour cherry diesel (s)",
+        "sim": "0.95"
+      },
+      {
+        "brand_a": "alpine strawberry",
+        "brand_b": "alpine strawberry (s)",
+        "sim": "0.94736844"
+      },
+      {
+        "brand_a": "alpine strawberry",
+        "brand_b": "alpine strawberry [s]",
+        "sim": "0.94736844"
+      },
+      {
+        "brand_a": "infused preroll (h)",
+        "brand_b": "infused preroll (h/i)",
+        "sim": "0.94736844"
+      },
+      {
+        "brand_a": "tangerine sunrise",
+        "brand_b": "tangerine sunrise [s]",
+        "sim": "0.94736844"
+      },
+      {
+        "brand_a": "tropical heatwave",
+        "brand_b": "tropical heatwave (h)",
+        "sim": "0.94736844"
+      }
+    ],
+    "uniqueRealBrandsEstimate": 19171,
+    "score": 0.9745818717909613
+  },
+  "categoryConsistency": {
+    "perPlatform": [
+      {
+        "platform": "jane",
+        "categories": [
+          "concentrate",
+          "edible",
+          "flower",
+          "tincture",
+          "topical",
+          "vape"
+        ]
+      },
+      {
+        "platform": "leafly",
+        "categories": [
+          "concentrate",
+          "edible",
+          "flower",
+          "preroll",
+          "tincture",
+          "topical",
+          "vape"
+        ]
+      },
+      {
+        "platform": "weedmaps",
+        "categories": [
+          "concentrate",
+          "edible",
+          "flower",
+          "other",
+          "preroll",
+          "tincture",
+          "vape"
+        ]
+      },
+      {
+        "platform": "dutchie",
+        "categories": [
+          "concentrate",
+          "edible",
+          "flower",
+          "other",
+          "preroll",
+          "tincture",
+          "topical",
+          "vape"
+        ]
+      }
+    ],
+    "mappingCandidates": [
+      {
+        "category": "other",
+        "presentOn": [
+          "dutchie",
+          "weedmaps"
+        ]
+      },
+      {
+        "category": "preroll",
+        "presentOn": [
+          "dutchie",
+          "leafly",
+          "weedmaps"
+        ]
+      },
+      {
+        "category": "topical",
+        "presentOn": [
+          "dutchie",
+          "jane",
+          "leafly"
+        ]
+      }
+    ],
+    "score": 0.25
+  },
+  "priceSanity": {
+    "distributionByCategory": [
+      {
+        "category": "concentrate",
+        "min_price": "5.00",
+        "max_price": "350.00",
+        "median_price": 35,
+        "mean_price": "42.9420745602041746",
+        "stddev_price": "23.4017091238509413",
+        "sample_size": "10971"
+      },
+      {
+        "category": "edible",
+        "min_price": "0.01",
+        "max_price": "250.00",
+        "median_price": 20,
+        "mean_price": "18.5978561486533510",
+        "stddev_price": "10.3786317774436324",
+        "sample_size": "28738"
+      },
+      {
+        "category": "flower",
+        "min_price": "0.01",
+        "max_price": "1400.00",
+        "median_price": 25,
+        "mean_price": "35.0052764476727671",
+        "stddev_price": "34.0598551940768592",
+        "sample_size": "98572"
+      },
+      {
+        "category": "other",
+        "min_price": "1.00",
+        "max_price": "1000.00",
+        "median_price": 30,
+        "mean_price": "46.9131774580335731",
+        "stddev_price": "66.2260766785252011",
+        "sample_size": "834"
+      },
+      {
+        "category": "preroll",
+        "min_price": "0.01",
+        "max_price": "379.00",
+        "median_price": 12,
+        "mean_price": "18.1653328974101492",
+        "stddev_price": "16.2111068718659296",
+        "sample_size": "42821"
+      },
+      {
+        "category": "tincture",
+        "min_price": "0.01",
+        "max_price": "120.00",
+        "median_price": 50,
+        "mean_price": "48.4115909090909091",
+        "stddev_price": "21.9635568420395025",
+        "sample_size": "748"
+      },
+      {
+        "category": "topical",
+        "min_price": "2.00",
+        "max_price": "140.00",
+        "median_price": 34,
+        "mean_price": "36.1529198966408269",
+        "stddev_price": "22.2932919309287847",
+        "sample_size": "387"
+      },
+      {
+        "category": "vape",
+        "min_price": "0.01",
+        "max_price": "599.99",
+        "median_price": 32,
+        "mean_price": "35.9586168059832820",
+        "stddev_price": "16.4236552477153482",
+        "sample_size": "34095"
+      }
+    ],
+    "outlierCount": 2522,
+    "zeroOrNegativeCount": 0,
+    "duplicateEntryCount": 0,
+    "totalPriceRows": 217166,
+    "score": 0.9883867640422533
+  },
+  "topProductsForManualVerification": [
+    {
+      "sku": "DUTCHIE-58791cbb59f4808d6891",
+      "name": "OG Chillum",
+      "brand": null,
+      "category": "flower",
+      "weight_grams": null,
+      "platforms_found": [
+        "leafly",
+        "weedmaps"
+      ],
+      "platform_count": "2",
+      "price_observations": "8",
+      "min_price": "2.00",
+      "max_price": "4.00",
+      "min_thc": null,
+      "max_thc": null
+    },
+    {
+      "sku": "DUTCHIE-119404087c6bab5b7d67",
+      "name": "Glass Chillum",
+      "brand": null,
+      "category": "flower",
+      "weight_grams": null,
+      "platforms_found": [
+        "leafly",
+        "weedmaps"
+      ],
+      "platform_count": "2",
+      "price_observations": "5",
+      "min_price": "2.00",
+      "max_price": "8.00",
+      "min_thc": null,
+      "max_thc": null
+    },
+    {
+      "sku": "DUTCHIE-7a31c47b18f83cd87a21",
+      "name": "FLWP-Mazzulla-(H) 3.5G",
+      "brand": null,
+      "category": "flower",
+      "weight_grams": null,
+      "platforms_found": [
+        "leafly",
+        "weedmaps"
+      ],
+      "platform_count": "2",
+      "price_observations": "5",
+      "min_price": "20.00",
+      "max_price": "30.00",
+      "min_thc": "32.70",
+      "max_thc": "32.70"
+    },
+    {
+      "sku": "DUTCHIE-aaf0e4efc3d39202561b",
+      "name": "Rolling Tray",
+      "brand": null,
+      "category": "flower",
+      "weight_grams": null,
+      "platforms_found": [
+        "leafly",
+        "weedmaps"
+      ],
+      "platform_count": "2",
+      "price_observations": "5",
+      "min_price": "4.50",
+      "max_price": "15.00",
+      "min_thc": null,
+      "max_thc": null
+    },
+    {
+      "sku": "DUTCHIE-d4948af9c4475c210b45",
+      "name": "The Botanist - Grapple Pie - Flower - 3.5g",
+      "brand": "The Botanist",
+      "category": "flower",
+      "weight_grams": null,
+      "platforms_found": [
+        "leafly",
+        "weedmaps"
+      ],
+      "platform_count": "2",
+      "price_observations": "5",
+      "min_price": "20.00",
+      "max_price": "27.00",
+      "min_thc": "45.62",
+      "max_thc": "45.62"
+    },
+    {
+      "sku": "GPID-983c4d0bd5e3",
+      "name": "Local Skunk",
+      "brand": "Nature's Heritage",
+      "category": "flower",
+      "weight_grams": "3.500",
+      "platforms_found": [
+        "jane",
+        "weedmaps"
+      ],
+      "platform_count": "2",
+      "price_observations": "5",
+      "min_price": "30.00",
+      "max_price": "35.25",
+      "min_thc": "25.51",
+      "max_thc": "25.51"
+    },
+    {
+      "sku": "DUTCHIE-0543a29be6036ff5b79f",
+      "name": "420 Cleaner",
+      "brand": null,
+      "category": "flower",
+      "weight_grams": null,
+      "platforms_found": [
+        "leafly",
+        "weedmaps"
+      ],
+      "platform_count": "2",
+      "price_observations": "4",
+      "min_price": "10.00",
+      "max_price": "13.00",
+      "min_thc": null,
+      "max_thc": null
+    },
+    {
+      "sku": "DUTCHIE-0fb074e30460cd09077a",
+      "name": "Blink Lighter",
+      "brand": null,
+      "category": "flower",
+      "weight_grams": null,
+      "platforms_found": [
+        "leafly",
+        "weedmaps"
+      ],
+      "platform_count": "2",
+      "price_observations": "4",
+      "min_price": "1.00",
+      "max_price": "1.50",
+      "min_thc": null,
+      "max_thc": null
+    },
+    {
+      "sku": "DUTCHIE-192a116d8dbc120b1cc9",
+      "name": "Botera | Leggings",
+      "brand": "Botera",
+      "category": "flower",
+      "weight_grams": null,
+      "platforms_found": [
+        "leafly",
+        "weedmaps"
+      ],
+      "platform_count": "2",
+      "price_observations": "4",
+      "min_price": "29.99",
+      "max_price": "29.99",
+      "min_thc": "0.00",
+      "max_thc": "0.00"
+    },
+    {
+      "sku": "DUTCHIE-751e6ebc81d07239eb80",
+      "name": "Metal Dabber with Silicone Tips",
+      "brand": "Luvbuds",
+      "category": "flower",
+      "weight_grams": null,
+      "platforms_found": [
+        "leafly",
+        "weedmaps"
+      ],
+      "platform_count": "2",
+      "price_observations": "4",
+      "min_price": "2.50",
+      "max_price": "5.00",
+      "min_thc": null,
+      "max_thc": null
+    },
+    {
+      "sku": "DUTCHIE-a781efcee6805fce50fb",
+      "name": "Zanimal Cookiez (H) 1G Pre-roll",
+      "brand": null,
+      "category": "preroll",
+      "weight_grams": null,
+      "platforms_found": [
+        "leafly",
+        "weedmaps"
+      ],
+      "platform_count": "2",
+      "price_observations": "4",
+      "min_price": "8.00",
+      "max_price": "8.00",
+      "min_thc": "25.70",
+      "max_thc": "25.70"
+    },
+    {
+      "sku": "DUTCHIE-c019dccaf18cb1f967cf",
+      "name": "Malibu | 3.5g",
+      "brand": "Malibu",
+      "category": "flower",
+      "weight_grams": null,
+      "platforms_found": [
+        "leafly",
+        "weedmaps"
+      ],
+      "platform_count": "2",
+      "price_observations": "4",
+      "min_price": "30.00",
+      "max_price": "30.00",
+      "min_thc": null,
+      "max_thc": null
+    },
+    {
+      "sku": "DUTCHIE-f430c85f452843920acd",
+      "name": "MK Lighter",
+      "brand": null,
+      "category": "flower",
+      "weight_grams": null,
+      "platforms_found": [
+        "leafly",
+        "weedmaps"
+      ],
+      "platform_count": "2",
+      "price_observations": "4",
+      "min_price": "1.50",
+      "max_price": "1.50",
+      "min_thc": "0.00",
+      "max_thc": "0.00"
+    },
+    {
+      "sku": "GPID-cfa2460a49c8",
+      "name": "Levia Dream Jam Berry Indica Seltzer 5mg",
+      "brand": "LEVIA",
+      "category": "edible",
+      "weight_grams": null,
+      "platforms_found": [
+        "jane",
+        "leafly"
+      ],
+      "platform_count": "2",
+      "price_observations": "4",
+      "min_price": "5.00",
+      "max_price": "5.00",
+      "min_thc": null,
+      "max_thc": null
+    },
+    {
+      "sku": "GPID-dd48ed232d06",
+      "name": "Strawberry Jelly",
+      "brand": "Nature's Heritage",
+      "category": "flower",
+      "weight_grams": "3.500",
+      "platforms_found": [
+        "jane",
+        "weedmaps"
+      ],
+      "platform_count": "2",
+      "price_observations": "4",
+      "min_price": "25.00",
+      "max_price": "40.00",
+      "min_thc": "24.80",
+      "max_thc": "24.80"
+    },
+    {
+      "sku": "NOW-NOW-EA",
+      "name": "Now",
+      "brand": null,
+      "category": "other",
+      "weight_grams": null,
+      "platforms_found": [
+        "dutchie",
+        "weedmaps"
+      ],
+      "platform_count": "2",
+      "price_observations": "4",
+      "min_price": "15.00",
+      "max_price": "29.00",
+      "min_thc": null,
+      "max_thc": null
+    },
+    {
+      "sku": "DUTCHIE-00c56f7568c8f1d39cc5",
+      "name": "Raw Pillow",
+      "brand": null,
+      "category": "flower",
+      "weight_grams": null,
+      "platforms_found": [
+        "leafly",
+        "weedmaps"
+      ],
+      "platform_count": "2",
+      "price_observations": "3",
+      "min_price": "30.00",
+      "max_price": "30.00",
+      "min_thc": "0.00",
+      "max_thc": "0.00"
+    },
+    {
+      "sku": "DUTCHIE-0a8feb5939dea7a8a233",
+      "name": "Metal Screens 5pk",
+      "brand": null,
+      "category": "flower",
+      "weight_grams": null,
+      "platforms_found": [
+        "leafly",
+        "weedmaps"
+      ],
+      "platform_count": "2",
+      "price_observations": "3",
+      "min_price": "1.00",
+      "max_price": "1.50",
+      "min_thc": "0.00",
+      "max_thc": "0.00"
+    },
+    {
+      "sku": "DUTCHIE-0de06d57a8efac1f0e09",
+      "name": "BIC | Lighter",
+      "brand": "BIC",
+      "category": "flower",
+      "weight_grams": null,
+      "platforms_found": [
+        "leafly",
+        "weedmaps"
+      ],
+      "platform_count": "2",
+      "price_observations": "3",
+      "min_price": "1.99",
+      "max_price": "3.00",
+      "min_thc": null,
+      "max_thc": null
+    },
+    {
+      "sku": "DUTCHIE-18fec589f3d0b17136c6",
+      "name": "$25 Battery",
+      "brand": null,
+      "category": "flower",
+      "weight_grams": null,
+      "platforms_found": [
+        "leafly",
+        "weedmaps"
+      ],
+      "platform_count": "2",
+      "price_observations": "3",
+      "min_price": "25.00",
+      "max_price": "25.00",
+      "min_thc": "0.00",
+      "max_thc": "0.00"
+    },
+    {
+      "sku": "DUTCHIE-1ef1d17b4081497139bb",
+      "name": "Glass Tips",
+      "brand": null,
+      "category": "flower",
+      "weight_grams": null,
+      "platforms_found": [
+        "leafly",
+        "weedmaps"
+      ],
+      "platform_count": "2",
+      "price_observations": "3",
+      "min_price": "8.00",
+      "max_price": "8.00",
+      "min_thc": "0.00",
+      "max_thc": "0.00"
+    },
+    {
+      "sku": "DUTCHIE-1fa7f46ad2d593d1d59a",
+      "name": "Hemp Wick - 10ft",
+      "brand": "RAW",
+      "category": "flower",
+      "weight_grams": null,
+      "platforms_found": [
+        "leafly",
+        "weedmaps"
+      ],
+      "platform_count": "2",
+      "price_observations": "3",
+      "min_price": "2.00",
+      "max_price": "2.00",
+      "min_thc": null,
+      "max_thc": null
+    },
+    {
+      "sku": "DUTCHIE-408cb763dd0a50feaad3",
+      "name": "$20 Battery",
+      "brand": null,
+      "category": "flower",
+      "weight_grams": null,
+      "platforms_found": [
+        "leafly",
+        "weedmaps"
+      ],
+      "platform_count": "2",
+      "price_observations": "3",
+      "min_price": "20.00",
+      "max_price": "20.00",
+      "min_thc": "0.00",
+      "max_thc": "0.00"
+    },
+    {
+      "sku": "DUTCHIE-412c5f326dafc94e52f1",
+      "name": "$35 Battery",
+      "brand": null,
+      "category": "flower",
+      "weight_grams": null,
+      "platforms_found": [
+        "leafly",
+        "weedmaps"
+      ],
+      "platform_count": "2",
+      "price_observations": "3",
+      "min_price": "35.00",
+      "max_price": "35.00",
+      "min_thc": "0.00",
+      "max_thc": "0.00"
+    },
+    {
+      "sku": "DUTCHIE-450f0e51e2c1055272c9",
+      "name": "FLWP-Lemon Gary-(H) 3.5G",
+      "brand": null,
+      "category": "flower",
+      "weight_grams": null,
+      "platforms_found": [
+        "leafly",
+        "weedmaps"
+      ],
+      "platform_count": "2",
+      "price_observations": "3",
+      "min_price": "30.00",
+      "max_price": "30.00",
+      "min_thc": "30.40",
+      "max_thc": "30.40"
+    },
+    {
+      "sku": "DUTCHIE-49ecf05286f4968d0668",
+      "name": "$15 Grinder",
+      "brand": null,
+      "category": "flower",
+      "weight_grams": null,
+      "platforms_found": [
+        "leafly",
+        "weedmaps"
+      ],
+      "platform_count": "2",
+      "price_observations": "3",
+      "min_price": "15.00",
+      "max_price": "15.00",
+      "min_thc": "0.00",
+      "max_thc": "0.00"
+    },
+    {
+      "sku": "DUTCHIE-4be4efa53cf95cce8f87",
+      "name": "Plastic Grinder",
+      "brand": null,
+      "category": "flower",
+      "weight_grams": null,
+      "platforms_found": [
+        "leafly",
+        "weedmaps"
+      ],
+      "platform_count": "2",
+      "price_observations": "3",
+      "min_price": "1.00",
+      "max_price": "5.00",
+      "min_thc": "0.00",
+      "max_thc": "0.00"
+    },
+    {
+      "sku": "DUTCHIE-4e37894f75acd2b92da3",
+      "name": "The Botanist - LA Pop Rockz - Flower - 3.5g",
+      "brand": "The Botanist",
+      "category": "flower",
+      "weight_grams": null,
+      "platforms_found": [
+        "leafly",
+        "weedmaps"
+      ],
+      "platform_count": "2",
+      "price_observations": "3",
+      "min_price": "25.00",
+      "max_price": "27.00",
+      "min_thc": "53.36",
+      "max_thc": "53.36"
+    },
+    {
+      "sku": "DUTCHIE-56ebe7f8e31262d192a1",
+      "name": "USBC Charger",
+      "brand": null,
+      "category": "flower",
+      "weight_grams": null,
+      "platforms_found": [
+        "leafly",
+        "weedmaps"
+      ],
+      "platform_count": "2",
+      "price_observations": "3",
+      "min_price": "5.00",
+      "max_price": "5.00",
+      "min_thc": "0.00",
+      "max_thc": "0.00"
+    },
+    {
+      "sku": "DUTCHIE-573cac552a1f6efdabd0",
+      "name": "Downstem Slide",
+      "brand": null,
+      "category": "flower",
+      "weight_grams": null,
+      "platforms_found": [
+        "leafly",
+        "weedmaps"
+      ],
+      "platform_count": "2",
+      "price_observations": "3",
+      "min_price": "5.00",
+      "max_price": "5.00",
+      "min_thc": "0.00",
+      "max_thc": "0.00"
+    },
+    {
+      "sku": "DUTCHIE-57be112298193d16e517",
+      "name": "PIPE SCREENS 5pk",
+      "brand": null,
+      "category": "flower",
+      "weight_grams": null,
+      "platforms_found": [
+        "leafly",
+        "weedmaps"
+      ],
+      "platform_count": "2",
+      "price_observations": "3",
+      "min_price": "1.00",
+      "max_price": "1.00",
+      "min_thc": null,
+      "max_thc": null
+    },
+    {
+      "sku": "DUTCHIE-68b7cf1b946bf89ad955",
+      "name": "Ornament Pipe",
+      "brand": null,
+      "category": "flower",
+      "weight_grams": null,
+      "platforms_found": [
+        "leafly",
+        "weedmaps"
+      ],
+      "platform_count": "2",
+      "price_observations": "3",
+      "min_price": "12.00",
+      "max_price": "12.00",
+      "min_thc": "0.00",
+      "max_thc": "0.00"
+    },
+    {
+      "sku": "DUTCHIE-69a7bafee920ca2ae7b8",
+      "name": "King Lighter",
+      "brand": null,
+      "category": "flower",
+      "weight_grams": null,
+      "platforms_found": [
+        "leafly",
+        "weedmaps"
+      ],
+      "platform_count": "2",
+      "price_observations": "3",
+      "min_price": "1.00",
+      "max_price": "1.00",
+      "min_thc": null,
+      "max_thc": null
+    },
+    {
+      "sku": "DUTCHIE-7277a4fa4b3285d58b30",
+      "name": "pH Balanced Alkaline Infused Water",
+      "brand": "Nectar",
+      "category": "edible",
+      "weight_grams": null,
+      "platforms_found": [
+        "leafly",
+        "weedmaps"
+      ],
+      "platform_count": "2",
+      "price_observations": "3",
+      "min_price": "5.00",
+      "max_price": "6.00",
+      "min_thc": "0.00",
+      "max_thc": "0.00"
+    },
+    {
+      "sku": "DUTCHIE-7bf957650e1c0d0ea3ef",
+      "name": "PROXY",
+      "brand": "Puffco",
+      "category": "flower",
+      "weight_grams": null,
+      "platforms_found": [
+        "leafly",
+        "weedmaps"
+      ],
+      "platform_count": "2",
+      "price_observations": "3",
+      "min_price": "200.00",
+      "max_price": "301.18",
+      "min_thc": null,
+      "max_thc": null
+    },
+    {
+      "sku": "DUTCHIE-7c1ab393f0269535f013",
+      "name": "Mouse Grinder",
+      "brand": null,
+      "category": "flower",
+      "weight_grams": null,
+      "platforms_found": [
+        "leafly",
+        "weedmaps"
+      ],
+      "platform_count": "2",
+      "price_observations": "3",
+      "min_price": "20.00",
+      "max_price": "20.00",
+      "min_thc": "0.00",
+      "max_thc": "0.00"
+    },
+    {
+      "sku": "DUTCHIE-807be293d2b2c7f39d18",
+      "name": "Lighter Leash",
+      "brand": "SirEEL",
+      "category": "flower",
+      "weight_grams": null,
+      "platforms_found": [
+        "leafly",
+        "weedmaps"
+      ],
+      "platform_count": "2",
+      "price_observations": "3",
+      "min_price": "2.00",
+      "max_price": "2.50",
+      "min_thc": null,
+      "max_thc": null
+    },
+    {
+      "sku": "DUTCHIE-88cacd86c8b0d515ce41",
+      "name": "Bubble Cap",
+      "brand": null,
+      "category": "flower",
+      "weight_grams": null,
+      "platforms_found": [
+        "leafly",
+        "weedmaps"
+      ],
+      "platform_count": "2",
+      "price_observations": "3",
+      "min_price": "7.00",
+      "max_price": "7.00",
+      "min_thc": null,
+      "max_thc": null
+    },
+    {
+      "sku": "DUTCHIE-91c0ca6762a863b5b481",
+      "name": "Grape Soda",
+      "brand": "CQ",
+      "category": "edible",
+      "weight_grams": null,
+      "platforms_found": [
+        "leafly",
+        "weedmaps"
+      ],
+      "platform_count": "2",
+      "price_observations": "3",
+      "min_price": "5.00",
+      "max_price": "6.00",
+      "min_thc": "0.00",
+      "max_thc": "0.00"
+    },
+    {
+      "sku": "DUTCHIE-94d76b545297f89d86e8",
+      "name": "Djeep Lighter",
+      "brand": null,
+      "category": "flower",
+      "weight_grams": null,
+      "platforms_found": [
+        "leafly",
+        "weedmaps"
+      ],
+      "platform_count": "2",
+      "price_observations": "3",
+      "min_price": "3.00",
+      "max_price": "5.00",
+      "min_thc": null,
+      "max_thc": null
+    },
+    {
+      "sku": "DUTCHIE-99a266b42d24e7ab03dc",
+      "name": "one hitter",
+      "brand": null,
+      "category": "flower",
+      "weight_grams": null,
+      "platforms_found": [
+        "leafly",
+        "weedmaps"
+      ],
+      "platform_count": "2",
+      "price_observations": "3",
+      "min_price": "2.00",
+      "max_price": "3.00",
+      "min_thc": null,
+      "max_thc": null
+    },
+    {
+      "sku": "DUTCHIE-9eb0a21184363586c2ef",
+      "name": "Stainless Steel Pipe Screens 5pk",
+      "brand": null,
+      "category": "flower",
+      "weight_grams": null,
+      "platforms_found": [
+        "leafly",
+        "weedmaps"
+      ],
+      "platform_count": "2",
+      "price_observations": "3",
+      "min_price": "1.00",
+      "max_price": "1.25",
+      "min_thc": null,
+      "max_thc": null
+    },
+    {
+      "sku": "DUTCHIE-a88a4eccee5934e22b7f",
+      "name": "PV Distillate Cart 1000mg (HY) Peppermint Mocha 1g",
+      "brand": null,
+      "category": "vape",
+      "weight_grams": null,
+      "platforms_found": [
+        "leafly",
+        "weedmaps"
+      ],
+      "platform_count": "2",
+      "price_observations": "3",
+      "min_price": "30.00",
+      "max_price": "30.00",
+      "min_thc": "84.56",
+      "max_thc": "84.56"
+    },
+    {
+      "sku": "DUTCHIE-ae517b25bceb05600c03",
+      "name": "$12 Battery",
+      "brand": null,
+      "category": "flower",
+      "weight_grams": null,
+      "platforms_found": [
+        "leafly",
+        "weedmaps"
+      ],
+      "platform_count": "2",
+      "price_observations": "3",
+      "min_price": "12.00",
+      "max_price": "12.00",
+      "min_thc": "0.00",
+      "max_thc": "0.00"
+    },
+    {
+      "sku": "DUTCHIE-b234fd38f537876cd215",
+      "name": "Sesh'n -Rootbeer Fizz (I) -Vape 1g",
+      "brand": null,
+      "category": "vape",
+      "weight_grams": null,
+      "platforms_found": [
+        "leafly",
+        "weedmaps"
+      ],
+      "platform_count": "2",
+      "price_observations": "3",
+      "min_price": "20.00",
+      "max_price": "20.00",
+      "min_thc": "78.42",
+      "max_thc": "78.42"
+    },
+    {
+      "sku": "DUTCHIE-c5d5c32fcc5479b3bbda",
+      "name": "Baby Turtle | 3.5g",
+      "brand": "Khalifa Kush",
+      "category": "flower",
+      "weight_grams": null,
+      "platforms_found": [
+        "leafly",
+        "weedmaps"
+      ],
+      "platform_count": "2",
+      "price_observations": "3",
+      "min_price": "40.00",
+      "max_price": "40.00",
+      "min_thc": "0.00",
+      "max_thc": "0.00"
+    },
+    {
+      "sku": "DUTCHIE-cac4704fbccfc084d63e",
+      "name": "$20 Grinder",
+      "brand": null,
+      "category": "flower",
+      "weight_grams": null,
+      "platforms_found": [
+        "leafly",
+        "weedmaps"
+      ],
+      "platform_count": "2",
+      "price_observations": "3",
+      "min_price": "20.00",
+      "max_price": "20.00",
+      "min_thc": "0.00",
+      "max_thc": "0.00"
+    },
+    {
+      "sku": "DUTCHIE-d2214480b3b817883c34",
+      "name": "FLWP-South End Cannoli (H) 3.5G",
+      "brand": null,
+      "category": "flower",
+      "weight_grams": null,
+      "platforms_found": [
+        "leafly",
+        "weedmaps"
+      ],
+      "platform_count": "2",
+      "price_observations": "3",
+      "min_price": "30.00",
+      "max_price": "30.00",
+      "min_thc": "30.49",
+      "max_thc": "30.49"
+    },
+    {
+      "sku": "DUTCHIE-d5cb94ab23a7b0e03cdf",
+      "name": "3\" Chillums",
+      "brand": null,
+      "category": "flower",
+      "weight_grams": null,
+      "platforms_found": [
+        "leafly",
+        "weedmaps"
+      ],
+      "platform_count": "2",
+      "price_observations": "3",
+      "min_price": "5.00",
+      "max_price": "5.00",
+      "min_thc": null,
+      "max_thc": null
+    },
+    {
+      "sku": "DUTCHIE-df2a4c12d15823d1d671",
+      "name": "Ginger Ale",
+      "brand": "CQ",
+      "category": "edible",
+      "weight_grams": null,
+      "platforms_found": [
+        "leafly",
+        "weedmaps"
+      ],
+      "platform_count": "2",
+      "price_observations": "3",
+      "min_price": "5.00",
+      "max_price": "6.00",
+      "min_thc": "0.00",
+      "max_thc": "0.00"
+    }
+  ],
+  "scores": {
+    "weights": {
+      "matchRate": 0.3,
+      "fieldCompleteness": 0.25,
+      "brandNormalization": 0.15,
+      "categoryConsistency": 0.15,
+      "priceSanity": 0.15
+    },
+    "breakdown": {
+      "matchRate": 0.00041315386089289135,
+      "fieldCompleteness": 0.6200566206000827,
+      "brandNormalization": 0.9745818717909613,
+      "categoryConsistency": 0.25,
+      "priceSanity": 0.9883867640422533,
+      "overall": 0.4870833966832707
+    },
+    "overallScore100": 48.71
+  },
+  "artifacts": {
+    "markdownReportPath": "/data/workspace/projects/glass/reports/gpid-scoring-dashboard-2026-02-13.md",
+    "jsonSummaryPath": "/data/workspace/projects/glass/reports/gpid-scores-2026-02-13.json"
+  }
+}
