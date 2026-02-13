@@ -101,7 +101,12 @@ _Curated patterns, preferences, and lessons. Updated weekly from daily logs._
 - **⚠️ READ `projects/glass/src/scripts/SCRAPER-ARCHITECTURE.md` FIRST** — full architecture, run commands, and troubleshooting.
 - **The ONLY Dutchie scraper is `scrape-dutchie.ts`** using CamoFox BrowserPool (HTTP API at localhost:9377). Firecrawl is NOT used. The old `scrape-dutchie-ma.ts` was REMOVED Feb 13.
 - **CamoFox HTTP API** at `localhost:9377` — managed by OpenClaw plugin (`autoStart: true`). Don't launch Playwright separately. Endpoints: POST /tabs, GET /tabs/:id/snapshot, POST /tabs/:id/click, POST /tabs/:id/scroll, POST /tabs/:id/navigate, DELETE /tabs/:id.
-- **DATABASE_URL in sandbox = Neon, not Railway**: Always override: `DATABASE_URL="postgresql://postgres:rcsulogGljjcDcBMxfMeGNlqbmbgHspa@turntable.proxy.rlwy.net:18582/railway"`
+- **⚠️ TWO DATABASES EXIST — USE RAILWAY POSTGRES ONLY**:
+  - Railway Postgres (ALL DATA): `postgresql://postgres:rcsulogGljjcDcBMxfMeGNlqbmbgHspa@turntable.proxy.rlwy.net:18582/railway` — 183K products, 237K prices, `public` schema
+  - Neon (EMPTY, DEPRECATED): `postgresql://neondb_owner:npg_t8GsQ3iblVCZ@ep-dry-sound-a4mopipn-pooler.us-east-1.aws.neon.tech/neondb` — glass-api schema only, no scraper data
+  - Sandbox `DATABASE_URL` env var = Neon. ALWAYS override with Railway URL.
+  - Randy directive: kill Neon, consolidate on Railway Postgres
+  - Data is in `public` schema, NOT `glass` schema. `SET search_path TO glass, public` hits empty `glass` tables first if they exist.
 - **Run command**: `DATABASE_URL=<railway-url> bash scripts/run-daily-dutchie.sh` or `npx tsx scripts/scrape-dutchie.ts --skip-discovery --db`
 - **Benchmarks** (Feb 12): 235 stores, 195 succeeded (83%), 57,514 prices, ~5.2 hours.
 - **CamoFox crashes**: Zombie processes pile up, port 9377 goes dead. Fix: `cd /data/.openclaw/extensions/camofox-browser && node server.js &` or gateway restart. Use `--resume <run-id>` after crash.
