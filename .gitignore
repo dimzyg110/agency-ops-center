@@ -69,3 +69,4 @@ Thumbs.db
 *.flac
 projects/roviq-browser
 venv/
+dump.rdb
