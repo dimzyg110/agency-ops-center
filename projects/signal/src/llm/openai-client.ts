@@ -1,8 +1,13 @@
 /**
- * Centralized OpenAI client with retry logic, exponential backoff,
- * and model selection for different pipeline stages.
+ * Centralized LLM client with retry logic, exponential backoff,
+ * and support for multiple OpenAI-compatible providers.
  *
- * Supports NVIDIA API as a fallback when OPENAI_API_KEY is invalid.
+ * Supports:
+ * - OpenAI (OPENAI_API_KEY)
+ * - NVIDIA (NVIDIA_API_KEY) - https://integrate.api.nvidia.com/v1
+ * - OpenRouter (OPENROUTER_API_KEY) - https://openrouter.ai/api/v1
+ *
+ * Auto-detects available provider in priority order: NVIDIA → OpenRouter → OpenAI
  */
 import OpenAI from "openai";
 
@@ -20,6 +25,12 @@ const NVIDIA_MODEL_MAP: Record<LLMRole, string> = {
   research: "meta/llama-3.1-8b-instruct",
 };
 
+const OPENROUTER_MODEL_MAP: Record<LLMRole, string> = {
+  content: "anthropic/claude-3.5-sonnet",
+  humanizer: "anthropic/claude-3.5-haiku",
+  research: "anthropic/claude-3.5-haiku",
+};
+
 const MAX_RETRIES = 3;
 const BASE_DELAY_MS = 1000;
 
@@ -31,36 +42,116 @@ interface LLMCallOptions {
   maxTokens?: number;
 }
 
-type LLMProvider = "openai" | "nvidia";
+type LLMProvider = "openai" | "nvidia" | "openrouter";
 
-function detectProvider(): { client: OpenAI; provider: LLMProvider } {
-  // Try NVIDIA API first (since OpenAI key is known to be expired)
+interface ProviderConfig {
+  name: LLMProvider;
+  client: OpenAI;
+  keyEnvVar: string;
+  baseURL: string;
+}
+
+/**
+ * Auto-detect available LLM provider.
+ * Priority: NVIDIA → OpenRouter → OpenAI
+ */
+function detectProvider(): { client: OpenAI; provider: LLMProvider; config: ProviderConfig } {
+  // Priority 1: NVIDIA API (since OpenAI key was known to be expired)
   const nvidiaKey = process.env.NVIDIA_API_KEY;
   if (nvidiaKey) {
+    console.log("[LLM] Using NVIDIA provider (integrate.api.nvidia.com)");
     return {
       client: new OpenAI({
         apiKey: nvidiaKey,
         baseURL: "https://integrate.api.nvidia.com/v1",
       }),
       provider: "nvidia",
+      config: {
+        name: "nvidia",
+        client: new OpenAI({
+          apiKey: nvidiaKey,
+          baseURL: "https://integrate.api.nvidia.com/v1",
+        }),
+        keyEnvVar: "NVIDIA_API_KEY",
+        baseURL: "https://integrate.api.nvidia.com/v1",
+      },
     };
   }
 
+  // Priority 2: OpenRouter (good free tier models)
+  const openrouterKey = process.env.OPENROUTER_API_KEY;
+  if (openrouterKey) {
+    console.log("[LLM] Using OpenRouter provider (openrouter.ai)");
+    return {
+      client: new OpenAI({
+        apiKey: openrouterKey,
+        baseURL: "https://openrouter.ai/api/v1",
+      }),
+      provider: "openrouter",
+      config: {
+        name: "openrouter",
+        client: new OpenAI({
+          apiKey: openrouterKey,
+          baseURL: "https://openrouter.ai/api/v1",
+        }),
+        keyEnvVar: "OPENROUTER_API_KEY",
+        baseURL: "https://openrouter.ai/api/v1",
+      },
+    };
+  }
+
+  // Priority 3: OpenAI (fallback)
   const openaiKey = process.env.OPENAI_API_KEY;
   if (openaiKey) {
+    console.log("[LLM] Using OpenAI provider");
     return {
       client: new OpenAI({ apiKey: openaiKey }),
       provider: "openai",
+      config: {
+        name: "openai",
+        client: new OpenAI({ apiKey: openaiKey }),
+        keyEnvVar: "OPENAI_API_KEY",
+        baseURL: "https://api.openai.com/v1",
+      },
     };
   }
 
-  throw new Error("No LLM API key available. Set NVIDIA_API_KEY or OPENAI_API_KEY.");
+  throw new Error(
+    "No LLM API key available. Set one of: NVIDIA_API_KEY, OPENROUTER_API_KEY, or OPENAI_API_KEY."
+  );
+}
+
+/**
+ * Check if any LLM provider key is available.
+ */
+export function hasLlmProvider(): boolean {
+  return !!(process.env.NVIDIA_API_KEY || process.env.OPENROUTER_API_KEY || process.env.OPENAI_API_KEY);
+}
+
+/**
+ * Get available provider names.
+ */
+export function getAvailableProviders(): LLMProvider[] {
+  const providers: LLMProvider[] = [];
+  if (process.env.NVIDIA_API_KEY) providers.push("nvidia");
+  if (process.env.OPENROUTER_API_KEY) providers.push("openrouter");
+  if (process.env.OPENAI_API_KEY) providers.push("openai");
+  return providers;
 }
 
 function getModelForRole(provider: LLMProvider, role: LLMRole): string {
   const envModel = process.env.OPENAI_MODEL;
   if (envModel && provider === "openai") return envModel;
-  return provider === "nvidia" ? NVIDIA_MODEL_MAP[role] : OPENAI_MODEL_MAP[role];
+
+  switch (provider) {
+    case "nvidia":
+      return NVIDIA_MODEL_MAP[role];
+    case "openrouter":
+      return OPENROUTER_MODEL_MAP[role];
+    case "openai":
+    default:
+      return OPENAI_MODEL_MAP[role];
+  }
 }
 
 async function sleep(ms: number): Promise<void> {
@@ -69,7 +160,7 @@ async function sleep(ms: number): Promise<void> {
 
 /**
  * Call LLM with exponential backoff retry.
- * Supports OpenAI and NVIDIA (OpenAI-compatible) endpoints.
+ * Supports OpenAI, NVIDIA, and OpenRouter endpoints.
  * Retries on rate limits (429), server errors (5xx), and timeouts.
  */
 export async function callLLM(options: LLMCallOptions): Promise<string> {
@@ -93,7 +184,7 @@ export async function callLLM(options: LLMCallOptions): Promise<string> {
 
       const content = completion.choices[0]?.message?.content;
       if (!content) {
-        throw new Error("OpenAI returned empty response content.");
+        throw new Error("LLM returned empty response content.");
       }
       return content;
     } catch (error) {
@@ -106,7 +197,8 @@ export async function callLLM(options: LLMCallOptions): Promise<string> {
         lastError.message.includes("502") ||
         lastError.message.includes("503") ||
         lastError.message.includes("timeout") ||
-        lastError.message.includes("ECONNRESET");
+        lastError.message.includes("ECONNRESET") ||
+        lastError.message.includes("rate limit");
 
       if (!isRetryable || attempt === MAX_RETRIES - 1) {
         break;
@@ -114,19 +206,24 @@ export async function callLLM(options: LLMCallOptions): Promise<string> {
 
       const delayMs = BASE_DELAY_MS * Math.pow(2, attempt) + Math.random() * 500;
       console.warn(
-        `LLM call failed (attempt ${attempt + 1}/${MAX_RETRIES}), retrying in ${Math.round(delayMs)}ms: ${lastError.message}`
+        `[LLM] Call failed (attempt ${attempt + 1}/${MAX_RETRIES}), retrying in ${Math.round(delayMs)}ms: ${lastError.message}`
       );
       await sleep(delayMs);
     }
   }
 
-  throw new Error(`LLM call failed after ${MAX_RETRIES} attempts: ${lastError?.message ?? "Unknown error"}`);
+  throw new Error(
+    `LLM call failed after ${MAX_RETRIES} attempts: ${lastError?.message ?? "Unknown error"}`
+  );
 }
 
 /**
- * Generate long-form SEO content using GPT-4o.
+ * Generate long-form SEO content.
  */
-export async function generateContent(systemPrompt: string, userPrompt: string): Promise<string> {
+export async function generateContent(
+  systemPrompt: string,
+  userPrompt: string
+): Promise<string> {
   return callLLM({
     role: "content",
     systemPrompt,
@@ -137,9 +234,12 @@ export async function generateContent(systemPrompt: string, userPrompt: string):
 }
 
 /**
- * Humanize content using GPT-4o-mini for cost efficiency.
+ * Humanize content using cost-efficient model.
  */
-export async function humanizeContent(systemPrompt: string, content: string): Promise<string> {
+export async function humanizeContent(
+  systemPrompt: string,
+  content: string
+): Promise<string> {
   return callLLM({
     role: "humanizer",
     systemPrompt,
@@ -150,9 +250,12 @@ export async function humanizeContent(systemPrompt: string, content: string): Pr
 }
 
 /**
- * Research/keyword analysis using GPT-4o-mini.
+ * Research/keyword analysis using efficient model.
  */
-export async function researchQuery(systemPrompt: string, query: string): Promise<string> {
+export async function researchQuery(
+  systemPrompt: string,
+  query: string
+): Promise<string> {
   return callLLM({
     role: "research",
     systemPrompt,
