@@ -121,6 +121,11 @@ _Curated patterns, preferences, and lessons. Updated weekly from daily logs._
 - **Railway CLI 403**: `railway up` started returning 403 on uploads (Feb 13). Workaround: redeploy from dashboard or connect GitHub for auto-deploy.
 - **Git PR workflow (GLASS)**: Bot (`randyt1444-arch`) creates PRs. Randy approves + merges. `enforce_admins: true` on main.
 - **Advisory locks REMOVED**: `run-lock.ts` uses simple `scrape_runs` table check (PR #16). No more `pg_try_advisory_lock`.
+- **Jane scraper rewritten to direct Playwright Firefox** (PR #30): No CamoFox. Launches Firefox, navigates iheartjane.com → search subdomain for CF clearance, `page.evaluate(fetch())` for Algolia.
+- **Leafly exponential backoff** (PR #30): 2s→60s, 8 retries, 30% jitter, global adaptive throttle slows ALL requests after 429s.
+- **Weedmaps NOT stuck — just silent**: Large menus (598 products/25 pages) take minutes with no output. Progress logging added.
+- **OpenClaw Railway wrapper**: PID 1 = wrapper on PORT=3000, spawns gateway on 18789. SIGUSR1 does NOT rebind ports. Don't change port config.
+- **Codex T1 excellent for code review**: Catches lifecycle leaks, missing timeouts, incomplete retry coverage. Worth cost for critical PRs.
 - **Signal tool at 60% production readiness**: Architecture solid but missing GLASS API integration (routes mismatched), client context files, API keys (OpenAI expired, GITHUB_TOKEN, GLASS_API_KEY not set), zero unit tests. Audit doc at `projects/signal/SIGNAL.md`.
 - **Weedmaps scraper**: `scripts/scrape-weedmaps.ts`. Uses `WEEDMAPS_CAMOFOX_URL` env var, defaults to `https://roviq-browser-production.up.railway.app`. Railway works fine for Weedmaps (tested Feb 13 — age gate dismissal needed, but products load). Runs in parallel with Dutchie (Dutchie=local CamoFox, Weedmaps=Railway).
 - **MA cannabis market size**: 650+ licensed retailers. Dutchie ~235+ (40%), Weedmaps ~300-400, iHeartJane ~100-150.
