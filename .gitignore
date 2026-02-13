@@ -68,3 +68,4 @@ Thumbs.db
 *.aac
 *.flac
 projects/roviq-browser
+venv/
