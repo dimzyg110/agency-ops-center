@@ -248,6 +248,18 @@ Every PR should include verification steps. For code changes:
 
 ---
 
+## Model Selection for GLASS
+
+See `team/WORKFLOW.md` for the canonical model hierarchy. Quick reference:
+
+| Task Type | Model | Route |
+|-----------|-------|-------|
+| Architecture / DB schema / complex code | Codex 5.3 | `openai-codex/gpt-5.3-codex` |
+| Clear-scoped features / fixes | MiniMax M2.5 | `openrouter/minimax/minimax-m2.5` |
+| Frontend (React/CSS) | Kimi K2.5 | `openrouter/moonshotai/kimi-k2.5` |
+| Code review 1 | Codex 5.3 | `openai-codex/gpt-5.3-codex` |
+| Code review 2 | MiniMax M2.5 | `openrouter/minimax/minimax-m2.5` |
+
 ## Agent Spawn Template
 
 When the COO spawns an agent for GLASS work:

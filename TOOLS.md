@@ -27,24 +27,29 @@
 - Stagger across providers when possible (Antigravity, NVIDIA, OpenAI Codex)
 - Queue remaining tasks to run after the first batch completes
 
-### GLASS — Approved Models (LOCKED)
+### Model Hierarchy (LOCKED — Randy approved)
 
-Only 3 models touch GLASS. No exceptions unless Randy explicitly says otherwise:
+| Tier | Model | Route | Use For |
+|------|-------|-------|---------|
+| **T1 Architect** | GPT 5.3 Codex | `openai-codex/gpt-5.3-codex` | Architecture, complex code, DB schema, code review |
+| **T2 Senior** | Claude Opus 4.6 | `anthropic/claude-opus-4-6` | Strategy, orchestration, nuanced judgment |
+| **T3 Fast Senior** | MiniMax M2.5 | `openrouter/minimax/minimax-m2.5` | Clear-scoped tasks, fast execution, reviews, research |
+| **T4 Specialist** | Kimi K2.5 | `openrouter/moonshotai/kimi-k2.5` | Frontend, long-context, large file writes |
+| **Utility** | Gemini 2.5 Flash/Pro | `google/gemini-2.5-flash` / `google/gemini-2.5-pro` | Image gen (Imagen), cheap tasks, vision |
 
-| Role | Model | Access |
-|------|-------|--------|
-| Chief Architect / Backend | **GPT 5.3 Codex** | CLI only (`codex exec`) |
-| Code Reviews / QA | **GPT 5.3 Codex** | CLI only (`codex exec`) |
-| Frontend | **Kimi K2.5** | API subagent (`openrouter/moonshotai/kimi-k2.5`) |
+**Rules:**
+- T1 (Codex) = final authority on architecture and code reviews. Don't waste on simple tasks.
+- T3 (MiniMax) = workhorse. Fast, smart, cheap. Use for anything with clear requirements.
+- T4 (Kimi) = frontend and large writes. 256K context, 65K output.
+- Specialist and reviewer MUST be different models.
+- Don't use Opus for tasks MiniMax can handle.
 
-- No Gemini, no GPT-5.2, no other models on GLASS work.
-- Codex 5.3 = final authority on architecture, backend, AND code reviews.
-- Kimi K2.5 = frontend only (`apps/web/`).
+**Canonical reference:** `team/WORKFLOW.md` has the full role→model mapping.
 
-**Role prompts are MANDATORY.** Every GLASS agent spawn must include:
+**Role prompts are MANDATORY.** Every agent spawn must include:
 - Developer agents: `"Read /data/workspace/team/DEVELOPER.md for your role definition. Then: [task]"`
 - Reviewer agents: `"Read /data/workspace/team/QA.md for your role definition. Then: [task]"`
-- Codex CLI tasks: include the role context in the task prompt since it can read files directly.
+- GLASS agents: `"Read /data/workspace/projects/glass/CONTRIBUTING.md first. Then: [task]"`
 
 ### GLASS Repo — Parallel Agent Isolation
 

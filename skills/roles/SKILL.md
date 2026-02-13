@@ -113,12 +113,12 @@ ONLY after reviews are synthesized and issues resolved:
 
 ## 📊 Model Selection Strategy
 
-| Role               | Primary Model                                 | Fallback                            | Why                              |
-| ------------------ | --------------------------------------------- | ----------------------------------- | -------------------------------- |
-| Orchestrator (You) | `google-antigravity/claude-sonnet-4-5-thinking` | `google-antigravity/gemini-3-pro-high`| Best at planning & coordination  |
-| Developer          | `google-antigravity/claude-sonnet-4-5-thinking` | `google-antigravity/gemini-3-pro-high`| Best code quality                |
-| Designer           | `google-antigravity/gemini-3-pro-high`        | `google-antigravity/gemini-3-flash` | Strong visual/creative reasoning |
-| Researcher         | `google-antigravity/gemini-3-pro-high`        | `nvidia/moonshotai/kimi-k2.5`       | Good at synthesis                |
-| Reviewer 1         | `openai-codex/gpt-5.3-codex`                  | `google-antigravity/claude-sonnet-4-5-thinking`| Codex CLI - strict review        |
-| Reviewer 2         | `google-antigravity/gemini-3-pro-high`        | `openai/gpt-5.2-codex`             | Different perspective            |
-| Humanizer          | `google-antigravity/claude-sonnet-4-5-thinking` | `google-antigravity/gemini-3-pro-high` | Best at natural voice + style |
+**Canonical reference is `team/WORKFLOW.md`.** This is a quick-reference copy.
+
+| Tier | Model | Route | Best For |
+|------|-------|-------|----------|
+| **T1 Architect** | Codex 5.3 | `openai-codex/gpt-5.3-codex` | Architecture, complex code, DB, code review |
+| **T2 Senior** | Opus 4.6 | `anthropic/claude-opus-4-6` | Strategy, orchestration, judgment |
+| **T3 Fast Senior** | MiniMax M2.5 | `openrouter/minimax/minimax-m2.5` | Clear tasks, fast execution, reviews |
+| **T4 Specialist** | Kimi K2.5 | `openrouter/moonshotai/kimi-k2.5` | Frontend, long-context, large writes |
+| **Utility** | Gemini 2.5 Flash | `google/gemini-2.5-flash` | Cheap tasks, image gen, quick checks |

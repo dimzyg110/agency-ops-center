@@ -158,17 +158,38 @@ COO merges to main (only after approval)
 
 Use model diversity to catch different failure modes. This is the **canonical reference** — don't duplicate this table elsewhere.
 
-| Role             | Primary Model                                    | Fallback                             | Rationale                                                      |
-| ---------------- | ------------------------------------------------ | ------------------------------------ | -------------------------------------------------------------- |
-| **Orchestrator** | `google-antigravity/claude-opus-4-6-thinking`    | `google-antigravity/claude-opus-4-6` | Strongest at planning, decomposition, and structured reasoning |
-| **Developer**    | `google-antigravity/claude-opus-4-6-thinking`    | `google-antigravity/claude-opus-4-6` | Best code generation quality and architecture judgment         |
-| **Designer**     | `google-antigravity/gemini-3-pro-high`           | `google-antigravity/gemini-3-flash`  | Stronger visual/spatial reasoning and creative generation      |
-| **Researcher**   | `openai/gpt-5.2-codex`                           | `nvidia/moonshotai/kimi-k2.5`        | Best at synthesis across diverse sources                       |
-| **Reviewer 1**   | `google-antigravity/claude-opus-4-6-thinking`    | `google-antigravity/claude-opus-4-6` | Strict, detail-oriented analysis                               |
-| **Reviewer 2**   | `google-antigravity/gemini-3-pro-high`           | `openai/gpt-5.2-codex`              | Different architecture = different blind spots                 |
-| **Tiebreaker**   | `nvidia/moonshotai/kimi-k2.5`                    | `openai/gpt-5.2-codex`              | Third perspective when reviewers conflict                      |
+### Model Hierarchy (LOCKED — Randy approved)
 
-**Principle:** Specialist and reviewer should NEVER be the same model. The whole point is architectural diversity in evaluation.
+| Tier | Model | Route | Best For | Cost |
+|------|-------|-------|----------|------|
+| **T1 — Architect** | GPT 5.3 Codex | `openai-codex/gpt-5.3-codex` | Architecture, complex code, DB design, code review | OAuth (free) |
+| **T2 — Senior** | Claude Opus 4.6 | `anthropic/claude-opus-4-6` | Strategy, orchestration, nuanced judgment, long writes | $5/$25 |
+| **T3 — Fast Senior** | MiniMax M2.5 | `openrouter/minimax/minimax-m2.5` | Clear-scoped tasks, fast execution, reviews, research | $1/$4 |
+| **T4 — Specialist** | Kimi K2.5 | `openrouter/moonshotai/kimi-k2.5` | Frontend, long-context reads, large file writes | $0.60/$2.50 |
+| **Utility** | Gemini 2.5 Flash | `google/gemini-2.5-flash` | Cheap tasks, image gen (Imagen), quick checks | $0.15/$0.60 |
+| **Utility** | Gemini 2.5 Pro | `google/gemini-2.5-pro` | Multimodal, vision, creative | $1.25/$10 |
+
+### Role → Model Assignment
+
+| Role | Primary | Fallback | Why |
+|------|---------|----------|-----|
+| **Orchestrator (COO)** | Opus 4.6 | Codex 5.3 | Best at planning, coordination, judgment |
+| **Architect / Complex Code** | Codex 5.3 | Opus 4.6 | Strongest code quality and system design |
+| **Developer (clear tasks)** | MiniMax M2.5 | Kimi K2.5 | Fast, smart, good for well-scoped work |
+| **Developer (frontend)** | Kimi K2.5 | MiniMax M2.5 | Best at React/CSS, large file output |
+| **Researcher** | MiniMax M2.5 | Gemini 2.5 Pro | Fast synthesis, 1M context window |
+| **Reviewer 1** | Codex 5.3 | Opus 4.6 | Strict, architectural perspective |
+| **Reviewer 2** | MiniMax M2.5 | Kimi K2.5 | Different architecture, catches different issues |
+| **Designer** | Gemini 2.5 Pro | Kimi K2.5 | Visual reasoning, image generation |
+| **Humanizer** | MiniMax M2.5 | Opus 4.6 | Fast, good at natural language |
+| **Tiebreaker** | whichever model wasn't used by R1/R2 | — | Must be different from both reviewers |
+
+### Rules
+- **Specialist and reviewer MUST be different models.** Architectural diversity catches different failures.
+- **T1 (Codex) for anything that touches architecture, DB schema, or system design.** Don't waste it on copy or simple components.
+- **T3 (MiniMax) for anything with clear requirements.** It's fast and cheap — use it as the workhorse.
+- **T4 (Kimi) for frontend and large file writes.** 256K context, 65K output via OpenRouter.
+- **Don't use Opus for tasks MiniMax can handle.** Save the expensive model for judgment calls.
 
 ---
 
