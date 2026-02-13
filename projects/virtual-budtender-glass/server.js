@@ -46,7 +46,11 @@ app.use(express.json());
 // Setup tenant-specific endpoints
 setupTenantEndpoints(app);
 
-const loggedSessions = new Set();
+const LOGGED_SESSION_MAX = 10000;
+const LOGGED_SESSION_TTL_MS = 24 * 60 * 60 * 1000;
+const TENANT_SLUG_REGEX = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+
+const loggedSessions = new Map();
 
 function getSessionToken(req) {
   return req.body?.sessionToken || req.headers['x-session-token'] || req.body?.sessionId || null;
@@ -85,13 +89,40 @@ function mapGlassProductToVB(product) {
   };
 }
 
+function pruneLoggedSessions(now = Date.now()) {
+  for (const [token, createdAt] of loggedSessions.entries()) {
+    if (now - createdAt > LOGGED_SESSION_TTL_MS) {
+      loggedSessions.delete(token);
+    }
+  }
+
+  while (loggedSessions.size > LOGGED_SESSION_MAX) {
+    const oldestToken = loggedSessions.keys().next().value;
+    if (!oldestToken) break;
+    loggedSessions.delete(oldestToken);
+  }
+}
+
+function isValidTenantSlug(value) {
+  return typeof value === 'string' && TENANT_SLUG_REGEX.test(value.trim());
+}
+
+function isValidMessage(value) {
+  return typeof value === 'string' && value.trim().length > 0 && value.trim().length <= 2000;
+}
+
 function maybeLogSession(req, tenantId, tenantConfig) {
   const sessionToken = getSessionToken(req);
-  if (!sessionToken || loggedSessions.has(sessionToken)) {
+  if (!sessionToken) {
     return sessionToken;
   }
 
-  loggedSessions.add(sessionToken);
+  pruneLoggedSessions();
+  if (loggedSessions.has(sessionToken)) {
+    return sessionToken;
+  }
+
+  loggedSessions.set(sessionToken, Date.now());
   glassClient.logSession(
     tenantId,
     tenantConfig.glassOperatorId,
@@ -146,8 +177,20 @@ app.post(['/recommend', '/recommend/:tenantId'], async (req, res) => {
   const requestStartedAt = Date.now();
 
   try {
-    const { tenantId: bodyTenantId, answers } = req.body;
+    const { tenantId: bodyTenantId, answers, message } = req.body;
     const tenantId = resolveTenantId(req, bodyTenantId);
+
+    if (!isValidTenantSlug(tenantId)) {
+      return res.status(400).json({ error: 'Invalid tenantId format' });
+    }
+
+    if (message !== undefined && !isValidMessage(message)) {
+      return res.status(400).json({ error: 'message must be a non-empty string up to 2000 characters' });
+    }
+
+    if (!answers || typeof answers !== 'object') {
+      return res.status(400).json({ error: 'answers is required and must be an object' });
+    }
 
     // Validate tenant
     if (!tenantExists(tenantId)) {
@@ -347,6 +390,14 @@ app.post(['/chat', '/chat/:tenantId'], async (req, res) => {
   try {
     const { tenantId: bodyTenantId, message, conversationHistory = [] } = req.body;
     const tenantId = resolveTenantId(req, bodyTenantId);
+
+    if (!isValidTenantSlug(tenantId)) {
+      return res.status(400).json({ error: 'Invalid tenantId format' });
+    }
+
+    if (!isValidMessage(message)) {
+      return res.status(400).json({ error: 'message must be a non-empty string up to 2000 characters' });
+    }
 
     // Validate tenant
     if (!tenantExists(tenantId)) {
