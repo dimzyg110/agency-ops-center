@@ -140,9 +140,12 @@ const AI_PATTERNS: AiPattern[] = [
     description: "Forced groupings of three",
     detect: /\b\w+,\s+\w+,\s+and\s+\w+\b/g,
     fix: (match: string) => {
-      const parts = match.split(",");
-      if (parts.length >= 2) {
-        return parts[0].trim();
+      // Keep first and last items, drop the middle: "A, B, and C" -> "A and C"
+      const parts = match.split(/,\s+|\s+and\s+/).filter((p): p is string => !!p);
+      if (parts.length >= 3) {
+        const first = parts[0]!;
+        const last = parts[parts.length - 1]!;
+        return `${first.trim()} and ${last.trim()}`;
       }
       return match;
     },
@@ -209,9 +212,15 @@ const AI_PATTERNS: AiPattern[] = [
     name: "curly_quotes",
     category: "style",
     description: "Using curly quotes instead of straight quotes",
-    detect: /[""''`]/gu,
+    detect: /[\u201C\u201D\u2018\u2019`]/gu,
     fix: (match: string) => {
-      const map: Record<string, string> = { '"': '"', '"': '"', ''': "'", ''': "'", '`': "'" };
+      const map: Record<string, string> = { 
+        "\u201C": '"',  // left double quote
+        "\u201D": '"',  // right double quote
+        "\u2018": "'",  // left single quote
+        "\u2019": "'",  // right single quote
+        "`": "'" 
+      };
       return map[match] || match;
     },
     weight: 2,
@@ -280,6 +289,68 @@ const AI_PATTERNS: AiPattern[] = [
     weight: 6,
   },
 ];
+
+// Placeholder tokens for protected content
+interface ProtectedBlocks {
+  jsonLdBlocks: string[];
+  codeFences: string[];
+}
+
+/**
+ * Extract JSON-LD blocks and code fences as placeholders before processing.
+ * This prevents regex patterns from mangling structured data.
+ */
+function extractProtectedBlocks(content: string): { text: string; blocks: ProtectedBlocks } {
+  const jsonLdBlocks: string[] = [];
+  const codeFences: string[] = [];
+  
+  let text = content;
+  
+  // Extract JSON-LD blocks first (highest priority)
+  const jsonLdRegex = /<script[^>]*type="application\/ld\+json"[^>]*>[\s\S]*?<\/script>/gi;
+  text = text.replace(jsonLdRegex, (match) => {
+    const token = `__JSONLD_${jsonLdBlocks.length}__`;
+    jsonLdBlocks.push(match);
+    return token;
+  });
+  
+  // Extract code fences (```...```)
+  const codeFenceRegex = /```[\s\S]*?```/g;
+  text = text.replace(codeFenceRegex, (match) => {
+    const token = `__CODEFENCE_${codeFences.length}__`;
+    codeFences.push(match);
+    return token;
+  });
+  
+  // Extract inline code blocks (`...`)
+  const inlineCodeRegex = /`[^`]+`/g;
+  text = text.replace(inlineCodeRegex, (match) => {
+    const token = `__CODEFENCE_${codeFences.length}__`;
+    codeFences.push(match);
+    return token;
+  });
+  
+  return { text, blocks: { jsonLdBlocks, codeFences } };
+}
+
+/**
+ * Restore protected blocks from placeholders after processing.
+ */
+function restoreProtectedBlocks(text: string, blocks: ProtectedBlocks): string {
+  let result = text;
+  
+  // Restore JSON-LD blocks
+  blocks.jsonLdBlocks.forEach((block, i) => {
+    result = result.replace(`__JSONLD_${i}__`, block);
+  });
+  
+  // Restore code fences
+  blocks.codeFences.forEach((block, i) => {
+    result = result.replace(`__CODEFENCE_${i}__`, block);
+  });
+  
+  return result;
+}
 
 // Simple regex replacements for mechanical fixes
 const SIMPLE_REPLACEMENTS: Array<[RegExp, string]> = [
@@ -358,7 +429,8 @@ interface ContentSegment {
 function segmentContent(content: string): ContentSegment[] {
   const segments: ContentSegment[] = [];
   let current = 0;
-  const tagRegex = /(<\w[^>]*>|<\/[^>]+>)|(<script[^>]*type="application\/ld\+json"[^>]*>[\s\S]*?<\/script>)/gi;
+  // Include React fragments <> and </> in tag regex
+  const tagRegex = /(<\w[^>]*>|<\/[^>]+>|<\s*>|<\/\s*>)/gi;
 
   let match: RegExpExecArray | null;
   while ((match = tagRegex.exec(content)) !== null) {
@@ -403,22 +475,49 @@ function applyMechanicalFixes(text: string): string {
     }
   }
 
-  result = result.replace(/\s{2,}/g, " ");
-  result = result.replace(/,\s*,/g, ",");
-  result = result.replace(/\.{2,}/g, ".");
-  result = result.replace(/\s+([.,;:!?])/g, "$1");
+  return result;
+}
 
-  return result.trim();
+/**
+ * Normalize whitespace globally after all processing.
+ * Collapses multiple spaces to one, fixes punctuation spacing.
+ */
+function normalizeWhitespace(text: string): string {
+  let result = text;
+  
+  // Collapse multiple spaces to single space
+  result = result.replace(/\s{2,}/g, " ");
+  // Fix double commas
+  result = result.replace(/,\s*,/g, ",");
+  // Fix multiple periods
+  result = result.replace(/\.{2,}/g, ".");
+  // Remove space before punctuation
+  result = result.replace(/\s+([.,;:!?])/g, "$1");
+  
+  return result;
 }
 
 function ruleBasedHumanize(content: string): string {
-  const segments = segmentContent(content);
+  // Extract protected blocks (JSON-LD, code fences) before any processing
+  const { text: protectedText, blocks } = extractProtectedBlocks(content);
+  
+  // Segment content into text and HTML/React tags
+  const segments = segmentContent(protectedText);
+  
+  // Process each segment - don't trim individual segments
   const processed = segments.map((seg) => {
     if (seg.type === "tag") return seg.content;
     return applyMechanicalFixes(seg.content);
   });
+  
+  // Join and normalize whitespace globally
+  let result = processed.join("");
+  result = normalizeWhitespace(result);
+  
+  // Restore protected blocks
+  result = restoreProtectedBlocks(result, blocks);
 
-  return processed.join("");
+  return result;
 }
 
 // ============================================================================
@@ -510,7 +609,7 @@ export async function runHumanize(
     return ruleBasedResult;
   }
 
-  console.log(`[Humanizer] Running LLM enhancement (${hasNvidiaKey ? "NVIDIA" : hasOpenaiKey ? "OpenAI" : "OpenRouter"})...`);
+  console.log(`[Humanizer] Running LLM enhancement (${hasOpenaiKey ? "OpenAI" : hasNvidiaKey ? "NVIDIA" : "OpenRouter"})...`);
   const enhancedResult = await llmEnhancementPass(ruleBasedResult, brandVoice);
 
   return enhancedResult;

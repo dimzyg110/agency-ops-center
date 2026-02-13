@@ -48,9 +48,18 @@ interface ProviderConfig {
 
 /**
  * Auto-detect available LLM provider.
- * Priority: NVIDIA → OpenRouter → OpenAI
+ * Priority: OpenAI → NVIDIA → OpenRouter
  */
 function detectProvider(): ProviderConfig {
+  const openaiKey = process.env.OPENAI_API_KEY;
+  if (openaiKey) {
+    console.log("[LLM] Using OpenAI provider");
+    return {
+      client: new OpenAI({ apiKey: openaiKey }),
+      provider: "openai",
+    };
+  }
+
   const nvidiaKey = process.env.NVIDIA_API_KEY;
   if (nvidiaKey) {
     console.log("[LLM] Using NVIDIA provider");
@@ -75,17 +84,8 @@ function detectProvider(): ProviderConfig {
     };
   }
 
-  const openaiKey = process.env.OPENAI_API_KEY;
-  if (openaiKey) {
-    console.log("[LLM] Using OpenAI provider");
-    return {
-      client: new OpenAI({ apiKey: openaiKey }),
-      provider: "openai",
-    };
-  }
-
   throw new Error(
-    "No LLM API key available. Set NVIDIA_API_KEY, OPENROUTER_API_KEY, or OPENAI_API_KEY."
+    "No LLM API key available. Set OPENAI_API_KEY, NVIDIA_API_KEY, or OPENROUTER_API_KEY."
   );
 }
 
@@ -94,20 +94,20 @@ function detectProvider(): ProviderConfig {
  */
 export function hasLlmProvider(): boolean {
   return !!(
+    process.env.OPENAI_API_KEY ||
     process.env.NVIDIA_API_KEY ||
-    process.env.OPENROUTER_API_KEY ||
-    process.env.OPENAI_API_KEY
+    process.env.OPENROUTER_API_KEY
   );
 }
 
 /**
- * Get available provider names.
+ * Get available provider names (in priority order: OpenAI → NVIDIA → OpenRouter).
  */
 export function getAvailableProviders(): LLMProvider[] {
   const providers: LLMProvider[] = [];
+  if (process.env.OPENAI_API_KEY) providers.push("openai");
   if (process.env.NVIDIA_API_KEY) providers.push("nvidia");
   if (process.env.OPENROUTER_API_KEY) providers.push("openrouter");
-  if (process.env.OPENAI_API_KEY) providers.push("openai");
   return providers;
 }
 
