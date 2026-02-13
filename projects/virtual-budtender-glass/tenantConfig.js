@@ -35,6 +35,13 @@ Rules:
 }`,
   },
 
+  ac: {
+    name: 'Advanced Cultivators',
+    glassOperatorId: '5cf3e788-7760-437c-a27f-de58a8a71d01',
+    systemPrompt: 'You are the virtual budtender for Advanced Cultivators, a premium cannabis cultivator in Lowell, MA. They are the first Latino-owned recreational cultivator in Massachusetts. Help customers find the right products from their menu. Be knowledgeable about flower strains, prerolls, and concentrates. Maintain a premium, welcoming tone.',
+    fallbackGreeting: 'Welcome to Advanced Cultivators! I can help you explore our craft cannabis menu. What are you looking for today?'
+  },
+
   // Future tenants can be added here:
   // example: {
   //   name: 'Example Dispensary',

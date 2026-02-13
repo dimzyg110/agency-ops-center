@@ -103,6 +103,14 @@ function maybeLogSession(req, tenantId, tenantConfig) {
   return sessionToken;
 }
 
+function resolveTenantId(req, bodyTenantId) {
+  const pathTenantId = req.params?.tenantId;
+  const queryTenantId = req.query?.tenant;
+  const queryTenantIdLegacy = req.query?.tenantId;
+
+  return pathTenantId || queryTenantId || queryTenantIdLegacy || bodyTenantId || 'ch';
+}
+
 /**
  * Health check endpoint
  */
@@ -134,17 +142,14 @@ app.get('/products', async (req, res) => {
 /**
  * Main recommendation endpoint
  */
-app.post('/recommend', async (req, res) => {
+app.post(['/recommend', '/recommend/:tenantId'], async (req, res) => {
   const requestStartedAt = Date.now();
 
   try {
-    const { tenantId, answers } = req.body;
-    
+    const { tenantId: bodyTenantId, answers } = req.body;
+    const tenantId = resolveTenantId(req, bodyTenantId);
+
     // Validate tenant
-    if (!tenantId) {
-      return res.status(400).json({ error: 'tenantId is required' });
-    }
-    
     if (!tenantExists(tenantId)) {
       return res.status(404).json({ error: `Unknown tenant: ${tenantId}` });
     }
@@ -336,17 +341,14 @@ Respond in valid JSON format:
 /**
  * Conversational AI endpoint
  */
-app.post('/chat', async (req, res) => {
+app.post(['/chat', '/chat/:tenantId'], async (req, res) => {
   const requestStartedAt = Date.now();
 
   try {
-    const { tenantId, message, conversationHistory = [] } = req.body;
-    
+    const { tenantId: bodyTenantId, message, conversationHistory = [] } = req.body;
+    const tenantId = resolveTenantId(req, bodyTenantId);
+
     // Validate tenant
-    if (!tenantId) {
-      return res.status(400).json({ error: 'tenantId is required' });
-    }
-    
     if (!tenantExists(tenantId)) {
       return res.status(404).json({ error: `Unknown tenant: ${tenantId}` });
     }
