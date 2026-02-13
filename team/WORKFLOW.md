@@ -92,7 +92,7 @@ sessions_spawn({
 sessions_spawn({
   task: "Review [deliverable path]. Original brief: [brief summary]. Use QA role standards.",
   label: "reviewer-2",
-  model: "google/gemini-3-pro",
+  model: "openrouter/minimax/minimax-m2.5",
 });
 ```
 
@@ -166,8 +166,7 @@ Use model diversity to catch different failure modes. This is the **canonical re
 | **T2 — Senior** | Claude Opus 4.6 | `anthropic/claude-opus-4-6` | Strategy, orchestration, nuanced judgment, long writes | $5/$25 |
 | **T3 — Fast Senior** | MiniMax M2.5 | `openrouter/minimax/minimax-m2.5` | Clear-scoped tasks, fast execution, reviews, research | $1/$4 |
 | **T4 — Specialist** | Kimi K2.5 | `openrouter/moonshotai/kimi-k2.5` | Frontend, long-context reads, large file writes | $0.60/$2.50 |
-| **Utility** | Gemini 2.5 Flash | `google/gemini-2.5-flash` | Cheap tasks, image gen (Imagen), quick checks | $0.15/$0.60 |
-| **Utility** | Gemini 2.5 Pro | `google/gemini-2.5-pro` | Multimodal, vision, creative | $1.25/$10 |
+| **Imagen Only** | Gemini 2.0 Flash (Image Gen) | `google/gemini-2.0-flash-exp-image-generation` | Image generation ONLY via Imagen 3 | — |
 
 ### Role → Model Assignment
 
@@ -177,11 +176,12 @@ Use model diversity to catch different failure modes. This is the **canonical re
 | **Architect / Complex Code** | Codex 5.3 | Opus 4.6 | Strongest code quality and system design |
 | **Developer (clear tasks)** | MiniMax M2.5 | Kimi K2.5 | Fast, smart, good for well-scoped work |
 | **Developer (frontend)** | Kimi K2.5 | MiniMax M2.5 | Best at React/CSS, large file output |
-| **Researcher** | MiniMax M2.5 | Gemini 2.5 Pro | Fast synthesis, 1M context window |
+| **Researcher** | MiniMax M2.5 | Kimi K2.5 | Fast synthesis, 1M context window |
 | **Reviewer 1** | Codex 5.3 | Opus 4.6 | Strict, architectural perspective |
 | **Reviewer 2** | MiniMax M2.5 | Kimi K2.5 | Different architecture, catches different issues |
-| **Designer** | Gemini 2.5 Pro | Kimi K2.5 | Visual reasoning, image generation |
+| **Designer** | MiniMax M2.5 | Kimi K2.5 | Layout + component design |
 | **Humanizer** | MiniMax M2.5 | Opus 4.6 | Fast, good at natural language |
+| **Image Gen** | Gemini Imagen 3 | — | `gemini-2.0-flash-exp-image-generation` API only |
 | **Tiebreaker** | whichever model wasn't used by R1/R2 | — | Must be different from both reviewers |
 
 ### Rules

@@ -68,7 +68,7 @@ DO NOT summarize for Randy. DO NOT send highlights. DO NOT pass Go.
 
 ```javascript
 sessions_spawn(task="Review [file path]...", label="reviewer-1-[task]", model="openai-codex/gpt-5.3-codex")
-sessions_spawn(task="Review [file path]...", label="reviewer-2-[task]", model="google-antigravity/gemini-3-pro-high")
+sessions_spawn(task="Review [file path]...", label="reviewer-2-[task]", model="openrouter/minimax/minimax-m2.5")
 ```
 
 Both reviewers must:
@@ -121,4 +121,4 @@ ONLY after reviews are synthesized and issues resolved:
 | **T2 Senior** | Opus 4.6 | `anthropic/claude-opus-4-6` | Strategy, orchestration, judgment |
 | **T3 Fast Senior** | MiniMax M2.5 | `openrouter/minimax/minimax-m2.5` | Clear tasks, fast execution, reviews |
 | **T4 Specialist** | Kimi K2.5 | `openrouter/moonshotai/kimi-k2.5` | Frontend, long-context, large writes |
-| **Utility** | Gemini 2.5 Flash | `google/gemini-2.5-flash` | Cheap tasks, image gen, quick checks |
+| **Imagen Only** | Gemini Imagen 3 | `google/gemini-2.0-flash-exp-image-generation` | Image gen ONLY |

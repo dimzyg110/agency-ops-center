@@ -35,7 +35,7 @@
 | **T2 Senior** | Claude Opus 4.6 | `anthropic/claude-opus-4-6` | Strategy, orchestration, nuanced judgment |
 | **T3 Fast Senior** | MiniMax M2.5 | `openrouter/minimax/minimax-m2.5` | Clear-scoped tasks, fast execution, reviews, research |
 | **T4 Specialist** | Kimi K2.5 | `openrouter/moonshotai/kimi-k2.5` | Frontend, long-context, large file writes |
-| **Utility** | Gemini 2.5 Flash/Pro | `google/gemini-2.5-flash` / `google/gemini-2.5-pro` | Image gen (Imagen), cheap tasks, vision |
+| **Imagen Only** | Gemini Imagen 3 | `google/gemini-2.0-flash-exp-image-generation` | Image generation ONLY — not for code/review/research |
 
 **Rules:**
 - T1 (Codex) = final authority on architecture and code reviews. Don't waste on simple tasks.
