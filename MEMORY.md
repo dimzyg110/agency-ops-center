@@ -78,7 +78,14 @@ _Curated patterns, preferences, and lessons. Updated weekly from daily logs._
 ---
 
 - **19 skills from skills.sh installed** (Feb 10): programmatic-seo, seo-audit, content-strategy, copywriting, copy-editing, email-sequence, social-content, schema-markup, analytics-tracking, vercel-react-native-skills, competitor-alternatives, referral-program, docx, pdf, pptx, xlsx, doc-coauthoring, webapp-testing, web-design-guidelines. In `~/.agents/skills/`.
-- **Humanizer pipeline works**: Gemini 3 Pro High is reliable for humanizer passes. Opus 4.6T works if task completes in one turn.
+- **Humanizer pipeline works**: MiniMax M2.5 is reliable and fast for humanizer passes. Opus 4.6T works if task completes in one turn.
+- **Gemini is Imagen ONLY**: Removed from all task/review/research roles (Randy directive Feb 13). Use `gemini-2.0-flash-exp-image-generation` for image gen via `generateContent` API with `responseModalities: ["IMAGE","TEXT"]`. The old `imagen-3.0-generate-002` model 404s.
+- **MiniMax M2.5 is the workhorse**: Fast, smart, cheap ($1/$4 per M tokens), 1M context, 65K output. Use for anything with clear requirements. Route: `openrouter/minimax/minimax-m2.5`.
+- **COO must NEVER execute client work directly**: Even "quick" tasks like image generation must be spawned to subagents. Randy called this out Feb 13.
+- **Auto-review pipeline**: When spawning work agents, immediately spawn 2 reviewers (different models) without waiting. Codex (T1) + MiniMax (T3) is the standard reviewer pair.
+- **Branch protection on GLASS**: GitHub Teams, PR required, push restricted to `randytorres` + `randyt1444-arch`. COO merges after review.
+- **migration_log table**: `glass.migration_log` tracks all applied migrations. Always log after applying.
+- **GitHub Enterprise quirk**: Roviq-AI org shows `plan.name: "free"` on REST API even with Enterprise Cloud ($42/mo). Enterprise features work via UI but some API calls fail. Enterprise slug = `roviq`.
 - **No deploy service credentials configured** — need Vercel/Netlify/Cloudflare token from Randy to deploy demos/sites from sandbox. GitHub Pages blocked on private repos (free plan).
 - **Decoded demo built** at `projects/decoded-demo/` — Vite + React + Tailwind, TikTok-style feed. Randy hasn't seen it yet.
 
