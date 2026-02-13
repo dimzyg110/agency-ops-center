@@ -228,6 +228,10 @@ _Curated patterns, preferences, and lessons. Updated weekly from daily logs._
 - **Master plan synthesis decisions**: Pivoted lab test design, merged licenses table, table (not MV) for operator scores, split Google reviews design.
 - **CH driver program spec'd**: $512/mo, 4.7x ROI. Cue expansion to drivers validated.
 
+- **Fastify duplicate route = silent deploy kill**: If two route files register the same path, Fastify throws `FST_ERR_DUPLICATED_ROUTE` on startup. Railway blue-green keeps old container running, so you see "health ok" but new routes are 404. Always check runtime logs, not just build logs.
+- **ESM + `require()` = crash**: With `module: "NodeNext"` in tsconfig, `require()` is not available. Use `await import()` for dynamic imports. Top-level `await` works in ESM but can cause issues in some build pipelines.
+- **Stripe restricted keys**: `rk_live_` keys have limited permissions. Can't create products/prices directly but CAN create payment links with inline `price_data` (auto-creates the price). Workaround for limited API key scopes.
+- **Railway env var changes trigger redeploy**: Setting vars via `railway variables --set` automatically triggers a new deploy using the latest uploaded source.
 - **Codex subagent JSON escaping bug**: Large multi-line TypeScript file writes via `edit` tool crash with "Unterminated string in JSON" error. Workaround: use `write` for new files, break schema changes into smaller chunks, or use shell commands for complex edits.
 - **Gemini 2.5 Flash = new cheap workhorse**: $0.15/$0.60 per M tokens, 1M context, reasoning. Built a 542-line React component in 52s for $0.05. 33x cheaper than Opus on input. Use for: reviews, frontend builds, bulk tasks.
 - **Gemini agents inject stray unicode**: Gemini 2.5 Flash/Pro can inject random unicode characters (e.g., Arabic `رو`) into code edits. Always verify output of Gemini-spawned file edits.
@@ -237,5 +241,9 @@ _Curated patterns, preferences, and lessons. Updated weekly from daily logs._
 - **glassintel.xyz**: GLASS production domain (used in outreach emails). Needs verification with Randy that this is correct and deployed.
 - **Public report card endpoint**: `GET /api/v1/public/report-card/:slug` — slug-based lookup, 10 req/min rate limit, redacted data (market_avg zeroed, competitor names removed). Frontend at `/report/:slug`.
 - **Outreach batch 1**: 25 personalized emails at `projects/glass/outreach/emails-batch-1.md`. 22 unique recipients. Real per-category pricing data. Reviewed 8/10 + 9/10. Minor revisions needed (#25 weak data, #23 tone, #11 duplicate, URL verification).
+- **Stripe payment link LIVE**: `https://buy.stripe.com/5kQ4gA8YR8pYc8H0jmcfK0b` ($199/mo, product: GLASS Intelligence Pro, price: `price_1T0CC0KK80En8Nbqo2ZiPosE`). Webhook at `we_1T0CAQKK80En8NbqnF5J3Xg4`.
+- **ROVIQ_SERVICE_API_KEYS**: `20b92d41-c871-4ee3-a5d0-e58083613550` (VB → GLASS service key, set on Railway).
+- **Randy wants operator-focused UI, not trader dashboard**: Product intelligence per-SKU, local competitor pricing, actionable alerts in plain English, table-first dense UI. "Operators don't give af about fancy dashboards."
+- **CCC monthly prices = flower only**: That's all CCC publishes. Cross-reference endpoint needed LEFT JOIN to show all GLASS categories.
 
-_Last updated: 2026-02-12 (11:00 PM UTC session)_
+_Last updated: 2026-02-13 (3:00 AM UTC session)_
