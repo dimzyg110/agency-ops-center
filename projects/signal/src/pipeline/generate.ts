@@ -222,8 +222,8 @@ async function generateFAQs(
   }
 
   // Use LLM to generate answers for the FAQ questions
-  const apiKey = process.env.OPENAI_API_KEY;
-  if (!apiKey) {
+  const hasLLM = process.env.OPENAI_API_KEY || process.env.NVIDIA_API_KEY;
+  if (!hasLLM) {
     // Fallback: return questions with generic answers
     return questions.slice(0, 5).map((q) => ({
       question: q,

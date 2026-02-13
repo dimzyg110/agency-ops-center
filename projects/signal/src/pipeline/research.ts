@@ -51,8 +51,8 @@ async function generateKeywordBrief(
   config: ClientConfig,
   cityOrTarget: string
 ): Promise<KeywordBrief> {
-  const apiKey = process.env.OPENAI_API_KEY;
-  if (!apiKey) {
+  const hasLLM = process.env.OPENAI_API_KEY || process.env.NVIDIA_API_KEY;
+  if (!hasLLM) {
     // Fallback brief when no API key
     return buildFallbackBrief(keyword, contentType, cityOrTarget);
   }
@@ -157,37 +157,44 @@ export async function runResearch(
   contentType: string = "location-page"
 ): Promise<ResearchContext> {
   const glassApiBaseUrl = process.env.GLASS_API_BASE_URL;
-  if (!glassApiBaseUrl) {
-    throw new Error("GLASS_API_BASE_URL is required.");
-  }
-
-  const client = new GlassClient(glassApiBaseUrl);
   const keyword = config.keywords.primary[0] ?? "cannabis dispensary";
 
-  // Fetch GLASS data — all operators, not just the first one
-  const operators = await client.fetchOperators(cityOrTarget);
-
+  let operators: GlassOperator[] = [];
   let allPrices: GlassPrice[] = [];
   let allProducts: GlassProduct[] = [];
 
-  // Fetch data from ALL operators for comprehensive market view
-  const fetchPromises = operators.map(async (op) => {
+  if (glassApiBaseUrl) {
     try {
-      const [prices, products] = await Promise.all([
-        client.fetchPrices(op.id),
-        client.fetchProducts(op.id),
-      ]);
-      return { prices, products };
-    } catch {
-      // Partial failure is okay — continue with other operators
-      return { prices: [] as GlassPrice[], products: [] as GlassProduct[] };
-    }
-  });
+      const client = new GlassClient(glassApiBaseUrl);
 
-  const results = await Promise.all(fetchPromises);
-  for (const result of results) {
-    allPrices = allPrices.concat(result.prices);
-    allProducts = allProducts.concat(result.products);
+      // Fetch GLASS data — all operators, not just the first one
+      operators = await client.fetchOperators(cityOrTarget);
+
+      // Fetch data from ALL operators for comprehensive market view
+      const fetchPromises = operators.map(async (op) => {
+        try {
+          const [prices, products] = await Promise.all([
+            client.fetchPrices(op.id),
+            client.fetchProducts(op.id),
+          ]);
+          return { prices, products };
+        } catch {
+          // Partial failure is okay — continue with other operators
+          return { prices: [] as GlassPrice[], products: [] as GlassProduct[] };
+        }
+      });
+
+      const results = await Promise.all(fetchPromises);
+      for (const result of results) {
+        allPrices = allPrices.concat(result.prices);
+        allProducts = allProducts.concat(result.products);
+      }
+    } catch (error) {
+      const reason = error instanceof Error ? error.message : "Unknown GLASS error";
+      console.warn(`GLASS API unavailable (${reason}). Proceeding without market data.`);
+    }
+  } else {
+    console.warn("GLASS_API_BASE_URL not set. Proceeding without market data.");
   }
 
   // Fetch autocomplete suggestions (non-blocking, fallback to empty)

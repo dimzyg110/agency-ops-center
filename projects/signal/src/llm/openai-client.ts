@@ -1,15 +1,23 @@
 /**
  * Centralized OpenAI client with retry logic, exponential backoff,
  * and model selection for different pipeline stages.
+ *
+ * Supports NVIDIA API as a fallback when OPENAI_API_KEY is invalid.
  */
 import OpenAI from "openai";
 
 export type LLMRole = "content" | "humanizer" | "research";
 
-const MODEL_MAP: Record<LLMRole, string> = {
+const OPENAI_MODEL_MAP: Record<LLMRole, string> = {
   content: "gpt-4o",
   humanizer: "gpt-4o-mini",
   research: "gpt-4o-mini",
+};
+
+const NVIDIA_MODEL_MAP: Record<LLMRole, string> = {
+  content: "meta/llama-3.3-70b-instruct",
+  humanizer: "meta/llama-3.1-8b-instruct",
+  research: "meta/llama-3.1-8b-instruct",
 };
 
 const MAX_RETRIES = 3;
@@ -23,12 +31,36 @@ interface LLMCallOptions {
   maxTokens?: number;
 }
 
-function getOpenAIClient(): OpenAI {
-  const apiKey = process.env.OPENAI_API_KEY;
-  if (!apiKey) {
-    throw new Error("OPENAI_API_KEY environment variable is required for LLM calls.");
+type LLMProvider = "openai" | "nvidia";
+
+function detectProvider(): { client: OpenAI; provider: LLMProvider } {
+  // Try NVIDIA API first (since OpenAI key is known to be expired)
+  const nvidiaKey = process.env.NVIDIA_API_KEY;
+  if (nvidiaKey) {
+    return {
+      client: new OpenAI({
+        apiKey: nvidiaKey,
+        baseURL: "https://integrate.api.nvidia.com/v1",
+      }),
+      provider: "nvidia",
+    };
   }
-  return new OpenAI({ apiKey });
+
+  const openaiKey = process.env.OPENAI_API_KEY;
+  if (openaiKey) {
+    return {
+      client: new OpenAI({ apiKey: openaiKey }),
+      provider: "openai",
+    };
+  }
+
+  throw new Error("No LLM API key available. Set NVIDIA_API_KEY or OPENAI_API_KEY.");
+}
+
+function getModelForRole(provider: LLMProvider, role: LLMRole): string {
+  const envModel = process.env.OPENAI_MODEL;
+  if (envModel && provider === "openai") return envModel;
+  return provider === "nvidia" ? NVIDIA_MODEL_MAP[role] : OPENAI_MODEL_MAP[role];
 }
 
 async function sleep(ms: number): Promise<void> {
@@ -36,12 +68,14 @@ async function sleep(ms: number): Promise<void> {
 }
 
 /**
- * Call OpenAI with exponential backoff retry.
+ * Call LLM with exponential backoff retry.
+ * Supports OpenAI and NVIDIA (OpenAI-compatible) endpoints.
  * Retries on rate limits (429), server errors (5xx), and timeouts.
  */
 export async function callLLM(options: LLMCallOptions): Promise<string> {
-  const model = process.env.OPENAI_MODEL ?? MODEL_MAP[options.role];
-  const client = getOpenAIClient();
+  const { client, provider } = detectProvider();
+  const model = getModelForRole(provider, options.role);
+  console.log(`[LLM] Using ${provider} / ${model} for ${options.role}`);
 
   let lastError: Error | undefined;
 
