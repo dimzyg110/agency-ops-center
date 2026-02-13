@@ -201,4 +201,37 @@ _Curated patterns, preferences, and lessons. Updated weekly from daily logs._
 - **Randy wants operator-focused UI, not trader dashboard**: Product intelligence per-SKU, local competitor pricing, actionable alerts in plain English, table-first dense UI. "Operators don't give af about fancy dashboards."
 - **CCC monthly prices = flower only**: That's all CCC publishes. Cross-reference endpoint needed LEFT JOIN to show all GLASS categories.
 
-_Last updated: 2026-02-13 (1:30 PM UTC — scraper cleanup, MEMORY.md deduplication)_
+## GLASS Consumer-First Strategy (Feb 13 Pivot)
+
+- **Advisor feedback doc**: `projects/glass/ADVISOR-FEEDBACK.md` — 4 landmines + 3 hell yes elements
+- **Master strategy v2**: `projects/glass/GLASS-MASTER-STRATEGY.md` — 47KB definitive war plan, supersedes all prior strategy docs
+- **GPID accuracy plan**: `projects/glass/GPID-ACCURACY-PLAN.md` — 1,068 lines, path to 95%
+- **Key thesis**: "He who owns the consumer demand, owns the industry." Yelp/Zillow/GasBuddy playbook.
+- **Step 0**: Top 500 hand-verified SKUs. "We track the 500 most popular cannabis products in MA." Accuracy over breadth.
+- **4 Landmines**: (1) GPID can't be byproduct — it IS the product, (2) Pre-tax vs post-tax normalization is Day 1, (3) "Verified X hours ago" + auto-hide >24hr, (4) SEO sandbox = social-first for 3-6 months
+- **THC Accuracy Score = nuclear moat**: CCC 298K lab tests vs menu claims. "30% of MA dispensaries inflate THC" → Boston Globe exclusive.
+- **Dispensary tag mechanic**: Tag stores in social posts → they claim their page within 60 seconds of seeing overcharging
+- **Dutchie WAF counter-attack**: Consumer traffic forces dispensaries to share API keys when POS platforms block scrapers
+- **Hoodie Analytics = #1 threat**: $9.4M raised, 36 employees, High Times partnership. 6-12 month window. Every decision must answer "how does this beat Hoodie?"
+
+## GLASS DB State (Feb 13)
+
+- **All migrations applied**: 001-009 + matching engine to `glass` schema (27 tables)
+- **Extensions**: `unaccent`, `pg_trgm`, `fuzzystrmatch` in `public` schema
+- **search_path fix**: `db.ts` sets `glass, public` on every connection
+- **Data state**: 10 seed operators, 0 products, 0 prices in `glass` schema. Today's scrape data lost (went to wrong schema). Need re-run.
+- **Migration 004 (merge duplicates) failed**: `operator_scores` unique constraint conflict. Non-critical.
+- **`makeSKU()` still has platform prefix** — needs fix to `GPID-{hash}` for cross-platform matching
+- **Brand dictionary**: table exists but empty, needs seeding
+
+## CH SEO Campaign (Feb 13)
+
+- **CH repo**: `randytorres/ch-web` (private), cloned at `/tmp/ch-web`. React + Vite + Tailwind, Netlify deploy.
+- **NEVER push to master/main** — Randy does that manually. Feature branches only. Netlify auto-generates preview links.
+- **BOUTIQ dominates**: 8+ Logan-adjacent pages, 750+ Google reviews (4.9 stars). CH barely on page 1.
+- **CH nuclear weapon**: Flight Kit (no competitor has traveler-specific products)
+- **"5 min by Uber" beats "one stop on Blue Line"** — travelers with luggage prefer rideshare
+- **New pages being built** (branch `feat/seo-airport-content`): TravelersGuide, AirportFAQ, EastBoston neighborhood + 2 blog posts
+- **Signal tool**: CLI at `/data/workspace/projects/signal/`. Works but OPENAI_API_KEY expired, GLASS API routes mismatched. NVIDIA API as fallback. Produces filler without real data.
+
+_Last updated: 2026-02-13 (3:40 PM UTC — DB migrations, advisor feedback, consumer strategy, CH SEO sprint)_
