@@ -106,6 +106,8 @@ _Curated patterns, preferences, and lessons. Updated weekly from daily logs._
 - **Benchmarks** (Feb 12): 235 stores, 195 succeeded (83%), 57,514 prices, ~5.2 hours.
 - **CamoFox crashes**: Zombie processes pile up, port 9377 goes dead. Fix: `cd /data/.openclaw/extensions/camofox-browser && node server.js &` or gateway restart. Use `--resume <run-id>` after crash.
 - **CamoFox is single-browser**: Can't run two scrapers simultaneously. Sequential execution only.
+- **Zombie tsx processes from subagents**: After heavy subagent usage (10+ spawns), 40+ defunct `npm exec tsx` processes fill process table. Causes EAGAIN on fork, Node thread assertion failures. Sandbox restart required to clear. Plan scraper runs for off-peak or fresh sessions.
+- **Leafly Cloudflare protection (Feb 13)**: HTTP API approach (`consumer-api.leafly.com`) now returns 429 with Cloudflare challenge page. Scraper needs migration to CamoFox browser-based like Dutchie. 200/292 stores scraped successfully before this change.
 - **Weedmaps scraper**: `scripts/scrape-weedmaps.ts`. Uses `WEEDMAPS_CAMOFOX_URL` env var, defaults to `https://roviq-browser-production.up.railway.app`. Railway works fine for Weedmaps (tested Feb 13 — age gate dismissal needed, but products load). Runs in parallel with Dutchie (Dutchie=local CamoFox, Weedmaps=Railway).
 - **MA cannabis market size**: 650+ licensed retailers. Dutchie ~235+ (40%), Weedmaps ~300-400, iHeartJane ~100-150.
 - **Daily scraping cron**: Dutchie 3AM ET (CamoFox), Weedmaps 10PM ET, data quality check 6AM ET.
