@@ -247,9 +247,9 @@ _Curated patterns, preferences, and lessons. Updated weekly from daily logs._
 - **All migrations applied**: 001-009 + matching engine to `glass` schema (27 tables)
 - **Extensions**: `unaccent`, `pg_trgm`, `fuzzystrmatch` in `public` schema
 - **search_path fix**: `db.ts` sets `glass, public` on every connection
-- **Data state**: 10 seed operators, 0 products, 0 prices in `glass` schema. Today's scrape data lost (went to wrong schema). Need re-run.
+- **Data state**: 197,698 total prices, 41 scrape runs. All from sandbox scripts, 0 from Railway services.
 - **Migration 004 (merge duplicates) failed**: `operator_scores` unique constraint conflict. Non-critical.
-- **`makeSKU()` still has platform prefix** — needs fix to `GPID-{hash}` for cross-platform matching
+- **`makeSKU()` fixed**: GPID hash now includes category (commit `c92dc1e`).
 - **Brand dictionary**: table exists but empty, needs seeding
 
 ## CH SEO Campaign (Feb 13)
@@ -262,4 +262,28 @@ _Curated patterns, preferences, and lessons. Updated weekly from daily logs._
 - **New pages being built** (branch `feat/seo-airport-content`): TravelersGuide, AirportFAQ, EastBoston neighborhood + 2 blog posts
 - **Signal tool**: CLI at `/data/workspace/projects/signal/`. Works but OPENAI_API_KEY expired, GLASS API routes mismatched. NVIDIA API as fallback. Produces filler without real data.
 
-_Last updated: 2026-02-13 (3:40 PM UTC — DB migrations, advisor feedback, consumer strategy, CH SEO sprint)_
+## Scraper Architecture (Feb 13 — DEFINITIVE)
+
+- **Plain Playwright Firefox IS the solution**: roviq-browser proved 197K+ prices with plain Firefox. CamoFox never actually ran (case bug: `.camoufox()` ≠ `.Camoufox()`). Anti-detection = realistic viewport/UA/locale settings, nothing more.
+- **CamoFox Fission breaks scraping**: Site isolation prevents cross-origin `page.evaluate(fetch())`. Remove CamoFox from all scrapers.
+- **Each scraper's fix is different**: Jane = Playwright rewrite (BrowserProxy → direct browser). Leafly = no browser, just HTTP + exponential backoff. Weedmaps = slow not stuck (598 products = 25 pages of pagination). Dutchie = already works via BrowserPool.
+- **PR #30**: All fixes in one PR on `fix/scraper-opus-rewrites`. Jane rewrite + Leafly backoff + WM progress logging + review fixes + structured logging across all 4 scrapers.
+- **Structured logging standard**: Shared `scripts/lib/logger.ts`, JSON output, `SCRAPER_DEBUG=1` for verbose. Events: `run_start`, `store_success`, `store_error`, `run_summary`, `browser_launch`, `rate_limit`, `retry`.
+- **Railway scraper services exist but never worked**: All 4 deployed, all build successfully, but 0 prices ever from Railway. Sandbox execution is the proven path. Railway is long-term goal.
+- **Sandbox + Railway roviq-browser = proven combo**: Dutchie uses `CAMOFOX_URL` env var to point at Railway browser service for its BrowserPool. Jane/Leafly/Weedmaps use local browser.
+
+## OpenClaw Config Notes
+
+- **`contextTokens` is global only**: Set at `agents.defaults.contextTokens`, no per-agent override. MiniMax M2.5 natively handles 1M but capped by this setting (currently 200K).
+- **OpenClaw Railway wrapper**: PID 1 = `node src/server.js` (port 3000), spawns gateway on port 18789. Wrapper proxies + injects auth. SIGUSR1 doesn't rebind ports. Port changes need full Railway restart.
+- **`memory_search` broken**: Uses OpenAI embeddings, OpenAI API key expired. All memory lookups must be manual file reads until key is replaced.
+
+## COO Operating Lessons (Feb 13)
+
+- **Investigate before implementing**: Spawn investigator → findings doc → implementer with findings. No "quick fixes" without diagnosis.
+- **COO must DIRECT, not just coordinate**: When approach fails 6+ times, stop retrying. Step back, direct Opus to build the right solution.
+- **Always `cleanup: "delete"` on subagent spawns**: Stale sessions clutter dashboard, cause gateway WebSocket instability.
+- **Don't recycle bad notes**: Only trust DB queries and git log for forensic work. Memory files can have stale/wrong info.
+- **Codex T1 excellent for code review**: Catches browser lifecycle leaks, missing timeouts, incomplete retry coverage. Worth the cost for critical PRs.
+
+_Last updated: 2026-02-13 (10:30 PM UTC — scraper architecture definitive, PR #30 review cycle, contextTokens finding, COO lessons)_
