@@ -73,12 +73,18 @@ This is not optional. This is not skippable when "moving fast." If you deliver u
 - **NEVER set up new infrastructure without approval**
 - **ASK FIRST** for anything that creates new systems
 
-### 4. Git Discipline
+### 4. Git Discipline — PR Workflow
 
-- Run `git status` before editing files
-- Commit immediately after approved edits
-- Clear commit messages
-- Push regularly
+- **All code changes go through feature branches + PRs.** Never commit to main directly.
+- **All code agents must read the project's CONTRIBUTING.md** before starting work.
+- **Use worktree isolation** for parallel agents (`/tmp/[project]-[label]/`).
+- **Write PR notes** for every branch (`PR-NOTES-[branch].md`).
+- **Only COO merges to main** after 2-reviewer approval.
+- Follow Conventional Commits format.
+- For non-code files (docs, memory, config): direct commits to main are OK.
+- See `projects/glass/CONTRIBUTING.md` for GLASS-specific rules.
+- See `team/WORKFLOW.md` for the full pipeline.
+- See `skills/git-workflow/SKILL.md` for worktree setup.
 
 ### 5. API Key Isolation
 

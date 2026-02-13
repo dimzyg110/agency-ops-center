@@ -113,11 +113,44 @@ The orchestrator:
 ### 7. DELIVER
 
 **Owner:** Orchestrator
-**Gate:** Deliverable is in the correct location, committed, and dashboard is updated
+**Gate:** Deliverable is in the correct location, committed via PR, and dashboard is updated
 
 - Client work → saved to `clients/[name]/deliverables/`
 - Internal work → saved to `projects/internal/[project]/`
+- GLASS code → **must go through PR on feature branch** (see `projects/glass/CONTRIBUTING.md`)
+- CH web → **must go through PR on feature branch** (Randy merges via Netlify preview)
 - Update `DASHBOARD.md` with completion status
+
+---
+
+## Git Integration (Mandatory for Code)
+
+All code changes follow the PR workflow defined in project-level CONTRIBUTING.md files:
+
+- **GLASS**: `projects/glass/CONTRIBUTING.md` — feature branches, worktree isolation, conventional commits, 2-reviewer gate
+- **CH Web**: Feature branches only, never push to master, Netlify preview for review
+
+### Agent Spawn Protocol for Code Tasks
+
+Every agent working on code MUST:
+1. Read the project's CONTRIBUTING.md before starting
+2. Work on a feature branch (never main/master)
+3. Use an isolated worktree (`/tmp/[project]-[label]/`)
+4. Write PR notes (`PR-NOTES-[branch].md`)
+5. Push branch only — **COO handles merge after review**
+
+### Code Review Flow
+```
+Agent completes → Pushes branch → Writes PR notes
+         ↓
+COO spawns 2 reviewers (different models)
+         ↓
+Reviewers read diff + PR notes → Write reviews
+         ↓
+COO synthesizes → Approve / Request Changes / Reject
+         ↓
+COO merges to main (only after approval)
+```
 
 ---
 
