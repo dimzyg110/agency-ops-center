@@ -8,103 +8,110 @@ import { humanizeContent } from "../llm/openai-client.js";
  * 2. Apply rule-based humanization (PRIMARY — all 24+ patterns)
  * 3. Optional LLM enhancement pass (if API key available)
  * 4. Score AI patterns (post)
- *
- * Scoring function: scoreAiPatterns(content) returns { score, patterns }
  */
 
 // ============================================================================
 // AI PATTERN DEFINITIONS (24 patterns from humanizer skill)
 // ============================================================================
 
-interface AiPattern {
+export interface AiPattern {
   name: string;
   category: string;
   description: string;
-  // Detection: regex or function
-  detect: RegExp | ((content: string) => number);
-  // Fix: string replacement or function
+  detect: RegExp;
   fix: string | ((match: string) => string);
-  weight: number; // Impact on score (1-10)
+  weight: number;
 }
 
+export interface AiScoreResult {
+  score: number;
+  patterns: string[];
+  details: Array<{
+    pattern: string;
+    category: string;
+    matches: number;
+    weight: number;
+  }>;
+}
+
+// All 24 AI patterns from the humanizer skill
 const AI_PATTERNS: AiPattern[] = [
   // CONTENT PATTERNS (1-6)
   {
     name: "inflated_significance",
     category: "content",
-    description: "Stands/serves as, testament/reminder, vital/crucial/pivotal, underscores, reflects broader",
-    detect: /\b(?:stands?|serves?) as\b|\b(?:a )?testament\s+to\b|\b(?:a )?reminder of\b|\b(?:vital|significant|crucial|pivotal|key)\s+(?:role|moment)\b|\bunderscores?\b|\bhighlights?\s+(?:its )?(?:importance|significance)\b|\breflects?\s+(?:broader|the\s+(?:broader|evolving))\b|\bsymboliz(?:ing|es?)\s+(?:its|the)?\s*(?:ongoing|enduring|lasting)\b|\bcontributing\s+to\s+the\b|\bsetting\s+the\s+stage\s+for\b|\bmark(?:ing|s?)\s+(?:a\s+)?(?:shift|turning\s+point)|\bshaping\s+the\b|\brepresents?\s+(?:a\s+)?shift\b|\bkey\s+turning\s+point\b|\bevolving\s+landscape\b|\bfocal\s+point\b|\bindelible\s+mark\b|\bdeeply\s+rooted\b/i,
+    description: "Stands/serves as, testament/reminder, vital/crucial/pivotal, underscores",
+    detect: /\b(?:stands?|serves?) as\b|\b(?:a )?testament\s+to\b|\b(?:a )?reminder of\b|\b(?:vital|significant|crucial|pivotal|key)\s+(?:role|moment)\b|\bunderscores?\b|\bhighlights?\s+(?:its )?(?:importance|significance)\b|\breflects?\s+(?:broader|the\s+(?:broader|evolving))\b|\bsymboliz(?:ing|es?)\s+(?:its|the)?\s*(?:ongoing|enduring|lasting)\b|\bcontributing\s+to\s+the\b|\bsetting\s+the\s+stage\s+for\b|\bmark(?:ing|s?)\s+(?:a\s+)?(?:shift|turning\s+point)|\bshaping\s+the\b|\brepresents?\s+(?:a\s+)?shift\b|\bkey\s+turning\s+point\b|\bevolving\s+landscape\b|\bfocal\s+point\b|\bindelible\s+mark\b|\bdeeply\s+rooted\b/gi,
     fix: "",
     weight: 8,
   },
   {
     name: "notability_emphasis",
     category: "content",
-    description: "Claims of notability without specifics: independent coverage, media outlets, leading expert",
-    detect: /\bindependent\s+coverage\b|\b(?:local|regional|national|major)\s+media\s+outlets?\b|\bwritten\s+by\s+(?:a\s+)?leading\s+expert\b|\bactive\s+social\s+media\s+presence\b|\bover\s+\d+[KM]?\s+(?:followers|subscribers)\b/i,
+    description: "Claims of notability without specifics",
+    detect: /\bindependent\s+coverage\b|\b(?:local|regional|national|major)\s+media\s+outlets?\b|\bwritten\s+by\s+(?:a\s+)?leading\s+expert\b|\bactive\s+social\s+media\s+presence\b|\bover\s+\d+[KM]?\s+(?:followers|subscribers)\b/gi,
     fix: "",
     weight: 6,
   },
   {
     name: "superficial_ing",
     category: "content",
-    description: "Present participle phrases adding fake depth: highlighting, ensuring, reflecting, contributing",
-    detect: /,\s*(?:highlighting|underscoring|emphasizing|ensuring|reflecting|symbolizing|contributing\s+to|cultivating|fostering|encompassing|showcasing)[^.]+(?=\.|,)/i,
+    description: "Present participle phrases adding fake depth",
+    detect: /,\s*(?:highlighting|underscoring|emphasizing|ensuring|reflecting|symbolizing|contributing\s+to|cultivating|fostering|encompassing|showcasing)[^.]+(?=\.|,)/gi,
     fix: "",
     weight: 9,
   },
   {
     name: "promotional_language",
     category: "content",
-    description: "Advertisement-like adjectives: boasts, vibrant, breathtaking, nestled, stunning",
-    detect: /\bboasts\s+(?:a|an)\b|\bvibrant\b|\brich\s+(?:cultural\s+)?(?:heritage|history)\b|\bprofound\b|\benhancing\s+its\b|\bshowcasing\b|\bexemplifies\b|\bcommitment\s+to\b|\bnatural\s+beauty\b|\bnestled\s+(?:within|in)\b|\bin\s+the\s+heart\s+of\b|\bgroundbreaking\b|\brenowned\b|\bbreathtaking\b|\bmust-visit\b|\bstunning\b/i,
-    fix: (match) => match.replace(/\bboasts\s+a\b/gi, "has").replace(/\bnestled\s+in\b/gi, "in").replace(/\bin\s+the\s+heart\s+of\b/gi, "in"),
+    description: "Advertisement-like adjectives",
+    detect: /\bboasts\s+(?:a|an)\b|\bvibrant\b|\brich\s+(?:cultural\s+)?(?:heritage|history)\b|\bprofound\b|\benhancing\s+its\b|\bshowcasing\b|\bexemplifies\b|\bcommitment\s+to\b|\bnatural\s+beauty\b|\bnestled\s+(?:within|in)\b|\bin\s+the\s+heart\s+of\b|\bgroundbreaking\b|\brenowned\b|\bbreathtaking\b|\bmust-visit\b|\bstunning\b/gi,
+    fix: (match: string) => match.replace(/\bboasts\s+a\b/gi, "has").replace(/\bnestled\s+in\b/gi, "in").replace(/\bin\s+the\s+heart\s+of\b/gi, "in"),
     weight: 7,
   },
   {
     name: "vague_attributions",
     category: "content",
     description: "Weasel words attributing opinions to vague authorities",
-    detect: /\bindustry\s+reports\s+(?:suggest|indicate|claim)\b|\bobservers?\s+have\s+(?:cited|noted)\b|\bexperts?\s+(?:argue|believe|suggest|claim)\b|\bsome\s+critics?\s+(?:argue|suggest)\b|\bseveral\s+(?:sources|publications)(?:\s+have)?\b/i,
+    detect: /\bindustry\s+reports\s+(?:suggest|indicate|claim)\b|\bobservers?\s+have\s+(?:cited|noted)\b|\bexperts?\s+(?:argue|believe|suggest|claim)\b|\bsome\s+critics?\s+(?:argue|suggest)\b|\bseveral\s+(?:sources|publications)(?:\s+have)?\b/gi,
     fix: "",
     weight: 7,
   },
   {
     name: "challenges_future_prospects",
     category: "content",
-    description: "Formulaic 'Challenges and Future Prospects' sections",
-    detect: /\bDespite\s+(?:its|the|these)\s+[^.]+(?:faces?|presents?)\s+(?:several\s+)?challenges\b|\bDespite\s+these\s+challenges\b|\bChallenges?\s+and\s+(?:Legacy|Future)\b|\bFuture\s+Outlook\b/i,
+    description: "Formulaic Challenges sections",
+    detect: /\bDespite\s+(?:its|the|these)\s+[^.]+(?:faces?|presents?)\s+(?:several\s+)?challenges\b|\bDespite\s+these\s+challenges\b|\bChallenges?\s+and\s+(?:Legacy|Future)\b|\bFuture\s+Outlook\b/gi,
     fix: "",
     weight: 5,
   },
-
   // LANGUAGE/GRAMMAR PATTERNS (7-12)
   {
     name: "ai_vocabulary",
     category: "language",
-    description: "High-frequency AI words: delve, foster, garner, underscore, pivotal, tapestry",
-    detect: /\bAdditionally\b|\balign\s+with\b|\bcrucial\b|\bdelve\b|\bemphasiz(?:ing|e)\b|\bendur(?:ing|es?)\b|\benhance\b|\bfoster(?:ing)?\b|\bgarner\b|\bhighlight(?:ing)?\s+(?:as|the)\b|\binterplay\b|\bintricate\b|\bintricacies\b|\bkey\s+(?:role|player|factor)\b|\blandscape\s+(?:of|in)\b|\bpivotal\b|\bshowcase\b|\btapestry\s+(?:of|in)\b|\btestament\b|\bunderscore(?:ing)?\b|\bvaluable\b|\bvibrant\b/i,
-    fix: (match) => {
+    description: "High-frequency AI words",
+    detect: /\bAdditionally\b|\balign\s+with\b|\bcrucial\b|\bdelve\b|\bemphasiz(?:ing|e)\b|\bendur(?:ing|es?)\b|\benhance\b|\bfoster(?:ing)?\b|\bgarner\b|\bhighlight(?:ing)?\s+(?:as|the)\b|\binterplay\b|\bintricate\b|\bintricacies\b|\bkey\s+(?:role|player|factor)\b|\blandscape\s+(?:of|in)\b|\bpivotal\b|\bshowcase\b|\btapestry\s+(?:of|in)\b|\btestament\b|\bunderscore(?:ing)?\b|\bvaluable\b|\bvibrant\b/gi,
+    fix: (match: string) => {
       const replacements: Record<string, string> = {
-        "additionally": "",
-        "crucial": "key",
-        "delve": "explore",
-        "emphasizing": "",
-        "enduring": "lasting",
-        "foster": "build",
-        "fostering": "building",
-        "garner": "get",
-        "highlight": "show",
-        "interplay": "connection",
-        "intricate": "complex",
-        "intricacies": "details",
-        "pivotal": "key",
-        "showcase": "show",
-        "tapestry": "mix",
-        "underscore": "show",
-        "underscores": "shows",
-        "valuable": "useful",
-        "vibrant": "active",
+        additionally: "",
+        crucial: "key",
+        delve: "explore",
+        emphasizing: "",
+        enduring: "lasting",
+        foster: "build",
+        fostering: "building",
+        garner: "get",
+        highlight: "show",
+        interplay: "connection",
+        intricate: "complex",
+        intricacies: "details",
+        pivotal: "key",
+        showcase: "show",
+        tapestry: "mix",
+        underscore: "show",
+        underscores: "shows",
+        valuable: "useful",
+        vibrant: "active",
       };
       const lower = match.toLowerCase().trim();
       return replacements[lower] !== undefined ? replacements[lower] : match;
@@ -114,7 +121,7 @@ const AI_PATTERNS: AiPattern[] = [
   {
     name: "copula_avoidance",
     category: "language",
-    description: "Serves/stands as instead of simple 'is'", 
+    description: "Serves/stands as instead of simple is",
     detect: /\b(?:serves?|stands?)\s+as\s+(?:a|an)?\b/gi,
     fix: "is",
     weight: 6,
@@ -123,17 +130,16 @@ const AI_PATTERNS: AiPattern[] = [
     name: "negative_parallelisms",
     category: "language",
     description: "Not only...but..., It's not just about...",
-    detect: /\bIt's\s+not\s+(?:just|merely)\s+about[^,]+,?\s*(?:it'?s|it is)\b|\bNot\s+only[^,]+,?\s*but\s+(?:also\s+)?/i,
+    detect: /\bIt's\s+not\s+(?:just|merely)\s+about[^,]+,?\s*(?:it'?s|it is)\b|\bNot\s+only[^,]+,?\s*but\s+(?:also\s+)?/gi,
     fix: "",
     weight: 8,
   },
   {
     name: "rule_of_three",
     category: "language",
-    description: "Forced groupings of three adjectives/nouns",
+    description: "Forced groupings of three",
     detect: /\b\w+,\s+\w+,\s+and\s+\w+\b/g,
-    fix: (match) => {
-      // Simplify rule of three to just the first item
+    fix: (match: string) => {
       const parts = match.split(",");
       if (parts.length >= 2) {
         return parts[0].trim();
@@ -145,58 +151,57 @@ const AI_PATTERNS: AiPattern[] = [
   {
     name: "elegant_variation",
     category: "language",
-    description: "Excessive synonym cycling to avoid repetition",
-    detect: /\b(?:protagonist|main character|central figure|hero)\b.*\b(?:protagonist|main character|central figure|hero)\b/i,
+    description: "Excessive synonym cycling",
+    detect: /\b(?:protagonist|main character|central figure|hero)\b.*\b(?:protagonist|main character|central figure|hero)\b/gi,
     fix: "",
     weight: 4,
   },
   {
     name: "false_ranges",
     category: "language",
-    description: "From X to Y where X and Y aren't on a meaningful scale",
-    detect: /\bfrom\s+\w+\s+to\s+\w+\s+to\s+\w+\b|\bfrom\s+(?:the\s+)?(?:singularity|Big Bang)\s+to\s+(?:the\s+)?(?:grand\s+cosmic\s+web|present)\b/i,
+    description: "From X to Y where X and Y are not on a meaningful scale",
+    detect: /\bfrom\s+\w+\s+to\s+\w+\s+to\s+\w+\b|\bfrom\s+(?:the\s+)?(?:singularity|Big Bang)\s+to\s+(?:the\s+)?(?:grand\s+cosmic\s+web|present)\b/gi,
     fix: "",
     weight: 5,
   },
-
   // STYLE PATTERNS (13-18)
   {
     name: "em_dash_overuse",
     category: "style",
-    description: "Excessive em dashes mimicking punchy sales writing",
-    detect: /—[^—]+—/,
-    fix: (match) => match.replace(/—/g, ", "),
+    description: "Excessive em dashes",
+    detect: /—[^—]+—/g,
+    fix: (match: string) => match.replace(/—/g, ", "),
     weight: 6,
   },
   {
     name: "boldface_overuse",
     category: "style",
-    description: "Mechanical use of boldface for emphasis",
-    detect: /\*\*[^*]+\*\*/,
-    fix: (match) => match.replace(/\*\*/g, ""),
+    description: "Mechanical use of boldface",
+    detect: /\*\*[^*]+\*\*/g,
+    fix: (match: string) => match.replace(/\*\*/g, ""),
     weight: 4,
   },
   {
     name: "inline_header_lists",
     category: "style",
-    description: "Bold headers with colons in vertical lists",
-    detect: /\*\*[^:]+:\*\*/,
-    fix: (match) => match.replace(/\*\*([^:]+):\*\*/g, "$1"),
+    description: "Bold headers with colons in lists",
+    detect: /\*\*[^:]+:\*\*/g,
+    fix: (match: string) => match.replace(/\*\*([^:]+):\*\*/g, "$1"),
     weight: 5,
   },
   {
     name: "title_case_headings",
     category: "style",
     description: "Capitalizing all main words in headings",
-    detect: /^##?\s+[A-Z][a-z]+(?:\s+[A-Z][a-z]+)+$/m,
-    fix: (match) => match.replace(/\s+[A-Z]/g, (m) => m.toLowerCase()),
+    detect: /^##?\s+[A-Z][a-z]+(?:\s+[A-Z][a-z]+)+$/gm,
+    fix: (match: string) => match.replace(/\s+[A-Z]/g, (m) => m.toLowerCase()),
     weight: 3,
   },
   {
     name: "emoji_use",
     category: "style",
     description: "Emojis in headings or bullet points",
-    detect: /[\u{1F300}-\u{1F9FF}]|[\u{2600}-\u{26FF}]|[\u{2700}-\u{27BF}]/u,
+    detect: /[\u{1F300}-\u{1F9FF}]|[\u{2600}-\u{26FF}]|[\u{2700}-\u{27BF}]/gu,
     fix: "",
     weight: 4,
   },
@@ -204,20 +209,19 @@ const AI_PATTERNS: AiPattern[] = [
     name: "curly_quotes",
     category: "style",
     description: "Using curly quotes instead of straight quotes",
-    detect: /[""''`]/u,
-    fix: (match) => {
+    detect: /[""''`]/gu,
+    fix: (match: string) => {
       const map: Record<string, string> = { '"': '"', '"': '"', ''': "'", ''': "'", '`': "'" };
       return map[match] || match;
     },
     weight: 2,
   },
-
   // COMMUNICATION PATTERNS (19-21)
   {
     name: "collaborative_artifacts",
     category: "communication",
     description: "Chatbot correspondence pasted as content",
-    detect: /\bI\s+hope\s+this\s+helps\b|\bOf\s+course!\b|\bCertainly!\b|\bYou're\s+absolutely\s+right!\b|\bWould\s+you\s+like\b|\blet\s+me\s+know\b|\bhere\s+is\s+(?:a|an)\b/i,
+    detect: /\bI\s+hope\s+this\s+helps\b|\bOf\s+course!\b|\bCertainly!\b|\bYou're\s+absolutely\s+right!\b|\bWould\s+you\s+like\b|\blet\s+me\s+know\b|\bhere\s+is\s+(?:a|an)\b/gi,
     fix: "",
     weight: 9,
   },
@@ -225,7 +229,7 @@ const AI_PATTERNS: AiPattern[] = [
     name: "knowledge_cutoff",
     category: "communication",
     description: "AI disclaimers about incomplete information",
-    detect: /\bas\s+of\s+\w+\s+\d{4}\b|\bup\s+to\s+(?:my|the)\s+last\s+(?:training|knowledge)\s+update\b|\bWhile\s+specific\s+details\s+are\s+(?:limited|scarce)\b|\bbased\s+on\s+available\s+information\b/i,
+    detect: /\bas\s+of\s+\w+\s+\d{4}\b|\bup\s+to\s+(?:my|the)\s+last\s+(?:training|knowledge)\s+update\b|\bWhile\s+specific\s+details\s+are\s+(?:limited|scarce)\b|\bbased\s+on\s+available\s+information\b/gi,
     fix: "",
     weight: 8,
   },
@@ -233,18 +237,17 @@ const AI_PATTERNS: AiPattern[] = [
     name: "sycophantic_tone",
     category: "communication",
     description: "Overly positive, people-pleasing language",
-    detect: /\bGreat\s+question!\b|\bYou're\s+absolutely\s+right\b|\bThat's\s+(?:an\s+)?excellent\s+point\b|\bI\s+love\s+(?:that|this|your)\b/i,
+    detect: /\bGreat\s+question!\b|\bYou're\s+absolutely\s+right\b|\bThat's\s+(?:an\s+)?excellent\s+point\b|\bI\s+love\s+(?:that|this|your)\b/gi,
     fix: "",
     weight: 8,
   },
-
   // FILLER/HEDGING PATTERNS (22-24)
   {
     name: "filler_phrases",
     category: "filler",
     description: "Wordy constructions that can be simplified",
-    detect: /\bin\s+order\s+to\s+achieve\b|\bdue\s+to\s+the\s+fact\s+that\b|\bat\s+this\s+point\s+in\s+time\b|\bin\s+the\s+event\s+that\b|\bthe\s+\w+\s+has\s+the\s+ability\s+to\b|\bIt\s+is\s+important\s+to\s+note\s+that\b/i,
-    fix: (match) => {
+    detect: /\bin\s+order\s+to\s+achieve\b|\bdue\s+to\s+the\s+fact\s+that\b|\bat\s+this\s+point\s+in\s+time\b|\bin\s+the\s+event\s+that\b|\bthe\s+\w+\s+has\s+the\s+ability\s+to\b|\bIt\s+is\s+important\s+to\s+note\s+that\b/gi,
+    fix: (match: string) => {
       const fillers: Record<string, string> = {
         "in order to achieve": "To achieve",
         "due to the fact that": "Because",
@@ -264,7 +267,7 @@ const AI_PATTERNS: AiPattern[] = [
     name: "excessive_hedging",
     category: "filler",
     description: "Over-qualifying statements",
-    detect: /\bcould\s+potentially\s+possibly\b|\bmight\s+arguably\s+be\s+said\s+to\b|\bthere\s+is\s+a\s+possibility\s+that\b/i,
+    detect: /\bcould\s+potentially\s+possibly\b|\bmight\s+arguably\s+be\s+said\s+to\b|\bthere\s+is\s+a\s+possibility\s+that\b/gi,
     fix: "",
     weight: 6,
   },
@@ -272,33 +275,26 @@ const AI_PATTERNS: AiPattern[] = [
     name: "generic_conclusions",
     category: "filler",
     description: "Vague upbeat endings",
-    detect: /\bThe\s+future\s+looks\s+bright\b|\bExciting\s+times\s+lie\s+ahead\b|\b(?:major|significant)\s+step\s+in\s+the\s+right\s+direction\b|\bcontinues?\s+to\s+thrive\b/i,
+    detect: /\bThe\s+future\s+looks\s+bright\b|\bExciting\s+times\s+lie\s+ahead\b|\b(?:major|significant)\s+step\s+in\s+the\s+right\s+direction\b|\bcontinues?\s+to\s+thrive\b/gi,
     fix: "",
     weight: 6,
   },
 ];
 
-// Additional simple regex replacements for mechanical fixes
-const SIMPLE_REPLACEMENTS: [RegExp, string][] = [
-  // Transitions
+// Simple regex replacements for mechanical fixes
+const SIMPLE_REPLACEMENTS: Array<[RegExp, string]> = [
   [/\bAdditionally,\s+/g, ""],
   [/\bMoreover,\s+/g, ""],
   [/\bFurthermore,\s+/g, ""],
   [/\bIt is(?:\s+also)?\s+worth\s+noting\s+that\s+/g, ""],
   [/\bIn this\s+regard,?\s*/g, ""],
-
-  // Hedging
   [/\bcould\s+potentially\b/g, "may"],
   [/\bmight\s+possibly\b/g, "may"],
   [/\bit\s+could\s+be\s+argued\s+that\b/g, ""],
-
-  // Generic positive words
   [/\bgroundbreaking\b/gi, "new"],
   [/\brevolutionary\b/gi, "new"],
   [/\bcutting-edge\b/gi, "current"],
   [/\bstate-of-the-art\b/gi, "current"],
-
-  // SIGNAL watermarks
   [/\/\/\s*Generated by SIGNAL[^\n]*/g, ""],
   [/Generated by SIGNAL[^"]*/g, ""],
 ];
@@ -306,17 +302,6 @@ const SIMPLE_REPLACEMENTS: [RegExp, string][] = [
 // ============================================================================
 // AI PATTERN SCORING
 // ============================================================================
-
-interface AiScoreResult {
-  score: number;
-  patterns: string[];
-  details: Array<{
-    pattern: string;
-    category: string;
-    matches: number;
-    weight: number;
-  }>;
-}
 
 /**
  * Score content for AI patterns (0-100 scale).
@@ -334,15 +319,9 @@ export function scoreAiPatterns(content: string): AiScoreResult {
   let totalPossibleWeight = 0;
 
   for (const pattern of AI_PATTERNS) {
-    let matches = 0;
-
-    if (pattern.detect instanceof RegExp) {
-      const globalRegex = new RegExp(pattern.detect.source, pattern.detect.flags.includes("g") ? pattern.detect.flags : pattern.detect.flags + "g");
-      const allMatches = content.match(globalRegex);
-      matches = allMatches?.length || 0;
-    } else if (typeof pattern.detect === "function") {
-      matches = pattern.detect(content);
-    }
+    const globalRegex = new RegExp(pattern.detect.source, "gi");
+    const allMatches = content.match(globalRegex);
+    const matches = allMatches?.length || 0;
 
     if (matches > 0) {
       detected.push({
@@ -354,10 +333,9 @@ export function scoreAiPatterns(content: string): AiScoreResult {
       totalWeightedMatches += matches * pattern.weight;
     }
 
-    totalPossibleWeight += pattern.weight * 3; // Assume avg 3 matches per pattern max
+    totalPossibleWeight += pattern.weight * 3;
   }
 
-  // Calculate score (cap at 100)
   const rawScore = (totalWeightedMatches / totalPossibleWeight) * 100;
   const score = Math.min(100, Math.round(rawScore * 100) / 100);
 
@@ -372,10 +350,6 @@ export function scoreAiPatterns(content: string): AiScoreResult {
 // RULE-BASED HUMANIZER (PRIMARY PATH)
 // ============================================================================
 
-/**
- * Protect JSX/HTML tags while processing content.
- * Returns an array of segments: text segments and tag segments.
- */
 interface ContentSegment {
   type: "text" | "tag";
   content: string;
@@ -384,20 +358,16 @@ interface ContentSegment {
 function segmentContent(content: string): ContentSegment[] {
   const segments: ContentSegment[] = [];
   let current = 0;
-
-  // Match JSX tags, HTML tags, JSON-LD script blocks
   const tagRegex = /(<\w[^>]*>|<\/[^>]+>)|(<script[^>]*type="application\/ld\+json"[^>]*>[\s\S]*?<\/script>)/gi;
 
-  let match;
+  let match: RegExpExecArray | null;
   while ((match = tagRegex.exec(content)) !== null) {
-    // Text before tag
     if (match.index > current) {
       segments.push({
         type: "text",
         content: content.slice(current, match.index),
       });
     }
-    // The tag itself
     segments.push({
       type: "tag",
       content: match[0],
@@ -405,7 +375,6 @@ function segmentContent(content: string): ContentSegment[] {
     current = match.index + match[0].length;
   }
 
-  // Remaining text
   if (current < content.length) {
     segments.push({
       type: "text",
@@ -416,53 +385,32 @@ function segmentContent(content: string): ContentSegment[] {
   return segments;
 }
 
-/**
- * Apply mechanical AI pattern fixes to text content.
- */
 function applyMechanicalFixes(text: string): string {
   let result = text;
 
-  // Apply simple replacements
   for (const [pattern, replacement] of SIMPLE_REPLACEMENTS) {
     result = result.replace(pattern, replacement);
   }
 
-  // Apply pattern-specific fixes
   for (const pattern of AI_PATTERNS) {
     if (typeof pattern.fix === "string" && pattern.fix === "") continue;
-
-    let lastResult = result;
-    let iterations = 0;
-    const maxIterations = 100; // Prevent infinite loops
-
-    while (iterations < maxIterations) {
-      if (pattern.detect instanceof RegExp) {
-        if (typeof pattern.fix === "string") {
-          result = result.replace(pattern.detect, pattern.fix);
-        } else {
-          result = result.replace(pattern.detect, pattern.fix);
-        }
-      }
-
-      if (result === lastResult) break;
-      lastResult = result;
-      iterations++;
+    
+    const fixRegex = new RegExp(pattern.detect.source, "gi");
+    if (typeof pattern.fix === "string") {
+      result = result.replace(fixRegex, pattern.fix);
+    } else {
+      result = result.replace(fixRegex, pattern.fix);
     }
   }
 
-  // Clean up artifacts
-  result = result.replace(/\s{2,}/g, " "); // Double spaces
-  result = result.replace(/,\s*,/g, ","); // Double commas
-  result = result.replace(/\.{2,}/g, "."); // Multiple periods
-  result = result.replace(/\s+([.,;:!?])/g, "$1"); // Space before punctuation
+  result = result.replace(/\s{2,}/g, " ");
+  result = result.replace(/,\s*,/g, ",");
+  result = result.replace(/\.{2,}/g, ".");
+  result = result.replace(/\s+([.,;:!?])/g, "$1");
 
   return result.trim();
 }
 
-/**
- * Rule-based humanizer (PRIMARY path).
- * Applies all 24+ patterns while preserving JSX/HTML structure.
- */
 function ruleBasedHumanize(content: string): string {
   const segments = segmentContent(content);
   const processed = segments.map((seg) => {
@@ -474,7 +422,7 @@ function ruleBasedHumanize(content: string): string {
 }
 
 // ============================================================================
-// LLM ENHANCEMENT (SECONDARY - if API key available)
+// LLM ENHANCEMENT (SECONDARY)
 // ============================================================================
 
 const HUMANIZER_SYSTEM_PROMPT = `You are a professional editor specializing in making AI-generated content sound natural and human-written.
@@ -482,22 +430,21 @@ const HUMANIZER_SYSTEM_PROMPT = `You are a professional editor specializing in m
 Your job: rewrite the provided content to remove ALL signs of AI generation while keeping the meaning, structure, and SEO elements intact.
 
 CRITICAL RULES:
-1. PRESERVE all HTML/JSX tags exactly as they are. Do not modify any tags, React components, className attributes, or JSX syntax.
-2. PRESERVE all JSON-LD schema blocks exactly. Do not touch anything inside script tags.
-3. PRESERVE all JavaScript/TypeScript code (const declarations, export statements, etc).
+1. PRESERVE all HTML/JSX tags exactly as they are.
+2. PRESERVE all JSON-LD schema blocks exactly.
+3. PRESERVE all JavaScript/TypeScript code.
 4. ONLY rewrite the human-readable text content BETWEEN the HTML tags.
 5. Remove any "Generated by SIGNAL" or similar watermark comments.
 
 AI PATTERNS TO FIX:
-- Remove "Additionally", "Moreover", "Furthermore" — use natural transitions
+- Remove "Additionally", "Moreover", "Furthermore"
 - Replace AI vocabulary: "crucial", "pivotal", "vibrant", "tapestry", "landscape", "delve", "foster", "garner", "underscore", "showcase", "testament"
 - Break up Rule of Three patterns
-- Remove em dash overuse — use commas or periods
+- Remove em dash overuse
 - Kill "It's not just X, it's Y" constructions
 - Remove "-ing" superficial analysis phrases
 - Replace "serves as" / "stands as" with "is"
 - Remove sycophantic language ("Great question!", "Certainly!")
-- Add personality: vary sentence length, have opinions
 - Use simple "is/are/has" instead of elaborate constructions
 - Remove hedging and generic positive conclusions
 - Use straight quotes, not curly quotes
@@ -508,13 +455,9 @@ VOICE GUIDELINES:
 - Be direct and specific
 - Use first-person plural ("we", "our") when referring to the business
 - Reference specific details rather than vague claims
-- It's okay to be informal
 
 Return ONLY the rewritten content. No explanations, no commentary.`;
 
-/**
- * LLM enhancement pass (applied AFTER rule-based humanization).
- */
 async function llmEnhancementPass(content: string, brandVoice?: string): Promise<string> {
   const voiceAddendum = brandVoice
     ? `\n\nBRAND VOICE: ${brandVoice}. Adapt the tone while keeping it natural.`
@@ -523,7 +466,6 @@ async function llmEnhancementPass(content: string, brandVoice?: string): Promise
   try {
     const result = await humanizeContent(HUMANIZER_SYSTEM_PROMPT + voiceAddendum, content);
 
-    // Safety check: make sure the LLM didn't strip essential elements
     if (!result.includes("<article") && content.includes("<article")) {
       console.warn("[Humanizer] LLM stripped JSX structure — keeping rule-based output.");
       return content;
@@ -538,31 +480,22 @@ async function llmEnhancementPass(content: string, brandVoice?: string): Promise
 }
 
 // ============================================================================
-// MAIN EXPORT
+// MAIN EXPORTS
 // ============================================================================
-
-export { AiScoreResult };
 
 /**
  * Run the humanizer pipeline.
- *
- * Primary path: Rule-based humanization (always runs, all 24+ patterns).
+ * Primary path: Rule-based humanization (always runs).
  * Enhancement: LLM pass if API key available (runs AFTER rule-based).
- *
- * Returns humanized content and can log scores if called within runSinglePipeline.
  */
 export async function runHumanize(
   content: string,
   brandVoice?: string,
-  options?: {
-    skipLlm?: boolean;
-  }
+  options?: { skipLlm?: boolean }
 ): Promise<string> {
-  // Step 1: Rule-based humanization (PRIMARY - always runs)
   console.log("[Humanizer] Applying rule-based fixes (24+ patterns)...");
   const ruleBasedResult = ruleBasedHumanize(content);
 
-  // Step 2: Check for LLM enhancement
   const hasNvidiaKey = !!process.env.NVIDIA_API_KEY;
   const hasOpenaiKey = !!process.env.OPENAI_API_KEY;
   const hasOpenrouterKey = !!process.env.OPENROUTER_API_KEY;
@@ -577,7 +510,6 @@ export async function runHumanize(
     return ruleBasedResult;
   }
 
-  // Step 3: LLM enhancement pass (for nuanced improvements rule-based can't catch)
   console.log(`[Humanizer] Running LLM enhancement (${hasNvidiaKey ? "NVIDIA" : hasOpenaiKey ? "OpenAI" : "OpenRouter"})...`);
   const enhancedResult = await llmEnhancementPass(ruleBasedResult, brandVoice);
 
@@ -586,7 +518,6 @@ export async function runHumanize(
 
 /**
  * Run humanization with before/after scoring for pipeline logging.
- * Used internally by runSinglePipeline.
  */
 export async function runHumanizeWithScoring(
   content: string,
@@ -604,7 +535,6 @@ export async function runHumanizeWithScoring(
   const afterScore = scoreAiPatterns(humanized);
   console.log(`[Humanizer] Post-humanization AI score: ${afterScore.score}/100 (${afterScore.patterns.length} patterns detected)`);
 
-  // Calculate improvement
   const improvement = beforeScore.score - afterScore.score;
   if (improvement > 0) {
     console.log(`[Humanizer] Score improved by ${improvement.toFixed(1)} points`);
