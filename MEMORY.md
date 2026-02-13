@@ -112,9 +112,12 @@ _Curated patterns, preferences, and lessons. Updated weekly from daily logs._
 - **Playwright version pinning**: Dockerfile base image version MUST match package.json playwright version or CamoFox→Firefox fallback breaks.
 - **page.evaluate(fetch()) vs page.request.fetch()**: page.evaluate does NOT carry Cloudflare cookies cross-subdomain. Always use page.request.fetch() for API calls that need browser cookie jar.
 - **PostgreSQL advisory locks for run isolation**: `pg_try_advisory_lock(hashtext(platform || current_date))` — session-scoped, auto-releases on crash, prevents duplicate runs. Better than row-level locks for Railway cron services.
-- **CamoFox npm ESM incompatibility**: `camoufox@0.1.19` uses CJS `require()` internally. When scrapers run in ESM mode (`"type": "module"`), throws `Dynamic require of "events" is not supported`. Need to either remove `"type": "module"`, use tsx CJS compat, or use camoufox Python binary via Playwright connect.
-- **No naked Firefox fallback**: All 4 scrapers fail fast if CamoFox unavailable (`181df4b`). Plain Playwright Firefox lacks anti-detection and risks IP blacklisting on Cloudflare-protected sites.
-- **Railway deploy pattern**: Copy service-specific `railway.toml` to repo root before `railway up`, delete after. Deploy from repo root, not subdirectory. Build takes ~3.5 min for Playwright base.
+- **CamoFox ESM fix**: `camoufox@0.1.19` npm package has CJS/ESM conflict. SOLVED: `scrapers/lib/browser.ts` launches camoufox-bin binary directly via Playwright `firefox.launch({ executablePath })`, bypassing the npm package JS wrapper.
+- **No naked Firefox fallback**: All 4 scrapers fail fast if CamoFox unavailable. Plain Playwright Firefox lacks anti-detection.
+- **Cloudflare zones are per-subdomain**: `www.iheartjane.com` and `search.iheartjane.com` have separate CF clearance. Must navigate to both.
+- **Railway CLI 403**: `railway up` started returning 403 on uploads (Feb 13). Workaround: redeploy from dashboard or connect GitHub for auto-deploy.
+- **Git PR workflow (GLASS)**: Bot (`randyt1444-arch`) creates PRs. Randy approves + merges. `enforce_admins: true` on main.
+- **Advisory locks REMOVED**: `run-lock.ts` uses simple `scrape_runs` table check (PR #16). No more `pg_try_advisory_lock`.
 - **Signal tool at 60% production readiness**: Architecture solid but missing GLASS API integration (routes mismatched), client context files, API keys (OpenAI expired, GITHUB_TOKEN, GLASS_API_KEY not set), zero unit tests. Audit doc at `projects/signal/SIGNAL.md`.
 - **Weedmaps scraper**: `scripts/scrape-weedmaps.ts`. Uses `WEEDMAPS_CAMOFOX_URL` env var, defaults to `https://roviq-browser-production.up.railway.app`. Railway works fine for Weedmaps (tested Feb 13 — age gate dismissal needed, but products load). Runs in parallel with Dutchie (Dutchie=local CamoFox, Weedmaps=Railway).
 - **MA cannabis market size**: 650+ licensed retailers. Dutchie ~235+ (40%), Weedmaps ~300-400, iHeartJane ~100-150.
