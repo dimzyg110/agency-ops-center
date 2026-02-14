@@ -297,6 +297,11 @@ _Curated patterns, preferences, and lessons. Updated weekly from daily logs._
 - **LLM parser proven**: Pipeline at `scripts/experiments/llm-product-parser.ts`. Llama 3.3 (free NVIDIA) too conservative. DeepSeek R1 (also free) recommended. OpenRouter balance = $0.
 - **Wartime sprint plan**: `projects/glass/WARTIME-SPRINT-PLAN.md` (752 lines). Phase 0 quarantine → Phase 1 brand authority → Phase 2 LLM parse → Phase 3 GPID lock → Phase 4 consumer API.
 - **DeepSeek R1 DEAD on NVIDIA**: HTTP 410 (end of life). Removed from model options. Fallback: Llama 3.3 70B (free, alive), Kimi K2.5 (free, alive), GLM 4.7 (free, alive).
+- **Gemini 2.5 Flash is the LLM parser winner**: 0.949 avg confidence, forces valid JSON via `responseMimeType: 'application/json'`, $0.15/$0.60 per M tokens. Same quality as Pro at 1/8 cost. For 22K products = ~$0.50.
+- **OpenRouter balance = $0**: Grok 4.1 Fast burned through credits. Can't use OpenRouter models for scripts.
+- **Anthropic key not accessible from scripts**: Stored in OpenClaw auth profile (token mode), not as plaintext apiKey in config. Can't extract for direct API calls.
+- **parse-top-brands.ts supports 4 providers**: NVIDIA, Anthropic, OpenRouter, Google Gemini. Auto-routes by model name prefix.
+- **OOM on sandbox was process limits, not RAM**: Railway has 491GB RAM. The SIGKILL was from sandbox process/memory cgroups. Fixed with paginated DB reads + cursor resume.
 - **Flywheel**: 500 SKUs → consumer traffic → dispensaries "Claim My Page" → brands upload catalogs → training data → fine-tuned model → POS API → monopoly.
 - **Strategy docs**: `WARTIME-CTO-DIAGNOSIS.md`, `GPID-MONOPOLY-PLAYBOOK.md`, `GPID-MATCHING-DEEP-DIVE.md`, `BRAND-AUTHORITY-RESEARCH.md`, `LLM-PARSER-MODEL-RESEARCH.md`
 - **Brand dictionary v2 REJECTED**: 84.66% merge rate too aggressive, Jeeter absorbed 22K aliases including hoodies and gift cards. Quarantine planned.
