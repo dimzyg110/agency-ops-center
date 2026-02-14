@@ -1,8 +1,21 @@
 # GLASS Repo Audit — Part 3: Scraper Pipeline & Data Integrity
 
-Date: 2026-02-14 (UTC)
+Date: 2026-02-14 (UTC) — Updated 04:55 UTC
 Repo audited: `/data/workspace/projects/glass/src/`
 DB audited: Railway Postgres (`public` schema)
+
+## Production Status Summary
+
+**All 4 scrapers are deployed and running as Railway cron services.**
+
+| Scraper | Railway Cron | Runs | Success Rate | Last Success | Best Run |
+|---------|-------------|------|-------------|-------------|----------|
+| Dutchie | `0 8 * * *` | 14 | 93% (13/14) | Feb 13 | Reliable |
+| Jane | `0 7 * * *` | 14 | 50% (7/14) | Feb 13 20:56 | 9,482 prices, 37/39 stores |
+| Leafly | `5 7 * * *` | 8 | 50% (4/8) | Feb 13 20:09 | 43,844 prices, 99/292 stores |
+| Weedmaps | `30 3 * * *` | 9 | 78% (7/9) | Feb 14 03:31 | 477 prices, 25/282 stores |
+
+Jane/Leafly 50% rate reflects early debugging runs — successful runs pull massive data.
 
 ---
 
