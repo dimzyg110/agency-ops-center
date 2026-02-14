@@ -1,266 +1,267 @@
 # GLASS State of the World
 
-_Last updated: 2026-02-14 (UTC)_
+_Last updated: 2026-02-14 UTC_
 
 ## 1) Architecture
 
-## Monorepo layout
-- Repo root (`/data/workspace/projects/glass/`) contains strategy docs, reports, and planning artifacts.
-- **Actual application code root is `src/`**.
+### Monorepo reality
+- Repo root (`/data/workspace/projects/glass/`) contains strategy/planning/review docs.
+- **Actual code root is `src/`**.
 
-Inside `src/`:
+### Core code layout (under `src/`)
 - `apps/web/` → React + Vite + Tailwind frontend
 - `services/api/` → Fastify API service
-- `scrapers/` → platform scraper implementations
+- `scrapers/` → platform scrapers
   - `scrapers/jane/`
   - `scrapers/leafly/`
   - `scrapers/weedmaps/`
   - `scrapers/dutchie/`
-- `scripts/gpid/` → GPID parsing + lock/QA tooling
-- `scripts/matching/` → makeSKU + fuzzy matching + auto-verify tooling
-- `scripts/brand-authority/` → brand authority discovery/ranking scripts
+- `scripts/gpid/` → GPID parser + GPID lock/verification scripts
+- `scripts/matching/` → candidate generation, fuzzy matching, auto-verify pipeline
+- `scripts/brand-authority/` → brand authority ingestion/ranking logic
 
-## Core platform components
-- **Database:** Railway PostgreSQL, `public` schema
-- **Scrapers:** Jane, Leafly, Weedmaps, Dutchie are present and operational (with Weedmaps reliability caveat)
-- **API:** Fastify app at `src/services/api/`
-  - 29 route files in `src/services/api/src/routes/`
-  - Clerk auth integration (`@clerk/fastify`)
-  - Stripe billing route (`routes/billing.ts`)
-- **Web frontend:** `src/apps/web/` using React + Vite + Tailwind
-- **LLM parser:** `src/scripts/gpid/parse-top-brands.ts`
+### Database
+- Railway PostgreSQL
+- Active schema for GLASS data in this environment: `public`
+- Historical headline numbers in older docs (225K prices / 162K products / 2,088 operators / 2,545 sources) are **partially stale** versus current live counts below.
+
+### Scrapers
+- 4 working scraper stacks: **Jane, Leafly, Weedmaps, Dutchie**
+- Each has its own directory in `src/scrapers/{name}/`
+- Recent run history shows all four executing, but Weedmaps has intermittent failures.
+
+### API
+- Fastify service at `src/services/api/`
+- **29 route files** in `src/services/api/src/routes/`
+- Clerk auth integration (`@clerk/fastify`)
+- Stripe billing integration (billing route + Stripe envs)
+
+### Web frontend
+- `src/apps/web/`
+- React + Vite + Tailwind
+
+### GPID/LLM system
+- GPID scripts in:
+  - `src/scripts/gpid/`
+  - `src/scripts/matching/`
+  - `src/scripts/brand-authority/`
+- LLM parser runner: `src/scripts/gpid/parse-top-brands.ts`
   - Default model: `gemini-2.5-flash`
-  - Acceptance threshold in parser logic: confidence `>= 0.8`
-  - Prior benchmark target referenced in project docs: ~0.952 confidence
-- **Railway services planned/deployed pattern:** API + Web + 4 scraper cron jobs
+  - Prior benchmark confidence reference in project docs: **~0.952**
+
+### Railway deployment shape
+- Active services pattern: **API + Web**
+- Planned/operated cron shape: **4 scraper cron jobs** (Jane, Leafly, Weedmaps, Dutchie)
 
 ---
 
-## 2) Current Data State (Railway Postgres)
+## 2) Current Data State (Live DB Snapshot)
 
-Connection used:
+Connection queried:
 `postgresql://postgres:rcsulogGljjcDcBMxfMeGNlqbmbgHspa@turntable.proxy.rlwy.net:18582/railway`
 
 All queries executed with:
-`SET search_path TO public;`
+```sql
+SET search_path TO public;
+```
 
-## Table counts
-- `products`: **161,991**
-- `prices`: **225,868**
+### Core table counts
+- `products`: **161,992**
+- `prices`: **225,869**
 - `operators`: **1,322**
 - `sources`: **868**
 - `brand_authority`: **1,001**
-- `parsed_products`: **2,111**
+- `parsed_products`: **2,161**
 - `gpid_candidates`: **7,438**
 - `gpid_verdicts`: **6,144**
 
-## Sources by platform (`source_type`)
-- `leafly`: **292**
-- `weedmaps`: **284**
+### Sources by platform
+`SELECT source_type, COUNT(*) FROM sources GROUP BY source_type`
+
 - `dutchie`: **235**
 - `jane`: **42**
+- `leafly`: **292**
 - `menu`: **9**
 - `website`: **6**
+- `weedmaps`: **284**
 
-## Verified GPIDs
-Requested query was:
+### Verified GPIDs query result
+Requested query:
 ```sql
 SELECT COUNT(*) FROM canonical_products WHERE verified=true;
 ```
 
-Current schema note:
-- `canonical_products` does **not** have a `verified` column in this environment.
-- Closest current verification source appears to be `verified_gpids`.
+Current DB state:
+- `canonical_products` exists, but **column `verified` does not exist** in this environment.
+- So this exact query fails and cannot return a count without schema change or alternate verification source.
 
-Observed verification proxy counts:
-- `verified_gpids`: **234**
-- `verified_gpids WHERE verification_status='verified'`: **234**
-
-## Latest scrape runs
+### Latest scrape runs (10)
 `SELECT platform, status, started_at FROM scrape_runs ORDER BY started_at DESC LIMIT 10`
 
-1. weedmaps | running   | 2026-02-14 03:31:39+00
-2. weedmaps | failed    | 2026-02-14 03:00:29+00
-3. weedmaps | running   | 2026-02-13 22:40:53+00
-4. dutchie  | failed    | 2026-02-13 21:02:59+00
-5. jane     | completed | 2026-02-13 20:56:29+00
-6. leafly   | completed | 2026-02-13 20:09:33+00
-7. jane     | completed | 2026-02-13 20:08:44+00
-8. weedmaps | completed | 2026-02-13 19:53:23+00
-9. leafly   | failed    | 2026-02-13 19:52:10+00
-10. jane    | failed    | 2026-02-13 19:51:14+00
+1. weedmaps | running | 2026-02-14 03:31:39 UTC
+2. weedmaps | failed | 2026-02-14 03:00:29 UTC
+3. weedmaps | running | 2026-02-13 22:40:53 UTC
+4. dutchie | failed | 2026-02-13 21:02:59 UTC
+5. jane | completed | 2026-02-13 20:56:29 UTC
+6. leafly | completed | 2026-02-13 20:09:33 UTC
+7. jane | completed | 2026-02-13 20:08:44 UTC
+8. weedmaps | completed | 2026-02-13 19:53:23 UTC
+9. leafly | failed | 2026-02-13 19:52:10 UTC
+10. jane | failed | 2026-02-13 19:51:14 UTC
 
 ---
 
-## 3) What Works
+## 3) What Works / In Progress / Broken-Missing
 
-- 4 scraper stacks are implemented and running: Jane, Leafly, Weedmaps, Dutchie
-  - Caveat: Weedmaps reliability remains materially worse than others
-- GPID matching pipeline exists and is wired
-  - makeSKU logic + fuzzy matcher + auto-verifier scripts
-- LLM parser pipeline exists (`parse-top-brands.ts`) and is active with Gemini 2.5 Flash
-- Brand authority subsystem exists and is populated (`brand_authority` table + scripts)
-- Consumer API endpoints exist (`routes/consumer.ts`)
-- Verification/match validation UI/API path exists (`routes/match-validation.ts`) and is deployed with Railway API
+### What works
+- Core data platform is live on Railway Postgres and actively ingesting menu/price data.
+- All 4 scraper stacks are implemented and run in production workflows.
+- Fastify API and React web app are both present and deployable.
+- GPID pipeline components (parsing, matching, brand authority) are implemented and populated.
 
----
+### In progress
+- Reliability hardening for scraper operations (especially Weedmaps).
+- GPID verification workflow maturation (schema/query mismatch around canonical verification flag).
+- Consolidation of root-level documentation into a cleaner canonical set.
 
-## 4) In Progress
-
-- Flash parsing program for top brands (project target: 308 brands / 36,556 products)
-- Consumer-site product direction + UX strategy (`PRICES-SITE-GAMEPLAN.md`)
-- GTM and defensibility strategy (`GTM-MARKETPLACE-TRAP.md`)
-
----
-
-## 5) Broken / Missing
-
-- Weedmaps scraper instability on Railway cron (noted high fail rate in project ops docs)
-- No fully launched public consumer-facing site yet
-- Automated test coverage is effectively absent (`@glass/api` test script currently placeholder)
-- OpenRouter-balance dependency blocks some script runs when balance is $0
-- Root-level documentation sprawl (155 markdown files outside `src/`)
+### Broken / missing
+- `canonical_products.verified` is referenced by desired reporting query but missing in live schema.
+- Weedmaps run reliability remains inconsistent (mix of running/completed/failed in recent runs).
+- Root doc sprawl remains high (159 markdown files outside `src/`; cleanup plan created separately).
 
 ---
 
-## 6) Environment Variables Needed
+## 4) Environment Variables Needed
 
-Below is the consolidated set observed in code and env templates.
+Below is the consolidated env surface needed to run the system end-to-end.
 
-## Core runtime / server
+### Core runtime
 - `NODE_ENV`
 - `HOST`
 - `PORT`
 - `LOG_LEVEL`
 
-## Database / cache
+### Data stores
 - `DATABASE_URL` (required)
-- `REDIS_URL` (if queue/worker paths are used)
+- `REDIS_URL` (required for queue/scheduler flows)
 
-## Auth / security
+### Auth/security
 - `JWT_SECRET`
 - `CLERK_SECRET_KEY`
-- `CLERK_PUBLISHABLE_KEY` (or `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY`)
+- `CLERK_PUBLISHABLE_KEY` / `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY`
 - `CORS_ORIGIN`
-- `ADMIN_API_KEY` (for protected health/metrics admin views)
+- `ADMIN_API_KEY` (for admin-only paths)
 
-## Billing
+### Billing
 - `STRIPE_SECRET_KEY`
 - `STRIPE_WEBHOOK_SECRET`
 - `STRIPE_PRICE_ID`
 
-## Frontend
+### Frontend
 - `VITE_API_URL`
 - `VITE_CLERK_PUBLISHABLE_KEY`
 
-## LLM / parsing / integrations
-- `GOOGLE_AI_API_KEY` (Gemini)
-- `OPENAI_API_KEY` (from infra template)
-- `FIRECRAWL_API_KEY`
-- `FIRECRAWL_API_BASE`
-- `FIRECRAWL_TIMEOUT_MS`
-- `FIRECRAWL_MAX_RETRIES`
-
-## Scraper-specific
+### Scraper + scheduling
+- `FULL_SCRAPE_CRON`
+- `DELTA_SCRAPE_CRON`
 - `SCRAPER_CONCURRENCY`
 - `SCRAPER_DEBUG`
+- `SCRAPE_FULL_CONCURRENCY`
+- `SCRAPE_DELTA_CONCURRENCY`
+- `SCRAPE_FULL_SOURCE_CONCURRENCY`
+- `SCRAPE_SCHEDULE_TZ`
 - `SCRAPE_USER_AGENT`
-- `JANE_ALGOLIA_APP_ID`
-- `JANE_ALGOLIA_API_KEY`
-- `JANE_STORES_INDEX`
-- `JANE_PRODUCTS_INDEX`
-- `JANE_STATE_FILTER`
-- `WEEDMAPS_CAMOFOX_URL` / `CAMOFOX_URL`
 - `DUTCHIE_SHARD_COUNT`
+- `WEEDMAPS_CAMOFOX_URL` / `CAMOFOX_URL`
 - `MAX_TIMEOUT_MS`
 - `PLAYWRIGHT_MAX_RETRIES`
 - `PLAYWRIGHT_NAV_TIMEOUT_MS`
 - `PLAYWRIGHT_NETWORK_IDLE_TIMEOUT_MS`
 - `WM_VERBOSE`
 
-## Scheduling / ops controls
-- `FULL_SCRAPE_CRON`
-- `DELTA_SCRAPE_CRON`
-- `SCRAPE_FULL_CONCURRENCY`
-- `SCRAPE_DELTA_CONCURRENCY`
-- `SCRAPE_FULL_SOURCE_CONCURRENCY`
-- `SCRAPE_SCHEDULE_TZ`
+### Jane-specific
+- `JANE_ALGOLIA_APP_ID`
+- `JANE_ALGOLIA_API_KEY`
+- `JANE_STORES_INDEX`
+- `JANE_PRODUCTS_INDEX`
+- `JANE_STATE_FILTER`
+
+### GPID/verification controls
 - `LOW_CONFIDENCE_THRESHOLD`
-- `VERIFICATION_LIMIT`
 - `PARSE_WORKER_CONCURRENCY`
+- `VERIFICATION_LIMIT`
 - `VERIFICATION_UI_PATH`
 - `ROVIQ_SERVICE_API_KEYS`
 
-## Optional ecosystem integrations
+### External integrations (as used)
+- `FIRECRAWL_API_KEY`
+- `FIRECRAWL_API_BASE`
+- `FIRECRAWL_TIMEOUT_MS`
+- `FIRECRAWL_MAX_RETRIES`
+- `GOOGLE_MAPS_API_KEY`
 - `BEEHIIV_API_KEY`
 - `BEEHIIV_PUBLICATION_ID`
 - `DISCORD_WEBHOOK_URL`
-- `GOOGLE_MAPS_API_KEY`
 
 ---
 
-## 7) How to Run Everything (Fresh Clone)
+## 5) How to Run Everything (Fresh Clone)
 
-## 1) Clone
-```bash
-git clone <repo-url>
-cd glass
-```
+1. **Clone + enter repo**
+   ```bash
+   git clone <repo-url>
+   cd glass
+   ```
 
-## 2) Install dependencies
-```bash
-cd src
-npm install
-```
+2. **Install dependencies from code root**
+   ```bash
+   cd src
+   npm install
+   ```
 
-## 3) Set up environment
-- Create and populate:
-  - `src/.env` (API + scripts runtime)
-  - `src/apps/web/.env` (frontend runtime)
-- Use `src/infra/.env.example` and `src/apps/web/.env.example` as starting templates.
+3. **Create env files**
+   - Use templates:
+     - `src/infra/.env.example`
+     - `src/apps/web/.env.example`
+   - Populate runtime files:
+     - `src/.env`
+     - `src/apps/web/.env`
 
-## 4) Run scrapers (examples)
-From `src/`:
-```bash
-npx tsx scripts/scrape-jane.ts --skip-discovery --db
-npx tsx scripts/scrape-leafly.ts --skip-discovery --db
-npx tsx scripts/scrape-weedmaps.ts --skip-discovery --db
-npx tsx scripts/scrape-dutchie.ts --skip-discovery --db
-```
+4. **Run API + web locally**
+   ```bash
+   npm run dev:api
+   npm run dev:web
+   ```
+   (Or run both via root dev script where configured.)
 
-## 5) Run API
-```bash
-npm run dev:api
-```
+5. **Run scrapers (from `src/`)**
+   ```bash
+   npx tsx scripts/scrape-jane.ts --skip-discovery --db
+   npx tsx scripts/scrape-leafly.ts --skip-discovery --db
+   npx tsx scripts/scrape-weedmaps.ts --skip-discovery --db
+   npx tsx scripts/scrape-dutchie.ts --skip-discovery --db
+   ```
 
-## 6) Run web app
-```bash
-npm run dev:web
-```
+6. **Run GPID pipeline (from `src/`)**
+   ```bash
+   npx tsx scripts/matching/seed-brand-dictionary.ts
+   npx tsx scripts/matching/fuzzy-matcher.ts
+   npx tsx scripts/matching/auto-verify.ts
+   npx tsx scripts/gpid/parse-top-brands.ts --brand-top=308 --batch-size=25
+   npx tsx scripts/gpid/lock-verified-gpids.ts
+   ```
 
-## 7) Run GPID pipeline
-From `src/`:
-```bash
-# Brand dictionary seeding
-npx tsx scripts/matching/seed-brand-dictionary.ts
-
-# Candidate matching
-npx tsx scripts/matching/fuzzy-matcher.ts
-
-# Auto verification pass
-npx tsx scripts/matching/auto-verify.ts
-
-# LLM parsing for top brands (Gemini default)
-npx tsx scripts/gpid/parse-top-brands.ts --brand-top=308 --batch-size=25
-
-# Lock verified GPIDs
-npx tsx scripts/gpid/lock-verified-gpids.ts
-```
+7. **Validate DB state before/after runs**
+   - Always set schema explicitly:
+   ```sql
+   SET search_path TO public;
+   ```
+   - Re-run row-count and scrape-run queries from section 2.
 
 ---
 
-## 8) Notes / Gaps to Resolve in Part 2
+## 6) Key Reconciliation Notes
 
-- Operator/source totals in current DB differ from earlier headline metrics (2,088 operators / 2,545 sources) and should be reconciled as environment/version drift.
-- Verified GPID canonical query in prompt does not match current schema (`canonical_products.verified` missing).
-- A single canonical env template for all services is still missing; current requirements are split across code + multiple env examples.
+- Current live counts diverge from older architecture headlines for operators/sources; use section 2 as source of truth.
+- Requested verified-GPID query does not match current schema (`canonical_products.verified` missing).
+- Documentation footprint outside code is still large; see `CLEANUP-PLAN.md` for full file-by-file categorization.

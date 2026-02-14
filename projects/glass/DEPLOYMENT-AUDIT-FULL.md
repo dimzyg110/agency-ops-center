@@ -1,315 +1,255 @@
-# GLASS Repo Audit — Part 2: Codebase Health & Deployment
+# GLASS Repo Audit — Part 2: Deployment, Branches, API Routes, Migrations
 
-Audit target: `/data/workspace/projects/glass/src/`  
-Audit time: 2026-02-14 UTC
-
----
-
-## Task 1 — Service Build & Deployment Readiness
-
-## 1) `services/api/`
-
-**Dockerfile validity:** ⚠️ Mostly valid, but build currently fails at TypeScript stage.
-- Dockerfile compiles with `npx tsc -p tsconfig.json` and runs `node dist/index.js`.
-- Entry point in Dockerfile matches package scripts (`src/index.ts` → `dist/index.js`).
-
-**Dependencies:** ✅ `services/api/package.json` exists and is populated.
-
-**TypeScript compilation status (actual run):** ❌ Fails
-- `src/routes/health-sources.ts`: Drizzle `eq(..., null)` type mismatch (`run_id` nullable comparisons)
-- `src/routes/pos-api-integration.ts`: type mismatch at line ~411 (object vs string[])
-- `src/services/source-priority.ts`: same nullable `run_id` typed comparison issue
-
-**Entry point correctness:** ✅ `dist/index.js` is correct target for built output.
-
-**Environment variables needed (from code):**
-- Required in production: `DATABASE_URL`, `JWT_SECRET`, `CORS_ORIGIN`, `CLERK_SECRET_KEY`, `CLERK_PUBLISHABLE_KEY` (or `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY`)
-- Optional/feature flags: `PORT`, `HOST`, `LOG_LEVEL`, `ADMIN_API_KEY`, `BEEHIIV_API_KEY`, `BEEHIIV_PUBLICATION_ID`, `STRIPE_SECRET_KEY`, `STRIPE_PRICE_ID`, `STRIPE_WEBHOOK_SECRET`, `ROVIQ_SERVICE_API_KEYS`, `NODE_ENV`
-
-**Railway deployment:** ✅ Yes
-- Root `railway.toml` points at `services/api/Dockerfile`
+Audit target: `/data/workspace/projects/glass/src/`
+Date: 2026-02-14 (UTC)
 
 ---
 
-## 2) `apps/web/`
+## Task 1) Services Build/Deploy Audit
 
-**Dockerfile validity:** ✅ Structurally valid multi-stage Vite build Dockerfile.
+### 1) `services/api/`
 
-**Dependencies:** ✅ `apps/web/package.json` exists.
-
-**Build status (actual run):** ❌ Fails in current checkout
-- `npm run build` -> `sh: 1: vite: not found`
-- Indicates dependency installation/state issue in current workspace (`node_modules/.bin/vite` missing), not necessarily Dockerfile logic.
-
-**Entry point correctness:** ✅ Build outputs `dist/`; runtime serves with `serve -s dist -l 3000`.
-
-**Environment variables needed:**
-- Build/runtime frontend vars: `VITE_API_URL`, `VITE_CLERK_PUBLISHABLE_KEY`
-
-**Railway deployment:** ✅ Yes
-- `railway-web.toml` and `apps/web/railway.toml` both define web deployment via `apps/web/Dockerfile`
-
----
-
-## 3) Scrapers (`scrapers/{dutchie,jane,leafly,weedmaps}`)
-
-Shared observations:
-- Each scraper has its own Dockerfile and Railway cron config.
-- All Dockerfiles install Node 22 + `tsx`, install `scrapers/package.json` deps, copy shared libs + scraper entrypoint.
-- Entry commands are aligned with files (`tsx <scraper>/index.ts`).
-
-### a) `scrapers/dutchie/`
-- **Dockerfile:** ✅
-- **Dependencies:** ✅ via `scrapers/package.json`
-- **Entry point:** ✅ `tsx dutchie/index.ts`
-- **Env vars used:** `DATABASE_URL`, `DISCORD_WEBHOOK_URL`, `HEADLESS`, `MAX_TIMEOUT_MS`, `DUTCHIE_SHARD_COUNT`, `CAMOUFOX_BIN_PATH` (plus cache vars)
-- **Railway deployed:** ✅ `scrapers/dutchie/railway.toml` (cron)
-
-### b) `scrapers/jane/`
-- **Dockerfile:** ✅
-- **Dependencies:** ✅
-- **Entry point:** ✅ `tsx jane/index.ts`
-- **Env vars used:** `DATABASE_URL`, `DISCORD_WEBHOOK_URL`, `HEADLESS`, `MAX_TIMEOUT_MS`, `JANE_ALGOLIA_APP_ID`, `JANE_ALGOLIA_API_KEY`, `JANE_PRODUCTS_INDEX`, `JANE_STORES_INDEX`, `JANE_STATE_FILTER`
-- **Railway deployed:** ✅ `scrapers/jane/railway.toml` (cron)
-
-### c) `scrapers/leafly/`
-- **Dockerfile:** ✅
-- **Dependencies:** ✅
-- **Entry point:** ✅ `tsx leafly/index.ts`
-- **Env vars used:** `DATABASE_URL`, `DISCORD_WEBHOOK_URL`, `HEADLESS`, `MAX_TIMEOUT_MS`
-- **Railway deployed:** ✅ `scrapers/leafly/railway.toml` (cron)
-
-### d) `scrapers/weedmaps/`
-- **Dockerfile:** ✅
-- **Dependencies:** ✅
-- **Entry point:** ✅ `tsx weedmaps/index.ts`
-- **Env vars used:** `DATABASE_URL`, `DISCORD_WEBHOOK_URL`, `HEADLESS`, `MAX_TIMEOUT_MS`, `WEEDMAPS_CAMOFOX_URL`
-- **Railway deployed:** ✅ `scrapers/weedmaps/railway.toml` (cron)
+- **Build status:** ❌ **Does not currently build**
+  - Ran: `npm run build` in `services/api`
+  - TypeScript compile fails with 3 blocking errors:
+    - `src/routes/health-sources.ts` (Drizzle `eq(..., null)` typing mismatch)
+    - `src/routes/pos-api-integration.ts` (`{}` assigned to `string[]`)
+    - `src/services/source-priority.ts` (same Drizzle `eq(..., null)` mismatch)
+- **Dockerfile:** present (`services/api/Dockerfile`) and structurally valid multi-stage build.
+  - But Docker build will also fail at `npx tsc -p tsconfig.json` until TS errors are fixed.
+- **Env vars referenced in code:**
+  - Core runtime: `PORT`, `HOST`, `NODE_ENV`, `LOG_LEVEL`
+  - Auth/security: `JWT_SECRET`, `CLERK_SECRET_KEY`, `CLERK_PUBLISHABLE_KEY`, `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY`, `CORS_ORIGIN`, `ADMIN_API_KEY`
+  - DB/integrations: `DATABASE_URL`, `ROVIQ_SERVICE_API_KEYS`, `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`, `STRIPE_PRICE_ID`, `BEEHIIV_API_KEY`, `BEEHIIV_PUBLICATION_ID`
+- **Railway deployment:** ✅ Yes (root `railway.toml` points to `services/api/Dockerfile`).
 
 ---
 
-## 4) `services/gpid-verify/`
+### 2) `apps/web/`
 
-**What it does:**
-- Lightweight Express + Postgres verification UI/API for GPID candidate pair review.
-- Serves HTML UI (`verification-ui.html`) and APIs:
-  - `GET /api/candidates`
-  - `GET /api/progress`
-  - `POST /api/verdicts`
-  - `GET /health`
-- Ensures `gpid_candidates` and `gpid_verdicts` tables exist on startup.
-
-**Dockerfile validity:** ⚠️ Works but brittle
-- Copies root `package.json` + lockfile and `verification-server.ts`.
-- Installs prod deps (`npm ci --omit=dev`) with fallback `npm install express pg`.
-- Runs `npx tsx server.ts` at runtime (tsx is typically dev dependency); can rely on npx download behavior.
-
-**Dependencies:** ⚠️ Indirect/fragile
-- No service-local `package.json`; piggybacks root package.
-- `tsx` is not explicitly installed in production image except via npx behavior.
-
-**Entry point correctness:** ✅ `server.ts` exists and starts Express app.
-
-**Environment variables needed:**
-- Required: `DATABASE_URL`
-- Optional: `PORT` (default 3847), `VERIFICATION_LIMIT` (default 200), `VERIFICATION_UI_PATH`, `NODE_ENV`
-
-**Railway deployment:** ✅ Yes
-- `services/gpid-verify/railway.toml` points to its Dockerfile.
+- **Build status (local workspace):** ❌ **Fails in current local state**
+  - Ran: `npm run build` in `apps/web`
+  - Error: `vite: not found` (local dependency resolution issue in current checkout)
+- **Build status (Docker intent):** ⚠️ Likely buildable in container if install step succeeds
+  - Dockerfile runs `npm install` then `npm run build`; this should provide vite binary in image.
+- **Dockerfile:** present (`apps/web/Dockerfile`) and valid static build + `serve` runtime.
+- **Env vars referenced:**
+  - `VITE_API_URL`
+  - `VITE_CLERK_PUBLISHABLE_KEY`
+- **Railway deployment:** ✅ Yes (`apps/web/railway.toml` and root `railway-web.toml` both target web Dockerfile).
 
 ---
 
-## 5) `services/intelligence/`
+### 3) Scrapers: `scrapers/{dutchie,jane,leafly,weedmaps}/`
 
-**Status:** ⚠️ Likely dormant/not deployed
-- Has full TS service structure and package.json.
-- No Dockerfile.
-- No Railway config for this service.
-- Not referenced by active deployment manifests.
+#### Common findings
+- **Dockerfiles:** ✅ all 4 present and valid; each uses Playwright base, installs Node 22 + `tsx`, copies scraper code, runs `tsx <scraper>/index.ts`.
+- **Entrypoints:** ✅ all 4 have `index.ts`.
+- **TypeScript strict compile (local):** ❌ fails if you run `npx tsc --noEmit` at `scrapers/` due to missing `scripts-lib` TS module resolution and typing issues.
+  - Important: scrapers are run with `tsx` at runtime, not precompiled by `tsc` in Docker.
+- **Railway deployment:** ✅ all 4 have dedicated `railway.toml` with cron schedules.
 
-**Dependencies:** ✅ present (`package.json` + lockfile).
+#### `dutchie`
+- **Build/run expectation:** ✅ Docker image likely buildable; runtime uses `tsx dutchie/index.ts`.
+- **Env vars referenced:**
+  - `DATABASE_URL`, `DISCORD_WEBHOOK_URL`, `MAX_TIMEOUT_MS`, `DUTCHIE_SHARD_COUNT`, `CAMOUFOX_BIN_PATH`, `NODE_ENV` (+ cache/home vars)
+- **Railway:** ✅ yes (`scrapers/dutchie/railway.toml`)
 
-**Entry point:** ✅ `src/index.ts` (scripts include `build`, `dev`, `start`).
+#### `jane`
+- **Build/run expectation:** ✅ Docker image likely buildable; runtime uses `tsx jane/index.ts`.
+- **Env vars referenced:**
+  - `DATABASE_URL`, `DISCORD_WEBHOOK_URL`, `MAX_TIMEOUT_MS`, `JANE_ALGOLIA_APP_ID`, `JANE_ALGOLIA_API_KEY`, `JANE_STORES_INDEX`, `JANE_PRODUCTS_INDEX`, `JANE_STATE_FILTER`, `CAMOUFOX_BIN_PATH`, `NODE_ENV`
+- **Railway:** ✅ yes (`scrapers/jane/railway.toml`)
 
-**Environment variables:**
-- No direct `process.env.*` references detected in `src/` (uses dotenv/postgres/bullmq stack; likely expects DB/Redis config from internal modules but not explicitly wired in current grep).
+#### `leafly`
+- **Build/run expectation:** ✅ Docker image likely buildable; runtime uses `tsx leafly/index.ts`.
+- **Env vars referenced:**
+  - `DATABASE_URL`, `DISCORD_WEBHOOK_URL`, `MAX_TIMEOUT_MS`, `CAMOUFOX_BIN_PATH`, `NODE_ENV`
+- **Railway:** ✅ yes (`scrapers/leafly/railway.toml`)
 
-**Railway deployment:** ❌ No direct deployment manifest found.
-
-**Conclusion:** treat as **inactive/experimental** until explicitly wired to infra.
-
----
-
-## 6) `services/scrape/`
-
-**Status:** ❌ Dead code / not deployable as-is
-- Directory contains only `dist/` and `node_modules/` artifacts.
-- Missing source (`src/`), missing `package.json`, missing Dockerfile, missing Railway config.
-- Repo CONTRIBUTING.md explicitly marks `services/scrape/` as dead code replaced by `scripts/`.
-
-**Dependencies:** ❌ no canonical manifest in service folder.
-
-**Entry point:** ⚠️ compiled artifact exists (`dist/index.js`) but no build/deploy contract.
-
-**Environment variables (from dist scan):** references `DATABASE_URL`, `REDIS_URL`, `FIRECRAWL_*`, scrape scheduler/concurrency vars.
-
-**Railway deployment:** ❌ No.
+#### `weedmaps`
+- **Build/run expectation:** ✅ Docker image likely buildable; runtime uses `tsx weedmaps/index.ts`.
+- **Env vars referenced:**
+  - `DATABASE_URL`, `DISCORD_WEBHOOK_URL`, `MAX_TIMEOUT_MS`, `CAMOUFOX_BIN_PATH`, `NODE_ENV`
+- **Railway:** ✅ yes (`scrapers/weedmaps/railway.toml`)
 
 ---
 
-## Task 2 — Stale Branches Audit (24 unmerged remote branches)
+### 4) `services/gpid-verify/`
 
-Command used:
-`git branch -r --no-merged origin/main --format='%(refname:short) %(committerdate:short) %(subject)'`
-
-| Branch | Last commit (date + subject) | Superseded by merged work? | Recommendation |
-|---|---|---|---|
-| origin/codex/backend-skeleton | 2026-02-11 — fix: request.jwtUser → request.auth in watchlists (runtime crash) | Partially (older backend stabilization lane, overlaps with other backend fixes) | **Delete** unless you want archival reference |
-| origin/codex/phase3-pricewire | 2026-02-11 — fix(phase3): reviewer feedback | Likely superseded by later API/web evolution | **Delete** |
-| origin/codex/platform-infra | 2026-02-11 — CI node 20→22 | Likely partly superseded; infra lane not currently active in deployment manifests | **Delete** or cherry-pick specific infra commits then delete |
-| origin/codex/scrape-core | 2026-02-11 — scrape-core critical fixes | Targets now-dead `services/scrape` lane | **Delete** |
-| origin/codex/threat-intel | 2026-02-11 — intelligence fixes | Not deployed currently | **Keep only if intelligence revival planned**, else delete |
-| origin/contracts/v1 | 2026-02-11 — contracts fixes | Contracts likely stale vs runtime | **Delete** |
-| origin/contracts/v2-audit-fixes | 2026-02-11 — auth/logout security fix + mixed web files | Mixed lane likely superseded | **Delete** |
-| origin/feat/llm-parser-poc | 2026-02-14 — LLM parser POC | New experimental work, not merged | **Keep (short-term)** |
-| origin/feat/testing-plan | 2026-02-14 — GPID testing strategy/tests | New and potentially useful | **Keep** |
-| origin/fix/camoufox-binary-path | 2026-02-13 — add fingerprint-generator dep | Narrow, still relevant to scraper hardening | **Keep until verified merged/cherry-picked** |
-| origin/fix/consolidate-public-schema | 2026-02-14 — gpid verification perf precompute | Appears patch-equivalent to merged work (cherry showed `minus`) | **Delete** |
-| origin/fix/jane-evaluate-fetch | 2026-02-13 — Jane CF clearance change | Recent scraper fix | **Keep** |
-| origin/fix/leafly-direct-http | 2026-02-13 — Leafly direct HTTP | Recent scraper experiment/fix | **Keep** |
-| origin/fix/weedmaps-dutchie-plain-firefox | 2026-02-13 — plain Firefox for WM/Dutchie | Recent scraper fix | **Keep** |
-| origin/kimi/frontend-shell-v2 | 2026-02-11 — full web shell | Appears superseded (patch-equivalent seen) | **Delete** |
-| origin/kimi/frontend-stabilize | 2026-02-11 — frontend stabilization | Appears superseded (patch-equivalent seen) | **Delete** |
-| origin/kimi/phase3-morning-brief | 2026-02-11 — frontend review fixes | Possibly superseded by later web changes | **Delete** unless page-level diffs still desired |
-| origin/opus/backend-stabilize | 2026-02-11 — backend stabilize fixes | Old stabilization lane likely superseded | **Delete** |
-| origin/opus/phase5-margin-engine | 2026-02-11 — margin-engine route ordering/spec | Might still contain unmerged route/spec deltas | **Keep only if margin engine still roadmap**, else delete |
-| origin/wartime/phase0-quarantine | 2026-02-14 — migration 014 quarantine | Active wartime stream | **Keep** |
-| origin/wartime/phase1-brand-authority | 2026-02-14 — brand authority scripts/reports | Active wartime stream | **Keep** |
-| origin/wartime/phase3-gpid-lock | 2026-02-14 — deterministic GPID lock/QA | Active wartime stream | **Keep** |
-| origin/wartime/phase4-consumer-api | 2026-02-14 — consumer GPID endpoints | Active consumer pivot work | **Keep (high priority)** |
-| origin/wartime/sprint-review-fixes | 2026-02-14 — sprint review fixes | Active wartime stream | **Keep** |
-
-**Practical cleanup suggestion:**
-- Immediate delete candidates: old codex/kimi/opus/contracts lanes from 2026-02-11 not in current active plan.
-- Keep all `wartime/*` + recent scraper fixes + `feat/testing-plan` + `feat/llm-parser-poc` until merged/rebased decision.
+- **What it is:** A small Express + Postgres verification UI/API for human GPID verdicting.
+  - Dockerfile copies `scripts/reports/verification-server.ts` and serves `verification-ui.html`.
+  - Endpoints: `/api/candidates`, `/api/progress`, `/api/verdicts`, `/health`, `/`.
+- **Build status:** ⚠️ **Docker packaging is present**, but it depends on root-level `package.json`/lock existing in build context and `tsx` execution via `npx` at runtime.
+- **Env vars used by server code:**
+  - Required: `DATABASE_URL`
+  - Optional: `PORT` (default 3847), `VERIFICATION_LIMIT`, `VERIFICATION_UI_PATH`, `NODE_ENV`
+- **Railway deployment:** ✅ yes (`services/gpid-verify/railway.toml`).
 
 ---
 
-## Task 3 — API Route Audit (29 files)
+### 5) `services/intelligence/`
+
+- **Build status (local workspace):** ❌ fails currently (`tsc: not found` in current local install state).
+- **Code status:** ⚠️ **Dormant / likely not active deployment**
+  - `CONTRIBUTING.md` labels it as CCC ingestion **"dormant"**.
+  - Has source + package + tsconfig but **no Dockerfile** and **no Railway config** in this service directory.
+- **Env vars referenced in source:**
+  - `DATABASE_URL`, `REDIS_URL`, `CCC_APP_TOKEN`
+- **Railway deployment:** ❌ no evidence in repo configs.
+
+---
+
+### 6) `services/scrape/`
+
+- **Build status:** ❌ effectively non-buildable as a service in current repo shape.
+  - Directory contains only `dist/` + `node_modules/`; no `package.json`, no `src/`, no Dockerfile.
+- **Usage status:** ❌ **Dead code**
+  - `CONTRIBUTING.md` explicitly: `services/scrape/ is DEAD CODE (replaced by scripts/)`.
+- **Railway deployment:** ❌ no deployment config.
+
+---
+
+## Task 2) Stale Branches Audit (24 unmerged remote branches)
+
+Command run:
+
+```bash
+cd /data/workspace/projects/glass/src && \
+git branch -r --no-merged origin/main --format='%(refname:short) %(committerdate:short) %(subject)'
+```
+
+### Branch-by-branch review
+
+| Branch | Summary of contents | Recommendation |
+|---|---|---|
+| `origin/codex/backend-skeleton` | API skeleton/auth/routes/plugin updates | **Review then delete** if superseded by current main/wartime |
+| `origin/codex/phase3-pricewire` | dashboard/prices/watchlists fixes | **Review then delete** if superseded |
+| `origin/codex/platform-infra` | infra docker/ci/observability files | **Keep pending infra PR** or merge; not auto-delete |
+| `origin/codex/scrape-core` | old `services/scrape/src/*` work | **Delete** (targets dead `services/scrape`) |
+| `origin/codex/threat-intel` | `services/intelligence/*` service work | **Archive/delete** unless intelligence is being revived |
+| `origin/contracts/v1` | contracts/openapi/events updates | **Keep until contracts decisions finalized** |
+| `origin/contracts/v2-audit-fixes` | contracts + web/api alignment fixes | **Review then merge/delete** |
+| `origin/feat/llm-parser-poc` | experiment scripts/results only | **Delete after archiving report** |
+| `origin/feat/testing-plan` | testing docs + starter tests | **Merge useful docs/tests or delete** |
+| `origin/fix/camoufox-binary-path` | scraper package dep fix | **Likely merge/delete** (small hotfix branch) |
+| `origin/fix/consolidate-public-schema` | GPID verification script/server tweaks | **Keep if gpid-verify is active; otherwise delete** |
+| `origin/fix/jane-evaluate-fetch` | jane scraper behavior change | **Keep if not merged into scraper baseline; else delete** |
+| `origin/fix/leafly-direct-http` | leafly scraper transport refactor | **Keep if current production behavior; else delete** |
+| `origin/fix/weedmaps-dutchie-plain-firefox` | dutchie/weedmaps runtime changes | **Keep if in-use; else delete** |
+| `origin/kimi/frontend-shell-v2` | major frontend shell commit | **Review then delete** if superseded by current web |
+| `origin/kimi/frontend-stabilize` | frontend compile/auth/API stabilization | **Review then delete** if merged indirectly |
+| `origin/kimi/phase3-morning-brief` | morning brief + pricewire pages | **Review then delete** if already on main |
+| `origin/opus/backend-stabilize` | backend route/plugin/package fixes | **Review then delete** if superseded |
+| `origin/opus/phase5-margin-engine` | margin engine + route/openapi updates | **Keep if strategic feature still pending** |
+| `origin/wartime/phase0-quarantine` | migration 014 + report | **Keep (recent wartime stream)** |
+| `origin/wartime/phase1-brand-authority` | brand authority scripts/reports | **Keep (recent wartime stream)** |
+| `origin/wartime/phase3-gpid-lock` | GPID lock + QA scripts/reports | **Keep (recent wartime stream)** |
+| `origin/wartime/phase4-consumer-api` | consumer API route + consumer-api service files | **Keep / high priority review** |
+| `origin/wartime/sprint-review-fixes` | wartime fixups across scripts/reports | **Keep until wartime stack merged** |
+
+### Cleanup strategy
+
+- **Immediate delete candidates:** `codex/scrape-core`, `feat/llm-parser-poc` (after report archive), likely old `kimi/*` + `opus/*` once confirmed superseded.
+- **Keep active pipeline branches:** `wartime/*`, `contracts/*`, `codex/platform-infra` until explicit PR decision.
+
+---
+
+## Task 3) API Route Audit (29 files)
+
+All 29 files contain actual handlers and route registration code. Only one file has obvious partial TODO implementation (`pos-api-integration.ts`).
 
 Legend:
-- **Impl**: Implemented / Partial / Stub
-- **DB fit**: Does route align with current DB objects present in Railway Postgres (`public` + `glass`)
-- **Consumer need**: Yes / Maybe / No (for consumer-first `glassintel.xyz/prices` pivot)
+- **Impl:** Full / Partial / Stub
+- **Consumer needed (`glassintel.xyz/prices`):** Yes / Maybe / No
 
-| Route file | Impl | DB fit | Consumer need | Notes |
-|---|---|---|---|---|
-| admin-vb.ts | Implemented | Yes | No | Virtual Budtender tenant admin (B2B/internal) |
-| alerts.ts | Implemented | Yes (`alerts`) | No | Operator alert inbox |
-| auth.ts | Implemented | Yes (`users`, `refresh_tokens`) | Maybe | Needed if consumer product retains accounts |
-| billing.ts | Implemented | Yes | No | Stripe/B2B subscription flows |
-| budtender-api.ts | Implemented | Yes (`budtender_*`) | No | B2B telemetry ingestion |
-| catalog.ts | Implemented | Yes | Maybe | Service feed; not core consumer prices UI |
-| ccc.ts | Implemented | Yes (CCC tables present) | Maybe | Public state datasets can support consumer context |
-| consumer.ts | Implemented | Yes (`verified_gpids`, `product_verified_gpids`, `prices`, etc.) | **Yes** | Consumer-critical |
-| dashboard.ts | Implemented | Yes | No | Operator morning brief |
-| ecosystem.ts | Implemented | Yes (`ecosystem_events`) | No | B2B ecosystem telemetry |
-| exports.ts | **Partial** | Yes | No | `/exports/report` explicitly returns 501 stub |
-| health-sources.ts | Implemented (but TS compile issue) | Yes | Maybe | Operational health endpoint; currently blocks build via TS issues |
-| margin-rules.ts | Implemented | Yes (`margin_rules`) | No | B2B pricing ops |
-| match-validation.ts | Implemented | Yes (`match_validation_samples`) | Maybe | Data quality for matching pipeline |
-| newsletter.ts | Implemented | Yes (`waitlist`) | Maybe | Consumer growth capture |
-| operators.ts | Implemented | Yes (`operators`) | **Yes** | Consumer-critical for operator search/listing |
-| pos-api-integration.ts | **Partial** | Yes (`pos_connections`) | No | Has multiple TODO placeholders for real provider integrations |
-| prices.ts | Implemented | Yes (`prices`, `products`, etc.) | **Yes** | Consumer-critical |
-| products.ts | Implemented | Yes (`products`) | **Yes** | Consumer-critical |
-| profile.ts | Implemented | Yes | No | Authenticated operator profile |
-| public-report-card.ts | Implemented | Yes | Maybe | Public-facing but not core /prices surface |
-| recommendations.ts | Implemented | Yes (`recommendations`) | No | B2B recommendation workflows |
-| report-card.ts | Implemented | Yes | No | Deep operator intelligence report |
-| scores.ts | Implemented | Yes (`operator_scores`) | Maybe | Could be exposed in consumer rankings |
-| sources.ts | Implemented | Yes (`sources`) | **Yes** | Consumer-critical per prompt |
-| threats.ts | Implemented | Yes (`threats`) | No | B2B threat/risk intelligence |
-| viz.ts | Implemented | Mostly yes | No | Large B2B visualization suite |
-| waitlist.ts | Implemented | Yes (`waitlist`) | Maybe | Consumer acquisition funnel |
-| watchlists.ts | Implemented | Yes (`watchlists`) | No | B2B operator watchlists |
+| Route file | Impl | Consumer needed? | Notes |
+|---|---|---|---|
+| `consumer.ts` | Full | **Yes (critical)** | Public consumer API |
+| `products.ts` | Full | **Yes (critical)** | Core product catalog/matching access |
+| `prices.ts` | Full | **Yes (critical)** | Core pricing endpoints; minor TODO note for geo/PostGIS |
+| `operators.ts` | Full | **Yes (critical)** | Operator search/listing used by consumer flows |
+| `sources.ts` | Full | **Yes (critical)** | Source metadata/provenance |
+| `catalog.ts` | Full | Maybe | Service/catalog feed; possibly used by consumer backend pipelines |
+| `public-report-card.ts` | Full | Maybe | Public-facing intelligence page support |
+| `ccc.ts` | Full | Maybe | Public market intelligence content (not core price compare) |
+| `waitlist.ts` | Full | No | Growth/onboarding infra |
+| `newsletter.ts` | Full | No | Growth content feed/subscribe |
+| `health-sources.ts` | Full | No | Operational/health endpoint |
+| `auth.ts` | Full | No | Platform auth infra |
+| `profile.ts` | Full | No | Authenticated user profile |
+| `dashboard.ts` | Full | No | Operator dashboard/morning brief |
+| `viz.ts` | Full | No | Advanced internal visualizations |
+| `scores.ts` | Full | No | Scoring/leaderboard operator intelligence |
+| `report-card.ts` | Full | No | Operator report card internals |
+| `recommendations.ts` | Full | No | B2B recommendation workflows |
+| `alerts.ts` | Full | No | B2B alerting workflows |
+| `watchlists.ts` | Full | No | B2B watchlist workflows |
+| `threats.ts` | Full | No | Threat radar (legacy/B2B) |
+| `margin-rules.ts` | Full | No | Margin engine/B2B |
+| `billing.ts` | Full | No | Stripe + billing |
+| `ecosystem.ts` | Full | No | Event ingestion/query |
+| `budtender-api.ts` | Full | No | Virtual budtender telemetry API |
+| `admin-vb.ts` | Full | No | Admin virtual budtender endpoints |
+| `exports.ts` | Full | No | Export jobs |
+| `match-validation.ts` | Full | No | Human QA for matching |
+| `pos-api-integration.ts` | **Partial** | No | Has multiple TODOs for live Dutchie/Jane/Clover calls + upsert validation |
 
-### Route-level conclusions
-
-1. **Consumer-critical routes exist and are implemented:** `consumer.ts`, `products.ts`, `prices.ts`, `operators.ts`, `sources.ts`.
-2. **Known partial/stub routes:**
-   - `exports.ts` has explicit 501 for report endpoint.
-   - `pos-api-integration.ts` contains TODO/mock placeholders for real Dutchie/Jane/Clover integrations.
-3. **Build blocker in consumer-adjacent codebase:** API route TS errors currently prevent clean service build.
-4. **Large B2B surface remains active in router registration (`src/index.ts`)** and increases maintenance/deploy risk during pivot.
+**Conclusion:**
+- No route files are empty stubs.
+- `pos-api-integration.ts` is the only clearly partial implementation.
+- Consumer-critical surface is concentrated in: `consumer.ts`, `products.ts`, `prices.ts`, `operators.ts`, `sources.ts`.
 
 ---
 
-## Task 4 — Migration State
+## Task 4) Migration State
 
-## A) SQL files present
+### Files discovered
 
-### `src/migrations/`
 - `migrations/004_matching_engine.sql`
+- `scripts/migrations/001-scraper-v2.sql`
+- `scripts/migrations/002-price-idempotency.sql`
+- `scripts/migrations/003-data-quality-infra.sql`
+- `scripts/migrations/004-merge-duplicate-operators.sql`
+- `scripts/migrations/005-performance-indexes.sql`
+- `scripts/migrations/006-ecosystem-integration.sql`
+- `scripts/migrations/007-billing.sql`
+- `scripts/migrations/008-vb-tenants.sql`
+- `scripts/migrations/009-demand-signals-upsert-safety.sql`
+- `scripts/migrations/010-sources-url-unique.sql`
+- `scripts/migrations/011-pos-connections.sql`
+- `scripts/migrations/012-operator-matching.sql`
+- `scripts/migrations/013-fuzzy-product-matches.sql`
+- `scripts/migrations/014-wartime-quarantine.sql`
+- plus helpers: `move-glass-to-public.sql`, `rehash-gpid.ts`
 
-### `src/scripts/migrations/`
-- `001-scraper-v2.sql`
-- `002-price-idempotency.sql`
-- `003-data-quality-infra.sql`
-- `004-merge-duplicate-operators.sql`
-- `005-performance-indexes.sql`
-- `006-ecosystem-integration.sql`
-- `007-billing.sql`
-- `008-vb-tenants.sql`
-- `009-demand-signals-upsert-safety.sql`
-- `010-sources-url-unique.sql`
-- `011-pos-connections.sql`
-- `012-operator-matching.sql`
-- `013-fuzzy-product-matches.sql`
-- `014-wartime-quarantine.sql`
-- `move-glass-to-public.sql`
+### Database query result
 
-## B) Migration log status (queried DB)
+Query run (via `pg`):
 
-Query run:
-`SELECT * FROM glass.migration_log ORDER BY applied_at DESC LIMIT 20;`
+```sql
+SELECT * FROM glass.migration_log ORDER BY applied_at DESC LIMIT 20;
+```
 
-Returned rows:
-1. `012-operator-matching.sql` — applied 2026-02-13
-2. `010-sources-url-unique.sql` — applied 2026-02-13
-3. `011-pos-connections.sql` — applied 2026-02-13
+Result rows (latest first):
 
-Only **3** migrations are recorded in migration log, while **15** SQL files exist under `scripts/migrations` (+1 under `migrations`).
+1. `012-operator-matching.sql` — applied 2026-02-13T16:51:02.171Z (`codex-scraper-phase2`)
+2. `010-sources-url-unique.sql` — applied 2026-02-13T16:27:49.310Z (`fix/db-critical-phase1`)
+3. `011-pos-connections.sql` — applied 2026-02-13T16:27:49.310Z (`fix/db-critical-phase1`)
 
-## C) Schema vs code expectations
+### Migration-state conclusion
 
-- API Drizzle schema defines 26 tables; these table names are present in `public` schema in Railway DB.
-- DB additionally has newer wartime/matching tables (`verified_gpids`, `product_verified_gpids`, `gpid_*`, `canonical_products`, etc.) used by consumer/matching flows.
-- `glass` schema currently appears to host migration metadata + some objects, while app runtime mostly targets `public` (many routes explicitly set `search_path public` or rely on default).
-
-### Migration state conclusion
-
-⚠️ **Migration tracking is incomplete/inconsistent** with filesystem migration inventory.  
-The database schema mostly supports current route code, but migration history does not reflect full evolution, increasing operational risk for reproducible deploys and rollback safety.
+- **Migration log is sparse** versus migration files present in repo.
+- As recorded in `glass.migration_log`, only **3 migrations** are applied.
+- `013` and `014` exist in repo but are **not shown as applied** in this environment.
+- There is a likely process gap between migration file creation and production application/audit logging.
 
 ---
 
-## Deployment Readiness Summary
+## Deployment readiness summary
 
-### High-risk blockers (must fix before clean deploy confidence)
-1. **`services/api` TypeScript build fails** (multiple compile errors).
-2. **`apps/web` local build fails** (`vite` binary missing in current dependency state).
-3. **Migration bookkeeping mismatch** (3 logged vs many migration files).
-4. **`services/gpid-verify` packaging is brittle** (root package piggyback + runtime `npx tsx`).
-
-### Medium-risk
-1. Large B2B route surface still registered during consumer pivot.
-2. `pos-api-integration.ts` and part of `exports.ts` are partial/not production-complete.
-3. `services/intelligence` and `services/scrape` are not deploy-clean and should be explicitly archived or revived.
-
-### Recommended immediate actions
-1. Fix API TS errors and enforce `npm run build` in CI gate.
-2. Normalize web dependency install path (workspace lock strategy) and verify Docker/local parity.
-3. Introduce canonical migration runner + enforce one migration log table and complete backfill of historical entries.
-4. Extract/trim non-consumer routes behind feature flags or separate service boundary.
-5. Convert `services/gpid-verify` to standalone package with pinned runtime deps.
+- **Deployable now (with caveats):** scrapers, gpid-verify (assuming env + context correctness).
+- **Not deployable as-is:** `services/api` (TS compile blockers), `apps/web` (local dependency/build state broken), `services/scrape` (dead/non-service shape).
+- **Dormant/not deployed:** `services/intelligence`.
+- **Branch hygiene:** 24 unmerged branches; significant cleanup opportunity after wartime/contracts decisions.
+- **DB migrations:** currently inconsistent between repo migrations and `glass.migration_log` applied state.
