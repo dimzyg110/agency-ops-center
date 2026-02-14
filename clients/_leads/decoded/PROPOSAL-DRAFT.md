@@ -1,6 +1,6 @@
 # DECODED × ROVIQ
 
-## *"10,000 streetwear brands have a Shopify store. None of them have a speakeasy."*
+## _"10,000 streetwear brands have a Shopify store. None of them have a speakeasy."_
 
 ---
 
@@ -15,19 +15,19 @@
 
 We audited every layer of Decoded's digital presence: website, social, SEO, local search, paid media, competitive position, and revenue infrastructure. The findings were bad across the board.
 
-| Dimension | Grade | The Problem |
-|-----------|-------|-------------|
-| Website & Digital Presence | **D-** | No custom domain. Zero product descriptions across 37+ SKUs. No About page. No brand story. No size guide. Default Shopify template. "Powered by Shopify" in the footer. |
-| Social Media & Content | **D** | Instagram-only brand. No TikTok. 0.27% engagement on 20.4K followers. No content strategy. |
-| Email / SMS / Retention | **F** | $0 revenue from email. $0 from SMS. No capture mechanism anywhere. Every customer who buys is immediately lost. |
-| Paid Advertising | **N/A** | Nothing running. Zero paid acquisition. |
-| Revenue Infrastructure | **Critical** | AOV ~$68. No upsells. No bundles. No abandoned cart recovery. No post-purchase flows. |
+| Dimension                  | Grade        | The Problem                                                                                                                                                              |
+| -------------------------- | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Website & Digital Presence | **D-**       | No custom domain. Zero product descriptions across 37+ SKUs. No About page. No brand story. No size guide. Default Shopify template. "Powered by Shopify" in the footer. |
+| Social Media & Content     | **D**        | Instagram-only brand. No TikTok. 0.27% engagement on 20.4K followers. No content strategy.                                                                               |
+| Email / SMS / Retention    | **F**        | $0 revenue from email. $0 from SMS. No capture mechanism anywhere. Every customer who buys is immediately lost.                                                          |
+| Paid Advertising           | **N/A**      | Nothing running. Zero paid acquisition.                                                                                                                                  |
+| Revenue Infrastructure     | **Critical** | AOV ~$68. No upsells. No bundles. No abandoned cart recovery. No post-purchase flows.                                                                                    |
 
 **The core problem isn't traffic. It's that Decoded has no way to keep the people who already care.**
 
 Every visitor who doesn't buy on their first visit disappears forever. No email to follow up. No push notification to announce the next drop. No community to pull them back. The business model right now is: acquire a customer at full cost, sell them one item, never speak to them again.
 
-But here's what the audit also showed: **the brand DNA is real.** "Decoded Noir." "Hand of God." "Kingdom Has Fallen." The automotive × faith × luxury aesthetic. The two-tier pricing architecture. The 911 Turbo visual language. "806 The Show" as a cultural anchor. These aren't manufactured. And genuine brand identity is the one thing money can't buy.
+But here's what the audit also showed: **the brand DNA is real.** "Decoded Noir." "Hand of God." "Kingdom Has Fallen." The automotive × faith × luxury aesthetic. The two-tier pricing architecture. The 911 Turbo visual language. The Decoded Podcast as a cultural anchor. These aren't manufactured. And genuine brand identity is the one thing money can't buy.
 
 The gap isn't identity. It's infrastructure.
 
@@ -41,11 +41,12 @@ We're not proposing that.
 
 We're proposing that Decoded stop competing as a clothing brand and start operating as a **digital speakeasy**: an invite-only, experience-first world where the app isn't a store, it's the front door to a culture. The clothes aren't products. They're trophies you earn by being inside.
 
-**The model:** MSCHF built a $200M+ brand on one principle: every time you open the app, something different happens. You never know what you'll find. That creates compulsive engagement. People open the app not to buy, but to *see what's happening.* The buying follows naturally.
+**The model:** MSCHF built a $200M+ brand on one principle: every time you open the app, something different happens. You never know what you'll find. That creates compulsive engagement. People open the app not to buy, but to _see what's happening._ The buying follows naturally.
 
 Decoded's frequent drops are the perfect fuel for this. Most brands struggle to create enough reasons for people to open their app. Decoded's owner drops constantly, and that's the engine.
 
 **What this looks like in practice:**
+
 - A cinematic boot sequence that feels like starting a 911 Turbo
 - Real games hidden inside the app, not loyalty points. Actual arcade games.
 - 15-minute "Flash Raid" drop windows that appear without warning
@@ -66,16 +67,16 @@ The current Shopify store isn't the main play, but it can't actively embarrass t
 
 ### Deliverables
 
-| Action | Why | Timeline |
-|--------|-----|----------|
-| **Custom domain** — acquire and connect `decoded.shop` or equivalent | `decodedshop.myshopify.com` signals "hobby project." A custom domain costs $15/year. | Day 1 |
-| **Dark luxury redesign** — dark theme, sparse layout, full-bleed imagery | The website should feel like walking into a high-end boutique at night. Clean. Dark. Sparse. Think Balenciaga, not Zumiez. | Week 1 |
-| **Product descriptions** — all 37+ SKUs get copy (fabric, fit, story, care) | Zero descriptions across the entire catalog is the single biggest conversion killer. This alone can lift conversion 30%+. | Week 1–2 |
-| **Brand story / About page** | The founder's story IS the brand. Automotive roots. Faith. Why "Decoded." Why "Noir." One page. Cinematic. | Week 1 |
-| **"Get the App" banner** — persistent CTA driving to app download | The website's job is to be a front window. The app is the store. Every page should funnel toward the download. | Week 1 |
-| **Trust layer** — size guide, returns policy, social links, remove "Powered by Shopify" | Table stakes for selling $150 items online. | Week 1 |
-| **Email capture** — Klaviyo popup + footer form + welcome flow | Bridges the gap until the app launches. Captures visitors who aren't ready to buy yet. 30–40% of DTC revenue comes from email. | Week 2 |
-| **Hide sold-out SKUs** and clean up dead inventory | Removes dead-end pages that waste attention. | Day 1 |
+| Action                                                                                  | Why                                                                                                                            | Timeline |
+| --------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ | -------- |
+| **Custom domain** — acquire and connect `decoded.shop` or equivalent                    | `decodedshop.myshopify.com` signals "hobby project." A custom domain costs $15/year.                                           | Day 1    |
+| **Dark luxury redesign** — dark theme, sparse layout, full-bleed imagery                | The website should feel like walking into a high-end boutique at night. Clean. Dark. Sparse. Think Balenciaga, not Zumiez.     | Week 1   |
+| **Product descriptions** — all 37+ SKUs get copy (fabric, fit, story, care)             | Zero descriptions across the entire catalog is the single biggest conversion killer. This alone can lift conversion 30%+.      | Week 1–2 |
+| **Brand story / About page**                                                            | The founder's story IS the brand. Automotive roots. Faith. Why "Decoded." Why "Noir." One page. Cinematic.                     | Week 1   |
+| **"Get the App" banner** — persistent CTA driving to app download                       | The website's job is to be a front window. The app is the store. Every page should funnel toward the download.                 | Week 1   |
+| **Trust layer** — size guide, returns policy, social links, remove "Powered by Shopify" | Table stakes for selling $150 items online.                                                                                    | Week 1   |
+| **Email capture** — Klaviyo popup + footer form + welcome flow                          | Bridges the gap until the app launches. Captures visitors who aren't ready to buy yet. 30–40% of DTC revenue comes from email. | Week 2   |
+| **Hide sold-out SKUs** and clean up dead inventory                                      | Removes dead-end pages that waste attention.                                                                                   | Day 1    |
 
 **What this phase is NOT:** A full website rebuild. We're applying a dark luxury skin, fixing critical gaps, and turning the site into an app funnel. The app is where the real investment goes.
 
@@ -103,13 +104,14 @@ Decoded's target demographic (luxury streetwear buyers, "the cool crowd," $120�
 - Streetwear's core audience (18–34, urban, culturally engaged) over-indexes on iPhone
 - Supporting both platforms simultaneously doubles development complexity, testing surface, and maintenance cost without doubling revenue
 
-React Native offers cross-platform convenience and OTA updates, but at the cost of native functionality. Games, cinematic animations, and haptics all take a hit. For an app where the *experience is the product*, that's a real tradeoff.
+React Native offers cross-platform convenience and OTA updates, but at the cost of native functionality. Games, cinematic animations, and haptics all take a hit. For an app where the _experience is the product_, that's a real tradeoff.
 
 **Our recommendation:** Build native iOS first. Deliver the best possible experience to the audience most likely to buy. Once the app has traction and there's demonstrated demand from Android users, an Android version can be scoped as a future expansion, either as a Kotlin native build or a React Native port.
 
 We'd rather give 100% of the right audience a great experience than give 100% of all audiences a mediocre one.
 
 **Backend:**
+
 - Shopify Storefront API for product catalog, inventory, and checkout
 - Firebase/Supabase for user profiles, game scores, membership tiers, push tokens
 - Firebase Cloud Messaging (FCM) + APNs for push notifications
@@ -123,27 +125,27 @@ When someone opens the app for the first time, they don't see a login form. They
 **Screen 1 — THE IGNITION**
 A 911 Turbo tachometer fills the screen. The needle climbs from 0 to redline. Engine audio fades in, low, throbbing, real. The Decoded logo burns into frame, letter by letter.
 
-Text: *"This isn't a store."*
+Text: _"This isn't a store."_
 
 **Screen 2 — THE WORLD**
 Split-screen montage: Porsche in motion / Noir Strata fabric close-up / hands in prayer / city night aerial. Quick cuts. Cinematic.
 
-Text: *"This is a world. You're either in it, or you're watching."*
+Text: _"This is a world. You're either in it, or you're watching."_
 
 **Screen 3 — THE GATE**
 Dark screen. A fingerprint scanner icon pulses. The user holds it until the vault unlocks, a heavy, physical-feeling interaction. Then: "Choose Your Lane."
 
 Two paths appear:
 
-| **DECODED** | **DECODED NOIR** |
-|-------------|-----------------|
+| **DECODED**                                   | **DECODED NOIR**                                 |
+| --------------------------------------------- | ------------------------------------------------ |
 | The main line. $25–$70. Streetwear with edge. | The luxury tier. $120–$150. Elevated. Exclusive. |
-| *"I'm here for the drops."* | *"I'm here for the culture."* |
+| _"I'm here for the drops."_                   | _"I'm here for the culture."_                    |
 
 This fork immediately segments the user base, personalizes the experience from the first interaction, and validates the two-tier brand architecture in real time. If 80% choose Noir, that tells Decoded where to invest.
 
 **Screen 4 — ENTER THE CODE**
-Dark input field. Blinking cursor. Label: *"Enter your code name."*
+Dark input field. Blinking cursor. Label: _"Enter your code name."_
 Email capture below. CTA: **"DECODE."**
 Push notification permission triggers after entry.
 
@@ -176,7 +178,7 @@ Push notification permission triggers after entry.
 │  │   └── Score 5,000+ → "Check Engine" light triggers    │
 │  │       access to a hidden product collection            │
 │  ├── "The Confessional" — noir puzzle game                │
-│  │   └── Answer questions from "806 The Show" podcast     │
+│  │   └── Answer questions from the Decoded Podcast        │
 │  │       lore and biblical references in the designs      │
 │  │   └── Correct answers → 1-hour access code to a       │
 │  │       flash discount (20–30% off select items)         │
@@ -213,6 +215,7 @@ Push notification permission triggers after entry.
 Decoded's frequent drops are the app's heartbeat. Every drop follows a structured cadence:
 
 **THE STANDARD DROP**
+
 ```
 T-72 hours:  Push notification — "Something's coming. 72 hours."
              Blurred teaser on home screen hero.
@@ -233,7 +236,7 @@ T+24 hours:  Push to non-buyers — "You missed it. [X] pieces left."
 ```
 
 **THE FLASH RAID**
-No warning. Push notification hits: *"THE WINDOW IS OPEN. 15 MINUTES."*
+No warning. Push notification hits: _"THE WINDOW IS OPEN. 15 MINUTES."_
 The app opens directly to a countdown. When it hits zero, the Buy button appears. 15 minutes later, the button detonates (animation) and the product vanishes. Miss it, it's gone.
 
 **THE VERSUS DROP**
@@ -247,9 +250,9 @@ If a drop doesn't sell out within 48 hours, the remaining inventory gets permane
 
 ### 4.5 — Podcast Integration: The Cross-Platform Flywheel
 
-"806 The Show" is an untapped engagement engine. Here's how the app and podcast feed each other:
+The Decoded Podcast is an untapped engagement engine. Here's how the app and podcast feed each other:
 
-**Verbal codes:** During episodes, the host drops a code word (e.g., *"Romans 12:2"*). Entering it in the app's search bar triggers an easter egg: the screen shifts, a hidden discount or exclusive product unlocks for a limited time.
+**Verbal codes:** During episodes, the host drops a code word (e.g., _"Romans 12:2"_). Entering it in the app's search bar triggers an easter egg: the screen shifts, a hidden discount or exclusive product unlocks for a limited time.
 
 **"The Confessional" game:** Questions are drawn directly from podcast lore and biblical references in the designs. This forces app users to listen to the podcast and podcast listeners to download the app.
 
@@ -260,22 +263,23 @@ The result: a closed loop where each platform drives the other. Podcast feeds ap
 ### 4.6 — Surprise Mechanics
 
 **THE NOIR FLASH SALE (replaces "The Glitch")**
-Randomly, once per week, for exactly 10 minutes, select Noir items flash at 20–30% off inside the app. No warning. No schedule. A push notification fires: *"NOIR FLASH. 10 MINUTES."* Users who are in the app see it. Users who aren't, miss it. This creates compulsive app-checking behavior without the financial and brand risk of giving product away at $0.
+Randomly, once per week, for exactly 10 minutes, select Noir items flash at 20–30% off inside the app. No warning. No schedule. A push notification fires: _"NOIR FLASH. 10 MINUTES."_ Users who are in the app see it. Users who aren't, miss it. This creates compulsive app-checking behavior without the financial and brand risk of giving product away at $0.
 
 **HIDDEN CONTENT**
 Certain products are ONLY discoverable through exploration. They don't appear in the main shop grid. Tap the right element, enter the right code, score high enough in a game, and they appear. Rewards the obsessive fans.
 
 ### 4.7 — Community Tiers
 
-| Tier | Access | How You Get In |
-|------|--------|----------------|
-| **DECODED** (Free) | Shop, drops, basic game, push notifications | Download the app |
-| **NOIR** ($15/month or auto-unlock at $300 lifetime spend) | 24-hour early access to ALL drops. Noir Lounge (exclusive content, behind-the-scenes, founder notes). Noir-only drops and colorways. Free standard shipping. Birthday drop. Quarterly founder Q&A. Discounted subscription boxes. | Subscribe or spend $300+ |
-| **ELITE** (Earned — top 1%) | Vote on next colorway. Input on drop names. Exclusive "Elite" product line (ultra-limited, 10–20 units). Direct founder access. Name in app credits. | Top game scorers + highest lifetime spend. Invitation only. |
+| Tier                                                       | Access                                                                                                                                                                                                                            | How You Get In                                              |
+| ---------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
+| **DECODED** (Free)                                         | Shop, drops, basic game, push notifications                                                                                                                                                                                       | Download the app                                            |
+| **NOIR** ($15/month or auto-unlock at $300 lifetime spend) | 24-hour early access to ALL drops. Noir Lounge (exclusive content, behind-the-scenes, founder notes). Noir-only drops and colorways. Free standard shipping. Birthday drop. Quarterly founder Q&A. Discounted subscription boxes. | Subscribe or spend $300+                                    |
+| **ELITE** (Earned — top 1%)                                | Vote on next colorway. Input on drop names. Exclusive "Elite" product line (ultra-limited, 10–20 units). Direct founder access. Name in app credits.                                                                              | Top game scorers + highest lifetime spend. Invitation only. |
 
 ### 4.8 — App Store Submission
 
 First-time app submissions with game mechanics and in-app purchases get extra scrutiny from Apple. The timeline accounts for this:
+
 - 1–2 week review cycle
 - Buffer for a rejection-and-resubmission round if needed
 - Required privacy policy, terms of service, and age rating
@@ -287,7 +291,7 @@ This is built into the Week 7–8 timeline. The app is code-complete by Week 6; 
 
 # 5. FUTURE EXPANSION: "THE CACHE" — Quarterly Subscription Boxes (Quarter 2+)
 
-> *This section outlines a future revenue expansion available once the app has traction. It is not part of the V1 build. It's a roadmap for where the platform goes next.*
+> _This section outlines a future revenue expansion available once the app has traction. It is not part of the V1 build. It's a roadmap for where the platform goes next._
 
 Once the app is live and building an engaged user base (200+ active users), subscription boxes become a natural next step. The app collects the waitlist from Day 1, and when demand is validated, The Cache launches as an add-on revenue stream.
 
@@ -298,6 +302,7 @@ Once the app is live and building an engaged user base (200+ active users), subs
 ### 5.2 — Tiers
 
 **DROP BOX — $65/quarter**
+
 - 1 exclusive tee or accessory (box-only design, never sold elsewhere)
 - 1 mystery item from recent drops (variant or overstock)
 - 1 branded artifact (sticker pack, car freshener, enamel pin with Decoded branding)
@@ -305,6 +310,7 @@ Once the app is live and building an engaged user base (200+ active users), subs
 - Printed lookbook/zine with upcoming drop previews
 
 **NOIR BOX — $120/quarter**
+
 - Everything in the Drop Box, PLUS:
 - 1 Noir-tier item (exclusive Noir colorway or material, box-only)
 - Premium packaging (matte black, foil stamp, magnetic closure)
@@ -313,6 +319,7 @@ Once the app is live and building an engaged user base (200+ active users), subs
 - Printed first-look at next season's Noir designs
 
 **ELITE CRATE — $200/quarter (invite-only)**
+
 - Everything in the Noir Box, PLUS:
 - 1 limited-run numbered item (50 units max)
 - 1 collab item or prototype piece
@@ -327,25 +334,25 @@ Once the app is live and building an engaged user base (200+ active users), subs
 
 When The Cache launches, these features get added to the app:
 
-| Feature | Where It Lives |
-|---------|---------------|
-| **"My Box"** — subscription status, ship countdown, past box contents | Profile screen |
-| **QR Unboxing Experience** — scan the card, trigger cinematic in-app reveal | Camera / QR scanner |
-| **Box Countdown** — days until next box ships | Home screen (for subscribers) |
-| **Box Preview** — blurred look at next quarter's box contents, 2 weeks before ship | Noir Lounge |
-| **Waitlist Signup** — "Coming Soon: The Cache" banner + email capture | Home screen (pre-launch) |
-| **"Cache Member" Badge** — visible on profile | Profile screen |
+| Feature                                                                            | Where It Lives                |
+| ---------------------------------------------------------------------------------- | ----------------------------- |
+| **"My Box"** — subscription status, ship countdown, past box contents              | Profile screen                |
+| **QR Unboxing Experience** — scan the card, trigger cinematic in-app reveal        | Camera / QR scanner           |
+| **Box Countdown** — days until next box ships                                      | Home screen (for subscribers) |
+| **Box Preview** — blurred look at next quarter's box contents, 2 weeks before ship | Noir Lounge                   |
+| **Waitlist Signup** — "Coming Soon: The Cache" banner + email capture              | Home screen (pre-launch)      |
+| **"Cache Member" Badge** — visible on profile                                      | Profile screen                |
 
-*App integration for The Cache will be scoped and priced separately when Decoded is ready to launch it.*
+_App integration for The Cache will be scoped and priced separately when Decoded is ready to launch it._
 
 ### 5.5 — Revenue Projection
 
-| Tier | Subscribers (Conservative) | Revenue/Quarter | Annual |
-|------|---------------------------|----------------|--------|
-| Drop Box ($65) | 100 | $6,500 | $26,000 |
-| Noir Box ($120) | 30 | $3,600 | $14,400 |
-| Elite Crate ($200) | 10 | $2,000 | $8,000 |
-| **Total** | **140** | **$12,100** | **$48,400** |
+| Tier               | Subscribers (Conservative) | Revenue/Quarter | Annual      |
+| ------------------ | -------------------------- | --------------- | ----------- |
+| Drop Box ($65)     | 100                        | $6,500          | $26,000     |
+| Noir Box ($120)    | 30                         | $3,600          | $14,400     |
+| Elite Crate ($200) | 10                         | $2,000          | $8,000      |
+| **Total**          | **140**                    | **$12,100**     | **$48,400** |
 
 At scale (200+ subscribers), this revenue stream reaches $56,000+/year. Predictable, recurring, and separate from volatile drop revenue.
 
@@ -367,16 +374,18 @@ Subscription boxes are separate from Noir membership, but Noir members get a 15%
 ### 6.1 — App Launch Campaign
 
 **Week 1 — The Tease (pre-launch):**
-- Instagram Stories: daily 3-second clips of app screens. Dark. Moody. No explanation. Just *"Coming."*
-- TikTok: 15-second cinematic trailer with engine sound, app screens flashing, game footage. Text: *"Everything changes [date]."*
-- Podcast: "806 The Show" episode dedicated to the app. First verbal code dropped: "Download the app and enter [code] in the first 48 hours for something nobody else gets."
-- Email blast to Klaviyo list: *"You're getting early access. No one else."* App Store link 24 hours before public.
+
+- Instagram Stories: daily 3-second clips of app screens. Dark. Moody. No explanation. Just _"Coming."_
+- TikTok: 15-second cinematic trailer with engine sound, app screens flashing, game footage. Text: _"Everything changes [date]."_
+- Podcast: A Decoded Podcast episode dedicated to the app. First verbal code dropped: "Download the app and enter [code] in the first 48 hours for something nobody else gets."
+- Email blast to Klaviyo list: _"You're getting early access. No one else."_ App Store link 24 hours before public.
 
 **Week 2 — The Drop:**
+
 - Launch day: simultaneous app-exclusive drop. First product in the app is available NOWHERE ELSE.
 - Instagram Reel: screen-record of the full onboarding experience. Authentic. Real.
-- Live download counter on IG Stories: *"[X] people are in. Are you?"*
-- Push notification to all Day 1 users: *"The first drop is live. You're the first to see it."*
+- Live download counter on IG Stories: _"[X] people are in. Are you?"_
+- Push notification to all Day 1 users: _"The first drop is live. You're the first to see it."_
 
 **Target:** 300–600 installs in Month 1 (1.5–3% of 20K IG followers, conservative and industry-benchmarked). At 500 installs with 15–25% install-to-purchase conversion, that's 75–125 first-month orders through the app.
 
@@ -384,14 +393,14 @@ Subscription boxes are separate from Noir membership, but Noir members get a 15%
 
 The Instagram account (20.4K followers) becomes an app-install machine:
 
-| Tactic | Mechanic |
-|--------|----------|
-| **Bio link** | Swap Shopify link for app download link. The app IS the store now. |
-| **"APP ONLY" drops** | Post product teasers on IG with "APP ONLY" watermark. Curiosity drives downloads. |
-| **Vault leaderboard screenshots** | "Top scorer this week wins a free Noir piece. Play in the app." Competitive energy drives installs. |
-| **Hidden codes in IG content** | Hide a 4-digit code in an Instagram post image. Enter it in the app for a surprise. Cross-platform engagement. |
-| **Driver's License shares** | Game scorecard graphics designed for IG Stories. Users share their scores, others see the app. Organic discovery loop. |
-| **Every Story ends with the app CTA** | Consistency compounds. |
+| Tactic                                | Mechanic                                                                                                               |
+| ------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| **Bio link**                          | Swap Shopify link for app download link. The app IS the store now.                                                     |
+| **"APP ONLY" drops**                  | Post product teasers on IG with "APP ONLY" watermark. Curiosity drives downloads.                                      |
+| **Vault leaderboard screenshots**     | "Top scorer this week wins a free Noir piece. Play in the app." Competitive energy drives installs.                    |
+| **Hidden codes in IG content**        | Hide a 4-digit code in an Instagram post image. Enter it in the app for a surprise. Cross-platform engagement.         |
+| **Driver's License shares**           | Game scorecard graphics designed for IG Stories. Users share their scores, others see the app. Organic discovery loop. |
+| **Every Story ends with the app CTA** | Consistency compounds.                                                                                                 |
 
 ### 6.3 — TikTok Launch
 
@@ -403,17 +412,18 @@ Format: dark, moody, 7–15 second loops. Bass-heavy audio. Minimal text. The go
 
 **Not before the app proves it converts.** Once baseline metrics are established:
 
-| Channel | Monthly Budget | Creative |
-|---------|---------------|----------|
-| Meta (IG/FB) App Install Ads | $1,500 | Cinematic 15s app trailer. Audience: 18–34, streetwear + car culture interests, Boston metro + national. |
-| TikTok App Install Ads | $750 | UGC-style: "I found a hidden game inside a streetwear app." |
-| Retargeting | $500 | Website visitors who didn't buy → app install CTA. IG engagers → app install CTA. |
+| Channel                      | Monthly Budget | Creative                                                                                                 |
+| ---------------------------- | -------------- | -------------------------------------------------------------------------------------------------------- |
+| Meta (IG/FB) App Install Ads | $1,500         | Cinematic 15s app trailer. Audience: 18–34, streetwear + car culture interests, Boston metro + national. |
+| TikTok App Install Ads       | $750           | UGC-style: "I found a hidden game inside a streetwear app."                                              |
+| Retargeting                  | $500           | Website visitors who didn't buy → app install CTA. IG engagers → app install CTA.                        |
 
 **Expected CPI:** $2–$5. At $68 AOV and 15–25% install-to-purchase rate, break-even happens on the first order.
 
 ### 6.5 — Contingency: Slower Adoption
 
 If installs are lower than projected:
+
 - Double down on podcast integration (free, high-conversion channel)
 - Run a "founding member" campaign: first 200 app users get permanent Elite-tier pricing on subscription boxes
 - Increase app-exclusive drop frequency to force IG followers into the app
@@ -429,6 +439,7 @@ If installs are lower than projected:
 ### 7.1 — App as Primary Sales Channel
 
 By Month 6, the target:
+
 - **60% of revenue through the app** (vs. website)
 - Website becomes the "front window" for SEO and Google discovery
 - Instagram becomes the megaphone driving awareness; the app drives conversion and retention
@@ -437,25 +448,25 @@ By Month 6, the target:
 
 The app generates intelligence the website never could:
 
-| Data Point | Strategic Use |
-|-----------|--------------|
+| Data Point                                       | Strategic Use                                         |
+| ------------------------------------------------ | ----------------------------------------------------- |
 | Push notification open rates by product category | Know which drops generate excitement BEFORE producing |
-| Game engagement by time of day | Schedule drops for peak engagement windows |
-| Noir Lounge vs. free tier purchase rates | Quantify revenue lift of VIP tier |
-| "Choose Your Lane" onboarding split | Real-time market signal on where to invest |
-| Product page views that don't convert | Identify pricing or sizing issues instantly |
-| Referral code tracking | Know exactly which customers bring in new customers |
-| App open frequency per user | Identify at-risk users for re-engagement pushes |
+| Game engagement by time of day                   | Schedule drops for peak engagement windows            |
+| Noir Lounge vs. free tier purchase rates         | Quantify revenue lift of VIP tier                     |
+| "Choose Your Lane" onboarding split              | Real-time market signal on where to invest            |
+| Product page views that don't convert            | Identify pricing or sizing issues instantly           |
+| Referral code tracking                           | Know exactly which customers bring in new customers   |
+| App open frequency per user                      | Identify at-risk users for re-engagement pushes       |
 
 ### 7.3 — Expanding the Experience
 
-| Feature | Timeline | Investment |
-|---------|----------|------------|
-| Vault Game Season 2 (new mechanic, new rewards) | Quarter 2 | $2,000 |
-| Android version (based on client demand) | Quarter 2–3 | $4,000–$6,000 |
-| NFC-enabled physical "Black Card" artifacts for Elite tier | Quarter 3 | $1,500 |
-| AR virtual try-on | Month 6+ | $3,000 |
-| Community challenges ("Decoded Days," collective goals) | Quarter 2 | Included in retainer |
+| Feature                                                    | Timeline    | Investment           |
+| ---------------------------------------------------------- | ----------- | -------------------- |
+| Vault Game Season 2 (new mechanic, new rewards)            | Quarter 2   | $2,000               |
+| Android version (based on client demand)                   | Quarter 2–3 | $4,000–$6,000        |
+| NFC-enabled physical "Black Card" artifacts for Elite tier | Quarter 3   | $1,500               |
+| AR virtual try-on                                          | Month 6+    | $3,000               |
+| Community challenges ("Decoded Days," collective goals)    | Quarter 2   | Included in retainer |
 
 ### 7.4 — The Moat
 
@@ -475,17 +486,17 @@ Long-term, the app becomes the thing competitors can't replicate.
 
 Clear delineation, no ambiguity:
 
-| Content Type | Who Creates It | Who Manages It |
-|-------------|---------------|----------------|
-| Product photography / drop imagery | **Decoded** (owner shoots) | Roviq formats for app |
-| Product descriptions + copy | **Roviq** (V1 website + app) | Decoded updates ongoing |
-| Push notification copy | **Roviq** | Roviq sends |
-| App hero images per drop | **Roviq** designs, using Decoded's product photos | Roviq updates |
-| Noir Lounge content (BTS, founder notes) | **Decoded** creates raw content | Roviq curates and publishes |
-| Podcast verbal codes | **Decoded** drops the code on-air | Roviq programs the unlock in-app |
-| Social media posts (IG/TikTok) | **Decoded** films; Roviq provides templates + strategy | Roviq advises; Decoded posts |
-| Subscription box curation + fulfillment (future) | **Decoded** (or 3PL) | Roviq handles app integration when launched |
-| Game design + updates | **Roviq** | Roviq maintains |
+| Content Type                                     | Who Creates It                                         | Who Manages It                              |
+| ------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------- |
+| Product photography / drop imagery               | **Decoded** (owner shoots)                             | Roviq formats for app                       |
+| Product descriptions + copy                      | **Roviq** (V1 website + app)                           | Decoded updates ongoing                     |
+| Push notification copy                           | **Roviq**                                              | Roviq sends                                 |
+| App hero images per drop                         | **Roviq** designs, using Decoded's product photos      | Roviq updates                               |
+| Noir Lounge content (BTS, founder notes)         | **Decoded** creates raw content                        | Roviq curates and publishes                 |
+| Podcast verbal codes                             | **Decoded** drops the code on-air                      | Roviq programs the unlock in-app            |
+| Social media posts (IG/TikTok)                   | **Decoded** films; Roviq provides templates + strategy | Roviq advises; Decoded posts                |
+| Subscription box curation + fulfillment (future) | **Decoded** (or 3PL)                                   | Roviq handles app integration when launched |
+| Game design + updates                            | **Roviq**                                              | Roviq maintains                             |
 
 ---
 
@@ -495,48 +506,48 @@ No ranges. Firm numbers.
 
 ### V1 BUILD — $8,500 (One-Time)
 
-| Component | What's Included |
-|-----------|----------------|
-| **Website Triage** | Custom domain, luxury-minimal theme, product descriptions for all SKUs, About/brand story page, size guide, returns policy, email capture (Klaviyo), "Get the App" funnel |
-| **Cinematic Onboarding** | Tachometer boot sequence, "Hold to Unlock" gate, "Choose Your Lane" fork, code name entry, push notification opt-in |
-| **Home Screen** | Dynamic hero, drop countdown, hidden Vault entry |
-| **Drop Zone** | Live drops with timers, Flash Raid support, Versus Drop mechanic, Noir early access gating, real-time stock display |
-| **The Vault** | "Midnight Run" 2D sprite racer + "The Confessional" podcast puzzle game. Global leaderboard. Driver's License scorecard generator. |
-| **Shop** | Full Shopify catalog sync via Storefront API. Product pages. Cart. Checkout. Real-time inventory sync. |
-| **Noir Lounge** | VIP content section. Noir-only drops. Tier display. |
-| **Profile / My Decoded** | Order history. Tier + status. Game stats. Referral code. Notification preferences. |
-| **Push Notification System** | Drop alerts (72h → 1h → live → post-drop cadence). Flash Raid alerts. Noir Flash Sale alerts. Segmented by tier. |
-| **Backend** | Firebase/Supabase for user data, game scores, memberships. Node.js for game logic and notification orchestration. |
-| **App Store Submission** | iOS App Store. Screenshots, metadata, privacy policy, review cycle buffer. |
+| Component                    | What's Included                                                                                                                                                           |
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Website Triage**           | Custom domain, luxury-minimal theme, product descriptions for all SKUs, About/brand story page, size guide, returns policy, email capture (Klaviyo), "Get the App" funnel |
+| **Cinematic Onboarding**     | Tachometer boot sequence, "Hold to Unlock" gate, "Choose Your Lane" fork, code name entry, push notification opt-in                                                       |
+| **Home Screen**              | Dynamic hero, drop countdown, hidden Vault entry                                                                                                                          |
+| **Drop Zone**                | Live drops with timers, Flash Raid support, Versus Drop mechanic, Noir early access gating, real-time stock display                                                       |
+| **The Vault**                | "Midnight Run" 2D sprite racer + "The Confessional" podcast puzzle game. Global leaderboard. Driver's License scorecard generator.                                        |
+| **Shop**                     | Full Shopify catalog sync via Storefront API. Product pages. Cart. Checkout. Real-time inventory sync.                                                                    |
+| **Noir Lounge**              | VIP content section. Noir-only drops. Tier display.                                                                                                                       |
+| **Profile / My Decoded**     | Order history. Tier + status. Game stats. Referral code. Notification preferences.                                                                                        |
+| **Push Notification System** | Drop alerts (72h → 1h → live → post-drop cadence). Flash Raid alerts. Noir Flash Sale alerts. Segmented by tier.                                                          |
+| **Backend**                  | Firebase/Supabase for user data, game scores, memberships. Node.js for game logic and notification orchestration.                                                         |
+| **App Store Submission**     | iOS App Store. Screenshots, metadata, privacy policy, review cycle buffer.                                                                                                |
 
 **Payment terms:** 50% upfront ($4,250) / 50% on App Store submission ($4,250).
 
 **Timeline:** 8 weeks from kickoff to App Store submission.
 
-| Week | Milestone |
-|------|-----------|
-| 1 | Project setup. Shopify API integration. Navigation skeleton. Website triage begins. |
-| 2 | Onboarding screens (motion + design). Home screen. Countdown components. Website triage complete. |
-| 3 | Shop screens (product list, detail, cart). Shopify checkout integration. |
-| 4 | Drop Zone. Push notification setup (FCM + APNs). Notification triggers. |
-| 5 | Midnight Run game (2D sprites + scoring + leaderboard). |
-| 6 | The Confessional game. Noir Lounge. Profile. Polish. |
-| 7 | Testing on device. App Store asset creation. Submission. |
-| 8 | App Store review buffer. Bug fixes. Potential resubmission. |
+| Week | Milestone                                                                                         |
+| ---- | ------------------------------------------------------------------------------------------------- |
+| 1    | Project setup. Shopify API integration. Navigation skeleton. Website triage begins.               |
+| 2    | Onboarding screens (motion + design). Home screen. Countdown components. Website triage complete. |
+| 3    | Shop screens (product list, detail, cart). Shopify checkout integration.                          |
+| 4    | Drop Zone. Push notification setup (FCM + APNs). Notification triggers.                           |
+| 5    | Midnight Run game (2D sprites + scoring + leaderboard).                                           |
+| 6    | The Confessional game. Noir Lounge. Profile. Polish.                                              |
+| 7    | Testing on device. App Store asset creation. Submission.                                          |
+| 8    | App Store review buffer. Bug fixes. Potential resubmission.                                       |
 
 ### MONTHLY RETAINER — $2,500/month
 
-| Deliverable | Details |
-|------------|---------|
-| **Drop Campaign Management** | Full push notification sequences for every drop (standard, Noir, Flash Raid, Versus). Campaign templates executed. |
-| **Push Notification Strategy** | Copywriting, segmentation, scheduling, A/B testing. 8–12 pushes/month. |
-| **App Content Updates** | Home screen hero updates per drop. Noir Lounge content publishing (2–4 pieces/month). Drop Zone management. |
-| **Game Management** | Leaderboard monitoring. Reward fulfillment coordination. Quarterly rotation planning. |
-| **Podcast Sync** | Programming verbal code unlocks for each "806 The Show" episode. |
-| **Analytics & Reporting** | Monthly report: installs, DAU/MAU, push performance, conversion by drop, game engagement, Noir growth. |
-| **Social Strategy** | Content calendar tied to app + drop schedule. Templates and copy for 3–4 IG posts/week. TikTok content direction. |
-| **App Maintenance** | Bug fixes, minor feature additions, Shopify sync maintenance, OS update compatibility. |
-| **Monthly Strategy Call** | 30-minute call. Review metrics, plan next month's drops, discuss roadmap. |
+| Deliverable                    | Details                                                                                                            |
+| ------------------------------ | ------------------------------------------------------------------------------------------------------------------ |
+| **Drop Campaign Management**   | Full push notification sequences for every drop (standard, Noir, Flash Raid, Versus). Campaign templates executed. |
+| **Push Notification Strategy** | Copywriting, segmentation, scheduling, A/B testing. 8–12 pushes/month.                                             |
+| **App Content Updates**        | Home screen hero updates per drop. Noir Lounge content publishing (2–4 pieces/month). Drop Zone management.        |
+| **Game Management**            | Leaderboard monitoring. Reward fulfillment coordination. Quarterly rotation planning.                              |
+| **Podcast Sync**               | Programming verbal code unlocks for each Decoded Podcast episode.                                                  |
+| **Analytics & Reporting**      | Monthly report: installs, DAU/MAU, push performance, conversion by drop, game engagement, Noir growth.             |
+| **Social Strategy**            | Content calendar tied to app + drop schedule. Templates and copy for 3–4 IG posts/week. TikTok content direction.  |
+| **App Maintenance**            | Bug fixes, minor feature additions, Shopify sync maintenance, OS update compatibility.                             |
+| **Monthly Strategy Call**      | 30-minute call. Review metrics, plan next month's drops, discuss roadmap.                                          |
 
 **Minimum commitment:** 3 months. Month-to-month after that.
 
@@ -544,15 +555,16 @@ No ranges. Firm numbers.
 
 ### TOTAL YEAR 1 INVESTMENT
 
-| Item | Cost |
-|------|------|
-| V1 App Build | $8,500 |
-| Monthly Retainer (12 months) | $30,000 |
-| **Total** | **$38,500** |
+| Item                         | Cost        |
+| ---------------------------- | ----------- |
+| V1 App Build                 | $8,000      |
+| Monthly Retainer (12 months) | $30,000     |
+| **Total**                    | **$38,500** |
 
-*Subscription box app integration ("The Cache") is available as a future expansion once the app has traction. Pricing will be scoped separately when Decoded is ready to launch it.*
+_Subscription box app integration ("The Cache") is available as a future expansion once the app has traction. Pricing will be scoped separately when Decoded is ready to launch it._
 
 **Projected Year 1 revenue generated:**
+
 - Email/SMS flows (basic Klaviyo): $15,000–$30,000
 - App-driven sales (push notifications + drop urgency): $40,000–$80,000
 - Noir membership revenue: $5,400+ (30 members × $15/month × 12)
@@ -589,6 +601,7 @@ The retainer model means we're in the war room for every drop, optimizing every 
 # 11. LEGAL & COMPLIANCE NOTES
 
 Items we handle as part of the build:
+
 - **Privacy policy** for data collection, push notifications, and analytics
 - **Terms of service** for the app
 - **App Store compliance** — game reward mechanics structured to avoid gambling classification (discount codes, not cash prizes; no purchase required to play)
@@ -603,6 +616,7 @@ Items we handle as part of the build:
 **One action:** Schedule a 30-minute call to walk through this proposal, answer questions, and align on Phase 1 kickoff.
 
 Upon agreement:
+
 1. Roviq sends SOW + invoice for 50% deposit ($4,250)
 2. Website triage begins Day 1
 3. App development begins Day 3
@@ -610,9 +624,9 @@ Upon agreement:
 
 ---
 
-*10,000 streetwear brands have a Shopify store.*
-*Nobody has a speakeasy.*
-*Let's build yours.*
+_10,000 streetwear brands have a Shopify store._
+_Nobody has a speakeasy._
+_Let's build yours._
 
 ---
 
