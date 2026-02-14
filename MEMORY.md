@@ -291,4 +291,15 @@ _Curated patterns, preferences, and lessons. Updated weekly from daily logs._
 - **Don't recycle bad notes**: Only trust DB queries and git log for forensic work. Memory files can have stale/wrong info.
 - **Codex T1 excellent for code review**: Catches browser lifecycle leaks, missing timeouts, incomplete retry coverage. Worth the cost for critical PRs.
 
-_Last updated: 2026-02-13 (10:30 PM UTC — scraper architecture definitive, PR #30 review cycle, contextTokens finding, COO lessons)_
+## GPID Strategy (Feb 14 — WARTIME PIVOT)
+
+- **Stop boiling the ocean**: Only solve top 50-100 brands (1.46% of brands on 3+ platforms = 80% of consumer searches). 500 perfect GPIDs > 5,000 sketchy ones.
+- **LLM parser proven**: Pipeline at `scripts/experiments/llm-product-parser.ts`. Llama 3.3 (free NVIDIA) too conservative. DeepSeek R1 (also free) recommended. OpenRouter balance = $0.
+- **Wartime sprint plan**: `projects/glass/WARTIME-SPRINT-PLAN.md` (752 lines). Phase 0 quarantine → Phase 1 brand authority → Phase 2 LLM parse → Phase 3 GPID lock → Phase 4 consumer API.
+- **Flywheel**: 500 SKUs → consumer traffic → dispensaries "Claim My Page" → brands upload catalogs → training data → fine-tuned model → POS API → monopoly.
+- **Strategy docs**: `WARTIME-CTO-DIAGNOSIS.md`, `GPID-MONOPOLY-PLAYBOOK.md`, `GPID-MATCHING-DEEP-DIVE.md`, `BRAND-AUTHORITY-RESEARCH.md`, `LLM-PARSER-MODEL-RESEARCH.md`
+- **Brand dictionary v2 REJECTED**: 84.66% merge rate too aggressive, Jeeter absorbed 22K aliases including hoodies and gift cards. Quarantine planned.
+- **Category compatibility groups work**: {flower, preroll}, {vape, concentrate}, {edible, tincture}
+- **Hybrid parser recommended**: Regex for easy 60-70%, LLM for messy rest. Fine-tuned small model is endgame.
+
+_Last updated: 2026-02-14 (01:30 AM UTC — wartime pivot, LLM parser POC, monopoly playbook)_
