@@ -303,6 +303,10 @@ _Curated patterns, preferences, and lessons. Updated weekly from daily logs._
 - **parse-top-brands.ts supports 4 providers**: NVIDIA, Anthropic, OpenRouter, Google Gemini. Auto-routes by model name prefix.
 - **OOM on sandbox was process limits, not RAM**: Railway has 491GB RAM. The SIGKILL was from sandbox process/memory cgroups. Fixed with paginated DB reads + cursor resume.
 - **Flywheel**: 500 SKUs → consumer traffic → dispensaries "Claim My Page" → brands upload catalogs → training data → fine-tuned model → POS API → monopoly.
+- **Tom Sawyer GTM Strategy**: `projects/glass/GTM-MARKETPLACE-TRAP.md` — external advisor playbook. Reddit exposé Day 2 (r/bostontrees), Price Shock cards Days 3-14 (@tag dispensaries), Claim Page trap Day 15+ (free data labeling), FedEx MAP dossiers to brand VPs Day 46+, POS API endgame.
+- **GLASS site direction**: Dark mode, teal-to-amber (#00E5A0→#FFB020), Cash App aesthetic, zero cannabis green, "Every dispensary. Every price." Next.js 15. Master plan at `projects/glass/PRICES-SITE-GAMEPLAN.md`.
+- **Gemini 3 models tested, rejected**: 3 Pro (0.935) and 3 Flash (0.939) scored LOWER than 2.5 Flash (0.952). 3 Flash also had JSON parsing errors. Stick with 2.5 Flash.
+- **brand_authority needed backfill**: Leafly scraper captured names with ratings ("Jeeter 4.7 stars 4.7 66.9k"). Clean names existed but `verified=false`, `platform_count=0`. Fixed by updating from products table. 308 brands now verified with 3+ platforms.
 - **Strategy docs**: `WARTIME-CTO-DIAGNOSIS.md`, `GPID-MONOPOLY-PLAYBOOK.md`, `GPID-MATCHING-DEEP-DIVE.md`, `BRAND-AUTHORITY-RESEARCH.md`, `LLM-PARSER-MODEL-RESEARCH.md`
 - **Brand dictionary v2 REJECTED**: 84.66% merge rate too aggressive, Jeeter absorbed 22K aliases including hoodies and gift cards. Quarantine planned.
 - **Category compatibility groups work**: {flower, preroll}, {vape, concentrate}, {edible, tincture}
