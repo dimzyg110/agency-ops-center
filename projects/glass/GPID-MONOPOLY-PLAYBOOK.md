@@ -67,3 +67,20 @@ You don't scale by writing better Regex or paying OpenAI more money. You scale b
 But none of this happens if you don't have consumer traffic next week.
 
 Get the 500 SKUs perfect tonight. Build the consumer UI this weekend. Launch the social nuke on Monday. Start the flywheel.
+
+---
+
+### Brand Portal V2/V3: Asset Distribution Layer (Randy insight, Feb 14)
+
+**The pain:** Cultivators/brands (e.g., Advanced Cultivators) want dispensaries to use their official product images, but brands don't want to manually pull from Apex Trading and re-upload to Dutchie, their website, etc. The distribution of brand assets is completely fragmented.
+
+**The play:** The Brand Portal doesn't just collect product data — it becomes the **canonical asset CDN** for the industry.
+
+1. Brand uploads master images, lab results, descriptions to their GLASS Brand Portal
+2. When a dispensary maps a product to a GPID, the official brand images auto-populate
+3. POS integrations (Phase 4) can pull official assets via the GPID API
+4. Brands get a dashboard showing which dispensaries are using their assets vs butchering them
+
+**Why this locks in brands:** Once a brand's entire visual catalog lives on GLASS, they NEED the platform. It's not just data — it's their brand identity infrastructure. This is the difference between a data company and a platform.
+
+**Revenue angle:** Free for basic catalog. Premium tier for analytics (which dispensaries display your products, price positioning, market share by region).

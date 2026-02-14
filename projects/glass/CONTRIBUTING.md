@@ -79,7 +79,8 @@ refactor(gpid): remove platform prefix from makeSKU for cross-platform matching
 
 ### PR Notes Format
 
-Every PR must include a file at the repo root: `PR-NOTES-[branch-name].md`
+All PR context goes in the **GitHub PR description body** — NOT in separate files.
+Do NOT create `PR-NOTES-*.md` files in the repo.
 
 ```markdown
 # PR: [branch-name]
@@ -273,7 +274,7 @@ CONTEXT: [what and why]
 TASK: [specific deliverable with success criteria]
 BRANCH: Work on branch [name] in worktree /tmp/glass-[label]
 OUTPUT: [file paths for deliverables]
-PR NOTES: Write PR-NOTES-[branch].md at repo root
+PR description covers: what, why, files changed, how to verify
 
 Setup:
 cd /data/workspace/projects/glass/src
