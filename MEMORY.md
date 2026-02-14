@@ -296,6 +296,7 @@ _Curated patterns, preferences, and lessons. Updated weekly from daily logs._
 - **Stop boiling the ocean**: Only solve top 50-100 brands (1.46% of brands on 3+ platforms = 80% of consumer searches). 500 perfect GPIDs > 5,000 sketchy ones.
 - **LLM parser proven**: Pipeline at `scripts/experiments/llm-product-parser.ts`. Llama 3.3 (free NVIDIA) too conservative. DeepSeek R1 (also free) recommended. OpenRouter balance = $0.
 - **Wartime sprint plan**: `projects/glass/WARTIME-SPRINT-PLAN.md` (752 lines). Phase 0 quarantine → Phase 1 brand authority → Phase 2 LLM parse → Phase 3 GPID lock → Phase 4 consumer API.
+- **DeepSeek R1 DEAD on NVIDIA**: HTTP 410 (end of life). Removed from model options. Fallback: Llama 3.3 70B (free, alive), Kimi K2.5 (free, alive), GLM 4.7 (free, alive).
 - **Flywheel**: 500 SKUs → consumer traffic → dispensaries "Claim My Page" → brands upload catalogs → training data → fine-tuned model → POS API → monopoly.
 - **Strategy docs**: `WARTIME-CTO-DIAGNOSIS.md`, `GPID-MONOPOLY-PLAYBOOK.md`, `GPID-MATCHING-DEEP-DIVE.md`, `BRAND-AUTHORITY-RESEARCH.md`, `LLM-PARSER-MODEL-RESEARCH.md`
 - **Brand dictionary v2 REJECTED**: 84.66% merge rate too aggressive, Jeeter absorbed 22K aliases including hoodies and gift cards. Quarantine planned.
