@@ -1,0 +1,30 @@
+# Docker Compose - All Services
+# Run: docker compose -f services/docker-compose.yml up -d
+
+services:
+  # Bot Bus - Message relay for inter-agent communication
+  bot-bus:
+    build: ./bot-bus
+    ports:
+      - "3000:3000"
+    env_file:
+      - ../.env
+    restart: unless-stopped
+
+  # ZeroClaw - Client Agent (add more for more clients)
+  zeroclaw-client-1:
+    build: ./zeroclaw
+    env_file:
+      - ../.env
+    volumes:
+      - ../data/client-1:/data
+    restart: unless-stopped
+
+  # Add more clients easily:
+  # zeroclaw-client-2:
+  #   build: ./zeroclaw
+  #   env_file:
+  #     - ../.env
+  #   volumes:
+  #     - ../data/client-2:/data
+  #   restart: unless-stopped
