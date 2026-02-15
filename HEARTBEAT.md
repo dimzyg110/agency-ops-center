@@ -14,21 +14,19 @@
 ## Current Status
 
 ### ✅ Completed
-- PR #107: Railway scraper deploy + DB schema fix (merged)
-- PR #108: UX loss aversion (merged)
-- Scraper trigger mode: No auto-run on deploy (in PR #107)
+- agency-ops-center repo deployed to Railway
+- bot-bus service live (message relay)
+- ZeroClaw agent(s) live (zeroclaw-roviq, zeroclaw-glass, etc.)
+- GLASS frontend v2 merged
 
 ### 🔄 In Progress
-- PR #109: Production-ready location filter (review in progress)
-  - Location filter now sets lat/lng for API filtering
-  - 15 MA cities with coordinates
-  - Savings counter uses real API data
+- Connecting ZeroClaw agents to bot-bus for inter-communication
 
 ### 📋 Pending
-- Merge PR #109 after review
-- Deploy Railway scrapers with new config
-- Set up cron schedules for scrapers
+- Set up Discord channels for each agent
+- Configure agent pairing codes
 
-### DB Schema (RESOLVED)
-- Schema: `public` (NOT `glass`)
-- All code updated to use `SET search_path TO public`
+## Infrastructure
+- COO (this agent): OpenClaw on Railway
+- bot-bus: Railway (message relay)
+- ZeroClaw agents: Railway (zeroclaw-roviq, zeroclaw-glass)
