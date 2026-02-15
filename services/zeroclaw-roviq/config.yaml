@@ -19,3 +19,7 @@ discord = true
 [channels_config.discord]
 token = "${DISCORD_TOKEN_ROVIQ}"
 allowed_users = ["*"]
+
+[tools]
+# Webhook for bot-bus communication
+webhook_url = "${BOT_BUS_URL}"
