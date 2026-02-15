@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DECODED × ROVIQ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #F5F5F5;
+      --text: #111;
+      --muted: #666;
+      --accent: #FF0033;
+      --border: #E0E0E0;
+      --card: #FFF;
+      --mono: 'JetBrains Mono', monospace;
+      --sans: 'Inter', -apple-system, sans-serif;
+      --display: 'Playfair Display', serif;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.75;
+      font-size: 15px;
+      -webkit-font-smoothing: antialiased;
+    }
+    .c { max-width: 780px; margin: 0 auto; padding: 60px 40px; }
+
+    /* Header */
+    .hdr { text-align: center; padding: 40px 0 40px; border-bottom: 1px solid var(--border); margin-bottom: 50px; }
+    .hdr-badge { font-family: var(--mono); font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); margin-bottom: 20px; }
+    .hdr h1 { font-family: var(--display); font-size: 48px; font-weight: 700; letter-spacing: -1px; margin-bottom: 14px; line-height: 1.1; }
+    .hdr h1 span { color: var(--accent); }
+    .hdr-tag { font-size: 17px; color: var(--muted); font-style: italic; max-width: 480px; margin: 0 auto 28px; }
+    .hdr-meta { font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: 1px; }
+    .hdr-meta span { margin: 0 10px; }
+
+    /* Section */
+    .s { margin-bottom: 60px; }
+    .s-lbl { font-family: var(--mono); font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
+    .s-lbl::before { content: ''; width: 20px; height: 1px; background: var(--accent); }
+    .s h2 { font-family: var(--display); font-size: 30px; font-weight: 700; margin-bottom: 20px; letter-spacing: -0.5px; }
+    .s h3 { font-size: 17px; font-weight: 600; margin: 28px 0 10px; }
+    .s p { margin-bottom: 14px; }
+    .muted { color: var(--muted); }
+    hr.div { border: none; border-top: 1px solid var(--border); margin: 60px 0; }
+
+    /* Callout */
+    .co { border-left: 3px solid var(--accent); padding: 18px 22px; background: var(--card); border-radius: 0 8px 8px 0; margin: 24px 0; }
+    .co p { font-weight: 500; margin-bottom: 0; }
+
+    /* Dark block */
+    .dark { background: #111; color: #ccc; border-radius: 8px; padding: 32px; margin: 24px 0; }
+    .dark h4 { font-family: var(--mono); font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+    .dark p { color: #bbb; font-size: 14px; margin-bottom: 10px; }
+    .dark ul { list-style: none; padding: 0; }
+    .dark ul li { padding: 5px 0 5px 16px; color: #bbb; font-size: 13px; position: relative; }
+    .dark ul li::before { content: '→'; position: absolute; left: 0; color: var(--accent); }
+
+    /* Hint list - teaser features */
+    .hints { list-style: none; margin: 20px 0; }
+    .hints li { padding: 14px 0; border-bottom: 1px solid var(--border); display: flex; gap: 14px; align-items: flex-start; }
+    .hints li:last-child { border-bottom: none; }
+    .hints .n { font-family: var(--mono); font-size: 11px; color: var(--accent); min-width: 18px; padding-top: 2px; }
+    .hints .t { font-size: 14px; line-height: 1.6; }
+    .hints .t strong { display: block; margin-bottom: 2px; }
+    .hints .t .sub { color: var(--muted); font-size: 13px; }
+
+    /* Price block */
+    .pb { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 28px; margin: 20px 0; }
+    .pb h4 { font-family: var(--mono); font-size: 12px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 4px; }
+    .pb .amt { font-family: var(--display); font-size: 34px; font-weight: 700; margin-bottom: 14px; }
+    .pb .amt span { color: var(--muted); font-size: 15px; }
+    .pb .row { display: flex; justify-content: space-between; padding: 9px 0; border-bottom: 1px solid var(--border); font-size: 14px; }
+    .pb .row:last-child { border-bottom: none; }
+    .pb .row .lbl { color: var(--muted); }
+
+    /* Totals */
+    .totals { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 20px 0; }
+    .tc { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 20px; text-align: center; }
+    .tc .lbl { font-family: var(--mono); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+    .tc .val { font-family: var(--display); font-size: 26px; font-weight: 700; }
+    .tc .val.red { color: var(--accent); }
+    .tc .note { font-size: 11px; color: var(--muted); margin-top: 3px; }
+    .tc.full { grid-column: 1 / -1; }
+
+    /* Why grid */
+    .wg { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 20px 0; }
+    .wc { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 22px; }
+    .wc h4 { font-size: 14px; font-weight: 600; margin-bottom: 6px; }
+    .wc p { font-size: 13px; color: var(--muted); margin-bottom: 0; line-height: 1.6; }
+
+    /* CTA */
+    .cta { background: #111; color: #fff; border-radius: 8px; padding: 36px; text-align: center; margin: 24px 0; }
+    .cta h3 { font-family: var(--display); font-size: 22px; margin-bottom: 10px; color: #fff; }
+    .cta p { color: #999; font-size: 14px; margin-bottom: 0; }
+    .cta-steps { list-style: none; text-align: left; max-width: 380px; margin: 20px auto 0; }
+    .cta-steps li { padding: 7px 0; font-family: var(--mono); font-size: 13px; color: #ccc; display: flex; gap: 10px; }
+    .cta-steps li span { color: var(--accent); }
+
+    /* Footer */
+    .ftr { text-align: center; padding: 50px 0 30px; border-top: 1px solid var(--border); }
+    .ftr-tag { font-style: italic; color: var(--muted); font-size: 15px; line-height: 1.8; margin-bottom: 28px; }
+    .ftr-brand { font-family: var(--mono); font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); }
+
+    /* Table */
+    table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 14px; }
+    th { font-family: var(--mono); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; text-align: left; padding: 10px 14px; border-bottom: 2px solid var(--text); color: var(--muted); }
+    td { padding: 10px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+    tr:last-child td { border-bottom: none; }
+    td:first-child { font-weight: 500; }
+
+    @media print {
+      body { background: #fff; }
+      .c { padding: 20px; }
+      .hdr { padding: 40px 0 30px; }
+      .s { page-break-inside: avoid; }
+    }
+    @page { margin: 0.75in; }
+  </style>
+</head>
+<body>
+<div class="c">
+
+  <!-- HEADER -->
+  <header class="hdr">
+    <div class="hdr-badge">Confidential Proposal</div>
+    <h1>DECODED <span>×</span> ROVIQ</h1>
+    <p class="hdr-tag">"10,000 streetwear brands have a Shopify store. Nobody has a speakeasy."</p>
+    <div class="hdr-meta">
+      <span>February 2026</span> · <span>Prepared for Decoded Shop</span> · <span>Strategy, Data & Technology</span>
+    </div>
+  </header>
+
+  <!-- 01 - WE GET IT -->
+  <section class="s">
+    <div class="s-lbl">01 - We Get It</div>
+    <h2>The Brand Is Real. The Infrastructure Isn't.</h2>
+    <p>We audited everything - website, social, email, SEO, revenue infra. The full picture:</p>
+    <p><strong>The brand DNA is undeniable.</strong> "Decoded Noir." "Hand of God." "Kingdom Has Fallen." The automotive × faith × luxury aesthetic. The two-tier pricing. The 911 Turbo visual language. You can't manufacture this. It's the one thing money can't buy.</p>
+    <p><strong>But the infrastructure is killing it.</strong> No custom domain. Zero product descriptions. $0 from email/SMS. No retention system whatsoever. Every customer who buys disappears forever - no follow-up, no community, no reason to come back. You're acquiring customers at full cost, selling them one item, and never speaking to them again.</p>
+
+    <div class="co">
+      <p>The gap isn't identity - it's the system around it. That's what we build.</p>
+    </div>
+  </section>
+
+  <hr class="div" />
+
+  <!-- 02 - THE VISION -->
+  <section class="s">
+    <div class="s-lbl">02 - The Vision</div>
+    <h2>A Digital Speakeasy</h2>
+    <p>Most agencies would fix the Shopify store, run some Meta ads, and call it a day. That's not what we're proposing.</p>
+    <p>We're proposing Decoded stop competing as a clothing brand and start operating as a <strong>digital speakeasy</strong> - an experience-first world where the app isn't a store, it's the front door to a culture. The clothes aren't products. They're trophies you earn by being inside.</p>
+    <p>Think MSCHF - they built a $200M+ brand because every time you open the app, something different happens. You never know what you'll find. That creates compulsive engagement. People open the app not to buy, but to <em>see what's happening.</em> The buying follows naturally. The difference? MSCHF had to invent reasons for people to open the app. <strong>You already have them - your drop cadence is the engine.</strong></p>
+  </section>
+
+  <hr class="div" />
+
+  <!-- 03 - THE APP -->
+  <section class="s">
+    <div class="s-lbl">03 - The App</div>
+    <h2>What You're Getting</h2>
+    <p>You've already seen the demo - the cinematic shopping feed, the holographic product cards, the film grain, the dark luxury feel. <strong>That's the starting point, not the ceiling.</strong></p>
+    <p>Here's the DNA of what we're building together:</p>
+
+    <ul class="hints">
+      <li>
+        <span class="n">01</span>
+        <span class="t"><strong>A 911 Turbo at Startup</strong><span class="sub">When someone opens the app for the first time, they don't see a login form. They see a tachometer climbing to redline. Engine audio. The Decoded logo burning into frame. <em>"This isn't a store."</em> The first 10 seconds set the tone - this is a world, not a shopping cart.</span></span>
+      </li>
+      <li>
+        <span class="n">02</span>
+        <span class="t"><strong>A Feed That Feels Alive</strong><span class="sub">The cinematic shopping feed you already love - holographic cards, real-time drops, countdown timers, stock meters. Every time you open it, something's different. That's the addictive loop.</span></span>
+      </li>
+      <li>
+        <span class="n">03</span>
+        <span class="t"><strong>Drops That Hit Different</strong><span class="sub">Flash Raids. Versus Drops. The Vault Lock. Every release becomes an event with push notifications, countdowns, and real scarcity - not manufactured urgency, real consequences. Miss it, it's gone.</span></span>
+      </li>
+      <li>
+        <span class="n">04</span>
+        <span class="t"><strong>Hidden Games in the Vault</strong><span class="sub">Arcade games hidden inside the app that unlock exclusive products and discounts. Leaderboards. Shareable scorecards designed for IG Stories. Organic discovery that spreads itself.</span></span>
+      </li>
+      <li>
+        <span class="n">05</span>
+        <span class="t"><strong>The Decoded Podcast × App</strong><span class="sub">You're launching the Decoded Podcast - we'll wire it directly into the app. Verbal codes dropped in episodes unlock hidden content. A cross-platform flywheel where the podcast feeds app downloads and the app feeds listens.</span></span>
+      </li>
+      <li>
+        <span class="n">06</span>
+        <span class="t"><strong>Noir VIP World</strong><span class="sub">A members-only tier with early access, exclusive drops, behind-the-scenes content, and founder Q&As. Turns customers into community. Turns community into recurring revenue.</span></span>
+      </li>
+    </ul>
+
+    <div class="co">
+      <p>We're not handing you a spec sheet. We're building this <strong>with</strong> you. After kickoff, we run a discovery session to lock in the exact flows, screens, and priorities - then we start building.</p>
+    </div>
+  </section>
+
+  <hr class="div" />
+
+  <!-- 04 - THE APPROACH -->
+  <section class="s">
+    <div class="s-lbl">04 - The Approach</div>
+    <h2>How We Work Together</h2>
+
+    <div class="dark">
+      <h4>Phase 1 - Triage (Days 1–14)</h4>
+      <p>While we build the app, we stop the bleeding on the website: custom domain, product descriptions, email/SMS capture, About page, and app download funnel. These are table-stakes fixes included in the project.</p>
+    </div>
+
+    <div class="dark">
+      <h4>Phase 2 - Discovery & Build (Weeks 2–8)</h4>
+      <p>We kick off with a discovery call to finalize the exact flows, screen priorities, and feature set based on everything we've discussed. Then we build - native iOS, cinematic quality, real games, real engagement mechanics.</p>
+      <ul>
+        <li>Native Swift (same stack our team already shipped for AC Blacksite)</li>
+        <li>Shopify Storefront API for seamless commerce</li>
+        <li>Firebase for users, scores, memberships, push notifications</li>
+        <li>Full App Store submission with review buffer</li>
+      </ul>
+    </div>
+
+    <div class="dark">
+      <h4>Phase 3 - Launch & Growth (Weeks 8–12)</h4>
+      <p>App-exclusive launch drop. Instagram-to-app funnel. Podcast launch integration. Push notification sequences. We manage the rollout and optimize in real time.</p>
+    </div>
+  </section>
+
+  <hr class="div" />
+
+  <!-- 05 - PRICING -->
+  <section class="s">
+    <div class="s-lbl">05 - Pricing</div>
+    <h2>No Ranges. Firm Numbers.</h2>
+
+    <div class="pb">
+      <h4>V1 App Build</h4>
+      <div class="amt">$8,500 <span>one-time</span></div>
+      <div class="row"><span class="lbl">Website Triage</span><span>Custom domain, descriptions, email capture, About page, app funnel</span></div>
+      <div class="row"><span class="lbl">Cinematic Onboarding</span><span>911 Turbo boot, "Choose Your Lane" fork, push opt-in</span></div>
+      <div class="row"><span class="lbl">Core App</span><span>Home feed, Drop Zone, Shop, Noir Lounge, Profile</span></div>
+      <div class="row"><span class="lbl">The Vault</span><span>Hidden arcade games, leaderboard, shareable scorecards</span></div>
+      <div class="row"><span class="lbl">Push System</span><span>Full drop cadence, Flash Raids, segmented by tier</span></div>
+      <div class="row"><span class="lbl">Backend + Submission</span><span>Firebase, Node.js, iOS App Store with review buffer</span></div>
+    </div>
+
+    <p class="muted"><strong>Timeline:</strong> 8 weeks from kickoff to App Store submission.<br><strong>Payment:</strong> 50% upfront ($4,250) / 50% on submission ($4,250).</p>
+
+    <h3>Monthly Retainer — Choose Your Plan</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th>Essential — $1,500/mo</th>
+          <th>Full Service — $2,500/mo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Drop Campaigns</td>
+          <td>1 drop/mo (standard push sequence)</td>
+          <td>Unlimited drops (standard, Noir, Flash Raid, Versus)</td>
+        </tr>
+        <tr>
+          <td>Push Notifications</td>
+          <td>4–6/mo, pre-built templates</td>
+          <td>8–12/mo, custom copy, segmentation, A/B testing</td>
+        </tr>
+        <tr>
+          <td>App Updates</td>
+          <td>Small updates, critical bug fixes, OS compatibility</td>
+          <td>Full content management (hero, Noir Lounge, Drop Zone) + feature additions</td>
+        </tr>
+        <tr>
+          <td>Social Graphics + AI Videos</td>
+          <td>4–6 assets/mo</td>
+          <td>8–12 assets/mo + content calendar + TikTok direction</td>
+        </tr>
+        <tr>
+          <td>Marketing Strategy + SEO</td>
+          <td>Overall strategy guidance + basic SEO</td>
+          <td>Full marketing strategy, SEO, paid ad direction</td>
+        </tr>
+        <tr>
+          <td>Podcast Sync</td>
+          <td>—</td>
+          <td>Verbal code programming per episode</td>
+        </tr>
+        <tr>
+          <td>Game Management</td>
+          <td>—</td>
+          <td>Leaderboard management, reward coordination, quarterly rotation</td>
+        </tr>
+        <tr>
+          <td>Analytics</td>
+          <td>Quarterly summary report</td>
+          <td>Monthly: installs, DAU/MAU, push performance, conversion</td>
+        </tr>
+        <tr>
+          <td>Strategy Calls</td>
+          <td>30-min bi-weekly call</td>
+          <td>30-min weekly call</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="muted"><strong>Commitment:</strong> 3 months minimum. Month-to-month after.<br><strong>Alignment:</strong> If monthly revenue exceeds $30K, retainer reevaluates to match the bigger workload — we only scale when we've helped you scale.</p>
+
+    <h3>Year 1 Investment</h3>
+    <div class="totals">
+      <div class="tc"><div class="lbl">V1 Build</div><div class="val">$8,500</div><div class="note">Same for both plans</div></div>
+      <div class="tc"><div class="lbl">Essential Retainer (12 mo)</div><div class="val">$18,000</div></div>
+      <div class="tc"><div class="lbl">Essential Year 1</div><div class="val" style="font-size:22px;">$26,500</div></div>
+      <div class="tc"><div class="lbl">Full Service Year 1</div><div class="val red" style="font-size:22px;">$38,500</div></div>
+    </div>
+
+    <h3>Projected Year 1 Revenue Generated</h3>
+    <p class="muted" style="font-size:13px; margin-bottom:12px;">Based on 500 app installs, 20% conversion, $68 AOV, and conservative push notification engagement rates.</p>
+    <div class="totals">
+      <div class="tc"><div class="lbl">Email / SMS Flows</div><div class="val" style="font-size:22px;">$15–30K</div></div>
+      <div class="tc"><div class="lbl">App-Driven Sales</div><div class="val" style="font-size:22px;">$40–80K</div></div>
+      <div class="tc"><div class="lbl">Noir Membership</div><div class="val" style="font-size:22px;">$5,400+</div><div class="note">30 members × $15/mo × 12</div></div>
+      <div class="tc"><div class="lbl">Conservative Total</div><div class="val red" style="font-size:22px;">$60–115K+</div></div>
+    </div>
+
+    <div class="co"><p>The investment pays for itself within the first two quarters.</p></div>
+  </section>
+
+  <hr class="div" />
+
+  <!-- 06 - WHY ROVIQ -->
+  <section class="s">
+    <div class="s-lbl">06 - Why Roviq</div>
+    <h2>Why Us</h2>
+
+    <div class="co">
+      <p><strong>We didn't pitch this concept. We already built it.</strong><br>The AC Blacksite app - cinematic onboarding, hidden arcade game, premium native UX - is live in the App Store. Same philosophy, adapted for Decoded. No ramp-up time. No guesswork.</p>
+    </div>
+
+    <div class="wg">
+      <div class="wc">
+        <h4>We get the culture.</h4>
+        <p>We understand why MSCHF works, why Corteiz does scavenger hunts, why Hellstar's founder story is worth more than their product line. This app isn't a shopping cart with a game bolted on.</p>
+      </div>
+      <div class="wc">
+        <h4>One team. No handoffs.</h4>
+        <p>Strategy, design, code, marketing - same team. We design it, build it, launch it, read the data, and iterate. One partner.</p>
+      </div>
+      <div class="wc" style="grid-column: 1 / -1;">
+        <h4>We win when you win.</h4>
+        <p>We're in the war room for every drop, optimizing every push, watching every metric. When the app drives its first $50K quarter, that's our win too. The performance-based retainer scaling keeps our incentives aligned.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="div" />
+
+  <!-- 07 - NEXT STEPS -->
+  <section class="s">
+    <div class="cta">
+      <h3>Next Steps</h3>
+      <p>Here's how we move:</p>
+      <ul class="cta-steps">
+        <li><span>01</span> SOW + invoice for 50% deposit ($4,250)</li>
+        <li><span>02</span> Discovery session to finalize app flows & priorities</li>
+        <li><span>03</span> Website triage Day 1 · App development Day 3</li>
+      </ul>
+      <p style="color:#666; font-size:12px; margin-top:18px;">You bring the product photos, the podcast, and the raw Noir content. We handle everything else.</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="ftr">
+    <p class="ftr-tag">
+      10,000 streetwear brands have a Shopify store.<br>
+      Nobody has a speakeasy.<br>
+      Let's build yours.
+    </p>
+    <div class="ftr-brand">ROVIQ - Strategy. Data. Technology.<br>February 2026</div>
+  </footer>
+
+</div>
+</body>
+</html>

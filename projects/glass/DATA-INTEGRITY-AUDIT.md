@@ -1,7 +1,21 @@
 # GLASS Repo Audit — Part 3: Scraper Pipeline & Data Integrity
 
-Date: 2026-02-14 (UTC)
+Date: 2026-02-14 (UTC) — Updated 04:55 UTC
 Repo audited: `/data/workspace/projects/glass/src/`
+DB audited: Railway Postgres (`public` schema)
+
+## Production Status Summary
+
+**All 4 scrapers are deployed and running as Railway cron services.**
+
+| Scraper | Railway Cron | Runs | Success Rate | Last Success | Best Run |
+|---------|-------------|------|-------------|-------------|----------|
+| Dutchie | `0 8 * * *` | 14 | 93% (13/14) | Feb 13 | Reliable |
+| Jane | `0 7 * * *` | 14 | 50% (7/14) | Feb 13 20:56 | 9,482 prices, 37/39 stores |
+| Leafly | `5 7 * * *` | 8 | 50% (4/8) | Feb 13 20:09 | 43,844 prices, 99/292 stores |
+| Weedmaps | `30 3 * * *` | 9 | 78% (7/9) | Feb 14 03:31 | 477 prices, 25/282 stores |
+
+Jane/Leafly 50% rate reflects early debugging runs — successful runs pull massive data.
 
 ---
 
@@ -9,274 +23,281 @@ Repo audited: `/data/workspace/projects/glass/src/`
 
 ## 1) `scripts/scrape-jane.ts`
 
-### Store discovery (slug source)
-- Uses `JaneClient.discoverMAStores()` unless `--skip-discovery` is passed.
-- Discovery result is persisted to `scripts/jane-slugs.json` via `saveStores()`.
-- With `--skip-discovery`, it loads from `--slugs-file` (default `scripts/jane-slugs.json`).
+### How it discovers stores
+- CLI flags: `--skip-discovery`, `--slugs-file`, `--limit`, `--db`, `--dry-run`, `--resume`.
+- If discovery is enabled, it calls `JaneClient.discoverMAStores()` and writes results to `scripts/jane-slugs.json`.
+- If `--skip-discovery`, it loads pre-saved records from slugs file.
 
-### Data fetch path (Algolia via browser context)
-- `scrape-jane.ts` delegates to `scripts/lib/jane-client.ts`.
-- `JaneClient` launches Playwright Firefox and performs Cloudflare warmup by visiting:
+### How it fetches data
+- Uses `scripts/lib/jane-client.ts`.
+- `JaneClient` launches Playwright Firefox, warms Cloudflare by visiting:
   - `https://www.iheartjane.com/`
   - `https://search.iheartjane.com/`
-- Algolia requests are then sent through `page.evaluate(fetch(...))` in browser context (`BrowserProxy.browserFetch()`), not raw Node HTTP.
-- Queries:
-  - `stores-production` for stores
-  - `menu-products-production` for per-store products
+- All Algolia requests are executed via `page.evaluate(fetch(...))` (browser context), not raw Node HTTP.
+- Queries `stores-production` and `menu-products-production` indexes.
 
-### Normalize + DB write flow
-- Parse: `parseJaneProducts(hits, slug, storeName)`
-- Normalize: `normalizeProduct(parsed)`
-- SKU/GPID: explicitly re-assigned with `makeSKU(brand, productName, weightGrams, category)`
-- Filters out non-positive prices.
-- DB writes (when `--db`):
+### How it normalizes and writes to DB
+- Parses with `parseJaneProducts(hits, slug, storeName)`.
+- Normalizes each parsed item with `normalizeProduct()`.
+- Recomputes deterministic GPID/SKU via `makeSKU(brand, name, weight, category)`.
+- Filters to positive prices only.
+- DB path when `--db`:
   1. `upsertOperator('jane', ...)`
   2. `upsertSource(..., 'jane')`
   3. `createScrapeJob(...)`
-  4. per product: `upsertProduct(...)` + `insertPrice(..., parser_type='jane_algolia_v1')`
-  5. `completeScrapeJob(...)`, `completeScrapeRun(...)`
-
-### Current slug count
-- `scripts/jane-slugs.json`: **39**
+  4. per item: `upsertProduct(...)` + `insertPrice(..., parser_type='jane_algolia_v1')`
+  5. `completeScrapeJob(...)` and final `completeScrapeRun(...)`
+- Supports resume via `getActiveRunForToday` + `getCompletedJobsForToday`.
 
 ---
 
 ## 2) `scripts/scrape-leafly.ts`
 
-### HTTP-based vs browser
-- Yes, script path is **HTTP-first**; no Playwright/browser dependency in this script.
+### HTTP-based?
+- Yes. This script path is HTTP-first (no Playwright in this script).
 - Uses `scripts/lib/leafly-client.ts`:
-  - Discovery via HTML fetch and parsing ld+json from listing pages.
-  - Product fetch via Leafly API: `consumer-api.leafly.com/.../menu_items`.
+  - Discovery from Leafly listing HTML + ld+json
+  - Menu fetch from `consumer-api.leafly.com` paginated API
 
-### Exponential backoff / Cloudflare behavior
-- Implemented in `fetchJson()` in `leafly-client.ts`:
-  - Up to **8 attempts**.
-  - Retries on `429`, `503`, and retriable network errors.
-  - Exponential backoff: `2s * 2^(attempt-1)`, capped at `60s`, with jitter.
-- Also has global adaptive throttle state:
-  - `penaltyMs` increases on 429, decays on success.
-  - Applied before all requests and pagination calls.
+### Backoff / throttling strategy
+In `leafly-client.ts`:
+- Global adaptive throttle state (`leaflyThrottle`):
+  - base delay + dynamic `penaltyMs`
+  - `penaltyMs` increases on 429, decays on success
+- `fetchJson()` retries up to 8 attempts.
+- Retries on `429`, `503`, and retriable network failures.
+- Exponential backoff: `2s * 2^(attempt-1)`, capped at 60s, plus jitter.
+- Pagination also waits with throttle-aware delay.
 
-### Normalize + DB write flow
-- Parse: `parseLeaflyMenuItems(slug, operatorName, rawItems)`
-- Normalize: `normalizeProduct`
-- DB writes mirror Jane pattern with parser type `leafly_ssr_v1`.
-
-### Current slug count
-- `scripts/leafly-slugs.json`: **292**
+### Normalize/write flow
+- Parse: `parseLeaflyMenuItems(slug, operatorName, rawItems)`.
+- Normalize: `normalizeProduct` and keep `price > 0`.
+- Writes via `upsertProduct` + `insertPrice(..., parser_type='leafly_ssr_v1')`.
 
 ---
 
 ## 3) `scripts/scrape-weedmaps.ts`
 
-### Playwright Firefox + pagination
-- Uses Playwright Firefox directly (`firefox.launch({ headless: true })`).
-- Has internal `WeedmapsBrowser` wrapper with:
-  - tab create/navigate/snapshot/click/scroll
-  - browser health checks/re-init
-- Pagination logic in `scrapePaginatedMenu()`:
-  - Extract product count hint from snapshot text
-  - Compute expected pages (24 per page, max 50)
-  - Iterate `?page=N`, retry each page up to 3 times with backoff
-  - Deduplicate by product href
+### Playwright Firefox?
+- Yes. It launches plain Playwright Firefox (`firefox.launch({ headless: true })`).
+- Uses internal `WeedmapsBrowser` helper for tabs/navigation/snapshot/scroll/click.
 
-### Age gate handling
-- `dismissWeedmapsInterstitials()` attempts to click:
-  - age gate buttons (`Yes, let me in` patterns)
-  - cookie accept buttons
-- Re-runs interstitial dismissal when snapshot indicates gate/redirect.
-- Gate/redirect/rate-limit/no-menu detection is text-heuristic based from snapshots (`isLikelyAgeGateOrRedirect`, `isLikelyRateLimit`, `isLikelyNoMenu`).
+### Why high failure rate ("79%" question)
+Code + DB evidence indicate this is plausible and currently worse:
+- DB `scrape_jobs` for weedmaps shows **81.8% failed** overall (`1034 failed / 1264 total`, with 11 still running).
+- Top failure buckets from `scrape_jobs.error_message`:
+  - `empty_menu`: 551
+  - `no_menu`: 193
+  - `age_gate_or_redirect`: 123
+  - `timeout`: 50
+  - `network`: 28
 
-### Why high Railway failure ("79%" asked)
-Code-level risk factors observed:
-1. **No anti-detection layer in script** (plain Playwright Firefox), so more vulnerable to Weedmaps anti-bot/redirect/rate-limit behavior.
-2. **Snapshot-text heuristic parsing** can miss products if UI markup/content changes.
-3. **Heavy per-store pagination** and long flows increase timeout/failure surface (`STORE_TIMEOUT_MS=300000`, page retries, many navigations).
-4. **Frequent no-menu / 0-products outcomes** can be false negatives from blocked or partially rendered pages.
-5. **Recovery churn** (`ensureHealthy` and job resets) indicates unstable long-running browser sessions.
-
-Observed DB evidence (recent history) suggests severe failure rates in Railway runs (often >90% in older runs), dominated by failed jobs and "No products found"/no-menu style errors.
-
-### Current slug count
-- `scripts/weedmaps-slugs.json`: **282**
+Likely technical causes in code:
+1. Plain Playwright Firefox (no anti-detection browser) in script path.
+2. Heuristic snapshot parsing (`extractWeedmapsProductsFromSnapshot`) sensitive to UI/text drift.
+3. Frequent age-gate/redirect/rate-limit handling branches.
+4. Long paginated crawl per store increases timeout surface (`STORE_TIMEOUT_MS=300000`, per-page retries, many navigations).
+5. Many failures are "0 products" or "no menu", which can represent blocked/partial renders rather than truly empty inventory.
 
 ---
 
 ## 4) `scripts/scrape-dutchie.ts`
 
 ### BrowserPool approach
-- Uses `scripts/lib/browser-pool.ts` (HTTP client to external browser service), not local Playwright pages directly.
-- `BrowserPool` talks to endpoints like:
-  - `POST /tabs`
-  - `POST /tabs/{id}/navigate`
-  - `GET /tabs/{id}/snapshot`
-  - `POST /tabs/{id}/scroll`
-- Parses products from accessibility snapshot text (`parseProductsFromSnapshot`).
+- Uses `scripts/lib/browser-pool.ts` (HTTP client to a browser service), not direct local Playwright browser lifecycle.
+- BrowserPool API calls include `/health`, `/tabs`, `/tabs/{id}/navigate`, `/tabs/{id}/snapshot`, `/tabs/{id}/scroll`.
+- Scraper parses Dutchie products from accessibility snapshot text (`parseProductsFromSnapshot`) across category URLs.
 
-### Railway browser service dependency
-- `BrowserPool` base URL defaults to `process.env.CAMOFOX_URL` or `http://localhost:9377`.
-- This creates an external runtime dependency on an available browser microservice (Railway roviq-browser style setup).
-- Script creates per-process `userId/sessionKey` to avoid stale session collisions.
-
-### Current slug count
-- `scripts/dutchie-slugs.json`: **235**
+### Railway dependency
+- BrowserPool base URL defaults to `process.env.CAMOFOX_URL` or `http://localhost:9377`.
+- This means scraper correctness depends on availability/health of that external browser service.
+- Script creates unique `userId/sessionKey` per process to avoid stale session collisions.
 
 ---
 
-## 5) Shared library review: `scripts/lib/`
+## 5) Shared library (`scripts/lib/`) review
 
-### What’s in shared lib
-- `db.ts`: PG pool + upsert/insert + scrape run/job lifecycle.
-- `normalizer.ts`: category normalization, weight parsing, brand normalization, GPID/SKU generation (`makeSKU`).
-- `logger.ts`: structured JSON logs.
-- `types.ts`: parser/scraper domain types.
-- `config.ts`: constants (paths, categories/cities, env defaults).
-- Platform clients/parsers:
-  - `jane-client.ts`, `jane-parser.ts`
-  - `leafly-client.ts`, `leafly-parser.ts`
-  - `weedmaps-parser.ts`
-  - `browser-pool.ts`, `parser.ts`
-  - `brand-filter.ts`
+### DB connection (`db.ts`)
+- Uses `pg.Pool` with `DATABASE_URL` from config.
+- On every connection: `SET search_path TO public`.
+- Core helpers:
+  - `upsertOperator`, `upsertSource`, `upsertProduct`, `insertPrice`
+  - run/job lifecycle: `createScrapeRun`, `completeScrapeRun`, `createScrapeJob`, `completeScrapeJob`
+  - resume helpers: `getActiveRunForToday`, `getCompletedJobsForToday`, `resetStuckRunningJobs`, `sourceHasHistoricalData`
+- `insertPrice` is idempotent per `(product_id, source_id, operator_id, UTC_date(scraped_at))` via conflict update.
 
-### DB connection parameterization check
-- `scripts/lib/db.ts` uses parameterized queries (`$1..$n`) consistently for all dynamic values.
-- `Pool` uses `DATABASE_URL` and sets `SET search_path TO public` on connect.
-- SSL toggles by `NODE_ENV` (`rejectUnauthorized: false` in production).
+### Normalizer (`normalizer.ts`)
+- Canonicalizes categories and weights.
+- Brand cleaning via `brand-filter` (`normalizeBrandCandidate`, `isValidBrand`).
+- Deterministic GPID/SKU generation with SHA-256 hash prefix: `GPID-xxxxxxxxxxxx`.
+- Computes `pricePerGram` for flower/preroll/concentrate when weight exists.
 
-### GPID format check (`makeSKU` / `normalizeName`)
-- `makeSKU` generates deterministic IDs in format: `GPID-<12 hex>` from SHA-256 hash of:
-  - normalized brand
-  - normalized name
-  - normalized weight
-  - normalized category
-- `normalizeName` function does **not** exist in current `normalizer.ts`; name normalization is inlined within `makeSKU`.
-- Current implementation is internally consistent with hash-based GPID format, but there is interface drift in Railway wrappers (see Task 3) suggesting potential divergence risk if wrappers call a different signature.
+### Logger (`logger.ts`)
+- Structured JSON logs with levels `debug/info/warn/error`.
+- `debug` only emits when `SCRAPER_DEBUG=1`.
+
+### Types/config
+- `types.ts` defines parsed product, normalized price, run stats, quality metrics, slug records.
+- `config.ts` centralizes paths, DB URL fallback, category maps, city lists, timing/concurrency defaults.
 
 ---
 
-## Task 2 — Data Integrity Check (Railway Postgres)
+## Task 2 — Data Integrity Check (Railway PostgreSQL)
 
-DB used:
-`postgresql://postgres:rcsulogGljjcDcBMxfMeGNlqbmbgHspa@turntable.proxy.rlwy.net:18582/railway`
+All queries executed with:
+```sql
+SET search_path TO public;
+```
 
-All sessions executed with:
-`SET search_path TO public;`
+## 1) Products with no prices
+```sql
+SELECT COUNT(*)
+FROM products p
+LEFT JOIN prices pr ON p.id = pr.product_id
+WHERE pr.id IS NULL;
+```
+- **20**
 
-## Query results
+## 2) Prices with no product
+```sql
+SELECT COUNT(*)
+FROM prices
+WHERE product_id NOT IN (SELECT id FROM products);
+```
+- **0**
 
-1. **Products with no prices**
-- Query: `SELECT COUNT(*) ... LEFT JOIN prices ... WHERE pr.id IS NULL`
-- Result: **20**
+## 3) Duplicate SKUs
+```sql
+SELECT sku, COUNT(*) c
+FROM products
+GROUP BY sku
+HAVING COUNT(*) > 1
+ORDER BY c DESC
+LIMIT 20;
+```
+- **0 rows** (no duplicate SKUs)
 
-2. **Prices with no product**
-- Query: `SELECT COUNT(*) FROM prices WHERE product_id NOT IN (SELECT id FROM products)`
-- Result: **0**
+## 4) Products per platform (via sources join)
+```sql
+SELECT s.source_type, COUNT(DISTINCT p.id) AS product_count
+FROM prices pr
+JOIN products p ON p.id = pr.product_id
+JOIN sources s ON s.id = pr.source_id
+GROUP BY s.source_type
+ORDER BY product_count DESC;
+```
+- weedmaps: **60,408**
+- dutchie: **51,412**
+- leafly: **44,730**
+- jane: **6,273**
+- menu: **35**
 
-3. **Duplicate SKUs**
-- Query: `SELECT sku, COUNT(*) ... HAVING COUNT(*) > 1 ...`
-- Result: **none returned (0 rows)**
+## 5) Price freshness by source_type
+```sql
+SELECT s.source_type, MIN(pr.scraped_at), MAX(pr.scraped_at), COUNT(*)
+FROM prices pr
+JOIN sources s ON s.id = pr.source_id
+GROUP BY s.source_type
+ORDER BY s.source_type;
+```
+- dutchie: min `2026-02-05 15:25:11+00`, max `2026-02-13 14:35:21+00`, rows 65,762
+- jane: min `2026-02-13 14:25:39+00`, max `2026-02-13 22:53:20+00`, rows 11,180
+- leafly: min `2026-02-13 14:24:47+00`, max `2026-02-14 00:38:32+00`, rows 59,592
+- menu: min `2026-02-05 02:31:14+00`, max `2026-02-12 00:47:04+00`, rows 105
+- weedmaps: min `2026-02-12 06:45:29+00`, max `2026-02-14 04:33:41+00`, rows 89,433
 
-4. **Products per platform**
-- Query by `sources.source_type`
-- Results:
-  - `dutchie`: **51,412**
-  - `jane`: **6,273**
-  - `leafly`: **44,730**
-  - `menu`: **35**
-  - `weedmaps`: **60,206**
+## 6) Null/empty brands and categories
+```sql
+SELECT
+  COUNT(*) FILTER (WHERE brand IS NULL OR btrim(brand) = '') AS null_or_empty_brand,
+  COUNT(*) FILTER (WHERE category IS NULL OR btrim(category) = '') AS null_or_empty_category,
+  COUNT(*) AS total_products
+FROM products;
+```
+- null/empty brand: **61,707**
+- null/empty category: **0**
+- total products: **162,194**
 
-5. **Price freshness**
-- `dutchie`: newest `2026-02-13 14:35:21+00`, oldest `2026-02-05 15:25:11+00`
-- `jane`: newest `2026-02-13 22:53:20+00`, oldest `2026-02-13 14:25:39+00`
-- `leafly`: newest `2026-02-14 00:38:32+00`, oldest `2026-02-13 14:24:47+00`
-- `menu`: newest `2026-02-12 00:47:04+00`, oldest `2026-02-05 02:31:14+00`
-- `weedmaps`: newest `2026-02-14 04:31:42+00`, oldest `2026-02-12 06:45:29+00`
+## 7) Brand authority health
+```sql
+SELECT
+  COUNT(*) AS total_brands,
+  COUNT(*) FILTER (WHERE verified = true) AS verified_brands,
+  COUNT(*) FILTER (WHERE COALESCE(platform_count,0) >= 2) AS multi_platform_brands
+FROM brand_authority;
+```
+- total: **1,001**
+- verified: **1,001**
+- multi-platform (`platform_count >= 2`): **310**
 
-6. **Null/empty brands**
-- Query: `SELECT COUNT(*) FROM products WHERE brand IS NULL OR brand = ''`
-- Result: **61,707**
+## 8) Parsed products by status
+Prompt asked for `status`, but actual column is `validation_status` in `public.parsed_products`.
+```sql
+SELECT validation_status, COUNT(*)
+FROM parsed_products
+GROUP BY validation_status
+ORDER BY COUNT(*) DESC;
+```
+- accepted: **1,473**
+- needs_review: **631**
+- rejected: **87**
 
-7. **Null/empty categories**
-- Query: `SELECT COUNT(*) FROM products WHERE category IS NULL OR category = ''`
-- Result: **0**
+## 9) Verified GPID count from canonical_products
+Prompt assumes explicit verified field, but `public.canonical_products` currently has no `verification_status`/`verified` column.
+Executed proxy counts:
+```sql
+SELECT
+  COUNT(*) FILTER (WHERE gpid IS NOT NULL) AS gpid_nonnull_count,
+  COUNT(*) FILTER (WHERE (metadata->>'verification_status') = 'verified') AS metadata_verified_count,
+  COUNT(*) FILTER (WHERE (metadata->>'verified')::boolean IS TRUE) AS metadata_verified_boolean_count,
+  COUNT(*) AS total_canonical_products
+FROM canonical_products;
+```
+- gpid_nonnull_count: **103,895**
+- metadata_verified_count: **0**
+- metadata_verified_boolean_count: **0**
+- total_canonical_products: **103,895**
 
-8. **Brand authority health**
-- Query over `brand_authority`
-- Result:
-  - `total`: **1,001**
-  - `verified`: **1,001**
-  - `multi_platform (platform_count>=3)`: **308**
-
-9. **Parsed products status**
-- Requested query failed: column `status` does not exist in `parsed_products`.
-- Actual status-like column is `validation_status`.
-- Alternate result (`validation_status`):
-  - `accepted`: **1,419**
-  - `needs_review`: **616**
-  - `rejected`: **86**
-
-10. **GPID verified count**
-- Requested query failed: column `verified` does not exist in `canonical_products`.
-- `canonical_products` currently has columns like `gpid`, `confidence_avg`, `is_active`, etc., but no `verified` boolean.
-
-### Schema mismatch note
-Queries #9 and #10 in the prompt do not match current public schema names.
+Interpretation: GPIDs exist, but there is no explicit “verified GPID” flag in this table as currently modeled.
 
 ---
 
-## Task 3 — Scripts vs Railway `scrapers/{name}/index.ts`
+## Task 3 — `scripts/scrape-*.ts` vs `scrapers/{name}/index.ts`
 
-## High-level comparison
+## Are they the same code?
+- **No.** They are separate implementations with shared parsing/normalization modules.
 
-### Are they the same code?
-- **No.** They are parallel implementations, not identical copies.
+## Relationship pattern
+- `scrapers/*/index.ts` are Railway service entrypoints (cron-deployed) with:
+  - run-locks (`scrapers/lib/run-lock.ts`)
+  - hard timeout kill-switch (`scrapers/lib/timeout.ts`)
+  - completion/error notifications
+  - dedicated DB wrapper (`scrapers/lib/db.ts`)
+- They import parser/normalizer logic from copied `scripts-lib` modules.
 
-### Wrappers around scripts?
-- **Partially.** Railway services import some shared parser/normalizer modules from `../scripts-lib/*`, but orchestration/runtime logic is separate and diverged.
+## Per-platform differences
+- **Jane**:
+  - Both use browser-context Algolia fetch.
+  - Railway variant adds run-lock/timeout/notify wrappers and embedded browser class.
+- **Leafly**:
+  - `scripts/`: HTTP-first with adaptive global throttle/backoff.
+  - `scrapers/`: browser-first (CamoFox required), browser API fetch + fallback direct API.
+- **Weedmaps**:
+  - `scripts/`: plain Playwright Firefox + accessibility snapshot parsing + error categorization/retries.
+  - `scrapers/`: CamoFox Playwright context + DOM extraction (`page.evaluate`) and simpler category accounting.
+- **Dutchie**:
+  - `scripts/`: BrowserPool HTTP service (`CAMOFOX_URL` / localhost:9377), category-by-category snapshot parsing.
+  - `scrapers/`: CamoFox browser pool with shard contexts, scraping `embedded-menu/{slug}`.
 
-### Completely different implementations?
-- **For control flow/runtime behavior: yes, significantly different.**
-
-### Source of truth?
-- Operationally, `scripts/scrape-*.ts` appears to be the practical source of truth for successful data ingestion.
-- `scrapers/*/index.ts` is a separate deployment path with drift and added complexity (run-lock/timeouts/notifications, different browser assumptions).
-
-## Per-platform divergence
-
-### Jane
-- Similar algorithm (Algolia via browser-evaluated fetch), but Railway version has embedded proxy + service lifecycle wrappers.
-- Notable drift risk: Railway Jane calls `makeSKU(..., 'JANE')` (5 args) while script version uses 4-arg `makeSKU` signature.
-
-### Leafly
-- Script: HTTP-first + robust adaptive throttling/backoff in `leafly-client.ts`.
-- Railway service: browser-first (CamoFox required) + browser API calls, direct API fallback.
-- This is a major strategy divergence.
-
-### Weedmaps
-- Script: Playwright Firefox + snapshot parsing + retry/error categorization.
-- Railway service: CamoFox-first, different extraction strategy (`page.evaluate` on link selectors), simpler quality metrics.
-- Substantially different failure modes/behavior.
-
-### Dutchie
-- Script: BrowserPool HTTP service (`browser-pool.ts`) over accessibility snapshots + category traversal.
-- Railway service: CamoFox Playwright contexts with shard parallelism and different URL pattern (`embedded-menu/{slug}`), not the same BrowserPool implementation.
+## Which is source of truth?
+- **Deployment/runtime source of truth for production schedules is `scrapers/{name}/index.ts`**, confirmed by each scraper’s `railway.toml` start command (`tsx <name>/index.ts`).
+- **Parsing and normalization logic source of truth is effectively shared from `scripts/lib` (copied as `scripts-lib`)**, so correctness depends on keeping wrappers and shared libs in sync.
 
 ---
 
-## Key integrity risks identified
+## Key Findings Summary
 
-1. **Massive null/empty brand count** in `products` (**61,707**) despite brand authority table health.
-2. **Schema drift** between expected analytics queries and live schema (`status` vs `validation_status`, missing `canonical_products.verified`).
-3. **Dual implementation drift** between local scripts and Railway service scrapers increases maintenance and correctness risk.
-4. **Weedmaps reliability instability** in historical run data (high failed job volume; many "No products found" / no-menu failures).
-
----
-
-## Quick recommendations
-
-1. **Consolidate source of truth**: pick either `scripts/*` or `scrapers/*` runtime per platform and deprecate the other path.
-2. **Fix query contract drift** by updating analytics queries to current schema (or restoring expected columns/views).
-3. **Brand backfill pass** for null brands using parser raw payload + authority mapping.
-4. **Weedmaps hardening**: improve anti-bot strategy consistency and reduce snapshot-heuristic fragility.
-5. **Add parity tests** to ensure Railway wrapper behavior matches script behavior (same slug in, comparable product/price out).
+1. Data integrity is mostly sound on referential checks (0 orphan prices, 0 duplicate SKUs), but **brand completeness is poor** (61,707 null/empty brands).
+2. Weedmaps reliability is materially weak in DB history (**~81.8% failed jobs** overall), dominated by empty/no-menu and interstitial/redirect style failures.
+3. There is schema/query contract drift for requested analytics (`status` vs `validation_status`; no explicit verified field in `canonical_products`).
+4. `scripts/*` and `scrapers/*` are not simple wrappers of each other; they have real behavior drift. Railway services are production entrypoints.
