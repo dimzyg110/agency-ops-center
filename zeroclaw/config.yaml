@@ -1,0 +1,27 @@
+# ZeroClaw configuration for client agent
+
+[core]
+name = "client-agent"
+log_level = "info"
+
+[provider]
+# Configure your AI provider here
+# provider = "openrouter"
+# model = "anthropic/claude-3-haiku"
+
+[memory]
+# SQLite memory with hybrid search
+type = "sqlite"
+path = "/data/memory.db"
+
+[channels]
+# Enable Discord channel
+discord = true
+
+[channels_config.discord]
+# Bot token will be set via environment variable
+# token = "${DISCORD_TOKEN}"
+allowed_users = ["*"]
+
+[tools]
+# Configure tools the agent can use
