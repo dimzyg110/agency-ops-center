@@ -7,42 +7,31 @@ These apply to ALL services:
 | Variable | Description | Required |
 |----------|-------------|----------|
 | `OPENROUTER_API_KEY` | OpenRouter API key (default AI provider) | Yes |
-| `OPENROUTER_BASE_URL` | OpenRouter base URL (optional) | No |
-| `ANTHROPIC_API_KEY` | Anthropic API key | No |
 | `DISCORD_WEBHOOK_URL` | Discord webhook for bot-bus | Yes |
-| `DISCORD_TOKEN` | Discord bot token for all agents | Yes |
+| `DISCORD_TOKEN` | Discord bot token | Yes (can use same for all) |
 
-## Service-Specific
+## Do You Need Multiple Discord Tokens?
 
-### bot-bus
-| Variable | Description |
-|----------|-------------|
-| `DISCORD_WEBHOOK_URL` | Where to forward messages |
+**No** - One token works for all agents:
+- All ZeroClaw agents can share `DISCORD_TOKEN`
+- Bot-bus forwards all messages to the same Discord channel
 
-### All ZeroClaw agents
-| Variable | Description |
-|----------|-------------|
-| `DISCORD_TOKEN` | Bot token to connect to Discord |
-| `OPENROUTER_API_KEY` | AI provider |
-| `ANTHROPIC_API_KEY` | Alternative AI provider |
+**Yes** - If you want each agent to appear as a different user:
+- Create separate Discord apps at https://discord.com/developers/applications
+- Each gets own token
+- Update each agent's `config.yaml` with different token
 
-## Recommended: Set at Project Level
+## Example: One Token for All
 
-In Railway → Project → Variables, add:
-
-```
-OPENROUTER_API_KEY=your_key_here
-OPENROUTER_BASE_URL=https://openrouter.ai/api/v1
+```yaml
+# In Railway Project Variables
+DISCORD_TOKEN=one_bot_token_for_all_agents
+OPENROUTER_API_KEY=your_key
 DISCORD_WEBHOOK_URL=https://discord.com/api/webhooks/...
-DISCORD_TOKEN=your_bot_token
 ```
 
-Then each service inherits these automatically.
-
-## Per-Service Overrides
-
-If needed, you can override per service:
-- bot-bus
-- zeroclaw-roviq
-- zeroclaw-glass
-- zeroclaw-roviq-clients
+All agents in `config.yaml`:
+```yaml
+[channels_config.discord]
+token = "${DISCORD_TOKEN}"
+```
