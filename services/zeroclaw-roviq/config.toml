@@ -1,4 +1,4 @@
-api_key = "${OPENROUTER_API_KEY}"
+api_key = "sk-or-v1-placeholder"
 default_provider = "openrouter"
 default_model = "anthropic/claude-sonnet-4-20250514"
 default_temperature = 0.7
