@@ -13,9 +13,15 @@ api_key = "${OPENROUTER_API_KEY}"
 type = "sqlite"
 path = "/data/memory.db"
 
+[gateway]
+allow_public_bind = true
+
 [channels]
 discord = true
 
 [channels_config.discord]
 token = "${DISCORD_TOKEN_GLASS}"
 allowed_users = ["*"]
+
+[tools]
+webhook_url = "${BOT_BUS_URL}"

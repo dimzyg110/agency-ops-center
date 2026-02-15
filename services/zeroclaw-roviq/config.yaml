@@ -20,6 +20,9 @@ discord = true
 token = "${DISCORD_TOKEN_ROVIQ}"
 allowed_users = ["*"]
 
+[gateway]
+allow_public_bind = true
+
 [tools]
 # Webhook for bot-bus communication
 webhook_url = "${BOT_BUS_URL}"

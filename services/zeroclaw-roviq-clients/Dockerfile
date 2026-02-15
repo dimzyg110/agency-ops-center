@@ -7,4 +7,4 @@ WORKDIR /data
 
 COPY config.yaml /data/config.yaml
 
-ENTRYPOINT ["zeroclaw", "gateway", "--host", "0.0.0.0", "--port", "8080"]
+ENTRYPOINT ["zeroclaw", "gateway", "--port", "8080"]
