@@ -11,18 +11,24 @@
 - Commit any uncommitted changes
 - Update daily memory log if needed
 
-## Current Issues
+## Current Status
 
-### Railway Scraper Deployment (IN PROGRESS)
-- PR #50 created: `fix/railway-scraper-deploy`
-- Config paths fixed: `/src/scrapers/...` (was missing /src)
-- DB schema fixed: `search_path TO public` (was incorrectly using glass)
-- **Awaiting:** Randy to merge PR and redeploy in Railway dashboard
+### ✅ Completed
+- PR #107: Railway scraper deploy + DB schema fix (merged)
+- PR #108: UX loss aversion (merged)
+- Scraper trigger mode: No auto-run on deploy (in PR #107)
 
-### Frontend UX (IN PROGRESS)
-- Opus implementing loss aversion changes
-- Branch: `feat/ux-loss-aversion` (spawned just now)
+### 🔄 In Progress
+- PR #109: Production-ready location filter (review in progress)
+  - Location filter now sets lat/lng for API filtering
+  - 15 MA cities with coordinates
+  - Savings counter uses real API data
 
-### Reviews
-- SCRAPER-FIXES-CODEX-REVIEW.md - pending
-- SCRAPER-FIXES-MINIMAX-REVIEW.md - pending
+### 📋 Pending
+- Merge PR #109 after review
+- Deploy Railway scrapers with new config
+- Set up cron schedules for scrapers
+
+### DB Schema (RESOLVED)
+- Schema: `public` (NOT `glass`)
+- All code updated to use `SET search_path TO public`
