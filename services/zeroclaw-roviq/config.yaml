@@ -5,9 +5,9 @@ name = "zeroclaw-roviq"
 log_level = "info"
 
 [provider]
-# Add your provider
-# provider = "openrouter"
-# model = "anthropic/claude-3-haiku"
+provider = "openrouter"
+model = "anthropic/claude-3-haiku"
+api_key = "${OPENROUTER_API_KEY}"
 
 [memory]
 type = "sqlite"
@@ -17,5 +17,5 @@ path = "/data/memory.db"
 discord = true
 
 [channels_config.discord]
-# token = "${DISCORD_TOKEN}"
+token = "${DISCORD_TOKEN}"
 allowed_users = ["*"]
