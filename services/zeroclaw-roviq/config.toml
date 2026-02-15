@@ -98,7 +98,7 @@ provider = "none"
 [gateway]
 port = 8080
 host = "0.0.0.0"
-require_pairing = true
+require_pairing = false
 allow_public_bind = true
 
 [composio]
