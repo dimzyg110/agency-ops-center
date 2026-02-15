@@ -1,7 +1,6 @@
 [build]
 builder = "docker"
-buildCommand = "docker build -t zeroclaw ."
-runCommand = "zeroclaw gateway --port $PORT"
+dockerfile = "Dockerfile"
 
 [deploy]
 numReplicas = 1
