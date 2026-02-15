@@ -5,6 +5,7 @@ RUN chmod +x /usr/local/bin/zeroclaw
 
 WORKDIR /data
 
-COPY config.toml /data/config.toml
+RUN mkdir -p /root/.zeroclaw
+COPY config.toml /root/.zeroclaw/config.toml
 
 ENTRYPOINT ["sh", "-c", "zeroclaw gateway --port ${PORT:-8080}"]
