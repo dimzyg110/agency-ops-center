@@ -6,9 +6,11 @@ api_key = "sk-placeholder"
 
 [memory]
 backend = "sqlite"
-path = "/data/memory.db"
+auto_save = true
+embedding_provider = "none"
 
 [gateway]
+host = "127.0.0.1"
 allow_public_bind = true
 port = 8080
 
