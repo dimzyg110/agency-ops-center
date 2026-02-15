@@ -4,6 +4,3 @@ builder = "RAILPACK"
 [deploy]
 numReplicas = 1
 restart = true
-
-[environment]
-  PORT = "8080"
