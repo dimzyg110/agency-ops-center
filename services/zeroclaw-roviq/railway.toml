@@ -1,6 +1,5 @@
 [build]
-builder = "docker"
-dockerfile = "Dockerfile"
+builder = "RAILPACK"
 
 [deploy]
 numReplicas = 1
