@@ -8,4 +8,4 @@ WORKDIR /data
 RUN mkdir -p /root/.zeroclaw
 COPY config.toml /root/.zeroclaw/config.toml
 
-ENTRYPOINT ["sh", "-c", "zeroclaw gateway --host 0.0.0.0 --port ${PORT:-8080}"]
+ENTRYPOINT ["sh", "-c", "zeroclaw gateway --port ${PORT:-8080}"]
