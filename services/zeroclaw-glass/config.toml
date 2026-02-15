@@ -77,6 +77,10 @@ interval_minutes = 30
 [channels_config]
 cli = true
 
+[channels_config.discord]
+bot_token = "${DISCORD_TOKEN_GLASS}"
+allowed_users = ["*"]
+
 [memory]
 backend = "sqlite"
 auto_save = true
