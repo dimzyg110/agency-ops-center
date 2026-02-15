@@ -1,8 +1,16 @@
+# Build stage - compile ZeroClaw from source
+FROM rust:1.75-bookworm AS builder
+
+RUN apt-get update && apt-get install -y curl git
+RUN git clone https://github.com/theonlyhennygod/zeroclaw.git /build
+WORKDIR /build
+RUN cargo build --release
+
+# Runtime stage
 FROM debian:bookworm-slim
 
-RUN apt-get update && apt-get install -y curl && \
-    curl -L -o /usr/local/bin/zeroclaw https://github.com/theonlyhennygod/zeroclaw/releases/latest/download/zeroclaw-x86_64-unknown-linux-gnu && \
-    chmod +x /usr/local/bin/zeroclaw
+COPY --from=builder /build/target/release/zeroclaw /usr/local/bin/
+RUN chmod +x /usr/local/bin/zeroclaw
 
 WORKDIR /data
 
