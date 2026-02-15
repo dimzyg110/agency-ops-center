@@ -18,5 +18,5 @@ port = 8080
 discord = true
 
 [channels_config.discord]
-token = "placeholder"
+bot_token = "placeholder"
 allowed_users = ["*"]
