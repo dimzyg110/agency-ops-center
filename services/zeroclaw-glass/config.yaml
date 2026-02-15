@@ -17,5 +17,5 @@ path = "/data/memory.db"
 discord = true
 
 [channels_config.discord]
-token = "${DISCORD_TOKEN}"
+token = "${DISCORD_TOKEN_GLASS}"
 allowed_users = ["*"]
