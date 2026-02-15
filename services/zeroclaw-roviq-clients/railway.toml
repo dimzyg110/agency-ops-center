@@ -1,9 +1,10 @@
 [build]
-builder = "RAILPACK"
+builder = "dockerfile"
 
 [deploy]
-numReplicas = 1
-restart = true
+healthcheckPath = "/setup/healthz"
+healthcheckTimeout = 300
+restartPolicyType = "on_failure"
 
-[environment]
-  PORT = "8080"
+[variables]
+PORT = "8080"
