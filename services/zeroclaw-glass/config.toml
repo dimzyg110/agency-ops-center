@@ -2,21 +2,19 @@
 
 default_provider = "openrouter"
 default_model = "anthropic/claude-3-haiku"
-api_key = "${OPENROUTER_API_KEY}"
+api_key = "sk-placeholder"
 
 [memory]
-type = "sqlite"
+backend = "sqlite"
 path = "/data/memory.db"
 
 [gateway]
 allow_public_bind = true
+port = 8080
 
 [channels]
 discord = true
 
 [channels_config.discord]
-token = "${DISCORD_TOKEN_GLASS}"
+token = "placeholder"
 allowed_users = ["*"]
-
-[tools]
-webhook_url = "${BOT_BUS_URL}"
