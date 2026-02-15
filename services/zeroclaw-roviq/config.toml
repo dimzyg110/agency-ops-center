@@ -1,17 +1,15 @@
 # ZeroClaw - Roviq Agency Operations
 
-[core]
-name = "zeroclaw-roviq"
-log_level = "info"
-
-[provider]
-provider = "openrouter"
-model = "anthropic/claude-3-haiku"
+default_provider = "openrouter"
+default_model = "anthropic/claude-3-haiku"
 api_key = "${OPENROUTER_API_KEY}"
 
 [memory]
 type = "sqlite"
 path = "/data/memory.db"
+
+[gateway]
+allow_public_bind = true
 
 [channels]
 discord = true
@@ -19,9 +17,6 @@ discord = true
 [channels_config.discord]
 token = "${DISCORD_TOKEN_ROVIQ}"
 allowed_users = ["*"]
-
-[gateway]
-allow_public_bind = true
 
 [tools]
 webhook_url = "${BOT_BUS_URL}"

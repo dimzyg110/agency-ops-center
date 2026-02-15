@@ -1,12 +1,7 @@
 # ZeroClaw - GLASS Operations
 
-[core]
-name = "zeroclaw-glass"
-log_level = "info"
-
-[provider]
-provider = "openrouter"
-model = "anthropic/claude-3-haiku"
+default_provider = "openrouter"
+default_model = "anthropic/claude-3-haiku"
 api_key = "${OPENROUTER_API_KEY}"
 
 [memory]
