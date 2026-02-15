@@ -1,0 +1,21 @@
+# ZeroClaw Configuration Template
+
+[core]
+name = "zeroclaw-template"
+log_level = "info"
+
+[provider]
+provider = "openrouter"
+model = "anthropic/claude-3-haiku"
+api_key = "${OPENROUTER_API_KEY}"
+
+[memory]
+type = "sqlite"
+path = "/data/memory.db"
+
+[channels]
+discord = true
+
+[channels_config.discord]
+token = "${DISCORD_TOKEN}"
+allowed_users = ["*"]

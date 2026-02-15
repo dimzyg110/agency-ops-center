@@ -1,0 +1,11 @@
+[build]
+builder = "docker"
+buildCommand = "docker build -t zeroclaw ."
+runCommand = "zeroclaw gateway --port $PORT"
+
+[deploy]
+numReplicas = 1
+restart = true
+
+[environment]
+  PORT = "8080"
