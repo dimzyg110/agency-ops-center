@@ -1,57 +1,61 @@
-# Services
+# ZeroClaw Agents
 
-All agent services go here.
+Easily create new ZeroClaw agents by copying the template folder.
 
-## Structure
-
-```
-services/
-├── docker-compose.yml    # Run all services
-├── bot-bus/            # Message relay + Discord forwarding
-│   ├── server.js
-│   ├── discord-forwarder.js
-│   ├── bot-client.js
-│   ├── package.json
-│   └── railway.json
-└── zeroclaw/           # Client agent (duplicate folder for each client)
-    ├── Dockerfile
-    ├── config.yaml
-    └── railway.toml
-```
-
-## Multiple Clients
-
-Each client gets their own ZeroClaw instance:
+## Quick Start
 
 ```bash
-# Copy zeroclaw folder for each client
-cp -r zeroclaw zeroclaw-ac      # Client: AC
-cp -r zeroclaw zeroclaw-ch      # Client: CH
-cp -r zeroclaw zeroclaw-hop     # Client: HOP
+# Copy template for a new agent
+cp -r zeroclaw-template zeroclaw-roviq
+cp -r zeroclaw-template zeroclaw-glass
+cp -r zeroclaw-template zeroclaw-ac
 ```
 
-Then update `docker-compose.yml`:
+## Included Templates
+
+### zeroclaw-template
+Base template - copy this to create new agents
+
+### zeroclaw-roviq
+Roviq agency operations agent
+
+### zeroclaw-glass
+GLASS data/operations agent
+
+## Each Agent Folder Contains
+
+```
+zeroclaw-[name]/
+├── Dockerfile
+├── config.yaml       # Edit name and settings
+└── railway.toml     # Railway deploy config
+```
+
+## Configuration
+
+Edit `config.yaml` for each agent:
+
+```yaml
+[core]
+name = "zeroclaw-roviq"  # Change this
+```
+
+## Adding to Docker Compose
 
 ```yaml
 services:
-  zeroclaw-ac:
-    build: ./zeroclaw-ac
-  zeroclaw-ch:
-    build: ./zeroclaw-ch
-  zeroclaw-hop:
-    build: ./zeroclaw-hop
+  zeroclaw-roviq:
+    build: ./zeroclaw-roviq
+    env_file:
+      - ../.env
+    volumes:
+      - ../data/zeroclaw-roviq:/data
+
+  zeroclaw-glass:
+    build: ./zeroclaw-glass
+    # ...
 ```
 
-## Bot Bus Communication
+## Railway Deployment
 
-All agents communicate through the bot-bus:
-
-```
-[ZeroClaw AC] ---> [Bot Bus] ---> [Discord]
-[ZeroClaw CH] ----> [Bot Bus] ---> [Discord]
-[COO Agent] ------> [Bot Bus] ---> [Discord]
-```
-
-- Agents POST to `/relay` to send messages
-- Agents GET `/subscribe?bot=agent-id` to receive messages (SSE)
-- Messages also forward to Discord for human visibility
+Each folder has its own `railway.toml` - deploy individually to Railway.

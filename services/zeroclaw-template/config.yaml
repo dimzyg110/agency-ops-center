@@ -1,0 +1,24 @@
+# ZeroClaw Configuration Template
+# Copy this folder and rename for your agent
+
+[core]
+# CHANGE THIS - unique name for this agent
+name = "zeroclaw-template"
+log_level = "info"
+
+[provider]
+# Add your provider config
+# provider = "openrouter"
+# model = "anthropic/claude-3-haiku"
+# api_key = "${OPENROUTER_API_KEY}"
+
+[memory]
+type = "sqlite"
+path = "/data/memory.db"
+
+[channels]
+discord = true
+
+[channels_config.discord]
+# token = "${DISCORD_TOKEN}"
+allowed_users = ["*"]
