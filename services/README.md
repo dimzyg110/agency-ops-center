@@ -63,7 +63,25 @@ cp -r services/zeroclaw-template services/zeroclaw-myagent
 
 ## Railway Deployment
 
-Each service has `railway.toml` - deploy individually or use GitHub integration.
+### 1. Set Global Variables
+
+In Railway → Your Project → **Variables**, add:
+
+```
+OPENROUTER_API_KEY=your_key_here
+DISCORD_WEBHOOK_URL=https://discord.com/api/webhooks/...
+DISCORD_TOKEN=your_bot_token
+```
+
+These apply to ALL services automatically.
+
+### 2. Deploy Each Service
+
+Each folder has `railway.toml` - deploy via:
+- GitHub integration (recommended)
+- Railway CLI: `railway up`
+
+See `ENV.md` for full variable list.
 
 ## Bot-to-Bot Communication
 
