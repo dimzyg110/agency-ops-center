@@ -1,0 +1,21 @@
+# ZeroClaw - Roviq Client-Facing Agent
+
+[core]
+name = "zeroclaw-roviq-clients"
+log_level = "info"
+
+[provider]
+# Add your provider
+# provider = "openrouter"
+# model = "anthropic/claude-3-haiku"
+
+[memory]
+type = "sqlite"
+path = "/data/memory.db"
+
+[channels]
+discord = true
+
+[channels_config.discord]
+# token = "${DISCORD_TOKEN}"
+allowed_users = ["*"]

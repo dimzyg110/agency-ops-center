@@ -1,61 +1,104 @@
-# ZeroClaw Agents
+# Roviq Agency Services
 
-Easily create new ZeroClaw agents by copying the template folder.
+Infrastructure for running multiple AI agents with inter-communication.
 
 ## Quick Start
 
 ```bash
-# Copy template for a new agent
-cp -r zeroclaw-template zeroclaw-roviq
-cp -r zeroclaw-template zeroclaw-glass
-cp -r zeroclaw-template zeroclaw-ac
+# 1. Clone this repo
+git clone https://github.com/Roviq-AI/agency-ops-center.git
+cd agency-ops-center
+
+# 2. Copy environment template
+cp .env.example .env
+
+# 3. Edit .env with your API keys and tokens
+
+# 4. Run all services
+docker compose -f services/docker-compose.yml up -d
 ```
 
-## Included Templates
+## Services
 
-### zeroclaw-template
-Base template - copy this to create new agents
+| Service | Description | Port |
+|---------|-------------|------|
+| **bot-bus** | Message relay + Discord forwarding | 3000 |
+| **zeroclaw-roviq** | Roviq agency operations | 8080 |
+| **zeroclaw-glass** | GLASS data/operations | 8081 |
+| **zeroclaw-roviq-clients** | Client-facing agent | 8082 |
+
+## Agents
 
 ### zeroclaw-roviq
-Roviq agency operations agent
+Internal agency operations - coordinates all Roviq work.
 
-### zeroclaw-glass
-GLASS data/operations agent
+### zeroclaw-glass  
+GLASS platform operations - manages scrapers, data, API.
 
-## Each Agent Folder Contains
+### zeroclaw-roviq-clients
+Client-facing agent - handles client communications.
 
-```
-zeroclaw-[name]/
-├── Dockerfile
-├── config.yaml       # Edit name and settings
-└── railway.toml     # Railway deploy config
-```
+## Environment Variables
 
-## Configuration
+Create `.env` file:
 
-Edit `config.yaml` for each agent:
+```bash
+# Bot Bus
+DISCORD_WEBHOOK_URL=your_discord_webhook_url
 
-```yaml
-[core]
-name = "zeroclaw-roviq"  # Change this
+# ZeroClaw (each agent)
+DISCORD_TOKEN=your_bot_token
+OPENROUTER_API_KEY=your_api_key
 ```
 
-## Adding to Docker Compose
+## Adding New Agents
 
-```yaml
-services:
-  zeroclaw-roviq:
-    build: ./zeroclaw-roviq
-    env_file:
-      - ../.env
-    volumes:
-      - ../data/zeroclaw-roviq:/data
+```bash
+# 1. Copy template
+cp -r services/zeroclaw-template services/zeroclaw-myagent
 
-  zeroclaw-glass:
-    build: ./zeroclaw-glass
-    # ...
+# 2. Edit config.yaml - change name
+# 3. Add to docker-compose.yml
 ```
 
 ## Railway Deployment
 
-Each folder has its own `railway.toml` - deploy individually to Railway.
+Each service has `railway.toml` - deploy individually or use GitHub integration.
+
+## Bot-to-Bot Communication
+
+All agents communicate through bot-bus:
+
+```
+[zeroclaw-roviq]     --> [Bot Bus] --> [Discord]
+[zeroclaw-glass]     --> [Bot Bus] --> [Discord]  
+[zeroclaw-clients]  --> [Bot Bus] --> [Discord]
+[COO (OpenClaw)]    --> [Bot Bus] --> [Discord]
+```
+
+### API
+
+**Send message:**
+```bash
+curl -X POST http://localhost:3000/relay \
+  -H "Content-Type: application/json" \
+  -d '{"from": "zeroclaw-roviq", "to": "zeroclaw-glass", "text": "Hello"}'
+```
+
+**Subscribe to messages:**
+```bash
+curl -N http://localhost:3000/subscribe?bot=zeroclaw-glass
+```
+
+## Local Development
+
+```bash
+# Run single service
+docker compose -f services/docker-compose.yml up bot-bus
+
+# View logs
+docker compose -f services/docker-compose.yml logs -f
+
+# Stop all
+docker compose -f services/docker-compose.yml down
+```

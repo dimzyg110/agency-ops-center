@@ -11,7 +11,7 @@ services:
       - ../.env
     restart: unless-stopped
 
-  # ZeroClaw Agents - Copy template for more
+  # ZeroClaw Agents
   zeroclaw-roviq:
     build: ./zeroclaw-roviq
     env_file:
@@ -28,11 +28,10 @@ services:
       - ../data/zeroclaw-glass:/data
     restart: unless-stopped
 
-  # Add more agents easily:
-  # zeroclaw-ac:
-  #   build: ./zeroclaw-ac
-  #   env_file:
-  #     - ../.env
-  #   volumes:
-  #     - ../data/zeroclaw-ac:/data
-  #   restart: unless-stopped
+  zeroclaw-roviq-clients:
+    build: ./zeroclaw-roviq-clients
+    env_file:
+      - ../.env
+    volumes:
+      - ../data/zeroclaw-roviq-clients:/data
+    restart: unless-stopped
