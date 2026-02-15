@@ -1,6 +1,6 @@
 FROM debian:bookworm-slim
 
-COPY bin/zeroclaw /usr/local/bin/
+COPY zeroclaw /usr/local/bin/
 RUN chmod +x /usr/local/bin/zeroclaw
 
 WORKDIR /data
