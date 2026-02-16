@@ -310,7 +310,63 @@ This file captures the major operational history, decisions, incidents, and ship
 
 ---
 
-## 11) Where to look for detailed context
+## 11) Current projects and portfolio snapshot (as of 2026-02-16)
+
+### A) Primary build: GLASS
+- Repo: `Roviq-AI/glass`
+- Live surface: `glassintel.xyz`
+- Current reality:
+  - core platform phases largely built
+  - reliability and data-quality hardening still active
+  - Weedmaps extraction reliability remains a focused execution lane
+- Known execution tracks:
+  - consumer pricing site UX cleanup (hero/product page refinement)
+  - dispensary visibility/claim flow progression
+  - scraper infrastructure migration in parallel path (current prod untouched)
+
+### B) Client portfolio (active)
+
+#### AC (Advanced Cultivators)
+- Ongoing:
+  - weekly social/content production
+  - YouTube/media strategy
+  - toll processing outbound campaign
+- Near-term dependency:
+  - outbound blast approval
+
+#### CH (Cannabis Healing)
+- Ongoing:
+  - weekly social graphics
+  - SEO expansion and content planning
+  - automation opportunities
+- Near-term dependency:
+  - analytics export + platform access confirmation
+
+#### HOP (House of Pride)
+- Ongoing:
+  - GTM strategy + copy + launch prep
+- Near-term dependency:
+  - label/photo assets finalized
+
+### C) Lead pipeline (strategic)
+- **Decoded**: proposal/demo stage, awaiting decision movement.
+- **Delivered**: partnership proposal delivered; follow-up meeting timing is key constraint.
+
+### D) Revenue and ops initiatives
+- Newsletter funnel remains strategic operating channel but needs template/content overhaul.
+- Cue pathway and legal/partner dependencies remain partially blocked.
+- Infrastructure effort split:
+  - keep current services stable
+  - establish reproducible migration infrastructure as code
+
+### E) Active blockers pattern
+- approvals and external access are recurring critical path blockers
+- data reliability gates must clear before public GTM escalation
+- deployment/access operations need stable runbooks to avoid productivity loss during incident recovery
+
+---
+
+## 12) Where to look for detailed context
 
 - Core operating behavior:
   - `openclaw-setup/core/AGENTS.md`
