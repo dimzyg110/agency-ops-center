@@ -145,6 +145,12 @@ Create `.env` file:
 ```bash
 # Bot Bus
 DISCORD_WEBHOOK_URL=your_discord_webhook_url
+DISCORD_MIRROR_ENABLED=true
+DISCORD_BOT_TOKEN=your_discord_bot_token
+DISCORD_MIRROR_SOURCE_CHANNEL_ID=your_shared_group_channel_id
+DISCORD_MIRROR_TO_BUS_ENABLED=true
+DISCORD_MIRROR_BOTS=zeroclaw-roviq,zeroclaw-glass,zeroclaw-roviq-clients
+RELAY_MAX_HOPS=5
 
 # ZeroClaw (each agent needs separate Discord bot tokens)
 DISCORD_TOKEN_ROVIQ=your_roviq_bot_token
@@ -161,19 +167,41 @@ See `ENV.md` for full variable list.
 
 ## Bot-Bus API
 
-The bot-bus relays messages between agents and forwards to Discord.
+The bot-bus relays messages between agents, forwards to Discord, and can fanout human Discord messages to all bots.
 
-**Send message:**
+**Send direct message:**
 ```bash
 curl -X POST http://localhost:3000/relay \
   -H "Content-Type: application/json" \
   -d '{"from": "zeroclaw-roviq", "to": "zeroclaw-glass", "text": "Hello"}'
 ```
 
+**Send to all subscribers:**
+```bash
+curl -X POST http://localhost:3000/relay \
+  -H "Content-Type: application/json" \
+  -d '{"from": "coo", "to": "all", "text": "Standup in 5"}'
+```
+
+**Explicit broadcast endpoint:**
+```bash
+curl -X POST http://localhost:3000/broadcast \
+  -H "Content-Type: application/json" \
+  -d '{"from":"discord-human","text":"sanity check","targets":["zeroclaw-roviq","zeroclaw-glass","zeroclaw-roviq-clients"]}'
+```
+
 **Subscribe to messages (SSE):**
 ```bash
 curl -N http://localhost:3000/subscribe?bot=zeroclaw-glass
 ```
+
+**Discord group → bus fanout mode:**
+- Enable `DISCORD_MIRROR_ENABLED=true`
+- Set `DISCORD_MIRROR_SOURCE_CHANNEL_ID` to your shared Discord channel
+- Enable `DISCORD_MIRROR_TO_BUS_ENABLED=true`
+- Set `DISCORD_MIRROR_BOTS` with comma-separated bot ids
+- Human messages in that channel are published to all listed bots (no tagging required)
+- Loop guard is enforced via `RELAY_MAX_HOPS` (default 5)
 
 ---
 
