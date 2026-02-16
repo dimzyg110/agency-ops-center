@@ -119,6 +119,14 @@ const BUS_SUBSCRIBE_ENABLED = String(process.env.BUS_SUBSCRIBE_ENABLED || '').to
 const BUS_URL = process.env.BUS_URL?.trim() || 'http://bot-bus:8080';
 const BUS_BOT_NAME = process.env.BUS_BOT_NAME?.trim() || process.env.SERVICE_NAME?.trim() || 'zeroclaw-roviq';
 const BUS_RECONNECT_MS = Number.parseInt(process.env.BUS_RECONNECT_MS ?? '3000', 10);
+const BUS_MAX_RECONNECT_MS = Number.parseInt(process.env.BUS_MAX_RECONNECT_MS ?? '30000', 10);
+const BUS_FETCH_TIMEOUT_MS = Number.parseInt(process.env.BUS_FETCH_TIMEOUT_MS ?? '30000', 10);
+const BUS_EVENT_BUFFER_CAP = Number.parseInt(process.env.BUS_EVENT_BUFFER_CAP ?? '100', 10);
+
+// Bus subscriber state
+let busAbortController = null;
+let currentBackoffMs = BUS_RECONNECT_MS;
+const eventBuffer = [];
 
 // Always run the built-from-source CLI entry directly to avoid PATH/global-install mismatches.
 const OPENCLAW_ENTRY =
@@ -587,14 +595,27 @@ async function injectBusSystemEvent(payload) {
   }
 }
 
-async function subscribeToBusOnce() {
+async function subscribeToBusOnce(signal) {
   const url = `${BUS_URL.replace(/\/$/, '')}/subscribe?bot=${encodeURIComponent(BUS_BOT_NAME)}`;
   console.log(`[bus] connecting ${url}`);
+
+  // Create abort controller for fetch timeout
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), BUS_FETCH_TIMEOUT_MS);
+
+  // If signal is already aborted, abort immediately
+  if (signal?.aborted) {
+    clearTimeout(timeoutId);
+    throw new Error('aborted');
+  }
 
   const res = await fetch(url, {
     method: "GET",
     headers: { Accept: "text/event-stream" },
+    signal: controller.signal,
   });
+
+  clearTimeout(timeoutId);
 
   if (!res.ok || !res.body) {
     throw new Error(`subscribe failed: HTTP ${res.status}`);
@@ -604,32 +625,65 @@ async function subscribeToBusOnce() {
   const decoder = new TextDecoder();
   let buffer = "";
 
-  while (true) {
-    const { value, done } = await reader.read();
-    if (done) break;
+  // Handle abort from parent signal
+  const abortPromise = new Promise((_, reject) => {
+    if (!signal) return;
+    signal.addEventListener('abort', () => {
+      reader.cancel().catch(() => {});
+      reject(new Error('aborted'));
+    });
+  });
 
-    buffer += decoder.decode(value, { stream: true });
+  try {
+    while (true) {
+      // Race between reader.read() and abort signal
+      const readPromise = reader.read();
+      const { value, done } = await Promise.race([readPromise, abortPromise]);
+      
+      if (done || signal?.aborted) break;
 
-    let idx;
-    while ((idx = buffer.indexOf("\n\n")) !== -1) {
-      const rawEvent = buffer.slice(0, idx);
-      buffer = buffer.slice(idx + 2);
+      buffer += decoder.decode(value, { stream: true });
 
-      const dataLine = rawEvent
-        .split("\n")
-        .find((line) => line.startsWith("data:"));
-      if (!dataLine) continue;
+      let idx;
+      while ((idx = buffer.indexOf("\n\n")) !== -1) {
+        const rawEvent = buffer.slice(0, idx);
+        buffer = buffer.slice(idx + 2);
 
-      const json = dataLine.slice(5).trim();
-      if (!json) continue;
+        const dataLine = rawEvent
+          .split("\n")
+          .find((line) => line.startsWith("data:"));
+        if (!dataLine) continue;
 
-      try {
-        const payload = JSON.parse(json);
+        const json = dataLine.slice(5).trim();
+        if (!json) continue;
+
+        try {
+          const payload = JSON.parse(json);
+          // Backpressure protection: cap event buffer
+          if (eventBuffer.length < BUS_EVENT_BUFFER_CAP) {
+            eventBuffer.push(payload);
+          } else {
+            console.warn(`[bus] event buffer full (${BUS_EVENT_BUFFER_CAP}), dropping event`);
+          }
+        } catch (err) {
+          console.error(`[bus] bad payload: ${json}`);
+        }
+      }
+
+      // Process buffered events with backpressure
+      while (eventBuffer.length > 0) {
+        const payload = eventBuffer.shift();
         await injectBusSystemEvent(payload);
-      } catch (err) {
-        console.error(`[bus] bad payload: ${json}`);
       }
     }
+
+    // Drain remaining buffer on exit
+    while (eventBuffer.length > 0) {
+      const payload = eventBuffer.shift();
+      await injectBusSystemEvent(payload);
+    }
+  } finally {
+    reader.releaseLock();
   }
 
   throw new Error("SSE stream ended");
@@ -641,15 +695,27 @@ function startBusSubscriberLoop() {
     return;
   }
 
+  busAbortController = new AbortController();
+  currentBackoffMs = BUS_RECONNECT_MS;
+
+  // Jitter function for exponential backoff
+  const jitter = () => Math.random() * 0.3 + 0.85; // 85-115% multiplier
+
   (async () => {
-    while (true) {
+    while (!busAbortController.signal.aborted) {
       try {
-        await subscribeToBusOnce();
+        await subscribeToBusOnce(busAbortController.signal);
       } catch (err) {
+        if (busAbortController.signal.aborted) break;
         console.error(`[bus] subscriber disconnected: ${String(err)}`);
       }
-      await sleep(BUS_RECONNECT_MS);
+      if (busAbortController.signal.aborted) break;
+      
+      // Exponential backoff with jitter
+      await sleep(Math.floor(currentBackoffMs * jitter()));
+      currentBackoffMs = Math.min(currentBackoffMs * 2, BUS_MAX_RECONNECT_MS);
     }
+    console.log("[bus] subscriber loop stopped");
   })();
 }
 
@@ -1083,6 +1149,13 @@ server.on("upgrade", async (req, socket, head) => {
 
 process.on("SIGTERM", () => {
   // Best-effort shutdown
+  console.log("[wrapper] SIGTERM received, shutting down...");
+  
+  // Stop bus subscriber gracefully
+  if (busAbortController) {
+    busAbortController.abort();
+  }
+
   try {
     if (gatewayProc) gatewayProc.kill("SIGTERM");
   } catch {
