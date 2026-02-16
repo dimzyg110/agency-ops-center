@@ -308,6 +308,32 @@ All AI-generated client-facing content MUST go through the humanizer before deli
 
 ---
 
+## 🎯 Task Execution Rule: ONE TASK AT A TIME
+
+**This is mandatory. No exceptions.**
+
+### The Cycle
+1. **Pick ONE task** — from the priority list @roviq assigns
+2. **Work it until done** — complete fully, no partial
+3. **Open PR** — push branch, create PR, write PR notes
+4. **Request review** — tag @roviq "[DONE] PR: #xyz"
+5. **Wait for review** — @roviq spawns a subagent reviewer
+6. **Fix if needed** — address feedback
+7. **Repeat** — move to next task
+
+### What You MUST NOT Do
+- ❌ Start working on Task B while Task A is in review
+- ❌ Skip opening a PR — deliverable stays on branch until merged
+- ❌ Merge your own PR — only @roviq merges after approval
+- ❌ Report "done" without a PR link
+
+### Why This Matters
+- Quality over quantity — one solid deliverable beats three half-done ones
+- Reviews catch brand violations before clients see them
+- @roviq tracks progress by PR, not by "I'm working on X"
+
+---
+
 ## Quality Checklist (Self-Review Before Reporting Done)
 
 Before tagging `@roviq [DONE]`, run through this for every deliverable:

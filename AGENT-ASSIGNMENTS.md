@@ -17,34 +17,29 @@
 |------|---------|----------|
 | **GLASS Project** | `projects/glass/` — Next.js app, API routes, DB schema | 🔴 P0 |
 | **Database** | Railway Postgres — `postgresql://postgres:***@turntable.proxy.rlwy.net:18582/railway` | 🔴 P0 |
-| **Scraper Config** | Firecrawl, Playwright, CamoFox keys | 🔴 P0 |
+| **Scraper Config** | Playwright, CamoFox (NO Firecrawl) | 🔴 P0 |
 | **Bot-bus Access** | For inter-agent messaging | 🟡 P1 |
 | **GitHub Access** | Push to `Roviq-AI/glass` repo | 🔴 P0 |
 
-### 🎯 Assigned Tasks
+### 🎯 Priority List
 
-#### 🔥 TONIGHT (Sunday Night)
-- [ ] **Fix Weedmaps scraper** — currently broken, debug and deploy
-- [ ] **Get Jane.com scraper running** — nightly run
-- [ ] **Get Dutchie scraper running** — nightly run
-- [ ] **Fix Leafly scraper** — nightly run
-- [ ] **Set up daily automation + monitoring** — cron jobs, alerts
+#### P0 (Do First)
+- [ ] Fix Weedmaps scraper (broken)
+- [ ] Get Jane.com scraper running nightly
+- [ ] Get Dutchie scraper running nightly
+- [ ] Fix Leafly scraper nightly
+- [ ] Set up daily scraper automation + monitoring
 
-#### This Week (P1)
-- [ ] **Delivery waitlist flow** — area input → waitlist capture
-- [ ] **Map + Near Me view** — Google Maps style, mobile-first
-- [ ] **Dispensary claim system** — interactive claiming
-- [ ] **Get all CH products verified** — run through parser
+#### P1
+- [ ] Delivery waitlist flow (area input → waitlist capture)
+- [ ] Map + Near Me view (Google Maps style, mobile-first)
+- [ ] Dispensary claim system
+- [ ] Get all CH products verified
 
-#### This Week (P2)
-- [ ] **Better analytics + comparisons** — benchmarking tools
-- [ ] **Security audit** — AI pentest before launch
-- [ ] **Weedmaps scraping improvement** — productionize
-
-### 📋 Dependencies
-- Needs GLASS repo synced to workspace
-- Needs Postgres connection string in env
-- Needs scraper API keys (Firecrawl, etc.)
+#### P2
+- [ ] Better analytics + comparisons
+- [ ] Security audit (AI pentest before launch)
+- [ ] Weedmaps scraping improvement
 
 ---
 
@@ -64,95 +59,65 @@
 | **Canva/Design Tools** | For social content | 🟡 P1 |
 | **GitHub Access** | Push to client repos | 🔴 P0 |
 
-### 🎯 Assigned Tasks
+### 🎯 Priority List
 
-#### 🔥 TONIGHT (Sunday Night)
-- [ ] **AC Social Flow Setup**
-  - Get Vertex API working for Nano Banana Pro (images)
-  - Test Seedance Pro 2 OR Veo 3.2 (Vertex) for videos
-  - Create test output for review
-- [ ] **AC Game Plan Doc** — Start strategy doc using GLASS data
+#### P0 (Do First)
+- [ ] AC: Get Vertex API working for Nano Banana Pro (images)
+- [ ] AC: Test video generation (Seedance Pro 2 OR Veo 3.2 from Vertex)
+- [ ] AC: Start AC Game Plan doc
+- [ ] CH: Merge SEO links PR
 
-#### This Week (P1)
-- [ ] **AC Growth Strategy**
-  - IG + TikTok strategy (no flower/plant content)
-  - TikTok video concepts with Nano Banana Pro + Seedance 2.0
-  - LinkedIn content strategy
-  - Use live COAs from AC website for social proof
-  - Prerolls promotion flow
+#### P1
+- [ ] AC Growth Strategy (IG + TikTok, no flower/plant)
+- [ ] AC TikTok video concepts (Nano Banana Pro + Seedance 2.0)
+- [ ] AC LinkedIn content strategy
+- [ ] AC Use live COAs for social proof
+- [ ] AC Prerolls promotion flow
+- [ ] CH Finalize pages
+- [ ] CH 4-week content schedule
+- [ ] Roviq GTM Plan for GlassIntel
+- [ ] Roviq Social Engine setup (auto-create IG/TikTok)
 
-- [ ] **CH Web**
-  - Merge PR with SEO links: https://github.com/randytorres/ch-web/pulls
-  - Finalize CH pages
-  - 4-week content schedule
-
-- [ ] **Roviq Social Engine**
-  - GTM Plan for GlassIntel
-  - Set up auto-create for Instagram/TikTok content
-  - Configure guardrails (no spam, human-sounding)
-
-#### This Week (P2)
-- [ ] **CH Campaigns**
-  - 420 push campaign
-  - World Cup campaign
-  - Billboards coordination
-
-- [ ] **NeCann Promotion** — AC event promotion
-
-### 📋 Dependencies
-- Needs Vertex API key configured
-- Needs access to CH web repo
-- Needs social-tool repo synced
-- Coordinate with @glass on CH product data
+#### P2
+- [ ] CH 420 push campaign
+- [ ] CH World Cup campaign
+- [ ] CH Billboards
+- [ ] AC NeCann promotion
 
 ---
 
-## 🧠 @roviq — The Operator (That's Me)
+## 🧠 @roviq — The Operator
 
 **Role:** COO & Revenue Orchestrator  
 **Focus:** Internal ops, revenue pipeline, agent coordination
 
-### 📦 Workspace Requirements
-
-| Item | Details | Priority |
-|------|---------|----------|
-| **Main Workspace** | `agency-ops-center/` — TASKS.md, memory, docs | 🔴 P0 |
-| **Bot-bus Access** | Message relay between agents | 🔴 P0 |
-| **Discord** | #general channel for agent comms | 🔴 P0 |
-
-### 🎯 My Tasks
-
-- [ ] **Coordinate** — Assign work, track progress, resolve blockers
-- [ ] **Review** — Every deliverable gets 2+ reviews before reaching Randy
-- [ ] **Sync** — Daily check-ins with @glass and @clients
-- [ ] **Revenue** — Keep pipeline moving, surface opportunities
+### 🎯 Tasks
+- Coordinate assignments
+- Track progress
+- Resolve blockers
+- Review every deliverable (2+ reviews before Randy sees it)
 
 ---
 
-## 🚀 Tonight's Kickoff Message
+## ⚠️ WORKFLOW ENFORCEMENT
 
-Copy/paste for #general:
+**Every task follows this cycle:**
 
 ```
-📋 **SUNDAY NIGHT SPRINT — ASSIGNMENTS**
-
-**@glass** — GLASS / Tech
-P0 Tonight:
-→ Fix Weedmaps scraper (broken)
-→ Get Jane.com + Dutchie + Leafly running nightly
-→ Set up daily automation + monitoring
-Report back when done or blocked.
-
-**@clients** — Clients / Creative
-P0 Tonight:
-→ AC: Get Vertex API working for Nano Banana Pro (images)
-→ AC: Test video generation (Seedance Pro 2 or Veo 3.2)
-→ AC: Start AC Game Plan doc
-→ CH: Merge SEO links PR
-Report back when done or blocked.
-
-@roviq will coordinate and review. Let's go.
+1. ONE TASK AT A TIME — pick the highest priority not yet started
+2. DO THE WORK — complete the task fully
+3. OPEN PR — push branch, create PR, write PR notes
+4. SPAWN REVIEWER — @roviq spawns a subagent to review (different model)
+5. GET APPROVED — @roviq synthesizes feedback → Approve / Request Changes
+6. MERGE — @roviq merges to main (only after approval)
+7. REPEAT — move to next priority task
 ```
+
+**Never:**
+- Work on multiple P0 tasks simultaneously
+- Skip the PR → review → merge cycle
+- Merge your own code
+- Report "done" without a PR link
 
 ---
 
@@ -161,9 +126,6 @@ Report back when done or blocked.
 | Resource | Link |
 |----------|------|
 | GLASS Site | https://glassintel.xyz |
-| AC Website | (need URL) |
-| CH Website | (need URL) |
 | Glass Repo | https://github.com/Roviq-AI/glass |
 | CH Web Repo | https://github.com/randytorres/ch-web |
 | Social Tool | https://github.com/Roviq-AI/social-tool |
-| TASKS.md | /data/workspace/TASKS.md |
