@@ -16,6 +16,10 @@ services:
     build: ./zeroclaw-roviq
     env_file:
       - ../.env
+    environment:
+      BUS_SUBSCRIBE_ENABLED: "true"
+      BUS_URL: "http://bot-bus:3000"
+      BUS_BOT_NAME: "zeroclaw-roviq"
     volumes:
       - ../data/zeroclaw-roviq:/data
     restart: unless-stopped
@@ -24,6 +28,10 @@ services:
     build: ./zeroclaw-glass
     env_file:
       - ../.env
+    environment:
+      BUS_SUBSCRIBE_ENABLED: "true"
+      BUS_URL: "http://bot-bus:3000"
+      BUS_BOT_NAME: "zeroclaw-glass"
     volumes:
       - ../data/zeroclaw-glass:/data
     restart: unless-stopped
@@ -32,6 +40,10 @@ services:
     build: ./zeroclaw-roviq-clients
     env_file:
       - ../.env
+    environment:
+      BUS_SUBSCRIBE_ENABLED: "true"
+      BUS_URL: "http://bot-bus:3000"
+      BUS_BOT_NAME: "zeroclaw-roviq-clients"
     volumes:
       - ../data/zeroclaw-roviq-clients:/data
     restart: unless-stopped

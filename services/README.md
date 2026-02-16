@@ -156,6 +156,11 @@ RELAY_MAX_HOPS=5
 DISCORD_MIRROR_MENTION_FALLBACK=true
 DISCORD_MIRROR_MENTION_USER_IDS=1467196508209156148,1472663591843926207,1472663903900274788
 
+# True wiring (set on each zeroclaw-* service)
+BUS_SUBSCRIBE_ENABLED=true
+BUS_URL=http://bot-bus:8080
+BUS_BOT_NAME=zeroclaw-roviq   # or zeroclaw-glass / zeroclaw-roviq-clients
+
 # ZeroClaw (each agent needs separate Discord bot tokens)
 DISCORD_TOKEN_ROVIQ=your_roviq_bot_token
 DISCORD_TOKEN_GLASS=your_glass_bot_token

@@ -114,6 +114,12 @@ const INTERNAL_GATEWAY_PORT = Number.parseInt(
 const INTERNAL_GATEWAY_HOST = process.env.INTERNAL_GATEWAY_HOST ?? "127.0.0.1";
 const GATEWAY_TARGET = `http://${INTERNAL_GATEWAY_HOST}:${INTERNAL_GATEWAY_PORT}`;
 
+// Optional bus subscriber: consume bot-bus SSE and inject as system events.
+const BUS_SUBSCRIBE_ENABLED = String(process.env.BUS_SUBSCRIBE_ENABLED || '').toLowerCase() === 'true';
+const BUS_URL = process.env.BUS_URL?.trim() || 'http://bot-bus:8080';
+const BUS_BOT_NAME = process.env.BUS_BOT_NAME?.trim() || process.env.SERVICE_NAME?.trim() || 'zeroclaw-roviq';
+const BUS_RECONNECT_MS = Number.parseInt(process.env.BUS_RECONNECT_MS ?? '3000', 10);
+
 // Always run the built-from-source CLI entry directly to avoid PATH/global-install mismatches.
 const OPENCLAW_ENTRY =
   process.env.OPENCLAW_ENTRY?.trim() || "/openclaw/dist/entry.js";
@@ -555,6 +561,98 @@ function runCmd(cmd, args, opts = {}) {
   });
 }
 
+async function injectBusSystemEvent(payload) {
+  try {
+    const from = String(payload?.from || 'unknown');
+    if (from === BUS_BOT_NAME) return;
+
+    const text = String(payload?.text || '').trim();
+    if (!text) return;
+
+    const jump = payload?.meta?.jump || null;
+    const eventText = `[BUS:${BUS_BOT_NAME}] ${from}: ${text}${jump ? `\n${jump}` : ''}`;
+
+    const result = await runCmd(
+      OPENCLAW_NODE,
+      clawArgs(["system", "event", "--mode", "now", "--text", eventText]),
+    );
+
+    if (result.code !== 0) {
+      console.error(`[bus] system event failed code=${result.code}: ${result.output}`);
+    } else {
+      console.log(`[bus] injected system event from=${from} len=${text.length}`);
+    }
+  } catch (err) {
+    console.error(`[bus] inject error: ${String(err)}`);
+  }
+}
+
+async function subscribeToBusOnce() {
+  const url = `${BUS_URL.replace(/\/$/, '')}/subscribe?bot=${encodeURIComponent(BUS_BOT_NAME)}`;
+  console.log(`[bus] connecting ${url}`);
+
+  const res = await fetch(url, {
+    method: "GET",
+    headers: { Accept: "text/event-stream" },
+  });
+
+  if (!res.ok || !res.body) {
+    throw new Error(`subscribe failed: HTTP ${res.status}`);
+  }
+
+  const reader = res.body.getReader();
+  const decoder = new TextDecoder();
+  let buffer = "";
+
+  while (true) {
+    const { value, done } = await reader.read();
+    if (done) break;
+
+    buffer += decoder.decode(value, { stream: true });
+
+    let idx;
+    while ((idx = buffer.indexOf("\n\n")) !== -1) {
+      const rawEvent = buffer.slice(0, idx);
+      buffer = buffer.slice(idx + 2);
+
+      const dataLine = rawEvent
+        .split("\n")
+        .find((line) => line.startsWith("data:"));
+      if (!dataLine) continue;
+
+      const json = dataLine.slice(5).trim();
+      if (!json) continue;
+
+      try {
+        const payload = JSON.parse(json);
+        await injectBusSystemEvent(payload);
+      } catch (err) {
+        console.error(`[bus] bad payload: ${json}`);
+      }
+    }
+  }
+
+  throw new Error("SSE stream ended");
+}
+
+function startBusSubscriberLoop() {
+  if (!BUS_SUBSCRIBE_ENABLED) {
+    console.log("[bus] subscriber disabled");
+    return;
+  }
+
+  (async () => {
+    while (true) {
+      try {
+        await subscribeToBusOnce();
+      } catch (err) {
+        console.error(`[bus] subscriber disconnected: ${String(err)}`);
+      }
+      await sleep(BUS_RECONNECT_MS);
+    }
+  })();
+}
+
 app.post("/setup/api/run", requireSetupAuth, async (req, res) => {
   try {
     if (isConfigured()) {
@@ -956,6 +1054,7 @@ const server = app.listen(PORT, () => {
   console.log(`[wrapper] listening on port ${PORT}`);
   console.log(`[wrapper] setup wizard: http://localhost:${PORT}/setup`);
   console.log(`[wrapper] configured: ${isConfigured()}`);
+  startBusSubscriberLoop();
 });
 
 // Handle WebSocket upgrades
