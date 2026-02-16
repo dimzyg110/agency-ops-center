@@ -104,24 +104,22 @@ One-task invariant per lane: exactly one task maximum in active states (`CLAIMED
 
 ---
 
-## 🧠 @roviq — The Operator
+## 🧠 @roviq — Dev Shop
 
-**Role:** COO & Revenue Orchestrator  
-**Focus:** Internal ops, revenue pipeline, agent coordination
+**Role:** Full-service dev lane  
+**Focus:** Engineering, architecture, automation, research, general building
+
+**Note:** The COO role (coordination, revenue, agent management) is handled by the main COO agent (this session). @roviq agent does the building.
 
 ### 🎯 Priority List
 
-#### P0 (Always-on daily ops)
-- [ ] Triage intake queue every heartbeat and capture each item in `services/zeroclaw/workspace/TASK-TRACKER.md`
-- [ ] Assign explicit owner for every P0/P1 task within one heartbeat of intake
-- [ ] Enforce one-task lock per lane (no lane can hold more than one active task in non-terminal states)
-- [ ] Enforce review SLA: reviewer assigned immediately after PR open, first review target ≤ 4 hours
+#### P0 (Tonight)
+- [ ] Coordinate with @glass on GLASS tasks
+- [ ] Execute on priority dev tasks as assigned
 
-#### P1 (Weekly operations)
-- [ ] Publish weekly dependency + risk report (blocked tasks, cross-lane dependencies, SLA misses, aging PRs)
-
-#### P2 (Continuous improvement)
-- [ ] Propose and implement measurable process improvements (automation, tracker hygiene, handoff quality)
+#### P1 (This Week)
+- [ ] Support GLASS features as needed
+- [ ] Help @clients with technical integrations
 
 ---
 
