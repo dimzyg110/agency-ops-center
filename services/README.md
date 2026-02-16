@@ -13,7 +13,7 @@ Infrastructure for running three specialized AI agents with inter-communication 
                               ▼
                     ┌─────────────────────┐
                     │   @roviq (Operator)  │
-                    │   Port 8080          │
+                    │   PORT from env      │
                     │   COO & Revenue      │
                     └──────┬──────┬────────┘
                            │      │
@@ -22,7 +22,7 @@ Infrastructure for running three specialized AI agents with inter-communication 
               ┌────────────────┐  ┌──────────────────────┐
               │  @glass        │  │  @clients             │
               │  (Builder)     │  │  (Creative)           │
-              │  Port 8081     │  │  Port 8082            │
+              │  PORT from env │  │  PORT from env        │
               │  CTO/Engineer  │  │  Creative Director    │
               └───────┬────────┘  └──────────┬───────────┘
                       │                      │
@@ -37,11 +37,11 @@ All three agents share a Discord server for communication. They tag each other w
 
 ## Agent Roles
 
-| Agent | Discord | Port | Role | Owns |
-|-------|---------|------|------|------|
-| **zeroclaw-roviq** | `@roviq` | 8080 | Operator — COO & Revenue | Strategy, revenue pipeline, lead funnel, agent coordination, dashboard/memory |
-| **zeroclaw-glass** | `@glass` | 8081 | Builder — CTO & Engineer | GLASS platform, SIGNAL engine, API, scrapers, data, infrastructure, DevOps |
-| **zeroclaw-roviq-clients** | `@clients` | 8082 | Creative — CD & Account Mgr | All client deliverables (AC, CH, HOP), design, content, social, websites, SEO |
+| Agent | Discord | Runtime Port | Role | Owns |
+|-------|---------|--------------|------|------|
+| **zeroclaw-roviq** | `@roviq` | env `PORT` (default 8080) | Operator — COO & Revenue | Strategy, revenue pipeline, lead funnel, agent coordination, dashboard/memory |
+| **zeroclaw-glass** | `@glass` | env `PORT` (default 8080) | Builder — CTO & Engineer | GLASS platform, SIGNAL engine, API, scrapers, data, infrastructure, DevOps |
+| **zeroclaw-roviq-clients** | `@clients` | env `PORT` (default 8080) | Creative — CD & Account Mgr | All client deliverables (AC, CH, HOP), design, content, social, websites, SEO |
 
 ### Separation of Concerns
 
@@ -116,9 +116,9 @@ Non-negotiable rules:
 | Service | Description | Port |
 |---------|-------------|------|
 | **bot-bus** | Message relay + Discord forwarding (Express + SSE) | 3000 |
-| **zeroclaw-roviq** | Agency operations — see [Operator README](./zeroclaw-roviq/README.md) | 8080 |
-| **zeroclaw-glass** | Technical infrastructure — see [Builder README](./zeroclaw-glass/README.md) | 8081 |
-| **zeroclaw-roviq-clients** | Client delivery — see [Creative README](./zeroclaw-roviq-clients/README.md) | 8082 |
+| **zeroclaw-roviq** | Agency operations — see [Operator README](./zeroclaw-roviq/README.md) | env `PORT` (default 8080) |
+| **zeroclaw-glass** | Technical infrastructure — see [Builder README](./zeroclaw-glass/README.md) | env `PORT` (default 8080) |
+| **zeroclaw-roviq-clients** | Client delivery — see [Creative README](./zeroclaw-roviq-clients/README.md) | env `PORT` (default 8080) |
 
 ---
 
@@ -149,7 +149,7 @@ DISCORD_WEBHOOK_URL=your_discord_webhook_url
 # ZeroClaw (each agent needs separate Discord bot tokens)
 DISCORD_TOKEN_ROVIQ=your_roviq_bot_token
 DISCORD_TOKEN_GLASS=your_glass_bot_token
-DISCORD_TOKEN_CLIENTS=your_clients_bot_token
+DISCORD_TOKEN_ROVIQ_CLIENTS=your_clients_bot_token
 
 # Shared
 OPENROUTER_API_KEY=your_api_key

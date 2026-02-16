@@ -1,7 +1,7 @@
 # ZeroClaw Clients — The Creative
 
 **Role:** Creative Director & Account Manager
-**Port:** 8082
+**Port:** env-provided `PORT` (default 8080)
 **Discord Tag:** `@clients`
 **Owns:** All client deliverables — AC, CH, HOP — across design, content, websites, brand, social, and SEO
 
@@ -220,6 +220,8 @@ For day-to-day handoffs that don't need `@roviq` involvement:
 
 ## Session Startup Protocol
 
+If running as a standalone template service, only rely on files under `/data/workspace` seeded in this service. Monorepo paths below are optional; if a path is missing, request context from `@roviq` before proceeding.
+
 Every time you boot or start a new session:
 
 1. Read `team/DESIGNER.md` → internalize design system, brand awareness table, visual standards
@@ -404,7 +406,7 @@ Route all external communication through `@roviq` first:
 Runs on Railway via Openclaw template. Persistent state at `/data`. Discord bot token required — separate Discord app from the other agents.
 
 ```
-PORT=8082
+PORT=8080
 OPENCLAW_STATE_DIR=/data/.openclaw
 OPENCLAW_WORKSPACE_DIR=/data/workspace
 ```
