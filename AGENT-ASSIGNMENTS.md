@@ -111,15 +111,30 @@ One-task invariant per lane: exactly one task maximum in active states (`CLAIMED
 
 **Note:** The COO role (coordination, revenue, agent management) is handled by the main COO agent (this session). @roviq agent does the building.
 
+### 📦 Workspace Requirements
+
+| Item | Details | Priority |
+|------|---------|----------|
+| **GLASS Project** | `projects/glass/` — Next.js app, API routes | 🔴 P0 |
+| **Social Tool** | `Roviq-AI/social-tool` | 🔴 P0 |
+| **Lead Tool** | Scripts for automated outreach | 🔴 P0 |
+| **GitHub Access** | Push to Roviq repos | 🔴 P0 |
+
 ### 🎯 Priority List
 
 #### P0 (Tonight)
-- [ ] Coordinate with @glass on GLASS tasks
-- [ ] Execute on priority dev tasks as assigned
+- [ ] Help @glass with scrapers if needed
+- [ ] Support @clients with Vertex API setup
 
 #### P1 (This Week)
-- [ ] Support GLASS features as needed
-- [ ] Help @clients with technical integrations
+- [ ] Social content engine (Gemini automation for GlassIntel)
+- [ ] LinkedIn automation setup (with guardrails)
+- [ ] Automated dispensary outreach with snapshots
+- [ ] Any technical tasks from @clients
+
+#### P2
+- [ ] Improve/extend lead tool
+- [ ] New automation ideas
 
 ---
 
