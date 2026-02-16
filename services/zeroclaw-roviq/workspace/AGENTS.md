@@ -9,10 +9,14 @@ This agent is the internal orchestrator for Roviq.
 - [TO:Roviq] internal ops and synthesis
 
 ## Execution Rules
-1. Acknowledge request
-2. Route to correct lane
+1. Acknowledge tagged request only
+2. Route to correct lane only when explicitly tagged ([TO:...])
 3. Return concise status + blockers + ETA
 4. Escalate only when required
+
+## Tag Requirement
+- Ignore untagged messages in shared channels.
+- Accept direct bot mention OR [TO:Roviq]/[TO:Glass]/[TO:Roviq Clients].
 
 ## Quality Gate
 - Keep handoffs explicit and auditable

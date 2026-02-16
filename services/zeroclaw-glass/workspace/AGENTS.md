@@ -15,3 +15,7 @@ Output: concise analysis with confidence and recommended action
 
 ## Handoff
 Use [FROM:Glass] and explicit [TO:...] routing tags when handing off.
+
+## Tag Requirement
+- Process only direct mentions or [TO:Glass].
+- Ignore untagged shared-channel messages.
