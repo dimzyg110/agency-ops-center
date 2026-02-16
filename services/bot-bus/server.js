@@ -20,6 +20,11 @@ const MIRROR_BUS_BOTS = (process.env.DISCORD_MIRROR_BOTS || '')
   .split(',')
   .map((s) => s.trim())
   .filter(Boolean);
+const MIRROR_MENTION_FALLBACK_ENABLED = String(process.env.DISCORD_MIRROR_MENTION_FALLBACK || '').toLowerCase() === 'true';
+const MIRROR_MENTION_USER_IDS = (process.env.DISCORD_MIRROR_MENTION_USER_IDS || '')
+  .split(',')
+  .map((s) => s.trim())
+  .filter(Boolean);
 
 // Loop guard for agent-to-agent relays
 const RELAY_MAX_HOPS = Number(process.env.RELAY_MAX_HOPS || 5);
@@ -73,7 +78,7 @@ function initDiscordMirror() {
     partials: [Partials.Channel],
   });
 
-  client.on('ready', () => {
+  client.on('clientReady', () => {
     console.log(`[mirror] connected as ${client.user?.tag ?? 'unknown'}`);
   });
 
@@ -115,6 +120,19 @@ function initDiscordMirror() {
           resolveBroadcastTargets()
         );
         console.log(`[mirror] bus fanout message ${msg.id} -> ${delivered} bot(s)`);
+
+        // Fast fallback: if no SSE subscribers are connected, mention bots in-channel
+        // so existing mention-triggered runtimes still respond.
+        if (
+          delivered === 0 &&
+          MIRROR_MENTION_FALLBACK_ENABLED &&
+          MIRROR_MENTION_USER_IDS.length > 0
+        ) {
+          const mentions = MIRROR_MENTION_USER_IDS.map((id) => `<@${id}>`).join(' ');
+          const fallbackText = `${mentions}\n[BUS FALLBACK] ${msg.author?.username ?? 'user'}: ${msg.content || '(no text)'}`;
+          await forwardToDiscord(fallbackText, { mentionUserIds: MIRROR_MENTION_USER_IDS });
+          console.log(`[mirror] mention fallback triggered for message ${msg.id}`);
+        }
       }
 
       console.log(`[mirror] processed message ${msg.id}`);

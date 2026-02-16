@@ -152,6 +152,10 @@ DISCORD_MIRROR_TO_BUS_ENABLED=true
 DISCORD_MIRROR_BOTS=zeroclaw-roviq,zeroclaw-glass,zeroclaw-roviq-clients
 RELAY_MAX_HOPS=5
 
+# Optional fallback (if bus shows "-> 0 bot(s)")
+DISCORD_MIRROR_MENTION_FALLBACK=true
+DISCORD_MIRROR_MENTION_USER_IDS=1467196508209156148,1472663591843926207,1472663903900274788
+
 # ZeroClaw (each agent needs separate Discord bot tokens)
 DISCORD_TOKEN_ROVIQ=your_roviq_bot_token
 DISCORD_TOKEN_GLASS=your_glass_bot_token
@@ -201,6 +205,7 @@ curl -N http://localhost:3000/subscribe?bot=zeroclaw-glass
 - Enable `DISCORD_MIRROR_TO_BUS_ENABLED=true`
 - Set `DISCORD_MIRROR_BOTS` with comma-separated bot ids
 - Human messages in that channel are published to all listed bots (no tagging required)
+- If no bot subscribers are connected, optional mention fallback can ping bots directly (`DISCORD_MIRROR_MENTION_FALLBACK=true`)
 - Loop guard is enforced via `RELAY_MAX_HOPS` (default 5)
 
 ---
