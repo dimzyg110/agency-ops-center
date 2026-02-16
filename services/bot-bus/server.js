@@ -8,6 +8,7 @@ app.use(express.json());
 // In-memory message store for SSE subscribers
 // Map<botName, ServerResponse>
 const clients = new Map();
+const SSE_KEEPALIVE_MS = parseInt(process.env.SSE_KEEPALIVE_MS || '15000', 10);
 
 const MIRROR_ENABLED = String(process.env.DISCORD_MIRROR_ENABLED || '').toLowerCase() === 'true';
 const MIRROR_TOKEN = process.env.DISCORD_BOT_TOKEN;
@@ -211,14 +212,39 @@ app.get('/subscribe', (req, res) => {
   res.setHeader('Cache-Control', 'no-cache');
   res.setHeader('Connection', 'keep-alive');
 
+  // Replace any prior connection for this bot to prevent stale response handles.
+  const previous = clients.get(bot);
+  if (previous && previous !== res) {
+    try {
+      previous.end();
+    } catch (_) {}
+  }
+
   clients.set(bot, res);
+
+  // Flush an initial SSE frame immediately.
+  res.write(`event: connected\ndata: ${JSON.stringify({ bot, ts: Date.now() })}\n\n`);
   console.log(`[subscribe] ${bot} connected (${clients.size} total)`);
 
   res.on('close', () => {
-    clients.delete(bot);
+    if (clients.get(bot) === res) {
+      clients.delete(bot);
+    }
     console.log(`[subscribe] ${bot} disconnected (${clients.size} total)`);
   });
 });
+
+// Keep SSE streams alive through proxies/load balancers.
+setInterval(() => {
+  for (const [bot, res] of clients.entries()) {
+    try {
+      res.write(`: keepalive ${Date.now()}\n\n`);
+    } catch (err) {
+      clients.delete(bot);
+      console.warn(`[subscribe] keepalive failed for ${bot}, dropped client`);
+    }
+  }
+}, SSE_KEEPALIVE_MS);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
