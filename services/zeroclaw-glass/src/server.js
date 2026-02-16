@@ -114,6 +114,20 @@ const INTERNAL_GATEWAY_PORT = Number.parseInt(
 const INTERNAL_GATEWAY_HOST = process.env.INTERNAL_GATEWAY_HOST ?? "127.0.0.1";
 const GATEWAY_TARGET = `http://${INTERNAL_GATEWAY_HOST}:${INTERNAL_GATEWAY_PORT}`;
 
+// Optional bus subscriber: consume bot-bus SSE and inject as system events.
+const BUS_SUBSCRIBE_ENABLED = String(process.env.BUS_SUBSCRIBE_ENABLED || '').toLowerCase() === 'true';
+const BUS_URL = process.env.BUS_URL?.trim() || 'http://bot-bus:8080';
+const BUS_BOT_NAME = process.env.BUS_BOT_NAME?.trim() || process.env.SERVICE_NAME?.trim() || 'zeroclaw-roviq';
+const BUS_RECONNECT_MS = Number.parseInt(process.env.BUS_RECONNECT_MS ?? '3000', 10);
+const BUS_MAX_RECONNECT_MS = Number.parseInt(process.env.BUS_MAX_RECONNECT_MS ?? '30000', 10);
+const BUS_FETCH_TIMEOUT_MS = Number.parseInt(process.env.BUS_FETCH_TIMEOUT_MS ?? '30000', 10);
+const BUS_EVENT_BUFFER_CAP = Number.parseInt(process.env.BUS_EVENT_BUFFER_CAP ?? '100', 10);
+
+// Bus subscriber state
+let busAbortController = null;
+let currentBackoffMs = BUS_RECONNECT_MS;
+const eventBuffer = [];
+
 // Always run the built-from-source CLI entry directly to avoid PATH/global-install mismatches.
 const OPENCLAW_ENTRY =
   process.env.OPENCLAW_ENTRY?.trim() || "/openclaw/dist/entry.js";
@@ -555,6 +569,156 @@ function runCmd(cmd, args, opts = {}) {
   });
 }
 
+async function injectBusSystemEvent(payload) {
+  try {
+    const from = String(payload?.from || 'unknown');
+    if (from === BUS_BOT_NAME) return;
+
+    const text = String(payload?.text || '').trim();
+    if (!text) return;
+
+    const jump = payload?.meta?.jump || null;
+    const eventText = `[BUS:${BUS_BOT_NAME}] ${from}: ${text}${jump ? `\n${jump}` : ''}`;
+
+    const result = await runCmd(
+      OPENCLAW_NODE,
+      clawArgs(["system", "event", "--mode", "now", "--text", eventText]),
+    );
+
+    if (result.code !== 0) {
+      console.error(`[bus] system event failed code=${result.code}: ${result.output}`);
+    } else {
+      console.log(`[bus] injected system event from=${from} len=${text.length}`);
+    }
+  } catch (err) {
+    console.error(`[bus] inject error: ${String(err)}`);
+  }
+}
+
+async function subscribeToBusOnce(signal) {
+  const url = `${BUS_URL.replace(/\/$/, '')}/subscribe?bot=${encodeURIComponent(BUS_BOT_NAME)}`;
+  console.log(`[bus] connecting ${url}`);
+
+  // Create abort controller for fetch timeout
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), BUS_FETCH_TIMEOUT_MS);
+
+  // If signal is already aborted, abort immediately
+  if (signal?.aborted) {
+    clearTimeout(timeoutId);
+    throw new Error('aborted');
+  }
+
+  const res = await fetch(url, {
+    method: "GET",
+    headers: { Accept: "text/event-stream" },
+    signal: controller.signal,
+  });
+
+  clearTimeout(timeoutId);
+
+  if (!res.ok || !res.body) {
+    throw new Error(`subscribe failed: HTTP ${res.status}`);
+  }
+
+  const reader = res.body.getReader();
+  const decoder = new TextDecoder();
+  let buffer = "";
+
+  // Handle abort from parent signal
+  const abortPromise = new Promise((_, reject) => {
+    if (!signal) return;
+    signal.addEventListener('abort', () => {
+      reader.cancel().catch(() => {});
+      reject(new Error('aborted'));
+    });
+  });
+
+  try {
+    while (true) {
+      // Race between reader.read() and abort signal
+      const readPromise = reader.read();
+      const { value, done } = await Promise.race([readPromise, abortPromise]);
+      
+      if (done || signal?.aborted) break;
+
+      buffer += decoder.decode(value, { stream: true });
+
+      let idx;
+      while ((idx = buffer.indexOf("\n\n")) !== -1) {
+        const rawEvent = buffer.slice(0, idx);
+        buffer = buffer.slice(idx + 2);
+
+        const dataLine = rawEvent
+          .split("\n")
+          .find((line) => line.startsWith("data:"));
+        if (!dataLine) continue;
+
+        const json = dataLine.slice(5).trim();
+        if (!json) continue;
+
+        try {
+          const payload = JSON.parse(json);
+          // Backpressure protection: cap event buffer
+          if (eventBuffer.length < BUS_EVENT_BUFFER_CAP) {
+            eventBuffer.push(payload);
+          } else {
+            console.warn(`[bus] event buffer full (${BUS_EVENT_BUFFER_CAP}), dropping event`);
+          }
+        } catch (err) {
+          console.error(`[bus] bad payload: ${json}`);
+        }
+      }
+
+      // Process buffered events with backpressure
+      while (eventBuffer.length > 0) {
+        const payload = eventBuffer.shift();
+        await injectBusSystemEvent(payload);
+      }
+    }
+
+    // Drain remaining buffer on exit
+    while (eventBuffer.length > 0) {
+      const payload = eventBuffer.shift();
+      await injectBusSystemEvent(payload);
+    }
+  } finally {
+    reader.releaseLock();
+  }
+
+  throw new Error("SSE stream ended");
+}
+
+function startBusSubscriberLoop() {
+  if (!BUS_SUBSCRIBE_ENABLED) {
+    console.log("[bus] subscriber disabled");
+    return;
+  }
+
+  busAbortController = new AbortController();
+  currentBackoffMs = BUS_RECONNECT_MS;
+
+  // Jitter function for exponential backoff
+  const jitter = () => Math.random() * 0.3 + 0.85; // 85-115% multiplier
+
+  (async () => {
+    while (!busAbortController.signal.aborted) {
+      try {
+        await subscribeToBusOnce(busAbortController.signal);
+      } catch (err) {
+        if (busAbortController.signal.aborted) break;
+        console.error(`[bus] subscriber disconnected: ${String(err)}`);
+      }
+      if (busAbortController.signal.aborted) break;
+      
+      // Exponential backoff with jitter
+      await sleep(Math.floor(currentBackoffMs * jitter()));
+      currentBackoffMs = Math.min(currentBackoffMs * 2, BUS_MAX_RECONNECT_MS);
+    }
+    console.log("[bus] subscriber loop stopped");
+  })();
+}
+
 app.post("/setup/api/run", requireSetupAuth, async (req, res) => {
   try {
     if (isConfigured()) {
@@ -956,6 +1120,7 @@ const server = app.listen(PORT, () => {
   console.log(`[wrapper] listening on port ${PORT}`);
   console.log(`[wrapper] setup wizard: http://localhost:${PORT}/setup`);
   console.log(`[wrapper] configured: ${isConfigured()}`);
+  startBusSubscriberLoop();
 });
 
 // Handle WebSocket upgrades
@@ -984,6 +1149,13 @@ server.on("upgrade", async (req, socket, head) => {
 
 process.on("SIGTERM", () => {
   // Best-effort shutdown
+  console.log("[wrapper] SIGTERM received, shutting down...");
+  
+  // Stop bus subscriber gracefully
+  if (busAbortController) {
+    busAbortController.abort();
+  }
+
   try {
     if (gatewayProc) gatewayProc.kill("SIGTERM");
   } catch {
