@@ -178,7 +178,139 @@ This file captures the major operational history, decisions, incidents, and ship
 
 ---
 
-## 7) Where to look for detailed context
+## 7) Historical Timeline (Deep Dive)
+
+### 2026-02-09 — Foundation reset and model unlock day
+- OpenClaw model catalog was manually patched so Opus 4.6 variants were available pending upstream support.
+- Subagent model allowlist behavior was diagnosed (`agents.defaults.models`), explaining prior “model not allowed” failures.
+- Workspace migrated into `agency-ops-center` with full COO operating files and client/project structure.
+- GitHub org migration to `Roviq-AI` completed; dual-account auth context documented.
+- Decoded lead pipeline was executed with 5-agent research and full synthesis discipline.
+- Key operating lesson captured: provider/model compatibility must be verified per route, not assumed by model name.
+
+### 2026-02-10 — Delivered lead intelligence and proposal-quality hardening
+- Delivered lead research completed with multiple specialist agents and dual-review gate.
+- Casino-spam compromise on Delivered web footprint was independently re-verified after challenge.
+- “First app” positioning refined with regulatory/platform caveats (Android policy, Lantern failure history, Zyp Run context).
+- Humanizer pipeline was stress-tested; provider-specific failures documented; fallback routing established.
+- Strategic direction clarified: partnership/equity posture over vendor posture; React Native app direction and ownership terms corrected.
+
+### 2026-02-11 — GLASS deployment realism day
+- "Deployed" claims were separated from "working product" claims.
+- Clerk auth and routing failures were repeatedly tested and documented across attempts.
+- Backend deploy + DB migration progress occurred in parallel with unresolved auth flow issues.
+- Tool-signature bug on Antigravity/Claude tool calls was investigated; partial fix applied; broader model coverage issue identified.
+- Core lesson reinforced: every deployment claim requires E2E verification against user flows.
+
+### 2026-02-12 — Security/reliability and ecosystem expansion
+- Security hardening landed (secret removal, endpoint protection, role defaults, rate limits, security headers).
+- Data endpoints were locked behind auth and verified in production.
+- Budtender messaging and product positioning were corrected to reflect actual delivered capability.
+- Large CCC data import program initiated (lab tests, facility sales, operators, county data).
+- Multiple integration/master-plan artifacts produced to align GLASS + Cue + client ecosystem execution.
+
+### 2026-02-13 — Scraper architecture inflection point
+- Major discovery: CamoFox assumptions were wrong/fragile in production context; plain Playwright Firefox had been the real reliable engine for historical successful runs.
+- Three Opus engineering lanes executed targeted fixes:
+  - Jane browser rewrite
+  - Weedmaps progress visibility and behavior diagnosis
+  - Leafly exponential backoff and adaptive throttling
+- PR #30 became the primary convergence branch for multi-scraper reliability changes.
+- Structured logging framework added across scraper services.
+- Gateway instability from too many concurrent/stale sessions prompted stricter subagent cleanup practice.
+- Critical COO lesson logged: stop repeating broken tactics; pivot architecture when failure pattern repeats.
+
+### 2026-02-14 — GPID wartime sprint and matching engine buildup
+- High-volume schema/data operations performed (dedupe, SKU normalization, candidate precompute, verification flow acceleration).
+- Match quality rose through staged interventions: re-hash + fuzzy matching + verifier + dashboard logic updates.
+- Brand dictionary/fuzzy pipelines underwent review-fix cycles, including explicit rejection of over-aggressive merging behavior.
+- Testing plan and regression baselines were introduced to prevent silent quality regressions.
+- Long-form GPID deep-dive and model research documents created for strategic/technical alignment.
+
+### 2026-02-15 — ZeroClaw + operational deploy stabilization
+- Multi-service ZeroClaw/bot-bus deployments were stabilized via config-path corrections, startup-time key injection, and model-id fixes.
+- Discord flapping behavior was narrowed to token identity/intents and service-level config alignment.
+- GLASS UX/API fixes continued in parallel; known issues triaged with explicit blocker accounting.
+- Durable lesson: token-to-bot identity mapping must be validated before redeploy loops.
+
+### 2026-02-16 — Evidence-first operations day
+- Weedmaps diagnosis shifted from anecdotal status to reproducible proof artifacts.
+- Deterministic 30-store proof mechanism produced CSV/JSON/screenshot evidence sets.
+- GCP migration scaffold PR (#115) followed full review-remediation cadence (NO-GO -> fixes -> blocker closure).
+- OpenClaw operating pack was exported into agency repo for portability and continuity.
+- VPS bootstrap attempt triggered SSH lockout incident, generating a clearer “recover first, harden second” ops doctrine.
+
+---
+
+## 8) Incident Postmortems (Condensed)
+
+### A) Deploy claim vs product reality drift
+- **Pattern:** Build/deploy success interpreted as product success.
+- **Impact:** False “done” states while user journeys were still broken.
+- **Correction:** Mandatory E2E flow checks for all externally meaningful completion claims.
+
+### B) Scraper anti-detection overreach
+- **Pattern:** Engineering cycles focused on anti-detection stack assumptions that were not actually the source of throughput reliability.
+- **Impact:** Multiple PR churn loops and delayed fixes.
+- **Correction:** Empirical baseline first (what currently works), then minimal-change reliability improvements.
+
+### C) Session/gateway overload
+- **Pattern:** Too many long-lived/stale subagent sessions causing gateway instability and degraded observability.
+- **Correction:** strict cleanup behavior, bounded concurrency, and heartbeat-based status hygiene.
+
+### D) SSH hardening lockout
+- **Pattern:** Security controls applied before replacement login path was verified.
+- **Impact:** access outage and operational delay.
+- **Correction:** always test new non-root auth in parallel terminal first; only then disable root/password.
+
+---
+
+## 9) Technical Patterns Worth Preserving
+
+1. **Proof packs over assertions**
+   - For data-quality claims: machine-readable output + reproducible command + screenshots.
+2. **Review-fix-review loops**
+   - Independent reviewer model catches architecture/runtime mismatches better than single-pass coding.
+3. **Parallel-only migration strategy**
+   - New infra in isolated branch/folder; current production untouched until shadow-mode gates pass.
+4. **Schema/query contract verification**
+   - Validate table/column names and semantic fields (e.g., `platform` vs `source`) before KPI reporting.
+5. **Runtime contract alignment**
+   - Compose paths, deploy scripts, and docs must share one artifact/layout contract or deployment breaks at first clean host.
+
+---
+
+## 10) Expanded artifact index (historical)
+
+### Core memory documents
+- `memory/MEMORY.md`
+- `memory/2026-02-09.md`
+- `memory/2026-02-10.md`
+- `memory/2026-02-11.md`
+- `memory/2026-02-12.md`
+- `memory/2026-02-13.md`
+- `memory/2026-02-14.md`
+- `memory/2026-02-15.md`
+- `memory/2026-02-16.md`
+
+### GLASS execution artifacts
+- `projects/glass/launch-plan.md`
+- `projects/glass/weedmaps-scraper-fix.md`
+- `projects/glass/weedmaps-debug-findings.md`
+- `projects/glass/weedmaps-test-results.md`
+- `projects/glass/weedmaps-proof-report.md`
+- `projects/glass/weedmaps-proof-30stores.csv`
+- `projects/glass/weedmaps-proof-30stores.json`
+- `projects/glass/proof-screenshots/`
+
+### Infra review/fix artifacts
+- `projects/glass/reviews/gcp-infra-codex-review.md`
+- `projects/glass/reviews/gcp-infra-codex-second-review.md`
+- `projects/glass/reviews/pr-115-fix-summary.md`
+
+---
+
+## 11) Where to look for detailed context
 
 - Core operating behavior:
   - `openclaw-setup/core/AGENTS.md`
