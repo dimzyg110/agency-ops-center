@@ -16,6 +16,35 @@ const STATE_DIR =
 const WORKSPACE_DIR =
   process.env.OPENCLAW_WORKSPACE_DIR?.trim() ||
   path.join(STATE_DIR, "workspace");
+const WORKSPACE_SEED_DIR = path.join(process.cwd(), "workspace");
+
+function copyDirectoryRecursive(srcDir, destDir) {
+  if (!fs.existsSync(srcDir)) return;
+  fs.mkdirSync(destDir, { recursive: true });
+
+  for (const entry of fs.readdirSync(srcDir, { withFileTypes: true })) {
+    const srcPath = path.join(srcDir, entry.name);
+    const destPath = path.join(destDir, entry.name);
+
+    if (entry.isDirectory()) {
+      copyDirectoryRecursive(srcPath, destPath);
+    } else if (entry.isFile()) {
+      fs.mkdirSync(path.dirname(destPath), { recursive: true });
+      fs.copyFileSync(srcPath, destPath);
+    }
+  }
+}
+
+function syncWorkspaceSeed() {
+  if (!fs.existsSync(WORKSPACE_SEED_DIR)) {
+    console.log(`[workspace] seed dir not found: ${WORKSPACE_SEED_DIR}`);
+    return;
+  }
+
+  fs.mkdirSync(WORKSPACE_DIR, { recursive: true });
+  copyDirectoryRecursive(WORKSPACE_SEED_DIR, WORKSPACE_DIR);
+  console.log(`[workspace] synced seed files from ${WORKSPACE_SEED_DIR} -> ${WORKSPACE_DIR}`);
+}
 
 // Protect /setup with a user-provided password.
 const SETUP_PASSWORD = process.env.SETUP_PASSWORD?.trim();
@@ -73,6 +102,9 @@ const OPENCLAW_GATEWAY_TOKEN = resolveGatewayToken();
 process.env.OPENCLAW_GATEWAY_TOKEN = OPENCLAW_GATEWAY_TOKEN;
 console.log(`[token] Final resolved token: ${OPENCLAW_GATEWAY_TOKEN.slice(0, 16)}... (len: ${OPENCLAW_GATEWAY_TOKEN.length})`);
 console.log(`[token] ========== TOKEN RESOLUTION COMPLETE ==========\n`);
+
+// Ensure runtime workspace identity files always match the version-controlled seed.
+syncWorkspaceSeed();
 
 // Where the gateway will listen internally (we proxy to it).
 const INTERNAL_GATEWAY_PORT = Number.parseInt(
