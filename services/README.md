@@ -151,6 +151,7 @@ DISCORD_MIRROR_SOURCE_CHANNEL_ID=your_shared_group_channel_id
 DISCORD_MIRROR_TO_BUS_ENABLED=true
 DISCORD_MIRROR_BOTS=zeroclaw-roviq,zeroclaw-glass,zeroclaw-roviq-clients
 RELAY_MAX_HOPS=5
+SSE_KEEPALIVE_MS=15000
 
 # Optional fallback (if bus shows "-> 0 bot(s)")
 DISCORD_MIRROR_MENTION_FALLBACK=true
