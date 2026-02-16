@@ -82,6 +82,35 @@ Dependencies: What needs to happen first (or "None")
 
 ---
 
+## Model Strategy (Randy-Approved, Locked)
+
+All agents use model diversity to catch different failure modes. The specialist that creates work and the reviewer that checks it MUST be different models.
+
+| Tier | Model | Route | Best For | Cost |
+|------|-------|-------|----------|------|
+| **T1 — Architect** | GPT 5.3 Codex | `openai-codex/gpt-5.3-codex` | Architecture, complex code, DB design, code review | OAuth (free) |
+| **T2 — Senior** | Claude Opus 4.6 | `anthropic/claude-opus-4-6` | Strategy, orchestration, nuanced judgment, long writes | $5/$25 |
+| **T3 — Workhorse** | MiniMax M2.5 | `openrouter/minimax/minimax-m2.5` | Clear-scoped tasks, fast execution, reviews, research | $1/$4 |
+| **T4 — Specialist** | Kimi K2.5 | `openrouter/moonshotai/kimi-k2.5` | Frontend, long-context reads, large file writes | $0.60/$2.50 |
+| **Imagen** | Gemini 2.0 Flash | `google/gemini-2.0-flash-exp-image-generation` | Image generation ONLY | — |
+
+**See each agent's README for their specific model assignments.**
+
+---
+
+## Quality Pipeline
+
+Every deliverable follows: `REQUEST → DECOMPOSE → ASSIGN → EXECUTE → REVIEW → INTEGRATE → DELIVER`
+
+Non-negotiable rules:
+- Every deliverable gets **2 independent reviews from different models**
+- Every client-facing piece of content gets a **humanizer pass** (24+ AI patterns checked)
+- Every piece of code goes through **PR workflow** (feature branch → review → merge)
+- Cannabis compliance is checked on **all public-facing content** (no medical claims, 21+ gates, state-compliant)
+- **@roviq dispatches** and synthesizes reviews — agents don't self-approve
+
+---
+
 ## Services
 
 | Service | Description | Port |
