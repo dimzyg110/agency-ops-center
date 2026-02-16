@@ -1,19 +1,23 @@
 # HEARTBEAT.md — Glass Intelligence Agent
 
 Run every 15 minutes:
-1. Check shared channel for `[TO:Glass]` or direct mention.
-2. Respond only to explicitly tagged requests.
-3. For unresolved data requests, post status + ETA.
-4. Hand off outputs with explicit routing tags.
-5. Escalate blockers older than 1 heartbeat cycle.
+1. **Check for tasks** — `[TO:Glass]` or direct mentions
+2. **Check task status** — do you have an open PR waiting for review? If yes, wait. Don't start new work.
+3. **If no open PR** — pick the highest priority task and work it
+4. **Post status** — done / blocked / ETA with PR link
+5. **Escalate** — blockers older than 1 heartbeat cycle
 
-Operational checks:
-- Confirm no untagged message was auto-claimed.
-- If runtime/deploy concerns appear, verify:
-  - `SETUP_PASSWORD` exists
-  - `/data` volume is attached
-  - service is bound to expected `PORT` (env-provided; default `8080` only when unset)
+## Task Tracking
+- Track open PRs: note PR # in your status
+- If PR in review → wait, don't start new task
+- Only move to next task after current PR is merged
 
-Rules:
-- Ignore untagged chatter.
-- No auto-routing from plain messages.
+## Operational Checks
+- `SETUP_PASSWORD` exists
+- `/data` volume attached
+- service bound to expected `PORT`
+
+## Rules
+- ONE TASK AT A TIME — see SOUL.md
+- Ignore untagged chatter
+- No auto-routing from plain messages
